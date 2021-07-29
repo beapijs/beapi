@@ -33,17 +33,16 @@ export class eventManager {
         for (const player of players) {
             this.currentScores[player.name] = player.scores
             let scoreChanged = this.currentScores[player.name].filter(current => !this.oldScores[player.name].some(old => current.value === old.value))
-            for (const newScore of scoreChanged) {
+            for (const newScore of scoreChanged[player.name]) {
                 let oldScore
                 for (const key of this.oldScores[player.name]) { if (key.objective === newScore.objective) oldScore = key }
                 const data = {
                     player: player,
                     objective: newScore.objective,
                     displayName: newScore.displayName,
-                    newValue = newScore.value,
-                    oldValue = oldScore.value
+                    newValue: newScore.value,
+                    oldValue: oldScore.value
                 }
-
                 this.emit('ScoreChanged', data)
             }
             this.oldScores[player.name] = this.currentScores[player.name]

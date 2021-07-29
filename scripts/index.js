@@ -12,6 +12,12 @@ class test extends api {
             if (user == undefined) return this.getLogger().error(`Failed to send message: User undefined`, data.sender.name)
             this.getChatManager().broadcastMessage(`[${user.rank}] ${user.name}: ${data.message}`)
         })
+
+        this.eventManager.on('PlayerJoined', (data) => {
+            this.logger.info(`Welcome ${data.name}`)
+        })
+
+        
     }
 }
 
