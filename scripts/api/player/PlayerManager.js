@@ -67,7 +67,7 @@ class PlayerManager {
      */
 
     getRank(target) {
-        let rank = ''
+        let rank
         const tags = this.getTags(target)
         for (const tag of tags) {
             if (tag.startsWith('rank:')) {
@@ -107,18 +107,17 @@ class PlayerManager {
 
     getScores(target) {
         let scores = []
-        try {
-            const objectives = this.main.getScoreboardManager().getObjectives()
-            for (const key of objectives) {
-                const score = this.getScore(target, key)
-                const object = {
-                    objective: key[0],
-                    displayName: key[1],
-                    value: score
-                }
-                scores.push(object)
+        const objectives = this.main.getScoreboardManager().getObjectives()
+        for (const key of objectives) {
+            const score = this.getScore(target, key)
+            const object = {
+                objective: key[0],
+                displayName: key[1],
+                value: score
             }
-        } catch (console) { }
+            scores.push(object)
+        }
+
         return scores
     }
 }

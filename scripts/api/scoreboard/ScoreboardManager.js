@@ -76,7 +76,7 @@ class ScoreboardManager {
         for (const string of raw) {
             if (!string.startsWith('§a')) {
                 const rawString = string.split(' ')
-                objectives.push([rawString[1].replace(':', ''), string.replace(` ${rawString[1].replace(':', '')}: displays as '`, '').replace(`' and is type 'dummy'`, '')])
+                objectives.push([rawString[1].replace(':', ''), string.replace(`- ${rawString[1].replace(':', '')}: displays as '`, '').replace(`' and is type 'dummy'`, '')])
             }
         }
 

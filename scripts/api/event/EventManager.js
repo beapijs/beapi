@@ -12,6 +12,7 @@ class EventManager {
         this.main = main
         this.listeners = []
         this.oldPlayers = []
+        this.oldScores = undefined
     }
 
     /**
@@ -20,7 +21,10 @@ class EventManager {
      */
 
     onEnabled() {
-        World.events.beforeChat.subscribe((data) => this.emit('PlayerMessage', data))
+        World.events.beforeChat.subscribe((data) => {
+            data.player = this.main.getWorldManager().getPlayers()
+            this.emit('PlayerMessage', data)
+        })
         World.events.tick.subscribe(() => { this.emit('Tick', null); this.onJoinAndLeave()})
         return
     }
