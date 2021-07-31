@@ -4,7 +4,7 @@ class EventManager {
 
     /**
      * 
-     * @param {any} main - Passes the other functions from api.js
+     * @param {any} main Passes the other functions from api.js
      * 
      */
 
@@ -15,7 +15,7 @@ class EventManager {
     }
 
     /**
-     * @function onEnabled() - Runs when the EventManager is enabled
+     * @function onEnabled() Runs when the EventManager is enabled
      * @returns
      */
 
@@ -36,9 +36,9 @@ class EventManager {
 
     /**
      * 
-     * @param {String} event - Event name to listen for
-     * @param {VoidFunction} callback - Code that will be executed on listener
-     * @param {Boolean} once - Wheather or not it will execute once or till removed
+     * @param {String} event Event name to listen for
+     * @param {VoidFunction} callback Code that will be executed on listener
+     * @param {Boolean} once Wheather or not it will execute once or till removed
      */
 
     addListener(event, callback, once) {
@@ -47,7 +47,7 @@ class EventManager {
 
     /**
      * 
-     * @param {String} event - Remove an event listener
+     * @param {String} event Remove an event listener
      */
 
     removeListener(event) {
@@ -56,7 +56,7 @@ class EventManager {
     }
 
     /**
-     * @function removeAllListener() - Removes all of the event listeners
+     * @function removeAllListener() Removes all of the event listeners
      */
 
     removeAllListener() {
@@ -65,7 +65,7 @@ class EventManager {
 
     /**
      * 
-     * @param {String} event - Gets total count on this event listener
+     * @param {String} event Gets total count on this event listener
      * @returns total listeners
      */
 
@@ -74,9 +74,9 @@ class EventManager {
     }
 
     /**
-     * @function on() - Executes the callback till' event listener is removed
-     * @param {String} event - Event you want to listen for
-     * @param {VoidFunction} callback - Code you want to execute when the listener is executed
+     * @function on() Executes the callback till' event listener is removed
+     * @param {String} event Event you want to listen for
+     * @param {VoidFunction} callback Code you want to execute when the listener is executed
      */
 
     on(event, callback) {
@@ -84,9 +84,9 @@ class EventManager {
     }
 
     /**
-     * @function once() - Executes the callback only once
-     * @param {String} event - Event you want to listen for
-     * @param {VoidFunction} callback - Code you want to execute when the listener is executed
+     * @function once() Executes the callback only once
+     * @param {String} event Event you want to listen for
+     * @param {VoidFunction} callback Code you want to execute when the listener is executed
      */
 
     once(event, callback) {
@@ -95,8 +95,8 @@ class EventManager {
 
     /**
      * 
-     * @param {String} event - Event name to execute the callback
-     * @param  {...any} args - Data from the chat
+     * @param {String} event Event name to execute the callback
+     * @param  {...any} args Data from the chat
      */
 
     emit(event, ...args) {

@@ -4,7 +4,7 @@ class CommandManager {
 
     /**
      * 
-     * @param {any} main - Passes the other functions from api.js
+     * @param {any} main Passes the other functions from api.js
      */
 
     constructor(main) {
@@ -13,7 +13,7 @@ class CommandManager {
 
     /**
      * 
-     * @function onEnabled() - Runs when the EventManager is enabled
+     * @function onEnabled() Runs when the EventManager is enabled
      * @returns
      */
 
@@ -23,9 +23,9 @@ class CommandManager {
 
     /**
      * 
-     * @function executeCommand() - Runs a command, if a player is specified it will execute the command on them
-     * @param {String} content - Command
-     * @param {String} target - Playername
+     * @function executeCommand() Runs a command, if a player is specified it will execute the command on them
+     * @param {String} content Command
+     * @param {String} target Playername
      * @returns
      */
 
