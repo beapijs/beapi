@@ -32,7 +32,7 @@ class EventManager {
         World.events.addEffect.subscribe((data) => this.emit('EffectAdded', data))
         World.events.changeWeather.subscribe((data) => this.emit('WeatherUpdated', data))
         World.events.createEntity.subscribe((data) => this.emit('EntityCreated', data))
-        World.events.tick.subscribe(() => { this.emit('Tick', null); this.onJoinAndLeave()})
+        World.events.tick.subscribe(() => { this.emit('Tick', null); this.onJoinAndLeave() })
         return
     }
 
@@ -111,11 +111,11 @@ class EventManager {
      */
 
     emit(event, ...args) {
-        this.listeners.forEach(element => {
+        for (const element of this.listeners) {
             if (element.eventName !== event) return
             element.callback(...args)
             if (element.once) return this.removeListener(element.eventName)
-        })
+        }
     }
 }
 
