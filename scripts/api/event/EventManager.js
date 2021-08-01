@@ -23,8 +23,15 @@ class EventManager {
     onEnabled() {
         World.events.beforeChat.subscribe((data) => {
             data.player = this.main.getWorldManager().getPlayers()
-            this.emit('PlayerMessage', data)
+            this.emit('BeforeMessage', data)
         })
+        World.events.chat.subscribe((data) => {
+            data.player = this.main.getWorldManager().getPlayers()
+            this.emit('MessageSent', data)
+        })
+        World.events.addEffect.subscribe((data) => this.emit('EffectAdded', data))
+        World.events.changeWeather.subscribe((data) => this.emit('WeatherUpdated', data))
+        World.events.createEntity.subscribe((data) => this.emit('EntityCreated', data))
         World.events.tick.subscribe(() => { this.emit('Tick', null); this.onJoinAndLeave()})
         return
     }
