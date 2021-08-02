@@ -3,6 +3,8 @@ import CommandManager from "./command/CommandManager.js"
 import WorldManager from "./world/WorldManager.js"
 import ScoreboardManager from "./scoreboard/ScoreboardManager.js"
 import PlayerManager from "./player/PlayerManager.js"
+import ChatManager from "./chat/ChatManager.js"
+import Logger from "./logger/logger.js"
 
 class API {
     constructor() {
@@ -11,6 +13,8 @@ class API {
         this.WorldManager = new WorldManager(this)
         this.ScoreboardManager = new ScoreboardManager(this)
         this.PlayerManager = new PlayerManager(this)
+        this.ChatManager = new ChatManager(this)
+        this.Logger = new Logger(this)
         this.onEnabled()
     }
 
@@ -20,6 +24,8 @@ class API {
         this.WorldManager.onEnabled()
         this.ScoreboardManager.onEnabled()
         this.PlayerManager.onEnabled()
+        this.ChatManager.onEnabled()
+        this.Logger.onEnabled()
     }
 
     /**
@@ -70,6 +76,26 @@ class API {
 
      getPlayerManager() {
         return this.PlayerManager
+    }
+
+    /**
+     * 
+     * @function getChatManger()
+     * @returns Chat Manager
+     */
+
+    getChatManager() {
+        return this.ChatManager
+    }
+
+    /**
+     * 
+     * @function getLogger()
+     * @returns Logger
+     */
+
+    getLogger() {
+        return this.Logger
     }
 
 

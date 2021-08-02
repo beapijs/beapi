@@ -13,11 +13,11 @@ class ScoreboardManager {
 
     /**
      * 
-     * @function onEnabled()  Runs when the EventManager is enabled
+     * @function onEnabled()  Runs when the Scoreboard Manager is enabled
      * @returns
      */
 
-     onEnabled() {
+    onEnabled() {
         return
     }
 
@@ -29,10 +29,11 @@ class ScoreboardManager {
      */
 
     createObjective(objective, displayname) {
-        const command = Commands.run(`scoreboard objectives add ${objective} dummy "${displayname}"`)
-        const status = command.statusMessage
-
-        return status
+        try {
+            return Commands.run(`scoreboard objectives add ${objective} dummy "${displayname}"`).statusMessage
+        } catch (error) {
+            return this.main.getLogger().error(`ScoreboardManager`, error)
+        }
     }
 
     /**
@@ -42,10 +43,11 @@ class ScoreboardManager {
      */
 
     removeObjective(objective) {
-        const command = Commands.run(`scoreboard objectives remove ${objective}`)
-        const status = command.statusMessage
-
-        return status
+        try {
+            return Commands.run(`scoreboard objectives remove ${objective}`).statusMessage
+        } catch (error) {
+            return this.main.getLogger().error(`ScoreboardManager`, error)
+        }
     }
 
     /**
@@ -56,10 +58,11 @@ class ScoreboardManager {
      */
 
     setDisplay(objective, display) {
-        const command = Commands.run(`scoreboard objectives setdisplay ${display} ${objective}`)
-        const status = command.statusMessage
-
-        return status
+        try {
+            return Commands.run(`scoreboard objectives setdisplay ${display} ${objective}`).statusMessage
+        } catch (error) {
+            return this.main.getLogger().error(`ScoreboardManager`, error)
+        }
     }
 
     /**
@@ -68,19 +71,21 @@ class ScoreboardManager {
      */
 
     getObjectives() {
-        const command = Commands.run(`scoreboard objectives list`)
-        const response = command.statusMessage
-        const raw = response.split('\n')
-        const objectives = []
+        try {
+            const response = Commands.run(`scoreboard objectives list`).statusMessage
+            const raw = response.split('\n')
+            const objectives = []
 
-        for (const string of raw) {
-            if (!string.startsWith('§a')) {
-                const rawString = string.split(' ')
-                objectives.push([rawString[1].replace(':', ''), string.replace(`- ${rawString[1].replace(':', '')}: displays as '`, '').replace(`' and is type 'dummy'`, '')])
+            for (const string of raw) {
+                if (!string.startsWith('§a')) {
+                    const rawString = string.split(' ')
+                    objectives.push([rawString[1].replace(':', ''), string.replace(`- ${rawString[1].replace(':', '')}: displays as '`, '').replace(`' and is type 'dummy'`, '')])
+                }
             }
+            return objectives
+        } catch (error) {
+            return this.main.getLogger().error(`ScoreboardManager`, error)
         }
-
-        return objectives
     }
 
     /**
@@ -96,7 +101,6 @@ class ScoreboardManager {
                 displayname = obj[1]
             }
         }
-
         return displayname
     }
 

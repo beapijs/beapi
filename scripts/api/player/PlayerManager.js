@@ -13,7 +13,7 @@ class PlayerManager {
 
     /**
      * 
-     * @function onEnabled() Runs when the EventManager is enabled
+     * @function onEnabled() Runs when the Player Manager is enabled
      * @returns
      */
 
@@ -29,10 +29,14 @@ class PlayerManager {
 
     getTags(target) {
         const tags = []
-        const command = Commands.run(`tag "${target}" list`)
-        const raw = command.statusMessage.split(' ')
-        for (const string of raw) {
-            if (string.startsWith("§a")) tags.push(string.replace('§a', '').replace('§r', '').replace(',', ''))
+        try {
+            const command = Commands.run(`tag "${target}" list`)
+            const raw = command.statusMessage.split(' ')
+            for (const string of raw) {
+                if (string.startsWith("§a")) tags.push(string.replace('§a', '').replace('§r', '').replace(',', ''))
+            }
+        } catch (error) {
+            this.main.getLogger().error(`PlayerManager`, error)
         }
         return tags
     }
@@ -41,7 +45,6 @@ class PlayerManager {
     }
 
     ban(target, reason, length) {
-
     }
 
     /**
@@ -86,15 +89,18 @@ class PlayerManager {
 
     getScore(player, objective) {
         let score = 0
-        const command = Commands.run(`scoreboard players list "${player}"`)
-        const response = command.statusMessage
-        const objectiveName = this.main.getScoreboardManager().getObjectiveName(objective)
-        const raw = response.split('\n')
-        for (const string of raw) {
-            if (!string.startsWith("§a") && string.includes(objectiveName)) {
-                const rawString = string.split(' ').reverse()
-                score = parseInt(rawString[1])
+        try {
+            const response = Commands.run(`scoreboard players list "${player}"`).statusMessage
+            const objectiveName = this.main.getScoreboardManager().getObjectiveName(objective)
+            const raw = response.split('\n')
+            for (const string of raw) {
+                if (!string.startsWith("§a") && string.includes(objectiveName)) {
+                    const rawString = string.split(' ').reverse()
+                    score = parseInt(rawString[1])
+                }
             }
+        } catch (error) {
+            this.main.getLogger().error('PlayerManager', error)
         }
         return score
     }

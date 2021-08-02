@@ -13,7 +13,7 @@ class CommandManager {
 
     /**
      * 
-     * @function onEnabled() Runs when the EventManager is enabled
+     * @function onEnabled() Runs when the Command Manager is enabled
      * @returns
      */
 
@@ -31,9 +31,17 @@ class CommandManager {
 
     async executeCommand(content, target) {
         if (!target) {
-            try { Commands.run(content) } catch (error) { }
+            try { 
+                return Commands.run(content) 
+            } catch (error) { 
+                this.main.getLogger().error(`CommandManager`, error)
+            }
         } else {
-            try { Commands.run(`execute "${target}" ~ ~ ~ ${content}`) } catch (error) { }
+            try { 
+                return Commands.run(`execute "${target}" ~ ~ ~ ${content}`) 
+            } catch (error) { 
+                this.main.getLogger().error(`CommandManager`, error, target)
+            }
         }
     }
 

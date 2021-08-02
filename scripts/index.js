@@ -14,14 +14,19 @@ class main extends API {
         })
 
         this.getEventManager().on('PlayerLeft', (player) => {
+            this.getLogger().info('PlayerLeft', player.name)
         })
 
         this.getEventManager().on('PlayerJoined', (player) => {
- 
+            this.getLogger().info('PlayerJoined', player.name)
         })
 
-        this.getEventManager().on('MessageSent', (data) => {
-            
+        this.getEventManager().on('Tick', () => {
+             const entities = []
+             for (const entity of this.getWorldManager().getEntitiesAtPos([0, 5, 0])) {
+                 entities.push(entity.nameTag)
+             }
+             this.getLogger().info('ExamplePlugin', entities)
         })
     }
 }

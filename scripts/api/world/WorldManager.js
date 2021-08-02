@@ -1,4 +1,4 @@
-import { Commands } from "Minecraft"
+import { Commands, World } from "Minecraft"
 
 class WorldManager {
 
@@ -13,7 +13,7 @@ class WorldManager {
 
     /**
      * 
-     * @function onEnabled() Runs when the EventManager is enabled
+     * @function onEnabled() Runs when the World Manager is enabled
      * @returns
      */
 
@@ -48,7 +48,9 @@ class WorldManager {
                 }
                 players.push(player)
             }
-        } catch (e) { }
+        } catch (error) { 
+            return this.main.getLogger().error(`WorldManager`, error)
+        }
 
         return players
     }
@@ -65,6 +67,21 @@ class WorldManager {
             if (player.name == target) player = key
         }
         return player
+    }
+
+    /**
+     * 
+     * @param {Array} param0 x: number, y: number, z: number
+     * @param {String} dimension Minecraft Dimension
+     * @returns Array of Entitys
+     */
+
+    getEntitiesAtPos([x, y, z], dimension) {
+        try {
+            return World.getDimension(dimension ? dimension : 'overworld').getEntitiesAtBlockLocation(new Minecraft.BlockLocation(parseInt(x), parseInt(y), parseInt(z)))
+        } catch (error) {
+            return this.main.getLogger().error(`WorldManager`, error)
+        }
     }
 }
 

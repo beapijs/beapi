@@ -12,11 +12,10 @@ class EventManager {
         this.main = main
         this.listeners = []
         this.oldPlayers = []
-        this.oldScores = undefined
     }
 
     /**
-     * @function onEnabled() Runs when the EventManager is enabled
+     * @function onEnabled() Runs when the Event Manager is enabled
      * @returns
      */
 
@@ -32,7 +31,7 @@ class EventManager {
         World.events.addEffect.subscribe((data) => this.emit('EffectAdded', data))
         World.events.changeWeather.subscribe((data) => this.emit('WeatherUpdated', data))
         World.events.createEntity.subscribe((data) => this.emit('EntityCreated', data))
-        World.events.tick.subscribe(() => { this.emit('Tick', null); this.onJoinAndLeave() })
+        World.events.tick.subscribe(() => { this.emit('Tick', null); this.onJoinAndLeave()})
         return
     }
 
