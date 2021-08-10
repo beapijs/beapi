@@ -1,17 +1,17 @@
 {
     "format_version": 2,
     "header": {
-        "description": "By MCBE - Utilites",
-        "name": "§l§6GAMETEST-API",
-        "uuid": "8082b60a-f167-11eb-9a03-0242ac130003",
+        "description": "Adds more methods to the vanilla scripting/gametest API.",
+        "name": "§l§9Better Scripting API",
+        "uuid": "5c2e4b8e-f7b1-11eb-9a03-0242ac130003",
         "version": [0, 0, 1],
         "min_engine_version": [ 1, 14, 0 ]
     },
     "modules": [
         {
-            "description": "",
+            "description": "Adds more methods to the vanilla scripting/gametest API.",
             "type": "javascript",
-            "uuid": "8082b81c-f167-11eb-9a03-0242ac130003",
+            "uuid": "5c2e4fd0-f7b1-11eb-9a03-0242ac130003",
             "version": [0, 0, 1],
             "entry": "scripts/index.js"
         }

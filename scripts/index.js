@@ -1,34 +1,41 @@
-import API from "./api/api.js";
+import {
+    events,
+    playerManager,
+    commandManager,
+    executeCommand,
+    log,
+    setInterval,
+    setTimeout,
+    emitter,
+} from './api/BeAPI.js'
 
-class main extends API {
-    constructor() {
-        super()
-        this.start()
-    }
+events.on('PlayerJoined', (player) => {
+    log(`${player.getVanilla().name} joined!`)
+    player.sendMessage('Hello!')
+})
 
-    start() {
-        this.getEventManager().on('BeforeMessage', (data) => {
-            data.canceled = true
-            if (data.player.rank == undefined) data.player.rank = '§eGuest§r'
-            this.getCommandManager().executeCommand(`tellraw @a {"rawtext":[{"text":"§7[${data.player.rank}§7] §b${data.sender.name}§7: ${data.message}"}]}`)
-        })
+events.on('NameTagChanged', (data) => {
+    log(`NameTag Changed for: ${data.target.name} | Old: ${data.old}, New: ${data.new}`)
+})
 
-        this.getEventManager().on('PlayerLeft', (player) => {
-            this.getLogger().info('PlayerLeft', player.name)
-        })
+events.on('PlayerLeft', (player) => {
+    log(`${player.name} left!`)
+})
 
-        this.getEventManager().on('PlayerJoined', (player) => {
-            this.getLogger().info('PlayerJoined', player.name)
-        })
+events.cancelChat = true
+events.on('PlayerMessage', (data) => {
+    const components = data.sender.getVanilla().getComponents()
+    components.forEach((component) => {
+        log(component.id)
+    })
+})
 
-        this.getEventManager().on('Tick', () => {
-             const entities = []
-             for (const entity of this.getWorldManager().getEntitiesAtPos([0, 5, 0])) {
-                 entities.push(entity.nameTag)
-             }
-             this.getLogger().info('ExamplePlugin', entities)
-        })
-    }
-}
-
-new main()
+commandManager.enable()
+commandManager.registerCommand({
+    'command': 'ping',
+    'description': 'ping the server',
+    'permissionTags': ['staff', 'beanis'],
+    'aliases': ['p', 'pg'],
+}, (data) => {
+    data.sender.executeCommand('give @s diamond')
+})

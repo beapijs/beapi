@@ -1,109 +1,66 @@
-import { Commands } from "Minecraft"
+import { executeCommand } from '../command/executeCommand.js'
 
 class ScoreboardManager {
+    constructor() {
 
-    /**
-     * 
-     * @param {any} main  Passes the other functions from api.js
-     */
-
-    constructor(main) {
-        this.main = main
     }
-
     /**
-     * 
-     * @function onEnabled()  Runs when the Scoreboard Manager is enabled
-     * @returns
+     * Creates an objective
+     * @param {string} objective
+     * @param {string} displayname
      */
-
-    onEnabled() {
-        return
-    }
-
-    /**
-     * 
-     * @param {String} objective 
-     * @param {String} displayname 
-     * @returns Status Message of the command
-     */
-
     createObjective(objective, displayname) {
-        try {
-            return Commands.run(`scoreboard objectives add ${objective} dummy "${displayname}"`).statusMessage
-        } catch (error) {
-            return this.main.getLogger().error(`ScoreboardManager`, error)
-        }
+        executeCommand(`scoreboard objectives add ${objective} dummy "${displayname}"`)
     }
-
     /**
-     * 
-     * @param {String} objective 
-     * @returns Status Message of the command
+     * Removes an objective
+     * @param {string} objective
      */
-
     removeObjective(objective) {
-        try {
-            return Commands.run(`scoreboard objectives remove ${objective}`).statusMessage
-        } catch (error) {
-            return this.main.getLogger().error(`ScoreboardManager`, error)
-        }
+        executeCommand(`scoreboard objectives remove ${objective}`)
     }
-
     /**
-     * 
-     * @param {String} objective 
-     * @param {String} display 
-     * @returns Status Message of the command
+     * Displays an objective
+     * @param {string} objective
+     * @param {string} display
      */
-
     setDisplay(objective, display) {
-        try {
-            return Commands.run(`scoreboard objectives setdisplay ${display} ${objective}`).statusMessage
-        } catch (error) {
-            return this.main.getLogger().error(`ScoreboardManager`, error)
-        }
+        executeCommand(`scoreboard objectives setdisplay ${display} ${objective}`)
     }
-
     /**
-     * 
-     * @returns Array of Ojectives
+     * Returns all available objectives  
+     * @returns {Array<{name: string, displayName: string}>}
      */
-
     getObjectives() {
-        try {
-            const response = Commands.run(`scoreboard objectives list`).statusMessage
-            const raw = response.split('\n')
-            const objectives = []
-
-            for (const string of raw) {
-                if (!string.startsWith('§a')) {
-                    const rawString = string.split(' ')
-                    objectives.push([rawString[1].replace(':', ''), string.replace(`- ${rawString[1].replace(':', '')}: displays as '`, '').replace(`' and is type 'dummy'`, '')])
-                }
+        const raw = executeCommand(`scoreboard objectives list`).statusMessage.split('\n')
+        const objectives = []
+        for (const string of raw) {
+            if (!string.startsWith('§a')) {
+                const rawString = string.split(' ')
+                objectives.push({
+                    name: rawString[1].replace(':', ''),
+                    displayName: string.replace(`- ${rawString[1].replace(':', '')}: displays as '`, '').replace(`' and is type 'dummy'`, '')
+                })
             }
-            return objectives
-        } catch (error) {
-            return this.main.getLogger().error(`ScoreboardManager`, error)
         }
+        return objectives
     }
-
     /**
-     * 
-     * @param {String} objective 
-     * @returns display of objective
+     * Gets objective by name
+     * @param {string} objective
+     * @returns {string}
      */
-
     getObjectiveName(objective) {
-        let displayname
         for (const obj of this.getObjectives()) {
-            if (obj[0] == objective) {
-                displayname = obj[1]
+            if (obj.name == objective) {
+                return obj.displayName
             }
         }
-        return displayname
     }
-
 }
 
-export default ScoreboardManager
+const scoreboardManager = new ScoreboardManager()
+
+export {
+  scoreboardManager,
+}
