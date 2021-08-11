@@ -1,4 +1,4 @@
-import { events } from '../event/eventManager.js'
+import { events } from '../event/EventManager.js'
 import { executeCommand } from '../command/executeCommand.js'
 
 class PlayerManager {
@@ -44,7 +44,7 @@ class PlayerManager {
   }
 }
 /**
- * @type {import('./player.d').playerManager}
+ * @type {import('./player').playerManager}
  */
 const playerManager = new PlayerManager()
 

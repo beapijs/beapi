@@ -1,5 +1,5 @@
 import { World } from 'Minecraft'
-import { playerManager } from '../../player/playerManager.js'
+import { playerManager } from '../../player/PlayerManager.js'
 
 class chat {
   constructor(events) {

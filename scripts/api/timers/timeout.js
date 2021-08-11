@@ -1,4 +1,4 @@
-import { events } from '../event/eventManager.js'
+import { events } from '../event/EventManager.js'
 
 const timeouts = []
 

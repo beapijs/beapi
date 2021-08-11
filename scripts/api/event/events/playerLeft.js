@@ -1,4 +1,4 @@
-import { playerManager } from '../../player/playerManager.js'
+import { playerManager } from '../../player/PlayerManager.js'
 
 class playerLeft {
   constructor(events) {

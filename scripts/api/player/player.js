@@ -1,6 +1,6 @@
 import { executeCommand } from '../command/executeCommand.js'
-import { events } from '../event/eventManager.js'
-import { scoreboardManager } from '../scoreboard/scoreboardManager.js'
+import { events } from '../event/EventManager.js'
+import { scoreboardManager } from '../scoreboard/ScoreboardManager.js'
 
 class Player {
   constructor(player) {
