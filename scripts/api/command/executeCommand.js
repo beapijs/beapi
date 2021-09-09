@@ -1,5 +1,4 @@
 import { Commands } from 'Minecraft'
-import { log } from '../logger/log.js'
 
 /**
  * Executes a given command.
@@ -9,8 +8,8 @@ import { log } from '../logger/log.js'
 function executeCommand(command) {
   try {
     return Commands.run(command)
-  } catch (error) {
-    log(error)
+  } catch (err) {
+    Commands.run(`say ${err}`)
   }
 }
 

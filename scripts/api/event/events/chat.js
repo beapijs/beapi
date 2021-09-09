@@ -1,4 +1,5 @@
 import { World } from 'Minecraft'
+import { executeCommand } from '../../command/executeCommand.js'
 import { playerManager } from '../../player/playerManager.js'
 
 class chat {
@@ -6,7 +7,9 @@ class chat {
     this.eventName = 'chat'
     this.events = events
     World.events.beforeChat.subscribe((data) => {
-      if (data.message.startsWith(events.cmdPrefix) && events.cmdEnabled == true) {
+      if (playerManager.getPlayerByName(data.sender.name).hasTag('berpUser')) {
+        data.canceled = true
+      } else if (data.message.startsWith(events.cmdPrefix) && events.cmdEnabled == true) {
         data.canceled = true
         let sender = data.sender.name
         if (sender == undefined) sender = data.sender.nameTag
