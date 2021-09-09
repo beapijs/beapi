@@ -31,7 +31,7 @@ class eventManager extends emitter {
 }
 
 /**
- * @type {import('./events.d').eventManager}
+ * @type {import('./events').eventManager}
  */
 const events = new eventManager()
 

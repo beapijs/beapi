@@ -1,4 +1,4 @@
-import { events } from '../event/eventManager.js'
+import { events } from '../event/EventManager.js'
 import { emitter } from '../emitter/emitter.js'
 import {
   version,
@@ -22,7 +22,7 @@ class CommandManager extends emitter {
       const command = this._parseCommand(data.command)
       if (!this.commands.has(command.command)) return data.sender.sendMessage("§cThis command dosent exsist!")
       /**
-       * @type {import('./command.d').command}
+       * @type {import('./command').command}
        */
       const commandData = this.commands.get(command.command)
       events.emit('PlayerExecutedCommand', {
@@ -109,7 +109,7 @@ class CommandManager extends emitter {
 }
 
 /**
- * @type {import('./command.d').commandManager}
+ * @type {import('./command').commandManager}
  */
 const commandManager = new CommandManager()
 
