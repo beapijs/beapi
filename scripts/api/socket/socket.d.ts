@@ -1,6 +1,7 @@
-import { Player } from '../player/player.d'
+import { Player } from '../player/player'
 
-export interface eventManager {
+export interface socketManager {
+  sendMessage(message: string): void
   events: Map<string, object>
   cancelChat: boolean
   on<K extends keyof eventValues>(event: K, callback: (...args: eventValues[K]) => void): this
@@ -21,31 +22,7 @@ export interface eventManager {
 }
 
 interface eventValues {
-  tick: [number]
-  PlayerJoined: [Player]
-  PlayerLeft: [Player]
-  PlayerMessage: [PlayerMessage]
-  CommandExecuted: [PlayerMessage]
-  PlayerExecutedCommand: [PlayerExecutedCommand]
-  NameTagChanged: [NameTagChanged]
-  SocketMessage: [SocketMessage]
-}
-
-interface PlayerExecutedCommand {
-  sender: Player
-  command: string
-  args: Array<string>
-}
-
-interface PlayerMessage {
-  sender: Player
-  message: string
-}
-
-interface NameTagChanged {
-  target: Player
-  old: string
-  new: string
+  Message: [SocketMessage]
 }
 
 interface SocketMessage {
