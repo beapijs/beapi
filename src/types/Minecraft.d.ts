@@ -12326,7 +12326,7 @@ declare module "Minecraft" {
     *
     * @throws Throws if the given dimension name is invalid
     */
-    static getDimension(dimensionName: ('overworld'|'nether'|'the end')): Dimension;
+    static getDimension(dimensionName: string): Dimension;
     /**
     * @remarks
     * Returns all players currently in the world.
