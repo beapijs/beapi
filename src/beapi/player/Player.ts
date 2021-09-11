@@ -57,4 +57,7 @@ export class Player {
       z: Math.floor(pos.z),
     }
   }
+  public sendMessage(message: string): void {
+    executeCommand(`execute "${this.getExecutableName()}" ~ ~ ~ tellraw @s {"rawtext":[{"text":"${message}"}]}`)
+  }
 }
