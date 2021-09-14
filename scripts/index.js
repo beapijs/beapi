@@ -1,7 +1,4 @@
 import { executeCommand, commands, events, world, } from './beapi/BeAPI.js';
-//events.on('tick', (data) => {
-//  executeCommand(`say ${data}`)
-//})
 events.on('PlayerJoin', (player) => {
     executeCommand(`say ${player.getName()}`);
 });
