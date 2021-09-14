@@ -13,6 +13,13 @@ export interface EventValues {
   PlayerMessage: [PlayerMessage]
   ChatCommand: [ChatCommand]
   RawSocketMessage: [RawSocketMessage]
+  NameTagChanged: [NameTagChanged]
+}
+
+interface NameTagChanged {
+  player: Player
+  old: string
+  new: string
 }
 
 interface PlayerMessage {

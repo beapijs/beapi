@@ -1,5 +1,6 @@
 import { SocketManager } from '../SocketManager.js'
 import { events } from '../../events/EventManager.js'
+import { newRequestId } from '../requestId.js'
 
 export class PlayerMessage {
   private _socket: SocketManager
@@ -17,7 +18,7 @@ export class PlayerMessage {
             nameTag: data.sender.getNameTag(),
           },
           message: data.message,
-          requestId: '',
+          requestId: `${newRequestId()}`,
         },
       })
     })
@@ -31,7 +32,7 @@ export class PlayerMessage {
             nameTag: data.sender.getNameTag(),
           },
           command: data.command,
-          requestId: '',
+          requestId: `${newRequestId()}`,
         },
       })
     })

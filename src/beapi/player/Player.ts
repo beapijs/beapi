@@ -2,6 +2,7 @@ import { Player as MCPlayer } from 'Minecraft'
 import { Location } from '../../types/BeAPI.i'
 import { executeCommand } from '../command/executeCommand.js'
 import { players } from './PlayerManager.js'
+import { events } from '../events/EventManager.js'
 
 export class Player {
   private _name: string
@@ -23,6 +24,11 @@ export class Player {
     return this._name
   }
   public setNameTag(name: string): void {
+    events.emit('NameTagChanged', {
+      player: this,
+      old: this._nameTag,
+      new: name,
+    })
     this._nameTag = name
     this._vanilla.nameTag = name
   }

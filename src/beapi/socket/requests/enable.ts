@@ -1,5 +1,6 @@
 import { SocketManager } from '../SocketManager.js'
 import { setInterval } from '../../timers/interval.js'
+import { newRequestId } from '../requestId.js'
 
 export class EnableRequest {
   private _socket: SocketManager
@@ -12,7 +13,7 @@ export class EnableRequest {
       this._socket.sendMessage({
         berp: {
           event: "EnableSocket",
-          requestId: '',
+          requestId: `${newRequestId()}`,
         },
       })
     }, 25)
