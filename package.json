@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/MCBE-Utilities/BeRP-SocketManager#readme",
   "dependencies": {
+    "@types/mojang-gametest": "^0.1.0",
+    "@types/mojang-minecraft": "^0.1.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
     "ts-node": "^10.2.1",

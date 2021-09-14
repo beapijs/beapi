@@ -1,4 +1,4 @@
-import { executeCommand, events, world, } from './beapi/BeAPI.js';
+import { executeCommand, commands, events, world, } from './beapi/BeAPI.js';
 //events.on('tick', (data) => {
 //  executeCommand(`say ${data}`)
 //})
@@ -15,4 +15,12 @@ events.on('PlayerMessage', (data) => {
         data.sender.sendMessage(`${world.getTicks()}`);
         data.cancelEvent(true);
     }
+});
+commands.enabled = true;
+commands.registerCommand({
+    command: 'ping',
+    aliases: ["p"],
+    description: "Ping the server!",
+}, (data) => {
+    data.sender.sendMessage('§ePong!');
 });

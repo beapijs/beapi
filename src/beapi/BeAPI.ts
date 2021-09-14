@@ -1,4 +1,5 @@
 export { executeCommand } from './command/executeCommand.js'
+export { commands } from './command/CommandManager.js'
 export { events } from './events/EventManager.js'
 export { players } from './player/PlayerManager.js'
 export { world } from './world/WorldManager.js'

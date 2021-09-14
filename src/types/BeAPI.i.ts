@@ -11,6 +11,7 @@ export interface EventValues {
   PlayerJoin: [Player]
   PlayerLeft: [Player]
   PlayerMessage: [PlayerMessage]
+  ChatCommand: [ChatCommand]
   RawSocketMessage: [RawSocketMessage]
 }
 
@@ -44,4 +45,27 @@ interface JsonData {
   message?: string
   data?: any
   requestId: string
+}
+
+export interface CommandOptions {
+  command: string
+  aliases?: string[]
+  description: string
+  permissionTags?: string[]
+}
+
+export interface CommandMapOptions {
+  options: CommandOptions
+  showInList: boolean
+  execute(data: CommandResponse): void
+}
+
+export interface CommandResponse {
+  sender: Player
+  args: string[]
+}
+
+export interface ChatCommand {
+  sender: Player
+  command: string
 }
