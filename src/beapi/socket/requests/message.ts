@@ -21,5 +21,19 @@ export class PlayerMessage {
         },
       })
     })
+    events.on('ChatCommand', (data) => {
+      this._socket.sendMessage({
+        berp: {
+          event: "ChatCommand",
+          sender: data.sender.getName() || data.sender.getNameTag(),
+          player: {
+            name: data.sender.getName(),
+            nameTag: data.sender.getNameTag(),
+          },
+          command: data.command,
+          requestId: '',
+        },
+      })
+    })
   }
 }
