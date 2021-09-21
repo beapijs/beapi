@@ -1,4 +1,7 @@
-import { Commands } from 'Minecraft'
+import {
+  Commands,
+  World,
+} from 'mojang-minecraft'
 import { JsonRequest } from '../../types/BeAPI.i'
 import { emitter } from '../events/emitter/emitter.js'
 import { events } from '../events/EventManager.js'
@@ -30,7 +33,7 @@ export class SocketManager extends emitter {
   public sendMessage(message: JsonRequest): void {
     try {
       return Commands.run(`tellraw @a[tag="berpUser"] {"rawtext":[{"text":"${JSON.stringify(message).replace(/"/g, '\\"')
-        .replace(/\\n/g, '\\n')}"}]}`)
+        .replace(/\\n/g, '\\n')}"}]}`, World.getDimension('overworld'))
     } catch (err) {
       if (this.enabled == false) return
       world.sendMessage('Socket Disabled...')

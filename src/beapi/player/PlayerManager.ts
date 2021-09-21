@@ -1,4 +1,4 @@
-import { Player as MCPlayer } from 'Minecraft'
+import { Player as MCPlayer } from 'mojang-minecraft'
 import { Player } from './Player.js'
 
 export class PlayerManager {

@@ -1,4 +1,4 @@
-import { World } from 'Minecraft'
+import { World } from 'mojang-minecraft'
 import { EventManager } from '../EventManager.js'
 
 export class Tick {

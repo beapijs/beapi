@@ -1,4 +1,4 @@
-import { Player as MCPlayer } from 'Minecraft'
+import { Player as MCPlayer } from 'mojang-minecraft'
 import { Location } from '../../types/BeAPI.i'
 import { executeCommand } from '../command/executeCommand.js'
 import { players } from './PlayerManager.js'

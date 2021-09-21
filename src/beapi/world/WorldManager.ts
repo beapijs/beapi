@@ -2,7 +2,7 @@ import {
   World,
   BlockLocation,
   Entity,
-} from 'Minecraft'
+} from 'mojang-minecraft'
 import { Location } from '../../types/BeAPI.i'
 import { executeCommand } from '../command/executeCommand.js'
 import { events } from '../events/EventManager.js'

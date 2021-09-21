@@ -1,4 +1,7 @@
-import { Commands } from 'Minecraft'
+import {
+  Commands,
+  World,
+} from 'mojang-minecraft'
 import { SocketManager } from '../SocketManager.js'
 
 export class CommandRequest {
@@ -10,7 +13,7 @@ export class CommandRequest {
     this._socket.on('Message', async (packet) => {
       if (packet.event != "CommandRequest") return
       try {
-        const command = Commands.run(packet.command)
+        const command = Commands.run(packet.command, World.getDimension('overworld'))
         
         return this._socket.sendMessage({
           berp: {

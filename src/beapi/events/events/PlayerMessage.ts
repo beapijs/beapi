@@ -1,4 +1,4 @@
-import { World } from 'Minecraft'
+import { World } from 'mojang-minecraft'
 import { EventManager } from '../EventManager.js'
 import { players } from '../../player/PlayerManager.js'
 import { commands } from '../../command/CommandManager.js'
@@ -13,7 +13,7 @@ export class PlayerMessage {
   constructor (events: EventManager) {
     this._events = events
     World.events.beforeChat.subscribe(async (data) => {
-      data.canceled = true
+      data.cancel = true
       const player = players.getPlayerByNameTag(data.sender.nameTag) // Doing nameTag, cause player's name sometimes break on realms. - PMK744
       
       if (player.hasTag('berpUser')) return this._events.emit('RawSocketMessage', {
