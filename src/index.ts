@@ -27,5 +27,5 @@ commands.registerCommand({
   aliases: ["p"],
   description: "Ping the server!",
 }, (data) => {
-  data.sender.sendMessage('§ePong!')
+  data
 })

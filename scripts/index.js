@@ -19,5 +19,11 @@ commands.registerCommand({
     aliases: ["p"],
     description: "Ping the server!",
 }, (data) => {
-    data.sender.sendMessage('§ePong!');
+    bean(data.sender);
 });
+function bean(player) {
+    setInterval(() => {
+        const q = player.getVanilla().getComponent('minecraft:movement');
+        q.setCurrent('999');
+    }, 1);
+}

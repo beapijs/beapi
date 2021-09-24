@@ -3,12 +3,14 @@ import {
   World,
 } from 'mojang-minecraft'
 
-function executeCommand(command: string, debug = false): {statusMessage: any} {
+function executeCommand(command: string, dimension?: "overworld" | 'nether' | "the end", debug = false): {statusMessage: any} {
   try {
-    return Commands.run(command, World.getDimension('overworld'))
+    if (!dimension) dimension = "overworld"
+
+    return Commands.run(command, World.getDimension(dimension))
   } catch (err) {
     if (!debug) return
-    Commands.run(`say ${err}`, World.getDimension('overworld'))
+    Commands.run(`say ${err}`, World.getDimension(dimension))
   }
 }
 
