@@ -5,6 +5,9 @@ events.on('PlayerJoin', (player) => {
 events.on('PlayerLeft', (player) => {
     executeCommand(`say ${player.getName()}`);
 });
+events.on('EntityCreate', (entity) => {
+    executeCommand(`say ${entity.id} spawned!`);
+});
 events.on('PlayerMessage', (data) => {
     if (data.message == 'cancel')
         return data.cancelEvent(true);
@@ -19,11 +22,5 @@ commands.registerCommand({
     aliases: ["p"],
     description: "Ping the server!",
 }, (data) => {
-    bean(data.sender);
+    data;
 });
-function bean(player) {
-    setInterval(() => {
-        const q = player.getVanilla().getComponent('minecraft:movement');
-        q.setCurrent('999');
-    }, 1);
-}

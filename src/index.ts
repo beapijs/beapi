@@ -13,6 +13,10 @@ events.on('PlayerLeft', (player) => {
   executeCommand(`say ${player.getName()}`)
 })
 
+events.on('EntityCreate', (entity) => {
+  executeCommand(`say ${entity.id} spawned!`)
+})
+
 events.on('PlayerMessage', (data) => {
   if (data.message == 'cancel') return data.cancelEvent(true)
   if (data.message == 'ticks') {

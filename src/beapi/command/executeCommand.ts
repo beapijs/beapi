@@ -2,8 +2,9 @@ import {
   Commands,
   World,
 } from 'mojang-minecraft'
+import { Demensions } from '../../types/BeAPI.i'
 
-function executeCommand(command: string, dimension?: "overworld" | 'nether' | "the end", debug = false): {statusMessage: any} {
+function executeCommand(command: string, dimension?: Demensions, debug = false): {statusMessage: any} {
   try {
     if (!dimension) dimension = "overworld"
 

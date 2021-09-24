@@ -1,3 +1,4 @@
+import { Entity } from "mojang-minecraft"
 import { Player } from "../beapi/player/Player"
 
 export interface Location {
@@ -14,6 +15,7 @@ export interface EventValues {
   ChatCommand: [ChatCommand]
   RawSocketMessage: [RawSocketMessage]
   NameTagChanged: [NameTagChanged]
+  EntityCreate: [Entity]
 }
 
 interface NameTagChanged {
@@ -76,3 +78,9 @@ export interface ChatCommand {
   sender: Player
   command: string
 }
+
+export type Demensions = (
+  "overworld" |
+  "nether" |
+  "the end"
+)
