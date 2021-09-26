@@ -1,4 +1,8 @@
-import { Entity } from "mojang-minecraft"
+import {
+  BlockLocation,
+  Dimension,
+  Entity,
+} from "mojang-minecraft"
 import { Player } from "../beapi/player/Player"
 
 export interface Location {
@@ -16,6 +20,13 @@ export interface EventValues {
   RawSocketMessage: [RawSocketMessage]
   NameTagChanged: [NameTagChanged]
   EntityCreate: [Entity]
+  Explosion: [Explosion]
+}
+
+interface Explosion {
+  dimension: Dimension
+  source: Entity
+  impactedBlocks: BlockLocation[]
 }
 
 interface NameTagChanged {

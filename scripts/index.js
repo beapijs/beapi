@@ -1,4 +1,4 @@
-import { executeCommand, commands, events, world, } from './beapi/BeAPI.js';
+import { executeCommand, commands, events, world, setTimeout, } from './beapi/BeAPI.js';
 events.on('PlayerJoin', (player) => {
     executeCommand(`say ${player.getName()}`);
 });
@@ -6,7 +6,14 @@ events.on('PlayerLeft', (player) => {
     executeCommand(`say ${player.getName()}`);
 });
 events.on('EntityCreate', (entity) => {
-    executeCommand(`say ${entity.id} spawned!`);
+    //executeCommand(`say ${entity.id} spawned!`)
+});
+events.on('Explosion', (data) => {
+    setTimeout(() => {
+        data.impactedBlocks.forEach((block) => {
+            executeCommand(`setblock ${block.x} ${block.y} ${block.z} diamond_block`);
+        });
+    }, 5);
 });
 events.on('PlayerMessage', (data) => {
     if (data.message == 'cancel')

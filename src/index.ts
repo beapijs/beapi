@@ -3,6 +3,7 @@ import {
   commands,
   events,
   world,
+  setTimeout,
 } from './beapi/BeAPI.js'
 
 events.on('PlayerJoin', (player) => {
@@ -14,7 +15,15 @@ events.on('PlayerLeft', (player) => {
 })
 
 events.on('EntityCreate', (entity) => {
-  executeCommand(`say ${entity.id} spawned!`)
+  //executeCommand(`say ${entity.id} spawned!`)
+})
+
+events.on('Explosion', (data) => {
+  setTimeout(() => {
+    data.impactedBlocks.forEach((block) => {
+      executeCommand(`setblock ${block.x} ${block.y} ${block.z} diamond_block`)
+    })
+  }, 5)
 })
 
 events.on('PlayerMessage', (data) => {
