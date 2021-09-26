@@ -60,6 +60,7 @@ interface JsonData {
   event?: string
   sender?: any
   player?: any
+  entity?: any
   command?: string
   entityId?: string
   entities?: any
