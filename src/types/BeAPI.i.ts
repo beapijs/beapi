@@ -1,9 +1,10 @@
 import {
   BlockLocation,
   Dimension,
-  Entity,
+  Entity as MCEntity,
 } from "mojang-minecraft"
 import { Player } from "../beapi/player/Player"
+import { Entity } from "../beapi/entity/Entity"
 
 export interface Location {
   x: number
@@ -25,7 +26,7 @@ export interface EventValues {
 
 interface Explosion {
   dimension: Dimension
-  source: Entity
+  source: MCEntity
   impactedBlocks: BlockLocation[]
 }
 

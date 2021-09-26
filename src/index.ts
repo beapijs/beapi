@@ -15,7 +15,8 @@ events.on('PlayerLeft', (player) => {
 })
 
 events.on('EntityCreate', (entity) => {
-  //executeCommand(`say ${entity.id} spawned!`)
+  executeCommand(`say ${entity.getId()}:${entity.getRuntimeId()} spawned!`)
+  entity.executeCommand('say Whats good?')
 })
 
 events.on('Explosion', (data) => {
