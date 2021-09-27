@@ -1,17 +1,31 @@
-import { Entity as MCEntity } from 'mojang-minecraft'
+import {
+  Entity as MCEntity,
+  World,
+} from 'mojang-minecraft'
 import { executeCommand } from '../BeAPI.js'
 import { Entity } from './Entity.js'
 
 export class EntityManager {
-  constructor() {
-    executeCommand('scoreboard objectives remove "ent:runtimeId"')
-    executeCommand('scoreboard objectives add "ent:runtimeId" dummy')
-  }
   private _runtimeId = 0
   private _entities = {
     nameTag: new Map<string, Entity>(),
     runtimeId: new Map<number, Entity>(),
     vanilla: new Map<MCEntity, Entity>(),
+  }
+
+  constructor() {
+    executeCommand('scoreboard objectives remove "ent:runtimeId"')
+    executeCommand('scoreboard objectives add "ent:runtimeId" dummy')
+    World.events.tick.subscribe(() => {
+      this._entityCheck()
+    })
+  }
+  private _entityCheck(): void {
+    for (const [, entity] of this._entities.runtimeId) {
+      const command = entity.executeCommand('testfor @s')
+      if (command.err != true) continue 
+      entity.destroy()
+    }
   }
   public addEntity(entity: Entity): void {
     this._entities.nameTag.set(`${entity.getNameTag()}:${entity.getId()}`, entity)
@@ -33,6 +47,7 @@ export class EntityManager {
   }
   public getEntityByRuntimeId(runtimeId: number): Entity { return this._entities.runtimeId.get(runtimeId) }
   public getEntityByVanilla(vanilla: MCEntity): Entity { return this._entities.vanilla.get(vanilla) }
+  public getEntityList(): Map<number, Entity> { return this._entities.runtimeId }
 }
 
 const entities = new EntityManager()

@@ -21,6 +21,7 @@ export interface EventValues {
   RawSocketMessage: [RawSocketMessage]
   NameTagChanged: [NameTagChanged]
   EntityCreate: [Entity]
+  EntityDestroyed: [Entity]
   Explosion: [Explosion]
 }
 
