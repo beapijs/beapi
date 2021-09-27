@@ -50,7 +50,7 @@ export class CommandManager {
       args: args,
     }
   }
-  public async executeCommand(data: ChatCommand): Promise<void> {
+  private async executeCommand(data: ChatCommand): Promise<void> {
     const parsedCommand = this._parseCommand(data.command)
     if (!this._commands.has(parsedCommand.command)) return data.sender.sendMessage("§cThis command doesn't exsist!")
     const commandData = this._commands.get(parsedCommand.command)
