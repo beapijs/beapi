@@ -6,6 +6,7 @@ import { PlayerMessage } from './message.js'
 import { PlayerRequest } from './player.js'
 import { UpdateNameTag } from './updateNameTag.js'
 import { EntityCreate } from './entityCreate.js'
+import { UpdateEntity } from './UpdateEntity.js'
 
 export const defaultRequests = [
   EnableRequest,
@@ -16,4 +17,5 @@ export const defaultRequests = [
   PlayerRequest,
   UpdateNameTag,
   EntityCreate,
+  UpdateEntity,
 ]

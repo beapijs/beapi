@@ -24,7 +24,7 @@ events.on('Explosion', (data) => {
 })
 
 events.on('EntityDestroyed', (entity) => {
-  executeCommand(`say ${entity.getId()} was removed`)
+  //executeCommand(`say ${entity.getId()} was removed`)
 })
 
 events.on('PlayerMessage', (data) => {
@@ -44,14 +44,14 @@ commands.registerCommand({
   data
 })
 
-events.on('tick', () => {
-  for (const [, entity] of entities.getEntityList()) {
-    try {
-      if (entity.getId() == "minecraft:item" || entity.getId() == "minecraft:xp_orb") continue
-      const health = entity.getVanilla().getComponent('health')
-      entity.setNameTag(`§c${health.current}§7/§c${health.value}§r`)
-    } catch (err) {
-
-    }
-  }
-})
+//events.on('tick', () => {
+//  for (const [, entity] of entities.getEntityList()) {
+//    try {
+//      if (entity.getId() == "minecraft:item" || entity.getId() == "minecraft:xp_orb") continue
+//      const health = entity.getVanilla().getComponent('health')
+//      entity.setNameTag(`§c${health.current}§7/§c${health.value}§r`)
+//    } catch (err) {
+//
+//    }
+//  }
+//})
