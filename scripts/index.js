@@ -1,2 +1,1 @@
-import "./tests/commandRegister.js";
-import "./tests/events.js";
+import "./tests/spawnEntity.js";

@@ -47,6 +47,7 @@ export class EntityManager {
   }
   public getEntityByRuntimeId(runtimeId: number): Entity { return this._entities.runtimeId.get(runtimeId) }
   public getEntityByVanilla(vanilla: MCEntity): Entity { return this._entities.vanilla.get(vanilla) }
+  public getLatestEntity(): Entity { return this._entities.runtimeId.get(this._runtimeId) }
   public getEntityList(): Map<number, Entity> { return this._entities.runtimeId }
 }
 

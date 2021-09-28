@@ -7,8 +7,10 @@ import {
   Demensions,
   Location,
 } from '../../types/BeAPI.i'
+import { Entity } from '../entity/Entity.js'
 import { executeCommand } from '../command/executeCommand.js'
 import { events } from '../events/EventManager.js'
+import { entities } from '../BeAPI.js'
 
 export class WorldManager {
   public getTicks(): number {
@@ -19,6 +21,12 @@ export class WorldManager {
   }
   public getEntities(dimension: Demensions, location: Location): MCEntity[] {
     return World.getDimension(dimension).getEntitiesAtBlockLocation(new BlockLocation(location.x, location.y, location.z))
+  }
+  public spawnEntity(entity: string, pos: Location, name = ""): Entity {
+    executeCommand(`summon ${entity} "${name}" ${pos.x} ${pos.y} ${pos.z}`)
+    const ent = entities.getLatestEntity()
+
+    return ent
   }
 }
 
