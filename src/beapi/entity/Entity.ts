@@ -22,7 +22,7 @@ export class Entity {
     executeCommand(`execute @e[name="${this._vanilla.nameTag}",type=!item] ~ ~ ~ scoreboard players set @s "ent:runtimeId" ${this._runtimeId}`)
     executeCommand('execute @e[type=item] ~ ~ ~ scoreboard players add @s "ent:runtimeId" 0')
     executeCommand(`execute @e[type=item,scores={"ent:runtimeId"=0}] ~ ~ ~ scoreboard players set @s "ent:runtimeId" ${this._runtimeId}`)
-    this._vanilla.nameTag = ""
+    this._vanilla.nameTag = this._nameTag
   }
   public setNameTag(nameTag: string): void {
     this._nameTag = nameTag
