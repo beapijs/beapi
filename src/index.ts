@@ -1,1 +1,1 @@
-import "./tests/spawnEntity.js"
+import "./tests/healthBar.js"

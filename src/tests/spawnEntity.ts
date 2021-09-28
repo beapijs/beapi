@@ -3,6 +3,8 @@ import {
   world,
 } from '../beapi/BeAPI.js'
 
+// TEST: Registers command to test spawnEntity function
+
 commands.registerCommand({
   command: "entitytest",
   description: "entitytest",
