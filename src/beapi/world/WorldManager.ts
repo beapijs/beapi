@@ -1,7 +1,7 @@
 import {
   World,
   BlockLocation,
-  Entity,
+  Entity as MCEntity,
 } from 'mojang-minecraft'
 import {
   Demensions,
@@ -17,7 +17,7 @@ export class WorldManager {
   public sendMessage(message: string): void {
     executeCommand(`tellraw @a {"rawtext":[{"text":"${message}"}]}`)
   }
-  public getEntities(dimension: Demensions, location: Location): Entity[] {
+  public getEntities(dimension: Demensions, location: Location): MCEntity[] {
     return World.getDimension(dimension).getEntitiesAtBlockLocation(new BlockLocation(location.x, location.y, location.z))
   }
 }
