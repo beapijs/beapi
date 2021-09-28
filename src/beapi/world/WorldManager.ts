@@ -7,12 +7,18 @@ import {
   Demensions,
   Location,
 } from '../../types/BeAPI.i'
+import { build } from '../version.js'
 import { Entity } from '../entity/Entity.js'
 import { executeCommand } from '../command/executeCommand.js'
 import { events } from '../events/EventManager.js'
 import { entities } from '../BeAPI.js'
 
 export class WorldManager {
+  constructor () {
+    if (build == "dev") {
+     this.sendMessage("BeAPI in Development Mode...") 
+    }
+  }
   public getTicks(): number {
     return events.getEvents().get('tick').ticks
   }
