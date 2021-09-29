@@ -24,7 +24,7 @@ export class EntityManager {
     for (const [, entity] of this._entities.runtimeId) {
       try {
         const command = entity.executeCommand('testfor @s')
-        if (command.err != true) continue 
+        if (command.err != true) continue
         entity.destroy()
       } catch (err) {
         this.removeEntity(entity)

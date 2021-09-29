@@ -1,1 +1,1 @@
-import "./tests/healthBar.js"
+import "./tests/events.js"

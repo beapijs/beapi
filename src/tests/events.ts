@@ -11,6 +11,10 @@ events.on('EntityCreate', (entity) => {
   executeCommand(`say ${entity.getId()} spawned with the runtimeId of ${entity.getRuntimeId()}`)
 })
 
+events.on('EntityDestroyed', (entity) => {
+  executeCommand(`say ${entity.getId()}:${entity.getRuntimeId()} was destroyed!`)
+})
+
 events.on('Explosion', (data) => {
   executeCommand(`say ${data.source.id} exploded and affected ${data.impactedBlocks.length} blocks`)
 })
