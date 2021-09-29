@@ -38,7 +38,7 @@ export class Entity {
     this._vanilla.kill()
     entities.removeEntity(this)
   }
-  public executeCommand(command: string): {statusMessage?: any, err?: boolean} {
+  public executeCommand(command: string): {statusMessage?: any, data?: any, err?: boolean} {
     const cmd = executeCommand(`execute @e[scores={"ent:runtimeId"=${this._runtimeId}}] ~ ~ ~ ${command}`)
 
     return cmd

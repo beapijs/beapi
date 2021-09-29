@@ -2,16 +2,16 @@ import { SocketManager } from '../SocketManager.js'
 import { events } from '../../events/EventManager.js'
 import { newRequestId } from '../requestId.js'
 
-export class EntityCreate {
+export class EntityDestroyed {
   private _socket: SocketManager
-  public requestName = 'EntityCreate'
+  public requestName = 'EntityDestroyed'
 
   constructor(socket: SocketManager) {
     this._socket = socket
-    events.on('EntityCreate', (data) => {
+    events.on('EntityDestroyed', (data) => {
       this._socket.sendMessage({
         berp: {
-          event: "EntityCreate",
+          event: "EntityDestroyed",
           entity: {
             id: data.getId(),
             runtimeId: data.getRuntimeId(),
