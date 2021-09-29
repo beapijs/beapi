@@ -16,7 +16,7 @@ import { entities } from '../BeAPI.js'
 export class WorldManager {
   constructor () {
     if (build == "dev") {
-     this.sendMessage("BeAPI in Development Mode...") 
+      this.sendMessage("BeAPI in Development Mode...") 
     }
   }
   public getTicks(): number {

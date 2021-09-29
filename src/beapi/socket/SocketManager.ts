@@ -36,7 +36,7 @@ export class SocketManager extends emitter {
         .replace(/\\n/g, '\\n')}"}]}`, World.getDimension('overworld'))
     } catch (err) {
       if (this.enabled == false) return
-      world.sendMessage('Socket Disabled...')
+      world.sendMessage('§cSocket Disabled...')
       this.enabled = false
     }
   }

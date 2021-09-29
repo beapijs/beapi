@@ -2,6 +2,7 @@ import { Entity as MCEntity } from 'mojang-minecraft'
 import { executeCommand } from '../BeAPI.js'
 import { entities } from './EntityManager.js'
 import { events } from '../events/EventManager.js'
+import { Location } from '../../types/BeAPI.i.js'
 
 export class Entity {
   private _nameTag: string
@@ -41,5 +42,14 @@ export class Entity {
     const cmd = executeCommand(`execute @e[scores={"ent:runtimeId"=${this._runtimeId}}] ~ ~ ~ ${command}`)
 
     return cmd
+  }
+  public getLocation(): Location {
+    const pos = this._vanilla.location
+
+    return {
+      x: pos.x,
+      y: pos.y,
+      z: pos.z,
+    }
   }
 }
