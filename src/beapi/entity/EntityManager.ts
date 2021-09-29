@@ -22,9 +22,13 @@ export class EntityManager {
   }
   private _entityCheck(): void {
     for (const [, entity] of this._entities.runtimeId) {
-      const command = entity.executeCommand('testfor @s')
-      if (command.err != true) continue 
-      entity.destroy()
+      try {
+        const command = entity.executeCommand('testfor @s')
+        if (command.err != true) continue 
+        entity.destroy()
+      } catch (err) {
+        this.removeEntity(entity)
+      }
     }
   }
   public addEntity(entity: Entity): void {
