@@ -1,1 +1,1 @@
-import "./tests/chatRanks.js";
+import "./tests/components.js";
