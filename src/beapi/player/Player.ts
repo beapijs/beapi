@@ -70,6 +70,6 @@ export class Player {
     executeCommand(`execute "${this.getExecutableName()}" ~ ~ ~ tellraw @s {"rawtext":[{"text":"${message}"}]}`)
   }
   public getInventory(): Inventory {
-    return this._vanilla.getComponent("minecraft:inventory")
+    return this._vanilla.getComponent("minecraft:inventory").container
   }
 }
