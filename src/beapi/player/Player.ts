@@ -1,5 +1,8 @@
 import { Player as MCPlayer } from 'mojang-minecraft'
-import { Location } from '../../types/BeAPI.i'
+import {
+  Inventory,
+  Location,
+} from '../../types/BeAPI.i'
 import { executeCommand } from '../command/executeCommand.js'
 import { players } from './PlayerManager.js'
 import { events } from '../events/EventManager.js'
@@ -65,5 +68,8 @@ export class Player {
   }
   public sendMessage(message: string): void {
     executeCommand(`execute "${this.getExecutableName()}" ~ ~ ~ tellraw @s {"rawtext":[{"text":"${message}"}]}`)
+  }
+  public getInventory(): Inventory {
+    return this._vanilla.getComponent("minecraft:inventory")
   }
 }

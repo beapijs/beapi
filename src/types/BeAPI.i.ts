@@ -1,7 +1,9 @@
 import {
   BlockLocation,
+  Container,
   Dimension,
   Entity as MCEntity,
+  ItemStack,
 } from "mojang-minecraft"
 import { Player } from "../beapi/player/Player"
 import { Entity } from "../beapi/entity/Entity"
@@ -98,3 +100,13 @@ export type Demensions = (
   "nether" |
   "the end"
 )
+
+export type Inventory = {
+  readonly emptySlotsCount: number
+  readonly size: number
+  addItem(itemStack: ItemStack): void
+  getItem(slot: number): ItemStack
+  setItem(slot: number, itemStack: ItemStack): void
+  swapItems(slot: number, otherSlot: number, otherContainer: Container): boolean
+  transferItem(fromSlot: number, toSlot: number, toContainer: Container): boolean
+}
