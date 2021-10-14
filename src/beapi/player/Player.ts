@@ -1,5 +1,6 @@
 import { Player as MCPlayer } from 'mojang-minecraft'
 import {
+  ExecuteCommandResponse,
   Inventory,
   Location,
 } from '../../types/BeAPI.i'
@@ -71,5 +72,8 @@ export class Player {
   }
   public getInventory(): Inventory {
     return this._vanilla.getComponent("minecraft:inventory").container
+  }
+  public executeCommand(command: string): ExecuteCommandResponse {
+    return executeCommand(`execute "${this.getExecutableName()}" ~ ~ ~ ${command}`)
   }
 }

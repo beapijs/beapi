@@ -110,3 +110,9 @@ export type Inventory = {
   swapItems(slot: number, otherSlot: number, otherContainer: Container): boolean
   transferItem(fromSlot: number, toSlot: number, toContainer: Container): boolean
 }
+
+export interface ExecuteCommandResponse {
+  statusMessage?: any
+  data?: any
+  err?: any
+}

@@ -1,2 +1,2 @@
 import "./tests/components.js"
-import "./tests/inventory.js"
+//import "./tests/inventory.js"

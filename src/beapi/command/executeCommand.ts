@@ -2,9 +2,12 @@ import {
   Commands,
   World,
 } from 'mojang-minecraft'
-import { Demensions } from '../../types/BeAPI.i'
+import {
+  ExecuteCommandResponse,
+  Demensions,
+} from '../../types/BeAPI.i'
 
-function executeCommand(command: string, dimension?: Demensions, debug = false): {statusMessage?: any, data?: any, err?: boolean} {
+function executeCommand(command: string, dimension?: Demensions, debug = false): ExecuteCommandResponse {
   try {
     if (!dimension) dimension = "overworld"
     const cmd = Commands.run(command, World.getDimension(dimension))
