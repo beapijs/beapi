@@ -4,6 +4,7 @@ import { entities } from '../../entity/EntityManager.js'
 export class EntityRequest {
   private _socket: SocketManager
   public requestName = 'EntityRequest'
+  public parameters = "entity: Number; returns entity: {id: String, runtimeId: Number, nameTag: String, location: {x: Number, y: Number, z: Number}}"
 
   constructor(socket: SocketManager) {
     this._socket = socket

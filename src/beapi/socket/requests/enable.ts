@@ -5,6 +5,7 @@ import { newRequestId } from '../requestId.js'
 export class EnableRequest {
   private _socket: SocketManager
   public requestName = 'EnableRequest'
+  public parameters = ""
 
   constructor(socket: SocketManager) {
     this._socket = socket

@@ -4,6 +4,7 @@ import { players } from '../../player/PlayerManager.js'
 export class InventoryRequest {
   private _socket: SocketManager
   public requestName = 'InventoryRequest'
+  public parameters = "player: String; returns data: {slot: Number, id: String, amount: Number, data: Number}[]"
 
   constructor(socket: SocketManager) {
     this._socket = socket

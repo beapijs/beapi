@@ -5,6 +5,7 @@ import { newRequestId } from '../requestId.js'
 export class PlayerMessage {
   private _socket: SocketManager
   public requestName = 'PlayerMessage'
+  public parameters = "returns sender: String, player: {name: String, nameTag: String}, message: String"
 
   constructor(socket: SocketManager) {
     this._socket = socket

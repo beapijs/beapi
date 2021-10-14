@@ -4,6 +4,7 @@ import { players } from '../../player/PlayerManager.js'
 export class PlayerRequest {
   private _socket: SocketManager
   public requestName = 'PlayerRequest'
+  public parameters = "player: String; returns player: {name: String, nameTag: String, location: {x: Number, y: Number, z: Number}}, isSneaking: Boolean, id: String"
 
   constructor(socket: SocketManager) {
     this._socket = socket

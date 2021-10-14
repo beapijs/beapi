@@ -10,6 +10,7 @@ import { EntityDestroyed } from './EntityDestroyed.js'
 import { EntityRequest } from './EntityRequest.js'
 import { UpdateEntity } from './UpdateEntity.js'
 import { InventoryRequest } from './Inventory.js'
+import { GetRequests } from './requests.js'
 
 export const defaultRequests = [
   EnableRequest,
@@ -24,4 +25,5 @@ export const defaultRequests = [
   EntityRequest,
   UpdateEntity,
   InventoryRequest,
+  GetRequests,
 ]

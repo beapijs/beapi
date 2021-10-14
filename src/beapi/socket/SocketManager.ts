@@ -40,6 +40,7 @@ export class SocketManager extends emitter {
       this.enabled = false
     }
   }
+  public getSocketRequests(): Map<string, any> { return this._requests }
 }
 
 const socket = new SocketManager()

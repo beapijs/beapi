@@ -3,6 +3,7 @@ import { SocketManager } from '../SocketManager.js'
 export class DisableRequest {
   private _socket: SocketManager
   public requestName = 'DisableRequest'
+  public parameters = ""
 
   constructor(socket: SocketManager) {
     this._socket = socket

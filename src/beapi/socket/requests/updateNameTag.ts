@@ -6,6 +6,7 @@ import { newRequestId } from '../requestId.js'
 export class UpdateNameTag {
   private _socket: SocketManager
   public requestName = 'UpdateNameTag'
+  public parameters = "player: String, message: String"
 
   constructor(socket: SocketManager) {
     this._socket = socket

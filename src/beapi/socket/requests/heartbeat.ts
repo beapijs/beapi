@@ -5,6 +5,7 @@ import { newRequestId } from '../requestId.js'
 export class Heartbeat {
   private _socket: SocketManager
   public requestName = 'Heartbeat'
+  public parameters = ""
 
   constructor(socket: SocketManager) {
     this._socket = socket

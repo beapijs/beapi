@@ -4,6 +4,7 @@ import { entities } from '../../entity/EntityManager.js'
 export class UpdateEntity {
   private _socket: SocketManager
   public requestName = 'UpdateEntity'
+  public parameters = "entity: Number, data?: {kill?: Boolean, command?: String, triggerEvent?: String}; returns data?: {statusMessage?: String, err?: Boolean}"
 
   constructor(socket: SocketManager) {
     this._socket = socket
