@@ -13,4 +13,5 @@ export class Tick {
       this._events.emit('tick', this.ticks)
     })
   }
+  public getTicks(): number { return this.ticks }
 }
