@@ -76,4 +76,10 @@ export class Player {
   public executeCommand(command: string): ExecuteCommandResponse {
     return executeCommand(`execute "${this.getExecutableName()}" ~ ~ ~ ${command}`)
   }
+  public getScore(objective: string): number {
+    const command = executeCommand(`scoreboard players test "${this.getExecutableName()}" "${objective}" * *`)
+    if (command.err) return 0
+
+    return parseInt(command.statusMessage.split(" ")[1])
+  }
 }
