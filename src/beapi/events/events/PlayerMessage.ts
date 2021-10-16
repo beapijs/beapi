@@ -8,6 +8,7 @@ import { Player } from '../../player/Player.js'
 export class PlayerMessage {
   private _events: EventManager
   private _cancelNextMessage = false
+  public alwaysCancel = false
   public eventName = 'PlayerMessage'
 
   constructor (events: EventManager) {
@@ -40,7 +41,7 @@ export class PlayerMessage {
     this._cancelNextMessage = true
   }
   private _processMessage(sender: Player, message: string): void {
-    if (this._cancelNextMessage == true) return
+    if (this._cancelNextMessage == true || this.alwaysCancel == true) return
     this._cancelNextMessage = false
     world.sendMessage(`<${sender.getName()}> ${message}`)
   }

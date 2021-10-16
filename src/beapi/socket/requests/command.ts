@@ -7,6 +7,7 @@ import { SocketManager } from '../SocketManager.js'
 export class CommandRequest {
   private _socket: SocketManager
   public requestName = 'CommandRequest'
+  public parameters = "command: String"
 
   constructor(socket: SocketManager) {
     this._socket = socket

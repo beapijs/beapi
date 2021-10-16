@@ -10,6 +10,8 @@ import { EntityDestroyed } from './EntityDestroyed.js'
 import { EntityRequest } from './EntityRequest.js'
 import { UpdateEntity } from './UpdateEntity.js'
 import { InventoryRequest } from './Inventory.js'
+import { ToggleCommands } from './ToggleCommands.js'
+import { ToggleMessages } from './ToggleMessages.js'
 import { GetRequests } from './requests.js'
 
 export const defaultRequests = [
@@ -25,5 +27,7 @@ export const defaultRequests = [
   EntityRequest,
   UpdateEntity,
   InventoryRequest,
+  ToggleCommands,
+  ToggleMessages,
   GetRequests,
 ]
