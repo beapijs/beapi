@@ -1,11 +1,17 @@
 import { SocketManager } from '../SocketManager.js'
 import { setInterval } from '../../timers/interval.js'
 import { newRequestId } from '../requestId.js'
+import {
+  build,
+  mcbe,
+  protocol,
+  version,
+} from '../../version.js'
 
 export class EnableRequest {
   private _socket: SocketManager
   public requestName = 'EnableRequest'
-  public parameters = ""
+  public parameters = "returns data: {api: String, version: String, mcbe: String, protcol: Number, build: String}"
 
   constructor(socket: SocketManager) {
     this._socket = socket
@@ -14,6 +20,13 @@ export class EnableRequest {
       this._socket.sendMessage({
         berp: {
           event: "EnableSocket",
+          data: {
+            api: "BeAPI",
+            version: version,
+            mcbe: mcbe,
+            protocol: protocol,
+            build: build,
+          },
           requestId: `${newRequestId()}`,
         },
       })
