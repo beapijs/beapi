@@ -13,6 +13,7 @@ import { InventoryRequest } from './Inventory.js'
 import { ToggleCommands } from './ToggleCommands.js'
 import { ToggleMessages } from './ToggleMessages.js'
 import { GetRequests } from './requests.js'
+import { TagsRequest } from './TagsRequest.js'
 
 export const defaultRequests = [
   EnableRequest,
@@ -30,4 +31,5 @@ export const defaultRequests = [
   ToggleCommands,
   ToggleMessages,
   GetRequests,
+  TagsRequest,
 ]

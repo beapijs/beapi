@@ -1,17 +1,17 @@
 {
   "format_version": 2,
   "header": {
-      "description": "Relay data between BeRP and gametests. Built around BeAPI.",
-      "name": "§l§dBeRP SocketManager",
-      "uuid": "5e384cfa-1277-11ec-82a8-0242ac130003",
+      "description": "|DESC|",
+      "name": "|NAME|",
+      "uuid": "|UUID1|",
       "version": [0, 0, 1],
       "min_engine_version": [ 1, 14, 0 ]
   },
   "modules": [
       {
-          "description": "Relay data between BeRP and gametests. Built around BeAPI.",
+          "description": "|DESC|",
           "type": "javascript",
-          "uuid": "5e384f66-1277-11ec-82a8-0242ac130003",
+          "uuid": "|UUID2|",
           "version": [0, 0, 1],
           "entry": "scripts/index.js"
       }

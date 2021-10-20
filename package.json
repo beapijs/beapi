@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "compile": "node compile/index.js",
     "lint": "eslint src/**"
   },
   "repository": {
@@ -20,10 +21,14 @@
   "dependencies": {
     "@types/mojang-gametest": "^0.1.0",
     "@types/mojang-minecraft": "^0.1.0",
+    "@types/uuid-1345": "^0.99.22",
     "babel-eslint": "^10.1.0",
+    "copy-dir": "^1.3.0",
     "eslint": "^7.32.0",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.2",
+    "uuid-1345": "^1.0.2",
+    "zip-a-folder": "^1.1.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.31.0"
