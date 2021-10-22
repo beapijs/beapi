@@ -1,2 +1,2 @@
-import "./tests/components.js"
-import "./tests/scores.js"
+import "./tests/chatRanks.js"
+import "./tests/nameTag.js"
