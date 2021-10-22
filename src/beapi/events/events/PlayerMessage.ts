@@ -15,7 +15,7 @@ export class PlayerMessage {
     this._events = events
     World.events.beforeChat.subscribe(async (data) => {
       data.cancel = true
-      const player = players.getPlayerByNameTag(data.sender.nameTag) // Doing nameTag, cause player's name sometimes break on realms. - PMK744
+      const player = players.getPlayerByName(data.sender.name)
       
       if (player.hasTag('berpUser')) return this._events.emit('RawSocketMessage', {
         sender: player,

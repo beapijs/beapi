@@ -12,7 +12,7 @@ export class TagsRequest {
       if (packet.event != "TagsRequest") return
       if (!players.getPlayerList().has(packet.player)) return this._socket.sendMessage({
         berp: {
-          event: "PlayerRequest",
+          event: "TagsRequest",
           message: "Player Not Found!",
           requestId: packet.requestId,
         },
