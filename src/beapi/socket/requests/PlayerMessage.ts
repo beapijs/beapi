@@ -16,7 +16,7 @@ export class PlayerMessage {
           sender: data.sender.getName() || data.sender.getNameTag(),
           player: {
             name: data.sender.getName(),
-            nameTag: data.sender.getNameTag(),
+            nameTag: data.sender.getNameTag().replace(/\n/g, "*n"),
           },
           message: data.message,
           requestId: `${newRequestId()}`,
@@ -27,7 +27,7 @@ export class PlayerMessage {
       this._socket.sendMessage({
         berp: {
           event: "ChatCommand",
-          sender: data.sender.getName() || data.sender.getNameTag(),
+          sender: data.sender.getName() || data.sender.getNameTag().replace(/\n/g, "*n"),
           player: {
             name: data.sender.getName(),
             nameTag: data.sender.getNameTag(),

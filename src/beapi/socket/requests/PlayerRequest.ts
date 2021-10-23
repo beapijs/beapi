@@ -25,7 +25,7 @@ export class PlayerRequest {
           message: `Found data for ${packet.player}`,
           player: {
             name: player.name,
-            nameTag: player.nameTag,
+            nameTag: player.nameTag.replace(/\n/g, "*n"),
             location: {
               x: player.location.x,
               y: player.location.y,

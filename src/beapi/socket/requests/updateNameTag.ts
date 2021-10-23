@@ -20,7 +20,7 @@ export class UpdateNameTag {
         },
       })
       const player = players.getPlayerByName(packet.player)
-      player.setNameTag(packet.message)
+      player.setNameTag(packet.message.replace(/\*n/g, "\n"))
     
       return this._socket.sendMessage({
         berp: {
