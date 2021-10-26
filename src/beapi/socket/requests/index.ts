@@ -14,6 +14,8 @@ import { ToggleCommands } from './ToggleCommands.js'
 import { ToggleMessages } from './ToggleMessages.js'
 import { GetRequests } from './GetRequests.js'
 import { TagsRequest } from './TagsRequest.js'
+import { GetPlayers } from './GetPlayers.js'
+import { GetEntities } from './GetEntities.js'
 
 export const defaultRequests = [
   EnableRequest,
@@ -32,4 +34,6 @@ export const defaultRequests = [
   ToggleMessages,
   GetRequests,
   TagsRequest,
+  GetPlayers,
+  GetEntities,
 ]

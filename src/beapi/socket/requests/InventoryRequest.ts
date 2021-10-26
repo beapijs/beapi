@@ -19,7 +19,7 @@ export class InventoryRequest {
       })
       const player = players.getPlayerByName(packet.player)
       const items = []
-      for (let slot = 0; slot != 36; slot++) {
+      for (let slot = 0; slot != player.getInventory().size; slot++) {
         let item = player.getInventory().getItem(slot)
         if (!item) item = {
           id: "minecraft:air",
