@@ -61,7 +61,7 @@ function copyFiles() {
       cover: true,
     }, async () => {
       const raw = JSON.stringify(template)
-      await fs.writeFileSync(path.resolve(process.cwd() + "/output/temp/BeAPI/manifest.json"), `${    raw.replace("|NAME|", "§l§9BeAPI").replace(/\|DESC\|/g, `Advanced API Wrapper for GameTests. Compiled on ${new Date().toDateString()}`)
+      await fs.writeFileSync(path.resolve(process.cwd() + "/output/temp/BeAPI/manifest.json"), `${    raw.replace("|NAME|", "§l§9BeAPI").replace(/\|DESC\|/g, `Advanced API Wrapper for GameTests. Compiled on ${new Date().toLocaleTimeString()} ${new Date().toDateString()}`)
         .replace("|UUID1|", v4())
         .replace("|UUID2|", v4())}`)
       console.log('[INFO] Copy complete...')
