@@ -3,6 +3,7 @@ import {
   World,
 } from 'mojang-minecraft'
 import { JsonRequest } from '../../types/BeAPI.i'
+import { executeCommand } from '../command/executeCommand.js'
 import { emitter } from '../events/emitter/emitter.js'
 import { events } from '../events/EventManager.js'
 import { world } from '../world/WorldManager.js'
@@ -31,6 +32,8 @@ export class SocketManager extends emitter {
     }
   }
   public sendMessage(message: JsonRequest): void {
+    executeCommand(`execute @a ~ ~ ~ tellraw @s[tag="log"] {"rawtext":[{"text":"${JSON.stringify(message).replace(/"/g, '\\"')
+      .replace(/\\n/g, '\\n')}"}]}`)
     try {
       return Commands.run(`execute @a ~ ~ ~ tellraw @s[tag="berpUser"] {"rawtext":[{"text":"${JSON.stringify(message).replace(/"/g, '\\"')
         .replace(/\\n/g, '\\n')}"}]}`, World.getDimension('overworld'))
