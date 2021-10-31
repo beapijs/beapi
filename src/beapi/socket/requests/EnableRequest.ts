@@ -1,5 +1,5 @@
 import { SocketManager } from '../SocketManager.js'
-import { setInterval } from '../../timers/interval.js'
+import { events } from '../../events/EventManager.js'
 import { newRequestId } from '../requestId.js'
 import {
   build,
@@ -15,7 +15,8 @@ export class EnableRequest {
 
   constructor(socket: SocketManager) {
     this._socket = socket
-    setInterval(() => {
+    events.on("tick", (tick) => {
+      if (tick % 25 != 0) return
       if (this._socket.enabled == true) return
       this._socket.sendMessage({
         berp: {
@@ -30,7 +31,7 @@ export class EnableRequest {
           requestId: `${newRequestId()}`,
         },
       })
-    }, 25)
+    })
     this._socket.on("Message", (packet) => {
       if (packet.event != "EnableRequest" || this._socket.enabled == true) return
       this._socket.enabled = true

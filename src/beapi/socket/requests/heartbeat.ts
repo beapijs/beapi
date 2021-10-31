@@ -1,5 +1,4 @@
 import { SocketManager } from '../SocketManager.js'
-import { setInterval } from '../../timers/interval.js'
 import { events } from '../../events/EventManager.js'
 import { newRequestId } from '../requestId.js'
 
@@ -10,7 +9,8 @@ export class Heartbeat {
 
   constructor(socket: SocketManager) {
     this._socket = socket
-    setInterval(() => {
+    events.on("tick", (tick) => {
+      if (tick % 80 != 0) return
       if (this._socket.enabled == false) return
       this._socket.sendMessage({
         berp: {
@@ -22,6 +22,6 @@ export class Heartbeat {
           requestId: `${newRequestId()}`,
         },
       })
-    }, 80)
+    })
   }
 }

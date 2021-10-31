@@ -43,6 +43,6 @@ export class PlayerMessage {
   private _processMessage(sender: Player, message: string): void {
     if (this._cancelNextMessage == true || this.alwaysCancel == true) return
     this._cancelNextMessage = false
-    world.sendMessage(`<${sender.getName()}> ${message}`)
+    world.sendMessage(`<${sender.getName()}> ${message.replace(/\\/g, "/")}`)
   }
 }

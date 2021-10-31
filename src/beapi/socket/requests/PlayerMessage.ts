@@ -18,7 +18,7 @@ export class PlayerMessage {
             name: data.sender.getName(),
             nameTag: data.sender.getNameTag().replace(/\n/g, "*n"),
           },
-          message: data.message,
+          message: data.message.replace(/\\/g, "/"),
           requestId: `${newRequestId()}`,
         },
       })
