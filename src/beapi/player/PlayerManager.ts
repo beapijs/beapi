@@ -1,5 +1,6 @@
 import { Player as MCPlayer } from 'mojang-minecraft'
 import { Player } from './Player.js'
+import { NameTagChanged } from '../../types/BeAPI.i.js'
 
 export class PlayerManager {
   private _players = {
@@ -21,6 +22,10 @@ export class PlayerManager {
   public getPlayerByName(name: string): Player { return this._players.name.get(name) }
   public getPlayerByNameTag(nameTag: string): Player { return this._players.nameTag.get(nameTag) }
   public getPlayerByVanilla(vanilla: MCPlayer): Player { return this._players.vanilla.get(vanilla) }
+  public updateNameTag(data: NameTagChanged): void {
+    this._players.nameTag.delete(data.old)
+    this._players.nameTag.set(data.new, data.player)
+  }
 }
 
 const players = new PlayerManager()

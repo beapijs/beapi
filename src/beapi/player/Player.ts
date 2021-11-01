@@ -33,6 +33,11 @@ export class Player {
       old: this._nameTag,
       new: name,
     })
+    players.updateNameTag({
+      player: this,
+      old: this._nameTag,
+      new: name,
+    })
     this._nameTag = name
     this._vanilla.nameTag = name
   }

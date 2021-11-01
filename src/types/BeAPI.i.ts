@@ -33,7 +33,7 @@ interface Explosion {
   impactedBlocks: BlockLocation[]
 }
 
-interface NameTagChanged {
+export interface NameTagChanged {
   player: Player
   old: string
   new: string

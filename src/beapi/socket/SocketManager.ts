@@ -32,7 +32,7 @@ export class SocketManager extends emitter {
     }
   }
   public sendMessage(message: JsonRequest): void {
-    executeCommand(`execute @a ~ ~ ~ tellraw @s[tag="log"] {"rawtext":[{"text":"${JSON.stringify(message).replace(/"/g, '\\"')
+    executeCommand(`execute @a ~ ~ ~ tellraw @s[tag="logSM"] {"rawtext":[{"text":"${JSON.stringify(message).replace(/"/g, '\\"')
       .replace(/\\n/g, '\\n')}"}]}`)
     try {
       return Commands.run(`execute @a ~ ~ ~ tellraw @s[tag="berpUser"] {"rawtext":[{"text":"${JSON.stringify(message).replace(/"/g, '\\"')

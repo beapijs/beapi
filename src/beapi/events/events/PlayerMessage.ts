@@ -4,6 +4,7 @@ import { players } from '../../player/PlayerManager.js'
 import { commands } from '../../command/CommandManager.js'
 import { world } from '../../world/WorldManager.js'
 import { Player } from '../../player/Player.js'
+import { executeCommand } from '../../command/executeCommand.js'
 
 export class PlayerMessage {
   private _events: EventManager
@@ -14,8 +15,9 @@ export class PlayerMessage {
   constructor (events: EventManager) {
     this._events = events
     World.events.beforeChat.subscribe(async (data) => {
+      executeCommand(`execute @a ~ ~ ~ tellraw @a[tag="log"] {"rawtext":[{"text":"Player Message: ${data.sender.name}|${data.sender.nameTag} : ${data.message.replace(/\\/g, "/")}"}]}`)
       data.cancel = true
-      const player = players.getPlayerByName(data.sender.name)
+      const player = players.getPlayerByNameTag(data.sender.nameTag)
       
       if (player.hasTag('berpUser')) return this._events.emit('RawSocketMessage', {
         sender: player,
