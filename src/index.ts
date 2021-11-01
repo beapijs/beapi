@@ -1,1 +1,1 @@
-import "./tests/scores.js"
+import "./tests/events.js"

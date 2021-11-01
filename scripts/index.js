@@ -1,1 +1,1 @@
-import "./tests/nameTag.js";
+import "./tests/events.js";
