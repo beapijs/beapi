@@ -1,1 +1,1 @@
-import "./tests/events.js"
+import "./tests/commandRegister.js"
