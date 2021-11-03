@@ -14,7 +14,7 @@ Once you have done that, you will find "BeAPI Dev" as an available behavior pack
 
 ## Building
 Once you have added any of your code or have changed any of BeAPI, you must build the project so Minecraft can reconize it.
-To do so, must open the BeAPI project in [Visual Studio Code]() or open with CMD.
+To do so, must open the BeAPI project in [Visual Studio Code](https://code.visualstudio.com/) or open with CMD.
 Once open, inside the terminal run the command below.
 ```npm run build```
 Once ran, there will be a "scripts" folder that will be generated, and inside that folder will be your modified code.
@@ -28,3 +28,6 @@ Inside the "output" folder will be your compiled .mcpack.
 Then you can share your pack and import it to Minecraft.
 Once imported, you will be able to find the pack in your available behavior packs.
 ![image](public/example2.png)
+
+## Documentation
+Documentation will be available soon.
