@@ -3,11 +3,12 @@ import {
   World,
 } from 'mojang-minecraft'
 import { JsonRequest } from '../../types/BeAPI.i'
+import { players } from '../player/PlayerManager.js'
 import { executeCommand } from '../command/executeCommand.js'
 import { emitter } from '../events/emitter/emitter.js'
 import { events } from '../events/EventManager.js'
-import { world } from '../world/WorldManager.js'
 import { defaultRequests } from './requests/index.js'
+import { world } from '../world/WorldManager.js'
 
 export class SocketManager extends emitter {
   private _requests = new Map<string, any>()
@@ -24,6 +25,19 @@ export class SocketManager extends emitter {
       const parsedMessage = JSON.parse(data.message).berp
       this.emit("Message", parsedMessage)
     })
+    events.on("tick", (tick) => {
+      if (tick % 25 != 0) return
+      let found = 0
+      for (const [, player] of players.getPlayerList()) {
+        if (!player.hasTag("berpUser")) continue
+
+        found++
+      }
+
+      if (found != 0 || this.enabled == false) return
+      this.enabled = false
+      world.sendMessage('§cSocket Disabled...')
+    })
   }
   private _loadRequests(): void {
     for (const request of defaultRequests) {
@@ -37,11 +51,7 @@ export class SocketManager extends emitter {
     try {
       return Commands.run(`execute @a ~ ~ ~ tellraw @s[tag="berpUser"] {"rawtext":[{"text":"${JSON.stringify(message).replace(/"/g, '\\"')
         .replace(/\\n/g, '\\n')}"}]}`, World.getDimension('overworld'))
-    } catch (err) {
-      if (this.enabled == false) return
-      world.sendMessage('§cSocket Disabled...')
-      this.enabled = false
-    }
+    } catch (err) {}
   }
   public getSocketRequests(): Map<string, any> { return this._requests }
 }
