@@ -1,1 +1,1 @@
-import "./tests/commandRegister.js";
+import "./tests/healthBar.js";

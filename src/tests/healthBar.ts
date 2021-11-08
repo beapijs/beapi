@@ -8,8 +8,8 @@ import {
 events.on('tick', () => {
   for (const [, entity] of entities.getEntityList()) {
     try {
-      const health = entity.getVanilla().getComponent('minecraft:health')
-      entity.setNameTag(`§c${health.current}§7/§c${health.value}§r`)
+      const health = entity.getHealth()
+      entity.setNameTag(`§c${health.current}§7/§c${health.max}§r`)
     } catch (err) {}
   }
 })
