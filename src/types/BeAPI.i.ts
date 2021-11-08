@@ -116,3 +116,8 @@ export interface ExecuteCommandResponse {
   data?: any
   err?: any
 }
+
+export interface Health {
+  current: number
+  max: number
+}

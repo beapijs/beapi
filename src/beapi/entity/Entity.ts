@@ -2,7 +2,10 @@ import { Entity as MCEntity } from 'mojang-minecraft'
 import { executeCommand } from '../BeAPI.js'
 import { entities } from './EntityManager.js'
 import { events } from '../events/EventManager.js'
-import { Location } from '../../types/BeAPI.i.js'
+import {
+  Health,
+  Location,
+} from '../../types/BeAPI.i.js'
 
 export class Entity {
   private _nameTag: string
@@ -50,6 +53,14 @@ export class Entity {
       x: pos.x,
       y: pos.y,
       z: pos.z,
+    }
+  }
+  public getHealth(): Health {
+    const health = this._vanilla.getComponent("minecraft:health")
+
+    return {
+      current: health.current,
+      max: health.value,
     }
   }
 }
