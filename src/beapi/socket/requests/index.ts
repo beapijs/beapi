@@ -17,6 +17,7 @@ import { TagsRequest } from './TagsRequest.js'
 import { GetPlayers } from './GetPlayers.js'
 import { GetEntities } from './GetEntities.js'
 import { ScoreRequest } from './ScoreRequest.js'
+import { Explosion } from './Explosion.js'
 
 export const defaultRequests = [
   EnableRequest,
@@ -38,4 +39,5 @@ export const defaultRequests = [
   GetPlayers,
   GetEntities,
   ScoreRequest,
+  Explosion,
 ]
