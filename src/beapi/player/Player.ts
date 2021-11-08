@@ -1,6 +1,7 @@
 import { Player as MCPlayer } from 'mojang-minecraft'
 import {
   ExecuteCommandResponse,
+  Health,
   Inventory,
   Location,
 } from '../../types/BeAPI.i'
@@ -86,5 +87,13 @@ export class Player {
     if (command.err) return 0
 
     return parseInt(command.statusMessage.split(" ")[1])
+  }
+  public getHealth(): Health {
+    const health = this._vanilla.getComponent("minecraft:health")
+
+    return {
+      current: health.current,
+      max: health.value,
+    }
   }
 }
