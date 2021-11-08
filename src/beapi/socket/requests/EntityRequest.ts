@@ -27,6 +27,10 @@ export class EntityRequest {
             id: entity.getId(),
             runtimeId: entity.getRuntimeId(),
             nameTag: entity.getVanilla().nameTag,
+            health: {
+              current: entity.getHealth().current,
+              max: entity.getHealth().max,
+            },
             location: {
               x: entity.getVanilla().location.x,
               y: entity.getVanilla().location.y,

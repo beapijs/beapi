@@ -17,22 +17,27 @@ export class PlayerRequest {
           requestId: packet.requestId,
         },
       })
-      const player = players.getPlayerByName(packet.player).getVanilla()
+      const player = players.getPlayerByName(packet.player)
+      const vanilla = player.getVanilla()
     
       return this._socket.sendMessage({
         berp: {
           event: "PlayerRequest",
           message: `Found data for ${packet.player}`,
           player: {
-            name: player.name,
-            nameTag: player.nameTag.replace(/\n/g, "*n"),
-            location: {
-              x: player.location.x,
-              y: player.location.y,
-              z: player.location.z,
+            name: vanilla.name,
+            nameTag: vanilla.nameTag.replace(/\n/g, "*n"),
+            health: {
+              current: player.getHealth().current,
+              max: player.getHealth().max,
             },
-            isSneaking: player.isSneaking,
-            id: player.id,
+            location: {
+              x: vanilla.location.x,
+              y: vanilla.location.y,
+              z: vanilla.location.z,
+            },
+            isSneaking: vanilla.isSneaking,
+            id: vanilla.id,
           },
           requestId: packet.requestId,
         },
