@@ -63,4 +63,26 @@ export class Entity {
       max: health.value,
     }
   }
+  public getTags(): string[] {
+    const raw = executeCommand(`tag @e[scores={"ent:runtimeId"=${this._runtimeId}}] list`).statusMessage.split(' ')
+    const tags = []
+    for (const string of raw) {
+      if (string.startsWith("§a")) tags.push(string.replace('§a', '').replace('§r', '')
+        .replace(',', ''))
+    }
+
+    return tags
+  }
+  public hasTag(tag: string): boolean {
+    const tags = this.getTags()
+    if (!tags.includes(tag)) return false
+
+    return true
+  }
+  public addTag(tag: string): void {
+    executeCommand(`execute @e[scores={"ent:runtimeId"=${this._runtimeId}}] ~ ~ ~ tag @s add "${tag}"`)
+  }
+  public removeTag(tag: string): void {
+    executeCommand(`execute @e[scores={"ent:runtimeId"=${this._runtimeId}}] ~ ~ ~ tag @s remove "${tag}"`)
+  }
 }
