@@ -1,4 +1,4 @@
-import { World } from 'mojang-minecraft'
+import { world } from 'mojang-minecraft'
 import { EventManager } from '../EventManager.js'
 import { Player } from '../../player/Player.js'
 
@@ -8,15 +8,8 @@ export class PlayerJoin {
 
   constructor (events: EventManager) {
     this._events = events
-    World.events.entityCreate.subscribe(async (data) => {
-      if (data.entity.id != "minecraft:player") return
-
-      const players = World.getPlayers()
-      players.forEach((x) => {
-        if (x.nameTag != data.entity.nameTag) return
-       
-        return this._events.emit('PlayerJoin', new Player(x))
-      })
+    world.events.playerJoin.subscribe(async (data) => {
+      this._events.emit('PlayerJoin', new Player(data.player))
     })
   }
 }

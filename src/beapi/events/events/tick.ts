@@ -1,4 +1,4 @@
-import { World } from 'mojang-minecraft'
+import { world } from 'mojang-minecraft'
 import { EventManager } from '../EventManager.js'
 
 export class Tick {
@@ -8,7 +8,7 @@ export class Tick {
 
   constructor (events: EventManager) {
     this._events = events
-    World.events.tick.subscribe(() => {
+    world.events.tick.subscribe(() => {
       this.ticks++
       this._events.emit('tick', this.ticks)
     })

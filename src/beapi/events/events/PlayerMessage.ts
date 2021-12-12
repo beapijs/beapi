@@ -1,4 +1,4 @@
-import { World } from 'mojang-minecraft'
+import { world as World } from 'mojang-minecraft'
 import { EventManager } from '../EventManager.js'
 import { players } from '../../player/PlayerManager.js'
 import { commands } from '../../command/CommandManager.js'

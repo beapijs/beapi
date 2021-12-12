@@ -1,7 +1,7 @@
 import { SocketManager } from '../SocketManager.js'
 import { players } from '../../player/PlayerManager.js'
 import { events } from '../../events/EventManager.js'
-import { newRequestId } from '../requestId.js'
+import { uuidv4 } from '../uuidv4.js'
 
 export class UpdateNameTag {
   private _socket: SocketManager
@@ -39,7 +39,7 @@ export class UpdateNameTag {
             old: data.old,
             new: data.new,
           },
-          requestId: `${newRequestId()}`,
+          requestId: uuidv4(),
         },
       })
     })

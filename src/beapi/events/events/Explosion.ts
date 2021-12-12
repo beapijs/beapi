@@ -1,5 +1,5 @@
 import {
-  World,
+  world,
 } from 'mojang-minecraft'
 import { EventManager } from '../EventManager.js'
 
@@ -9,7 +9,7 @@ export class Explosion {
 
   constructor (events: EventManager) {
     this._events = events
-    World.events.beforeExplosion.subscribe(async (data) => {
+    world.events.beforeExplosion.subscribe(async (data) => {
       this._events.emit('Explosion', {
         dimension: data.dimension,
         source: data.source,

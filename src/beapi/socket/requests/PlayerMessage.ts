@@ -1,7 +1,7 @@
 import { SocketManager } from '../SocketManager.js'
 import { events } from '../../events/EventManager.js'
-import { newRequestId } from '../requestId.js'
-import { World } from 'mojang-minecraft'
+import { uuidv4 } from '../uuidv4.js'
+import { world } from 'mojang-minecraft'
 
 export class PlayerMessage {
   private _socket: SocketManager
@@ -10,7 +10,7 @@ export class PlayerMessage {
 
   constructor(socket: SocketManager) {
     this._socket = socket
-    World.events.beforeChat.subscribe((data) => {
+    world.events.beforeChat.subscribe((data) => {
       this._socket.sendMessage({
         berp: {
           event: "PlayerMessage",
@@ -20,7 +20,7 @@ export class PlayerMessage {
             nameTag: data.sender.nameTag.replace(/\n/g, "*n"),
           },
           message: data.message.replace(/\\/g, "/"),
-          requestId: `${newRequestId()}`,
+          requestId: uuidv4(),
         },
       })
     })
@@ -34,7 +34,7 @@ export class PlayerMessage {
             nameTag: data.sender.getNameTag(),
           },
           command: data.command,
-          requestId: `${newRequestId()}`,
+          requestId: uuidv4(),
         },
       })
     })

@@ -1,6 +1,6 @@
 import { SocketManager } from '../SocketManager.js'
 import { events } from '../../events/EventManager.js'
-import { newRequestId } from '../requestId.js'
+import { uuidv4 } from '../uuidv4.js'
 
 export class Explosion {
   private _socket: SocketManager
@@ -17,7 +17,7 @@ export class Explosion {
             entity: data.source.id,
             impactedBlocks: data.impactedBlocks,
           },
-          requestId: `${newRequestId()}`,
+          requestId: uuidv4(),
         },
       })
     })

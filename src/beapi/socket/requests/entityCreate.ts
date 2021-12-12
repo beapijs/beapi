@@ -1,6 +1,6 @@
 import { SocketManager } from '../SocketManager.js'
 import { events } from '../../events/EventManager.js'
-import { newRequestId } from '../requestId.js'
+import { uuidv4 } from '../uuidv4.js'
 
 export class EntityCreate {
   private _socket: SocketManager
@@ -23,7 +23,7 @@ export class EntityCreate {
               z: data.getVanilla().location.z,
             },
           },
-          requestId: `${newRequestId()}`,
+          requestId: uuidv4(),
         },
       })
     })

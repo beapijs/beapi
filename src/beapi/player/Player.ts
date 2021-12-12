@@ -1,4 +1,8 @@
-import { Player as MCPlayer } from 'mojang-minecraft'
+import {
+  EntityHealthComponent,
+  EntityInventoryComponent,
+  Player as MCPlayer,
+} from 'mojang-minecraft'
 import {
   ExecuteCommandResponse,
   Health,
@@ -43,26 +47,16 @@ export class Player {
     this._vanilla.nameTag = name
   }
   public getTags(): string[] {
-    const raw = executeCommand(`tag "${this.getExecutableName()}" list`).statusMessage.split(' ')
-    const tags = []
-    for (const string of raw) {
-      if (string.startsWith("§a")) tags.push(string.replace('§a', '').replace('§r', '')
-        .replace(',', ''))
-    }
-
-    return tags
+    return this._vanilla.getTags()
   }
   public hasTag(tag: string): boolean {
-    const tags = this.getTags()
-    if (!tags.includes(tag)) return false
-
-    return true
+    return this._vanilla.hasTag(tag)
   }
-  public addTag(tag: string): void {
-    executeCommand(`execute "${this.getExecutableName()}" ~ ~ ~ tag @s add "${tag}"`)
+  public addTag(tag: string): boolean {
+    return this._vanilla.addTag(tag)
   }
-  public removeTag(tag: string): void {
-    executeCommand(`execute "${this.getExecutableName()}" ~ ~ ~ tag @s remove "${tag}"`)
+  public removeTag(tag: string): boolean {
+    return this._vanilla.removeTag(tag)
   }
   public getLocation(): Location {
     const pos = this._vanilla.location
@@ -71,16 +65,19 @@ export class Player {
       x: Math.floor(pos.x),
       y: Math.floor(pos.y - 1),
       z: Math.floor(pos.z),
+      dimension: this._vanilla.dimension,
     }
   }
   public sendMessage(message: string): void {
     executeCommand(`execute "${this.getExecutableName()}" ~ ~ ~ tellraw @s {"rawtext":[{"text":"${message}"}]}`)
   }
   public getInventory(): Inventory {
-    return this._vanilla.getComponent("minecraft:inventory").container
+    const inventory = this._vanilla.getComponent("minecraft:inventory") as EntityInventoryComponent
+
+    return inventory.container
   }
   public executeCommand(command: string): ExecuteCommandResponse {
-    return executeCommand(`execute "${this.getExecutableName()}" ~ ~ ~ ${command}`)
+    return this._vanilla.runCommand(command.replace(/\\/g, ""))
   }
   public getScore(objective: string): number {
     const command = executeCommand(`scoreboard players test "${this.getExecutableName()}" "${objective}" * *`)
@@ -89,7 +86,7 @@ export class Player {
     return parseInt(command.statusMessage.split(" ")[1])
   }
   public getHealth(): Health {
-    const health = this._vanilla.getComponent("minecraft:health")
+    const health = this._vanilla.getComponent("minecraft:health") as EntityHealthComponent
 
     return {
       current: health.current,

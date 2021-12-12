@@ -1,5 +1,5 @@
 import {
-  World,
+  world as World,
   BlockLocation,
   Entity as MCEntity,
 } from 'mojang-minecraft'

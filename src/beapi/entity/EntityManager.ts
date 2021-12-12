@@ -1,9 +1,10 @@
 import {
   Entity as MCEntity,
-  World,
+  world,
 } from 'mojang-minecraft'
 import { executeCommand } from '../BeAPI.js'
 import { Entity } from './Entity.js'
+import { events } from '../events/EventManager.js'
 
 export class EntityManager {
   private _runtimeId = 0
@@ -16,17 +17,16 @@ export class EntityManager {
   constructor() {
     executeCommand('scoreboard objectives remove "ent:runtimeId"')
     executeCommand('scoreboard objectives add "ent:runtimeId" dummy')
-    World.events.tick.subscribe(() => {
+    world.events.tick.subscribe(() => {
       this._entityCheck()
     })
   }
   private _entityCheck(): void {
     for (const [, entity] of this._entities.runtimeId) {
       try {
-        const command = entity.executeCommand('testfor @s')
-        if (command.err != true) continue
-        entity.destroy()
+        entity.getVanilla().id
       } catch (err) {
+        events.emit("EntityDestroyed", entity)
         this.removeEntity(entity)
       }
     }

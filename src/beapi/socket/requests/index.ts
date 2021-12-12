@@ -18,7 +18,11 @@ import { GetPlayers } from './GetPlayers.js'
 import { GetEntities } from './GetEntities.js'
 import { ScoreRequest } from './ScoreRequest.js'
 import { Explosion } from './Explosion.js'
-
+import { GetCommands } from './GetCommands.js'
+import { ExecuteCommand } from './ExecuteCommand.js'
+import { ItemUse } from './ItemUse.js'
+import { ItemUseOn } from './ItemUseOn.js'
+ 
 export const defaultRequests = [
   EnableRequest,
   DisableRequest,
@@ -40,4 +44,8 @@ export const defaultRequests = [
   GetEntities,
   ScoreRequest,
   Explosion,
+  GetCommands,
+  ExecuteCommand,
+  ItemUse,
+  ItemUseOn,
 ]

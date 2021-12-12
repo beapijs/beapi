@@ -1,6 +1,5 @@
 import {
-  Commands,
-  World,
+  world as World,
 } from 'mojang-minecraft'
 import { JsonRequest } from '../../types/BeAPI.i'
 import { players } from '../player/PlayerManager.js'
@@ -9,6 +8,7 @@ import { emitter } from '../events/emitter/emitter.js'
 import { events } from '../events/EventManager.js'
 import { defaultRequests } from './requests/index.js'
 import { world } from '../world/WorldManager.js'
+import { build } from '../version.js'
 
 export class SocketManager extends emitter {
   private _requests = new Map<string, any>()
@@ -49,9 +49,12 @@ export class SocketManager extends emitter {
     executeCommand(`execute @a ~ ~ ~ tellraw @s[tag="logSM"] {"rawtext":[{"text":"${JSON.stringify(message).replace(/"/g, '\\"')
       .replace(/\\n/g, '\\n')}"}]}`)
     try {
-      return Commands.run(`execute @a ~ ~ ~ tellraw @s[tag="berpUser"] {"rawtext":[{"text":"${JSON.stringify(message).replace(/"/g, '\\"')
-        .replace(/\\n/g, '\\n')}"}]}`, World.getDimension('overworld'))
+      return World.getDimension('overworld').runCommand(`execute @a ~ ~ ~ tellraw @s[tag="berpUser"] {"rawtext":[{"text":"${JSON.stringify(message).replace(/"/g, '\\"')
+        .replace(/\\n/g, '\\n')}"}]}`)
     } catch (err) {}
+
+    if (build !== "dev" || message.berp.event === "EnableSocket" || message.berp.event === "Heartbeat") return
+    console.warn(JSON.stringify(message))
   }
   public getSocketRequests(): Map<string, any> { return this._requests }
 }

@@ -1,6 +1,6 @@
 import { SocketManager } from '../SocketManager.js'
 import { events } from '../../events/EventManager.js'
-import { newRequestId } from '../requestId.js'
+import { uuidv4 } from '../uuidv4.js'
 import {
   build,
   mcbe,
@@ -28,7 +28,7 @@ export class EnableRequest {
             protocol: protocol,
             build: build,
           },
-          requestId: `${newRequestId()}`,
+          requestId: uuidv4(),
         },
       })
     })

@@ -1,16 +1,17 @@
 import {
-  Commands,
-  World,
+  world,
 } from 'mojang-minecraft'
 import {
   ExecuteCommandResponse,
   Demensions,
 } from '../../types/BeAPI.i'
 
-function executeCommand(command: string, dimension?: Demensions, debug = false): ExecuteCommandResponse {
+function executeCommand(cmd: string, dimension?: Demensions, debug = false): ExecuteCommandResponse {
+  const command = cmd.replace(/\\/g, "")
+
   try {
     if (!dimension) dimension = "overworld"
-    const cmd = Commands.run(command, World.getDimension(dimension))
+    const cmd = world.getDimension(dimension).runCommand(command)
 
     return {
       statusMessage: cmd.statusMessage,
@@ -19,10 +20,10 @@ function executeCommand(command: string, dimension?: Demensions, debug = false):
     }
   } catch (err) {
     if (!debug) return {
-      statusMessage: "Error Occured",
+      statusMessage: "Error Occured: " + err,
       err: true,
     }
-    Commands.run(`say ${err}`, World.getDimension(dimension))
+    console.warn("[BeAPI] [executeCommand]" + err)
 
     return {
       statusMessage: "Error Occured",

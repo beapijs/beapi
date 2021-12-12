@@ -25,7 +25,7 @@ export class InventoryRequest {
           id: "minecraft:air",
           amount: 0,
           data: 0,  
-        }
+        } as any
         items.push({
           slot: slot,
           id: item.id,

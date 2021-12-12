@@ -1,4 +1,5 @@
 import {
+  Block,
   BlockLocation,
   Container,
   Dimension,
@@ -12,6 +13,7 @@ export interface Location {
   x: number
   y: number
   z: number
+  dimension?: Dimension
 }
 
 export interface EventValues {
@@ -25,6 +27,21 @@ export interface EventValues {
   EntityCreate: [Entity]
   EntityDestroyed: [Entity]
   Explosion: [Explosion]
+  ItemUse: [ItemUse]
+  ItemUseOn: [ItemUseOn]
+}
+
+interface ItemUse {
+  source: Player | Entity
+  item: ItemStack
+  cancelEvent(): void
+}
+
+interface ItemUseOn {
+  source: Player | Entity
+  item: ItemStack
+  block: Block
+  cancelEvent(): void
 }
 
 interface Explosion {
@@ -120,4 +137,19 @@ export interface ExecuteCommandResponse {
 export interface Health {
   current: number
   max: number
+}
+
+export interface db {
+  database: {
+    name: string
+    id: number
+    entries: entry[]
+  }
+}
+
+export interface entry {
+  name: string
+  value: any
+  type?: string
+  string?: string
 }

@@ -1,5 +1,7 @@
-import { Entity as MCEntity } from 'mojang-minecraft'
-import { executeCommand } from '../BeAPI.js'
+import {
+  Entity as MCEntity,
+  EntityHealthComponent,
+} from 'mojang-minecraft'
 import { entities } from './EntityManager.js'
 import { events } from '../events/EventManager.js'
 import {
@@ -23,9 +25,7 @@ export class Entity {
   }
   private _setUpEntity(): void {
     this._vanilla.nameTag = `${this._id}:${this._runtimeId}`
-    executeCommand(`execute @e[name="${this._vanilla.nameTag}",type=!item] ~ ~ ~ scoreboard players set @s "ent:runtimeId" ${this._runtimeId}`)
-    executeCommand('execute @e[type=item] ~ ~ ~ scoreboard players add @s "ent:runtimeId" 0')
-    executeCommand(`execute @e[type=item,scores={"ent:runtimeId"=0}] ~ ~ ~ scoreboard players set @s "ent:runtimeId" ${this._runtimeId}`)
+    this._vanilla.runCommand(`scoreboard players set @s "ent:runtimeId" ${this._runtimeId}`)
     this._vanilla.nameTag = this._nameTag
   }
   public setNameTag(nameTag: string): void {
@@ -42,21 +42,20 @@ export class Entity {
     entities.removeEntity(this)
   }
   public executeCommand(command: string): {statusMessage?: any, data?: any, err?: boolean} {
-    const cmd = executeCommand(`execute @e[scores={"ent:runtimeId"=${this._runtimeId}}] ~ ~ ~ ${command}`)
-
-    return cmd
+    return this._vanilla.runCommand(command.replace(/\\/g, ""))
   }
   public getLocation(): Location {
     const pos = this._vanilla.location
 
     return {
-      x: pos.x,
-      y: pos.y,
-      z: pos.z,
+      x: Math.floor(pos.x),
+      y: Math.floor(pos.y - 1),
+      z: Math.floor(pos.z),
+      dimension: this._vanilla.dimension,
     }
   }
   public getHealth(): Health {
-    const health = this._vanilla.getComponent("minecraft:health")
+    const health = this._vanilla.getComponent("minecraft:health") as EntityHealthComponent
 
     return {
       current: health.current,
@@ -64,25 +63,15 @@ export class Entity {
     }
   }
   public getTags(): string[] {
-    const raw = executeCommand(`tag @e[scores={"ent:runtimeId"=${this._runtimeId}}] list`).statusMessage.split(' ')
-    const tags = []
-    for (const string of raw) {
-      if (string.startsWith("§a")) tags.push(string.replace('§a', '').replace('§r', '')
-        .replace(',', ''))
-    }
-
-    return tags
+    return this._vanilla.getTags()
   }
   public hasTag(tag: string): boolean {
-    const tags = this.getTags()
-    if (!tags.includes(tag)) return false
-
-    return true
+    return this._vanilla.hasTag(tag)
   }
-  public addTag(tag: string): void {
-    executeCommand(`execute @e[scores={"ent:runtimeId"=${this._runtimeId}}] ~ ~ ~ tag @s add "${tag}"`)
+  public addTag(tag: string): boolean {
+    return this._vanilla.addTag(tag)
   }
-  public removeTag(tag: string): void {
-    executeCommand(`execute @e[scores={"ent:runtimeId"=${this._runtimeId}}] ~ ~ ~ tag @s remove "${tag}"`)
+  public removeTag(tag: string): boolean {
+    return this._vanilla.removeTag(tag)
   }
 }
