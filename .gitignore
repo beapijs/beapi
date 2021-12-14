@@ -83,7 +83,9 @@ typings/
 # Nuxt.js build / generate output
 .nuxt
 dist
-scripts
+scripts/beapi
+scripts/tests
+scripts/types
 
 # Gatsby files
 .cache/
