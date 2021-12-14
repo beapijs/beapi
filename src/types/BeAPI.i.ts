@@ -27,6 +27,60 @@ export interface EventValues {
   Explosion: [Explosion]
   OldEvent: [any]
   BlockDestructionStarted: [BlockDestructionStarted]
+  BlockDestructionStopped: [BlockDestructionStopped]
+  BlockDestroyed: [BlockDestroyed]
+  BlockPlaced: [BlockPlaced]
+  EntityAttacked: [EntityAttacked]
+}
+
+interface EntityAttacked {
+  player: Player
+  entity: {
+    id: string
+    type: string
+    pos: {
+      x: number
+      y: number
+      z: number
+    }
+  }
+}
+
+interface BlockPlaced {
+  player: Player
+  block: {
+    id: string
+    pos: {
+      x: number
+      y: number
+      z: number
+    }
+  }
+}
+
+interface BlockDestroyed {
+  player: Player
+  block: {
+    id: string
+    pos: {
+      x: number
+      y: number
+      z: number
+    }
+  }
+}
+
+interface BlockDestructionStopped {
+  player: Player
+  block: {
+    id: string
+    pos: {
+      x: number
+      y: number
+      z: number
+    }
+    progress: number
+  }
 }
 
 interface BlockDestructionStarted {
