@@ -11,7 +11,6 @@ export class EntityAttacked {
       if (data.event !== "EntityAttacked") return
       const player = players.getPlayerByNameTag(data.player)
       const entity = data.entity
-      console.warn(JSON.stringify(data))
       this._events.emit("EntityAttacked", {
         player: player,
         entity: entity,
