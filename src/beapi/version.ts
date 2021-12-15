@@ -1,6 +1,6 @@
 const version = '1.0.0'
-const mcbe = '1.17.40'
-const protocol = 471
+const mcbe = '1.18'
+const protocol = 475
 const build = "dev"
 
 export {
