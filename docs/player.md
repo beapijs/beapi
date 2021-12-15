@@ -56,7 +56,7 @@ Adds a tag to a player, returns boolean if the player already has the tag.
 ```ts
 removeTag(tag: string): boolean
 ```
-Removes a tag to a player, returns boolean if the player did not already have the tag.
+Removes a tag from a player, returns boolean if the player did not already have the tag.
 
 ## getLocation
 ```ts
