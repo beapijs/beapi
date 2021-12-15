@@ -63,7 +63,7 @@ Removes a tag to a player, returns boolean if the player did not already have th
 getLocation(): Location
 ```
 Returns the player's location.
-Types: *[Location]()*
+Types: *[Location](https://github.com/MCBE-Utilities/BeAPI/tree/main/docs/types/location.md)*
 
 ## sendMessage
 ```ts
@@ -76,14 +76,14 @@ Sends a message to this player.
 getInventory(): Inventory
 ```
 Returns the player's inventory.
-Types: *[Inventory]()*
+Types: *[Inventory](https://github.com/MCBE-Utilities/BeAPI/tree/main/docs/types/inventory.md)*
 
 ## executeCommand
 ```ts
 executeCommand(command: string): ExecuteCommandResponse
 ```
 Executes a command as the player. Returns the reponse of the command.
-Types: *[ExecuteCommandResponse]()*
+Types: *[ExecuteCommandResponse](https://github.com/MCBE-Utilities/BeAPI/tree/main/docs/types/executecommandresponse.md)*
 
 ## getScore
 ```ts
@@ -96,4 +96,4 @@ Returns the score value of this player.
 getHealth(): Health
 ```
 Returns the health components of this player.
-Types: *[Health]()*
+Types: *[Health](https://github.com/MCBE-Utilities/BeAPI/tree/main/docs/types/health.md)*
