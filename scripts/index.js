@@ -1,1 +1,1 @@
-import "./tests/oldScripting.js";
+import "./tests/commandRegister.js";

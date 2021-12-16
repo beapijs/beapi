@@ -31,9 +31,9 @@ getEntityByRuntimeId(runtimeId: number): Entity
 Returns the entity by a given runtimeId.
 Types: *[Entity](https://github.com/MCBE-Utilities/BeAPI/blob/main/docs/entity.md)*
 
-## getEntityByVanill
+## getEntityByVanilla
 ```ts
-getEntityByVanill(vanilla: MCEntity): Entity
+getEntityByVanilla(vanilla: MCEntity): Entity
 ```
 Returns the entity by a given vanilla gametest object.
 Types: *[Entity](https://github.com/MCBE-Utilities/BeAPI/blob/main/docs/entity.md), [MCEntity](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entity)*
