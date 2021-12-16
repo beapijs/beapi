@@ -1,1 +1,1 @@
-import "./tests/blockEvents.js"
+import "./tests/commandRegister.js"

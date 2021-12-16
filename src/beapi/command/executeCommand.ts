@@ -3,10 +3,10 @@ import {
 } from 'mojang-minecraft'
 import {
   ExecuteCommandResponse,
-  Demensions,
+  Dimensions,
 } from '../../types/BeAPI.i'
 
-function executeCommand(cmd: string, dimension?: Demensions, debug = false): ExecuteCommandResponse {
+function executeCommand(cmd: string, dimension?: Dimensions, debug = false): ExecuteCommandResponse {
   const command = cmd.replace(/\\/g, "")
 
   try {

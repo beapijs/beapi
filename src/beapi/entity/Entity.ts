@@ -1,12 +1,15 @@
 import {
   Entity as MCEntity,
   EntityHealthComponent,
+  BlockLocation,
+  Dimension,
 } from 'mojang-minecraft'
 import { entities } from './EntityManager.js'
 import { events } from '../events/EventManager.js'
 import {
   Health,
   Location,
+  Dimensions,
 } from '../../types/BeAPI.i.js'
 
 export class Entity {
@@ -73,5 +76,18 @@ export class Entity {
   }
   public removeTag(tag: string): boolean {
     return this._vanilla.removeTag(tag)
+  }
+  public getDimension(): Dimension { return this._vanilla.dimension }
+  public getDimensionName(): Dimensions {
+    const block1 = this._vanilla.dimension.getBlock(new BlockLocation(this.getLocation().x, 127, this.getLocation().z)).id
+    const block2 = this._vanilla.dimension.getBlock(new BlockLocation(this.getLocation().x, 0, this.getLocation().z)).id
+    const block3 = this._vanilla.dimension.getBlock(new BlockLocation(this.getLocation().x, -64, this.getLocation().z)).id
+    if (block1 === "minecraft:air" && block2 === "minecraft:air" && block3 === "minecraft:bedrock") {
+      return "overworld"
+    } else if (block1 === "minecraft:bedrock" && block2 === "minecraft:bedrock" && block3 === "minecraft:air") {
+      return "nether"
+    } else {
+      return "the end"
+    }
   }
 }
