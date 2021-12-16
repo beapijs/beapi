@@ -4,7 +4,7 @@ import { entities } from '../../entity/EntityManager.js'
 export class EntityRequest {
   private _socket: SocketManager
   public requestName = 'EntityRequest'
-  public parameters = "entity: Number; returns entity: {id: String, runtimeId: Number, nameTag: String, location: {x: Number, y: Number, z: Number}}"
+  public parameters = "entity: Number; returns entity: {id: String, runtimeId: Number, nameTag: String, location: {dimension: String, x: Number, y: Number, z: Number}}"
 
   constructor(socket: SocketManager) {
     this._socket = socket
@@ -32,6 +32,7 @@ export class EntityRequest {
               max: entity.getHealth().max,
             },
             location: {
+              dimension: entity.getDimensionName(),
               x: entity.getVanilla().location.x,
               y: entity.getVanilla().location.y,
               z: entity.getVanilla().location.z,

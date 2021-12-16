@@ -5,7 +5,7 @@ import { uuidv4 } from '../uuidv4.js'
 export class EntityCreate {
   private _socket: SocketManager
   public requestName = 'EntityCreate'
-  public parameters = "returns entity: {id: String, runtimeId: Number, nameTag: String, location: {x: Number, y: Number, z: Number}}"
+  public parameters = "returns entity: {id: String, runtimeId: Number, nameTag: String, location: {dimension: String, x: Number, y: Number, z: Number}}"
 
   constructor(socket: SocketManager) {
     this._socket = socket
@@ -18,6 +18,7 @@ export class EntityCreate {
             runtimeId: data.getRuntimeId(),
             nameTag: data.getVanilla().nameTag,
             location: {
+              dimension: data.getDimensionName(),
               x: data.getVanilla().location.x,
               y: data.getVanilla().location.y,
               z: data.getVanilla().location.z,

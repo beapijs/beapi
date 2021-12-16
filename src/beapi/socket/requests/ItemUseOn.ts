@@ -26,7 +26,7 @@ export class ItemUseOn {
             },
             block: {
               id: data.block.id || "minecraft:air",
-              dimension: "unkown", // TODO: Once minecraft adds a way to get the dimension id.... poopy heads.
+              dimension: player.getDimensionName(),
               pos: {
                 x: data.block.location.x,
                 y: data.block.location.y,

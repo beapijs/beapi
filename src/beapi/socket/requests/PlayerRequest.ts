@@ -4,7 +4,7 @@ import { players } from '../../player/PlayerManager.js'
 export class PlayerRequest {
   private _socket: SocketManager
   public requestName = 'PlayerRequest'
-  public parameters = "player: String; returns player: {name: String, nameTag: String, location: {x: Number, y: Number, z: Number}}, isSneaking: Boolean, id: String"
+  public parameters = "player: String; returns player: {name: String, nameTag: String, location: {dimension: String, x: Number, y: Number, z: Number}}, isSneaking: Boolean, id: String"
 
   constructor(socket: SocketManager) {
     this._socket = socket
@@ -32,6 +32,7 @@ export class PlayerRequest {
               max: player.getHealth().max,
             },
             location: {
+              dimension: player.getDimensionName(),
               x: vanilla.location.x,
               y: vanilla.location.y,
               z: vanilla.location.z,

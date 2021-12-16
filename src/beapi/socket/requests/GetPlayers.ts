@@ -4,7 +4,7 @@ import { players } from '../../player/PlayerManager.js'
 export class GetPlayers {
   private _socket: SocketManager
   public requestName = 'GetPlayers'
-  public parameters = "returns data: {name: String, nameTag: String}[]"
+  public parameters = "returns data: {name: String, nameTag: String, dimension: String}[]"
 
   constructor(socket: SocketManager) {
     this._socket = socket
@@ -15,6 +15,7 @@ export class GetPlayers {
         data.push({
           name: player.getName(),
           nameTag: player.getName(),
+          dimension: player.getDimensionName(),
         })
       }
     
