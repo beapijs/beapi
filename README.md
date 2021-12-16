@@ -30,4 +30,4 @@ Once imported, you will be able to find the pack in your available behavior pack
 ![image](public/example2.png)
 
 ## Documentation
-Documentation will be available soon.
+Current documentation for BeAPI can be found [here](https://github.com/MCBE-Utilities/BeAPI/blob/main/docs/main.md).
