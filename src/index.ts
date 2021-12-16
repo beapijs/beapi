@@ -1,1 +1,1 @@
-import "./tests/spawnProtection.js"
+import "./tests/blockEvents.js"

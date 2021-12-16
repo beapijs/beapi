@@ -6,6 +6,8 @@ import { EntityCreate } from './EntityCreate.js'
 import { Explosion } from './Explosion.js'
 import { ItemUse } from './ItemUse.js'
 import { ItemUseOn } from './ItemUseOn.js'
+import { BlockPlaced } from './BlockPlaced.js'
+import { BlockDestroyed } from './BlockDestroyed.js'
 
 export const defaultEvents = [
   Tick,
@@ -16,4 +18,6 @@ export const defaultEvents = [
   Explosion,
   ItemUse,
   ItemUseOn,
+  BlockPlaced,
+  BlockDestroyed,
 ]

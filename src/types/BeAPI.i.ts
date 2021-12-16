@@ -5,6 +5,7 @@ import {
   Dimension,
   Entity as MCEntity,
   ItemStack,
+  Player as MCPlayer,
 } from "mojang-minecraft"
 import { Player } from "../beapi/player/Player"
 import { Entity } from "../beapi/entity/Entity"
@@ -29,6 +30,20 @@ export interface EventValues {
   Explosion: [Explosion]
   ItemUse: [ItemUse]
   ItemUseOn: [ItemUseOn]
+  BlockPlaced: [BlockPlaced]
+  BlockDestroyed: [BlockDestroyed]
+}
+
+interface BlockDestroyed {
+  player: Player
+  block: Block
+  cancelEvent(): void
+}
+
+interface BlockPlaced {
+  player: Player
+  block: Block
+  cancelEvent(): void
 }
 
 interface ItemUse {
@@ -152,4 +167,11 @@ export interface entry {
   value: any
   type?: string
   string?: string
+}
+
+export interface BlockEvent {
+  // TEMP: Remove once docs are updated.
+  readonly block: Block
+  readonly dimension: Dimension
+  readonly player: MCPlayer
 }
