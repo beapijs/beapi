@@ -8,6 +8,7 @@ export { Entity } from './entity/Entity.js'
 export { world } from './world/WorldManager.js'
 export { socket } from './socket/SocketManager.js'
 export { uuidv4 } from './socket/uuidv4.js'
+export { db } from './database/index.js'
 export {
   setInterval,
   clearInterval, 
@@ -16,11 +17,3 @@ export {
   setTimeout,
   clearTimeout, 
 } from './timers/timeout.js'
-export {
-  Database,
-  getAllDatabases,
-} from './database/Database.js'
-export {
-  mountByName,
-  mountById,
-} from './database/Mount.js'
