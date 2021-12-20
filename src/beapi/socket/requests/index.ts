@@ -22,6 +22,8 @@ import { GetCommands } from './GetCommands.js'
 import { ExecuteCommand } from './ExecuteCommand.js'
 import { ItemUse } from './ItemUse.js'
 import { ItemUseOn } from './ItemUseOn.js'
+import { BlockPlaced } from './BlockPlaced.js'
+import { BlockDestroyed } from './BlockDestroyed.js'
  
 export const defaultRequests = [
   EnableRequest,
@@ -48,4 +50,6 @@ export const defaultRequests = [
   ExecuteCommand,
   ItemUse,
   ItemUseOn,
+  BlockPlaced,
+  BlockDestroyed,
 ]
