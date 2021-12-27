@@ -10,6 +10,7 @@ import {
   Health,
   Location,
   Dimensions,
+  ExecuteCommandResponse,
 } from '../../types/BeAPI.i.js'
 
 export class Entity {
@@ -44,8 +45,27 @@ export class Entity {
     this._vanilla.kill()
     entities.removeEntity(this)
   }
-  public executeCommand(command: string): {statusMessage?: any, data?: any, err?: boolean} {
-    return this._vanilla.runCommand(command.replace(/\\/g, ""))
+  public executeCommand(command: string, debug = false): ExecuteCommandResponse {
+    try {
+      const cmd = this._vanilla.runCommand(command.replace(/\\/g, ""))
+  
+      return {
+        statusMessage: cmd.statusMessage,
+        data: cmd,
+        err: false,
+      }
+    } catch (err) {
+      if (!debug) return {
+        statusMessage: "Error Occured: " + err,
+        err: true,
+      }
+      console.warn("[BeAPI] [executeCommand]" + err)
+  
+      return {
+        statusMessage: "Error Occured",
+        err: true,
+      }
+    }
   }
   public getLocation(): Location {
     const pos = this._vanilla.location
