@@ -9,6 +9,9 @@ import {
   CommandOptions,
   ChatCommand,
 } from '../../types/BeAPI.i'
+import {
+  socket,
+} from '../socket/SocketManager.js'
 
 export class CommandManager {
   private _prefix = '-'
@@ -33,11 +36,44 @@ export class CommandManager {
         })
     })
     this.registerCommand({
-      'command': 'about',
-      'description': 'Shows info about the server.',
-      'aliases': ['ab'],
+      command: 'about',
+      description: 'Shows info about the server.',
+      aliases: ['ab'],
     }, (data) => {
       data.sender.sendMessage(`§7This server is running §9BeAPI v${version}§7 for §aMinecraft: Bedrock Edition v${mcbe}§7.`)
+    })
+    this.registerCommand({
+      command: "sm",
+      description: "Interact with the socketmanager",
+      permissionTags: ["dev"],
+      showInList: false,
+    }, (data) => {
+      if (!data.args[0]) return data.sender.sendMessage("§cInvalid parameter! Expected <log|send>")
+      switch (data.args[0]) {
+      case "log":
+        if (!data.args[1]) return data.sender.sendMessage("§cInvalid parameter! Expected <true|false>")
+        switch (data.args[1]) {
+        case "t":
+        case "true":
+          socket.log = true
+
+          return data.sender.sendMessage(`§7SocketManager log set to §aTRUE§7.`)
+        case "f":
+        case "false":
+          socket.log = false
+          
+          return data.sender.sendMessage(`§7SocketManger log set to §cFALSE§7.`)
+        default:
+          break
+        }
+        break
+      case "send":
+        if (!data.args[1]) return data.sender.sendMessage("§cInvalid parameter! Expected {}")
+        const message = JSON.parse(data.args.join("").replace(data.args[0], ""))
+        socket.sendMessage(message as any)
+        
+        return data.sender.sendMessage("§7Sent.")
+      }
     })
   }
   private _parseCommand(content: string): { command: string, args: string[] } {
