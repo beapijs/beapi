@@ -109,6 +109,7 @@ export interface CommandOptions {
   aliases?: string[]
   description: string
   permissionTags?: string[]
+  showInList?: boolean
 }
 
 export interface CommandMapOptions {

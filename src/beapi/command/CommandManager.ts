@@ -69,9 +69,10 @@ export class CommandManager {
   }
   public registerCommand(options: CommandOptions, callback: (data: CommandResponse) => void): void {
     if (this._commands.has(options.command)) return
+    if (options.showInList == undefined) options.showInList = true
     this._commands.set(options.command, {
       options: options,
-      showInList: true,
+      showInList: options.showInList,
       execute: callback,
     })
     if (!options.aliases) return
