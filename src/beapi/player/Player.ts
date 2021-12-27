@@ -94,7 +94,7 @@ export class Player {
     return this._vanilla.runCommand(command.replace(/\\/g, ""))
   }
   public getScore(objective: string): number {
-    const command = executeCommand(`scoreboard players test "${this.getExecutableName()}" "${objective}" * *`)
+    const command = executeCommand(`scoreboard players test "${this.getExecutableName()}" "${objective}" * *`, this.getDimensionName())
     if (command.err) return 0
 
     return parseInt(command.statusMessage.split(" ")[1])
