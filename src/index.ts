@@ -1,3 +1,2 @@
 import "./tests/commandRegister.js"
-import "./tests/customEvent.js"
-import "./tests/chestProtect.js"
+import "./tests/scores.js"

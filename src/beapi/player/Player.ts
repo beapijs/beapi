@@ -90,8 +90,27 @@ export class Player {
 
     return inventory.container
   }
-  public executeCommand(command: string): ExecuteCommandResponse {
-    return this._vanilla.runCommand(command.replace(/\\/g, ""))
+  public executeCommand(command: string, debug = false): ExecuteCommandResponse {
+    try {
+      const cmd = this._vanilla.runCommand(command.replace(/\\/g, ""))
+  
+      return {
+        statusMessage: cmd.statusMessage,
+        data: cmd,
+        err: false,
+      }
+    } catch (err) {
+      if (!debug) return {
+        statusMessage: "Error Occured: " + err,
+        err: true,
+      }
+      console.warn("[BeAPI] [executeCommand]" + err)
+  
+      return {
+        statusMessage: "Error Occured",
+        err: true,
+      }
+    }
   }
   public getScore(objective: string): number {
     const command = executeCommand(`scoreboard players test "${this.getExecutableName()}" "${objective}" * *`, this.getDimensionName())
