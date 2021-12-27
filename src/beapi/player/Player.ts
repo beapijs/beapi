@@ -108,7 +108,7 @@ export class Player {
     }
   }
   public inPosition(x: number, y: number, z: number, dx: number, dy: number, dz: number): boolean {
-    const command = executeCommand(`execute @a[name="${this.getExecutableName()}",x=${x},y=${y},z=${z},dx=${dx},dy=${dy},dz=${dz}] ~ ~ ~ testfor @s`)
+    const command = executeCommand(`execute @a[name="${this.getExecutableName()}",x=${x},y=${y},z=${z},dx=${dx},dy=${dy},dz=${dz}] ~ ~ ~ testfor @s`, this.getDimensionName())
     if (command.err) return false
 
     return true
