@@ -175,3 +175,10 @@ export interface BlockEvent {
   readonly dimension: Dimension
   readonly player: MCPlayer
 }
+
+export type Gamemodes = (
+  "creative" |
+  "adventure" |
+  "survival" |
+  "unknown"
+)

@@ -11,6 +11,7 @@ import {
   Inventory,
   Location,
   Dimensions,
+  Gamemodes,
 } from '../../types/BeAPI.i'
 import { executeCommand } from '../command/executeCommand.js'
 import { players } from './PlayerManager.js'
@@ -60,6 +61,16 @@ export class Player {
   }
   public removeTag(tag: string): boolean {
     return this._vanilla.removeTag(tag)
+  }
+  public getGamemode(): Gamemodes {
+    const gmc = executeCommand(`testfor @a[name="${this.getExecutableName()}",m=c]`, this.getDimensionName())
+    const gma = executeCommand(`testfor @a[name="${this.getExecutableName()}",m=a]`, this.getDimensionName())
+    const gms = executeCommand(`testfor @a[name="${this.getExecutableName()}",m=s]`, this.getDimensionName())
+    if (!gmc.err) return "creative"
+    if (!gma.err) return "adventure"
+    if (!gms.err) return "survival"
+
+    return "unknown"
   }
   public getLocation(): Location {
     const pos = this._vanilla.location
