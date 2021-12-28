@@ -11,29 +11,30 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "useUnknownInCatchVariables": true,
-    
+
     // Module
-    "module": "ES6",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "resolveJsonModule": true,
 
     // Decaration Emission
-    "declaration": false,
+    "declaration": true,
     "importHelpers": true,
     "importsNotUsedAsValues": "error",
+    "inlineSources": true,
     "newLine": "lf",
     "noEmitHelpers": true,
     "preserveConstEnums": true,
     "removeComments": false,
-    "sourceMap": false,
+    "sourceMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
 
     // ModuleType & Formatting
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": ["ES6"],
-    "target": "ES6",
+    "lib": ["ESNext"],
+    "target": "ES2020",
     "useDefineForClassFields": true,
 
     // Libs have broken typescript :shrug:
