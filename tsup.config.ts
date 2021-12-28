@@ -7,8 +7,8 @@ export const tsup: Options = {
   dts: false,
 
   // Module
-  target: 'es6',
-  format: ['esm'],
+  target: 'es2020',
+  format: ['esm', 'cjs'],
   skipNodeModulesBundle: true,
 
   // Decaration Emission
