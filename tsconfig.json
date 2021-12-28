@@ -1,19 +1,43 @@
 {
   "compilerOptions": {
-      "module": "ES6",
-      "moduleResolution": "node",
-      "target": "ES6",
-      "lib": ["ES6"],
-      "allowSyntheticDefaultImports": true,
-      "noImplicitAny": true,
-      "preserveConstEnums": true,
-      "sourceMap": false,
-      "outDir": "scripts",
+    // Formatting
+    "strict": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "useUnknownInCatchVariables": true,
+    
+    // Module
+    "module": "ES6",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+
+    // Decaration Emission
+    "declaration": false,
+    "importHelpers": true,
+    "importsNotUsedAsValues": "error",
+    "newLine": "lf",
+    "noEmitHelpers": true,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // ModuleType & Formatting
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["ES6"],
+    "target": "ES6",
+    "useDefineForClassFields": true,
+
+    // Libs have broken typescript :shrug:
+    "skipLibCheck": true
   },
-  "include": [
-      "src",   
-  ],
-  "exclude": [
-      "scripts",
-  ],
+  "exclude": ["**/*.test.ts"]
 }

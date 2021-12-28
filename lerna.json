@@ -1,0 +1,20 @@
+{
+  "version": "independent",
+  "npmClient": "npm",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "ignoreChanges": ["ignored-file", "**/*.md", "**/__tests__/**"],
+      "message": "chore(release): publish",
+      "conventionalCommits": true,
+      "push": true
+    },
+    "version": {
+      "allowBranch": ["main"],
+      "conventionalCommits": true,
+      "push": true,
+      "createRelease": "github"
+    }
+  },
+  "packages": ["packages/*"]
+}

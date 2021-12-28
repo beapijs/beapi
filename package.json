@@ -1,36 +1,59 @@
 {
-  "name": "berp-socketmanager",
+  "name": "beapi-monorepo",
   "version": "1.0.0",
-  "description": "Gametest addon that communicates with BeRP.\r Built using BeAPI.",
-  "main": "dist/index.js",
+  "description": "MCBE gametest wrapper monorepo",
+  "private": true,
   "scripts": {
-    "build": "tsc",
-    "compile": "node compile/index.js",
-    "lint": "eslint src/**"
+    "build": "npm run build --workspaces",
+    "clean": "rimraf packages/**/dist packages/**/*.tsbuildinfo",
+    "commit": "commit",
+    "format": "prettier --write **/*.{ts,js,json,yml,yaml}",
+    "lint": "eslint packages --ext mjs,js,ts",
+    "lint:fix": "eslint packages --ext mjs,js,ts --fix",
+    "prepare": "husky install",
+    "pretest": "npm run build",
+    "release": "env-cmd lerna publish",
+    "release-beta": "env-cmd lerna publish --canary --preid beta",
+    "test": "jest --pass-with-no-tests",
+    "test:ci": "jest --no-stack-trace --verbose --pass-with-no-tests"
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MCBE-Utilities/BeRP-SocketManager.git"
+    "url": "git+https://github.com/MCBE-Utilities/BeAPI.git"
   },
-  "author": "MCBE - Utilites",
-  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MCBE-Utilities/BeRP-SocketManager/issues"
+    "url": "https://github.com/MCBE-Utilities/BeAPI/issues"
   },
-  "homepage": "https://github.com/MCBE-Utilities/BeRP-SocketManager#readme",
-  "dependencies": {
-    "@types/mojang-gametest": "^0.1.2",
-    "@types/mojang-minecraft": "^0.1.2",
-    "@types/uuid-1345": "^0.99.22",
-    "babel-eslint": "^10.1.0",
-    "copy-dir": "^1.3.0",
-    "eslint": "^7.32.0",
-    "ts-node": "^10.2.1",
-    "typescript": "^4.4.2",
-    "uuid-1345": "^1.0.2",
-    "zip-a-folder": "^1.1.0"
-  },
+  "homepage": "https://github.com/MCBE-Utilities/BeAPI#readme",
+  "keywords": [
+    "minecraft",
+    "bedrock",
+    "mcbe",
+    "gametest"
+  ],
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.31.0"
+    "@commitlint/cli": "^16.0.1",
+    "@commitlint/config-angular": "^16.0.0",
+    "@commitlint/prompt-cli": "^16.0.0",
+    "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.5.0",
+    "eslint-config-marine": "^9.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.4.5",
+    "lerna": "^4.0.0",
+    "lint-staged": "^12.1.4",
+    "prettier": "^2.5.1",
+    "tsup": "^5.11.9",
+    "typescript": "^4.5.4"
   }
 }

@@ -1,3 +1,5 @@
 {
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "files.associations": { "*.json": "jsonc" }
 }
