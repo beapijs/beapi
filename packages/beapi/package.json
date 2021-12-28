@@ -27,7 +27,8 @@
   "directories": {
     "lib": "src",
     "test": "__tests__",
-    "bin": "bin"
+    "bin": "bin",
+    "doc": "docs"
   },
   "files": [
     "dist",
