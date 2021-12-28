@@ -12,8 +12,8 @@
     "template-*"
   ],
   "bin": {
-    "create-vite": "index.js",
-    "cva": "index.js"
+    "create-beapi": "index.js",
+    "cba": "index.js"
   },
   "scripts": {
     "build": "echo \"create-beapi does not need compilation\" && exit 0"
