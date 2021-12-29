@@ -103,6 +103,3 @@ scripts
 
 # TernJS port file
 .tern-port
-
-# Lock
-package-lock.json
