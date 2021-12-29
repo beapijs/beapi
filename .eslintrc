@@ -8,6 +8,8 @@
     "jest": true
   },
   "rules": {
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "@typescript-eslint/restrict-template-expressions": 0,
+    "no-redeclare": 0
   }
 }
