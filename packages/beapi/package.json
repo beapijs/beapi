@@ -1,6 +1,6 @@
 {
   "name": "beapi-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsup && tsc --emitDeclarationOnly"
@@ -44,10 +44,10 @@
     "access": "public"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@types/mojang-gametest": "^0.1.2",
     "@types/mojang-minecraft": "^0.1.2",
     "@types/uuid-1345": "^0.99.22",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
     "babel-eslint": "^10.1.0",
     "copy-dir": "^1.3.0",
     "eslint": "^7.32.0",
