@@ -141,13 +141,15 @@ async function init() {
   switch (pkgManager) {
     case 'yarn':
       console.log('  yarn')
-      console.log('  yarn dev')
+      console.log('  yarn build')
       break
     default:
       console.log(`  ${pkgManager} install`)
-      console.log(`  ${pkgManager} run dev`)
+      console.log(`  ${pkgManager} run build`)
       break
   }
+  console.log('Ensure this project is located in your developement_behaviour_packs folder')
+  console.log('Or be sure to compile and place the pack in your behavior_packs folder')
   console.log()
 }
 
