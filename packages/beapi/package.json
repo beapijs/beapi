@@ -14,7 +14,7 @@
     "require": "./dist/index.mjs"
   },
   "bin": {
-    "beapi": "bin/beapi.js"
+    "beapi": "./bin/beapi.js"
   },
   "repository": {
     "type": "git",

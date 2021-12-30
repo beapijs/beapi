@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-require-imports */
