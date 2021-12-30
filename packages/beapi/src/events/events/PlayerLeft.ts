@@ -11,6 +11,7 @@ export class PlayerLeft {
     world.events.playerLeave.subscribe((data) => {
       const player = players.getPlayerByName(data.playerName)
       if (!player) return
+      players.removePlayer(player)
 
       return this._events.emit('PlayerLeft', player)
     })
