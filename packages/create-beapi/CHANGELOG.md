@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@1.0.4...create-beapi@1.0.5) (2021-12-30)
+
+
+### Bug Fixes
+
+* manifest mispelling ([a56bed8](https://github.com/MCBE-Utilities/BeAPI/commit/a56bed8ada87e32f2069a779056a082e44f8a61e))
+* update templates beapi-core ([ffdd333](https://github.com/MCBE-Utilities/BeAPI/commit/ffdd333710c060d3bc86c8da007b5f89a63d5471))
+
+
+
+
+
 ## [1.0.4](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@1.0.3...create-beapi@1.0.4) (2021-12-30)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.0.4...beapi-core@1.1.0) (2021-12-30)
+
+
+### Features
+
+* build generates uuids for manifest ([fc3d8bd](https://github.com/MCBE-Utilities/BeAPI/commit/fc3d8bd2949d8ec84f981f4d6f129720297999e2))
+
+
+
+
+
 ## [1.0.4](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.0.3...beapi-core@1.0.4) (2021-12-30)
 
 
