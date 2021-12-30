@@ -150,7 +150,7 @@ function recursiveCopySync(src, dest) {
  * @returns {RegExp}
  */
 function syncModuleMatcher(name) {
-  return new RegExp(`from()(\s+|)('|\`|")${name}('|\`|")`, 'gi')
+  return new RegExp(`(\\s+|)from(\\s+|)('|\`|")${name}('|\`|")`, 'ig')
 }
 
 /**
@@ -159,7 +159,7 @@ function syncModuleMatcher(name) {
  * @returns {RegExp}
  */
 function asyncModuleMatcher(name) {
-  return new RegExp(`import(\s+|)\((\s+|)('|\`|")${name}('|\`|")(\s+|)\)`, 'gi')
+  return new RegExp(`import(\\s+|)\\((\\s+|)('|\`|")${name}('|\`|")(\\s+|)\\)`, 'ig')
 }
 
 /**

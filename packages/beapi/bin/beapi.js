@@ -99,7 +99,7 @@ function build() {
   const asyncMatcher = asyncModuleMatcher('beapi-core')
   for (const file of walkDirSync(scriptRoute)) {
     const router = path.relative(file, scriptRoute).substring(3)
-    const module = path.join(router, './BEAPI_CORE_SCRIPT.js')
+    const module = `${router.length ? '' : '.'}${router}/BEAPI_CORE_SCRIPT.js`
     const contents = fs.readFileSync(file, 'utf-8')
     fs.writeFileSync(
       file,
