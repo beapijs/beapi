@@ -6,6 +6,6 @@
     "build": "beapi build"
   },
   "dependencies": {
-    "beapi-core": "^1.0.4"
+    "beapi-core": "^1.0.5"
   }
 }
