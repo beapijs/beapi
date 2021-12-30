@@ -135,7 +135,7 @@ function recursiveCopySync(src, dest) {
   const stats = exists && fs.statSync(src)
   const isDirectory = exists && stats.isDirectory()
   if (isDirectory) {
-    fs.mkdirSync(dest)
+    fs.existsSync(dest) ? '' : fs.mkdirSync(dest)
     fs.readdirSync(src).forEach((childItemName) => {
       recursiveCopySync(path.join(src, childItemName), path.join(dest, childItemName))
     })
@@ -179,8 +179,7 @@ function verifyManifest(m) {
 function verifyPackage(p) {
   if (!p.main) throw Error('"package.json" is missing main field')
   if (p.main.toLowerCase().endsWith('.ts')) throw Error('Scripts need to be compiled to javascript first')
-  if (!p.include || !p.include.length)
-    warnLog(`"package.json" has no include parameter, bundler will not include extra files!`)
+  if (!p.include || !p.include.length) warnLog(`"package.json" has no include parameter, bundler will not function!`)
 
   return true
 }
@@ -248,6 +247,13 @@ function buildLog(msg) {
   console.log(`${chalk.magenta.bold(`BUILD`)} ${msg}`)
 }
 /**
+ * Create Bundle Log
+ * @param {string} msg
+ */
+function bundleLog(msg) {
+  console.log(`${chalk.cyan.bold(`BUNDLE`)} ${msg}`)
+}
+/**
  * Create Completion Log
  * @param {string} msg
  */
@@ -283,6 +289,7 @@ module.exports = {
   deleteIfExists,
   copyLog,
   buildLog,
+  bundleLog,
   warnLog,
   comLog,
   getFileName,

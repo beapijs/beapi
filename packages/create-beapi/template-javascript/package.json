@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "main": "src/index.js",
   "include": [
+    "scripts",
+    "manifest.json",
     "animation_controllers",
     "entities",
     "pack_icon.png"

@@ -24,11 +24,14 @@ const {
   syncModuleMatcher,
   asyncModuleMatcher,
   comLog,
+  bundleLog,
 } = require('./utils')
 const fs = require('fs')
 const path = require('path')
 const Yargs = require('yargs')
 const chalk = require('chalk')
+const { zip } = require('zip-a-folder')
+const os = require('os')
 
 const cwd = process.cwd()
 const scriptRoute = path.resolve(cwd, 'scripts')
@@ -123,18 +126,51 @@ Yargs.command(
     y.alias('h', 'help')
   },
   (argv) => {
-    try {
-      bundle(argv)
-    } catch (error) {
-      console.error(error)
+    bundle(argv).catch((err) => {
+      console.error(err)
       process.exit(1)
-    }
+    })
   },
 )
-function bundle() {
-  // // Ensure stuff is built
-  // build()
-  console.log('Not supported yet!')
+async function bundle() {
+  // Ensure project is built
+  build()
+
+  const startTime = Date.now()
+
+  // Read project descriptor files
+  const package = readPackage(cwd)
+  const manifest = readManifest(cwd)
+
+  if (!package?.include?.length) throw Error('No files to bundle')
+
+  // Verify project descriptor files
+  verifyPackage(package)
+  verifyManifest(manifest)
+
+  // Create temporary directory
+  const temp = fs.mkdtempSync(`${os.tmpdir()}${path.sep}`)
+  bundleLog(`Created temporary directory ${temp}`)
+
+  // Get included files
+  const includedFiles = Array.isArray(package.include) ? package.include : []
+  bundleLog(`Found ${includedFiles.length} items to be included in "package.json"`)
+
+  // Loop through included files and add to temp dir
+  for (const file of includedFiles) {
+    recursiveCopySync(path.resolve(cwd, file), path.resolve(temp, getFileName(file)))
+    bundleLog(`Copied ${file}`)
+  }
+
+  // Create zip
+  bundleLog(`Creating mcpack archive`)
+  await zip(temp, path.resolve(cwd, 'bundled-beapi-project.mcpack'))
+
+  // Remove temp dir
+  bundleLog(`Cleanup`)
+  fs.rmSync(temp, { recursive: true })
+
+  comLog(`Successfully Bundled ${chalk.grey(`in ${Date.now() - startTime}ms 😊`)}`)
 }
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
