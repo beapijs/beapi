@@ -40,15 +40,14 @@ export class PlayerMessage {
       this._events.emit('PlayerMessage', {
         sender: player,
         message: data.message,
-        cancelEvent: this._processCanceledMessage.bind,
+        cancelEvent: this._processCanceledMessage.bind(this),
       })
 
       this._processMessage(player, data.message)
     })
   }
 
-  private _processCanceledMessage(cancel = true): void {
-    if (!cancel) return
+  private _processCanceledMessage(): void {
     this._cancelNextMessage = true
   }
 

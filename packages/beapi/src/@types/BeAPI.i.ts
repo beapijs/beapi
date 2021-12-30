@@ -74,7 +74,7 @@ export interface NameTagChanged {
 interface PlayerMessage {
   sender: Player
   message: string
-  cancelEvent(cancel: boolean): void
+  cancelEvent(): void
 }
 
 interface RawSocketMessage {
