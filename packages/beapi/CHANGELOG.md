@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.1.1...beapi-core@1.2.0) (2021-12-30)
+
+
+### Bug Fixes
+
+* beapi build command & update templates ([ac0e7de](https://github.com/MCBE-Utilities/BeAPI/commit/ac0e7de4840aa71a294d0e663978046ac6aae4e6))
+* **version:** beapi version now reads from the package.json ([ce0ac03](https://github.com/MCBE-Utilities/BeAPI/commit/ce0ac03e0e5d5e92c25f05bf8ef063768bae23be))
+
+
+### Features
+
+* bundle script ([39e9eaa](https://github.com/MCBE-Utilities/BeAPI/commit/39e9eaa4b6fcbed393df50ecd2fbe325fa3b6cc0))
+
+
+
+
+
 ## [1.1.1](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.1.0...beapi-core@1.1.1) (2021-12-30)
 
 
