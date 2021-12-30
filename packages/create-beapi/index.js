@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* eslint-disable indent */
+/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-var-requires */
@@ -139,16 +139,16 @@ async function init() {
     console.log(`  cd ${path.relative(cwd, root)} ${gray(`- to access directory`)}`)
   }
   switch (pkgManager) {
-    case 'yarn':
-      console.log(`  yarn ${gray('- to install dependecies')}`)
-      console.log(`  yarn build ${gray(`- to build your code`)}`)
-      console.log(`  yarn bundle ${gray(`- to bundle your built code in a .mcpack`)}`)
-      break
-    default:
-      console.log(`  ${pkgManager} install ${gray('- to install dependecies')}`)
-      console.log(`  ${pkgManager} run build ${gray(`- to build your code`)}`)
-      console.log(`  ${pkgManager} run bundle ${gray(`- to bundle your built code in a .mcpack`)}`)
-      break
+  case 'yarn':
+    console.log(`  yarn ${gray('- to install dependecies')}`)
+    console.log(`  yarn build ${gray(`- to build your code`)}`)
+    console.log(`  yarn bundle ${gray(`- to bundle your built code in a .mcpack`)}`)
+    break
+  default:
+    console.log(`  ${pkgManager} install ${gray('- to install dependecies')}`)
+    console.log(`  ${pkgManager} run build ${gray(`- to build your code`)}`)
+    console.log(`  ${pkgManager} run bundle ${gray(`- to bundle your built code in a .mcpack`)}`)
+    break
   }
   console.log()
   console.log(gray(`For more info reference our docs: https://github.com/MCBE-Utilities/BeAPI`))
