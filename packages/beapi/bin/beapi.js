@@ -9,6 +9,7 @@ const fs = require('fs')
 const path = require('path')
 const Yargs = require('yargs')
 const chalk = require('chalk')
+const { v4 } = require('uuid-1345')
 
 const cwd = process.cwd()
 const beapi = fs.readFileSync(path.join(__dirname, '../dist', 'index.mjs'), 'utf8')
@@ -107,16 +108,30 @@ Yargs
 function build() {
   try {
     const pkg = getPackage()
+    const manifest = getManifest()
+
+    if (!manifest?.header?.uuid || !manifest?.modules[0]?.uuid) throw Error('Invalid manifiest...')
     if (!pkg.main) throw Error('"package.json" is missing main field')
     if (pkg.main.toLowerCase().endsWith('.ts')) throw Error('Scripts need to be compiled to javascript first!')
+    
+    const uuid1 = manifest.header.uuid
+    const uuid2 = manifest.modules[0].uuid
+    if (uuid1.includes('UUID1')) manifest.header.uuid = v4()
+    if (uuid2.includes('UUID2')) manifest.modules[0].uuid = v4()
+    writeManifest(manifest)
+
     const primaryRoute = pkg.main.split(/\/|\\/).filter(i => i.length > 0)[0]
     const route = path.resolve(cwd, primaryRoute.toLowerCase().endsWith('.js') ? '' : primaryRoute)
+    
     if (fs.existsSync(path.resolve(cwd, 'scripts'))) {
       fs.rmSync(path.resolve(cwd, 'scripts'), { recursive: true })
     }
+
     copyRecursiveSync(route, path.resolve(cwd, 'scripts'))
     overrideImports(path.resolve(cwd, 'scripts'))
+    
     fs.writeFileSync(path.resolve(cwd, 'scripts', 'BEAPI_CORE_SCRIPT.js'), beapi)
+    
     console.log(chalk.hex('#69ff7f')('Successfully Built 😊'))
   } catch (error) {
     console.error(error)
@@ -146,6 +161,31 @@ function getPackage() {
     }
   } else {
     throw new Error('Current directory does not contain a "package.json"')
+  }
+}
+
+function getManifest() {
+  if (fs.existsSync(path.resolve(cwd, 'manifest.json'))) {
+    try {
+      return JSON.parse(fs.readFileSync(path.resolve(cwd, 'manifest.json'), 'utf8'))
+    } catch (error) {
+      console.error(error)
+      throw new Error('Failed to parse "manifest.json"')
+    }
+  } else {
+    throw new Error('Current directory does not contain a "manifest.json"')
+  }
+}
+function writeManifest(i) {
+  if (fs.existsSync(path.resolve(cwd, 'manifest.json'))) {
+    try {
+      return fs.writeFileSync(path.resolve(cwd, 'manifest.json') , JSON.stringify(i, undefined, 2))
+    } catch (error) {
+      console.error(error)
+      throw new Error('Failed to write "manifest.json"')
+    }
+  } else {
+    throw new Error('Current directory does not contain a "manifest.json"')
   }
 }
 
