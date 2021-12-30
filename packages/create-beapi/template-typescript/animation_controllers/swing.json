@@ -1,0 +1,24 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.swing": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "scroll": "variable.attack_time > 0.50"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:swing\""]
+        },
+        "scroll": {
+          "transitions": [
+            {
+              "default": "(1.0)"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

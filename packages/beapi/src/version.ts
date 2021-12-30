@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-ignore Minecraft Script, Cannot Utilize FS
 import { version as v } from '../package.json'
 const version = v
 const mcbe = '1.18.10'

@@ -2,6 +2,11 @@
   "name": "beapi-starter",
   "version": "0.0.0",
   "main": "src/index.js",
+  "include": [
+    "animation_controllers",
+    "entities",
+    "pack_icon.png"
+  ],
   "scripts": {
     "build": "beapi build"
   },
