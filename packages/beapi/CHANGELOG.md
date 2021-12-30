@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.2.0...beapi-core@1.2.1) (2021-12-30)
+
+
+### Bug Fixes
+
+* module linker ([d78af8c](https://github.com/MCBE-Utilities/BeAPI/commit/d78af8c5344d4b3cd7dc6151f18f0a64aadcc1e7))
+
+
+
+
+
 # [1.2.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.1.1...beapi-core@1.2.0) (2021-12-30)
 
 
