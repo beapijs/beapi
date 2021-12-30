@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.1.0...beapi-core@1.1.1) (2021-12-30)
+
+
+### Bug Fixes
+
+* **messages:** cancel message now works again ([0c4c7c4](https://github.com/MCBE-Utilities/BeAPI/commit/0c4c7c43438accda5adc10b0c44ed5ac68e5bbe8))
+* **players:** playerLeft event now removes player from the players map ([c7f0a05](https://github.com/MCBE-Utilities/BeAPI/commit/c7f0a053de5e9fea3cd0d62611b1c52689034ac9))
+* protocol version ([221b1f1](https://github.com/MCBE-Utilities/BeAPI/commit/221b1f1ed4ca2137e38784867eede62a586d4c76))
+
+
+
+
+
 # [1.1.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.0.4...beapi-core@1.1.0) (2021-12-30)
 
 
