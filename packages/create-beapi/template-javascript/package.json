@@ -10,7 +10,8 @@
     "pack_icon.png"
   ],
   "scripts": {
-    "build": "beapi build"
+    "build": "beapi build",
+    "bundle": "beapi bundle"
   },
   "dependencies": {
     "beapi-core": "^1.1.1"
