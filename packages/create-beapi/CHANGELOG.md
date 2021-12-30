@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@1.0.3...create-beapi@1.0.4) (2021-12-30)
+
+
+### Bug Fixes
+
+* beapi-core versions ([29a72cf](https://github.com/MCBE-Utilities/BeAPI/commit/29a72cf4cd890c3fabd0cf7c62ac391784adb2d7))
+
+
+
+
+
 ## [1.0.3](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@1.0.2...create-beapi@1.0.3) (2021-12-30)
 
 **Note:** Version bump only for package create-beapi
