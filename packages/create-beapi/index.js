@@ -136,7 +136,7 @@ async function init() {
 
   console.log(`\nDone. Now run:\n`)
   if (root !== cwd) {
-    console.log(`  cd ${path.relative(cwd, root)}`)
+    console.log(`  cd ${path.relative(cwd, root)} ${gray(`- to access directory`)}`)
   }
   switch (pkgManager) {
     case 'yarn':
