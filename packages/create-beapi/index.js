@@ -8,7 +8,7 @@ const fs = require('fs')
 const path = require('path')
 const argv = require('minimist')(process.argv.slice(2), { string: ['_'] })
 const prompts = require('prompts')
-const { yellow, blue, red } = require('kolorist')
+const { yellow, blue, red, gray } = require('kolorist')
 
 const cwd = process.cwd()
 
@@ -140,16 +140,18 @@ async function init() {
   }
   switch (pkgManager) {
     case 'yarn':
-      console.log('  yarn')
-      console.log('  yarn build')
+      console.log(`  yarn ${gray('- to install dependecies')}`)
+      console.log(`  yarn build ${gray(`- to build your code`)}`)
+      console.log(`  yarn bundle ${gray(`- to bundle your built code in a .mcpack`)}`)
       break
     default:
-      console.log(`  ${pkgManager} install`)
-      console.log(`  ${pkgManager} run build`)
+      console.log(`  ${pkgManager} install ${gray('- to install dependecies')}`)
+      console.log(`  ${pkgManager} run build ${gray(`- to build your code`)}`)
+      console.log(`  ${pkgManager} run bundle ${gray(`- to bundle your built code in a .mcpack`)}`)
       break
   }
-  console.log('Ensure this project is located in your developement_behaviour_packs folder')
-  console.log('Or be sure to compile and place the pack in your behavior_packs folder')
+  console.log()
+  console.log(gray(`For more info reference our docs: https://github.com/MCBE-Utilities/BeAPI`))
   console.log()
 }
 
