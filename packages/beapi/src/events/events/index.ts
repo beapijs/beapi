@@ -25,6 +25,7 @@ import { PlayerOnFire } from './PlayerOnFire.js'
 import { PlayerOffFire } from './PlayerOffFire.js'
 import { PlayerIsMoving } from './PlayerIsMoving.js'
 import { PlayerStoppedMoving } from './PlayerStoppedMoving.js'
+import { PlayerIsRiding } from './PlayerIsRiding.js'
 
 export const defaultEvents = [
   Tick,
@@ -54,4 +55,5 @@ export const defaultEvents = [
   PlayerOffFire,
   PlayerIsMoving,
   PlayerStoppedMoving,
+  PlayerIsRiding,
 ]
