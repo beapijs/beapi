@@ -17,7 +17,7 @@
               "default": "!query.is_jumping"
             }
           ],
-          "on_exit": ["/tag @s add \"beapi:land\""]
+          "on_exit": [""]
         }
       }
     }
