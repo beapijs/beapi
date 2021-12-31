@@ -47,6 +47,8 @@ export interface EventValues {
   PlayerExitWater: [Player]
   PlayerOnFire: [Player]
   PlayerOffFire: [Player]
+  PlayerIsMoving: [Player]
+  PlayerStoppedMoving: [Player]
 }
 
 interface EntityInViewVector {

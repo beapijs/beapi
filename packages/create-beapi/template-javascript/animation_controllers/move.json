@@ -1,0 +1,25 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.move": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "scroll": "query.is_moving"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:on_move\""]
+        },
+        "scroll": {
+          "transitions": [
+            {
+              "default": "!query.is_moving"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:off_move\""]
+        }
+      }
+    }
+  }
+}
