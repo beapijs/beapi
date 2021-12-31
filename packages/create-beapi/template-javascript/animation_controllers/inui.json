@@ -1,0 +1,25 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.inui": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "scroll": "query.is_in_ui"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:in_ui\""]
+        },
+        "scroll": {
+          "transitions": [
+            {
+              "default": "!query.is_in_ui"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:exit_ui\""]
+        }
+      }
+    }
+  }
+}

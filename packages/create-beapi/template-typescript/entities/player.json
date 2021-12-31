@@ -7,12 +7,15 @@
       "is_summonable": false,
       "is_experimental": false,
       "scripts": {
-        "animate": ["swing", "sleep", "sneak"]
+        "animate": ["swing", "sleep", "sneak", "jump", "inui", "inwater"]
       },
       "animations": {
         "swing": "controller.animation.swing",
         "sleep": "controller.animation.sleep",
-        "sneak": "controller.animation.sneak"
+        "sneak": "controller.animation.sneak",
+        "jump": "controller.animation.jump",
+        "inui": "controller.animation.inui",
+        "inwater": "controller.animation.inwater"
       }
     },
     "component_groups": {
