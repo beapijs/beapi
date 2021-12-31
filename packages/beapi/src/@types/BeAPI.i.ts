@@ -38,6 +38,7 @@ export interface EventValues {
   EntityAttacked: [EntityAttacked]
   EntityInViewVector: [EntityInViewVector]
   PlayerSleep: [Player]
+  PlayerWake: [Player]
 }
 
 interface EntityInViewVector {

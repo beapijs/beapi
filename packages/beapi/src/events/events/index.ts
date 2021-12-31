@@ -14,6 +14,7 @@ import { PlayerInViewVector } from './PlayerInViewVector.js'
 import { EntityAttacked } from './EntityAttacked.js'
 import { EntityInViewVector } from './EntityInViewVector.js'
 import { PlayerSleep } from './PlayerSleep.js'
+import { PlayerWake } from './PlayerWake.js'
 
 export const defaultEvents = [
   Tick,
@@ -32,4 +33,5 @@ export const defaultEvents = [
   EntityAttacked,
   EntityInViewVector,
   PlayerSleep,
+  PlayerWake,
 ]
