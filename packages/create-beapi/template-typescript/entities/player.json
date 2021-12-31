@@ -7,11 +7,12 @@
       "is_summonable": false,
       "is_experimental": false,
       "scripts": {
-        "animate": ["swing", "sleep"]
+        "animate": ["swing", "sleep", "sneak"]
       },
       "animations": {
         "swing": "controller.animation.swing",
-        "sleep": "controller.animation.sleep"
+        "sleep": "controller.animation.sleep",
+        "sneak": "controller.animation.sneak"
       }
     },
     "component_groups": {
