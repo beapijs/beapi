@@ -11,6 +11,7 @@ import { BlockDestroyed } from './BlockDestroyed.js'
 import { PlayerSwing } from './PlayerSwing.js'
 import { PlayerAttacked } from './PlayerAttacked.js'
 import { EntityAttacked } from './EntityAttacked.js'
+import { EntityInViewVector } from './EntityInViewVector.js'
 
 export const defaultEvents = [
   Tick,
@@ -26,4 +27,5 @@ export const defaultEvents = [
   PlayerSwing,
   PlayerAttacked,
   EntityAttacked,
+  EntityInViewVector,
 ]

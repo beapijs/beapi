@@ -178,7 +178,7 @@ export class Player {
     return 'the end'
   }
 
-  public setPreviosEntityVector(entity: Entity): void {
+  public setPreviosEntityViewVector(entity: Entity): void {
     this._previousEntityViewVector = entity
   }
 
