@@ -1,0 +1,25 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.swim": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "scroll": "query.is_swimming"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:on_swim\""]
+        },
+        "scroll": {
+          "transitions": [
+            {
+              "default": "!query.is_swimming"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:off_swim\""]
+        }
+      }
+    }
+  }
+}

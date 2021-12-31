@@ -7,7 +7,7 @@
       "is_summonable": false,
       "is_experimental": false,
       "scripts": {
-        "animate": ["swing", "sleep", "sneak", "jump", "fire", "inwater", "move", "riding"]
+        "animate": ["swing", "sleep", "sneak", "jump", "fire", "inwater", "move", "riding", "sprint", "swim"]
       },
       "animations": {
         "swing": "controller.animation.swing",
@@ -17,7 +17,9 @@
         "fire": "controller.animation.fire",
         "inwater": "controller.animation.inwater",
         "move": "controller.animation.move",
-        "riding": "controller.animation.riding"
+        "riding": "controller.animation.riding",
+        "sprint": "controller.animation.sprint",
+        "swim": "controller.animation.swim"
       }
     },
     "component_groups": {
