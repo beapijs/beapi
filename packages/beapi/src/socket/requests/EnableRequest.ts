@@ -1,6 +1,6 @@
 import type { SocketManager } from '../SocketManager.js'
 import { events } from '../../events/EventManager.js'
-import { uuidv4 } from '../uuidv4.js'
+import { uuidv4 } from '../../utils/uuidv4.js'
 import { build, mcbe, protocol, version } from '../../version.js'
 
 export class EnableRequest {

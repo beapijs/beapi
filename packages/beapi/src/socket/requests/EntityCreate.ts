@@ -1,6 +1,6 @@
 import type { SocketManager } from '../SocketManager.js'
 import { events } from '../../events/EventManager.js'
-import { uuidv4 } from '../uuidv4.js'
+import { uuidv4 } from '../../utils/uuidv4.js'
 
 export class EntityCreate {
   private readonly _socket: SocketManager

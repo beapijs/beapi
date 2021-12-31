@@ -32,6 +32,47 @@ export interface EventValues {
   ItemUseOn: [ItemUseOn]
   BlockPlaced: [BlockPlaced]
   BlockDestroyed: [BlockDestroyed]
+  PlayerSwing: [Player]
+  PlayerAttacked: [PlayerAttacked]
+  PlayerInViewVector: [PlayerInViewVector]
+  EntityAttacked: [EntityAttacked]
+  EntityInViewVector: [EntityInViewVector]
+  PlayerSleep: [Player]
+  PlayerWake: [Player]
+  PlayerSneak: [Player]
+  PlayerUnsneak: [Player]
+  PlayerJump: [Player]
+  PlayerLanded: [Player]
+  PlayerInWater: [Player]
+  PlayerExitWater: [Player]
+  PlayerOnFire: [Player]
+  PlayerOffFire: [Player]
+  PlayerIsMoving: [Player]
+  PlayerStoppedMoving: [Player]
+  PlayerIsRiding: [Player]
+  PlayerStoppedRiding: [Player]
+  PlayerIsSprinting: [Player]
+  PlayerStoppedSprinting: [Player]
+  PlayerIsSwimming: [Player]
+  PlayerStoppedSwimming: [Player]
+}
+
+interface EntityInViewVector {
+  player: Player
+  target: Entity
+}
+interface EntityAttacked {
+  attacker: Player
+  target: Entity
+}
+
+interface PlayerInViewVector {
+  player: Player
+  target: Player
+}
+interface PlayerAttacked {
+  attacker: Player
+  target: Player
 }
 
 interface BlockDestroyed {

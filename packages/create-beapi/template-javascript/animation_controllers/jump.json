@@ -1,0 +1,25 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.jump": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "scroll": "query.is_jumping"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:jump\""]
+        },
+        "scroll": {
+          "transitions": [
+            {
+              "default": "!query.is_jumping"
+            }
+          ],
+          "on_exit": [""]
+        }
+      }
+    }
+  }
+}

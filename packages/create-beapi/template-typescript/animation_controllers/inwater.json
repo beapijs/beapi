@@ -1,0 +1,25 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.inwater": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "scroll": "query.is_in_water"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:in_water\""]
+        },
+        "scroll": {
+          "transitions": [
+            {
+              "default": "!query.is_in_water"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:exit_water\""]
+        }
+      }
+    }
+  }
+}
