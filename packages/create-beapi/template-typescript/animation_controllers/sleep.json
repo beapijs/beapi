@@ -1,0 +1,25 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.sleep": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "scroll": "query.is_sleeping"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:sleep\""]
+        },
+        "scroll": {
+          "transitions": [
+            {
+              "default": "!query.is_sleeping"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:wake\""]
+        }
+      }
+    }
+  }
+}
