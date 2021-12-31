@@ -1,6 +1,5 @@
 import type { EventManager } from '../EventManager.js'
-import { players } from '../../player/PlayerManager.js'
-import type { Player } from 'mojang-minecraft'
+import { between } from '../../utils/bewteen.js'
 
 export class PlayerAttacked {
   private readonly _events: EventManager
@@ -9,10 +8,19 @@ export class PlayerAttacked {
   public constructor(events: EventManager) {
     this._events = events
     this._events.on('PlayerSwing', (player) => {
-      const entity = player.getVanilla().getEntitiesFromViewVector()[0]
-      if (!entity || entity.id !== 'minecraft:player') return
-      const target = players.getPlayerByVanilla(entity as Player)
+      const target = player.getPreviousPlayerViewVector()
+      player.setPreviousPlayerViewVector(undefined)
       if (!target) return
+      const targetPos = target?.getLocation()
+      const playerPos = player?.getLocation()
+      if (
+        !(
+          between(targetPos.x + 5, targetPos.x - 5, playerPos.x) &&
+          between(targetPos.y + 5, targetPos.y - 5, playerPos.y) &&
+          between(targetPos.z + 5, targetPos.z - 5, playerPos.z)
+        )
+      )
+        return
 
       return this._events.emit('PlayerAttacked', {
         attacker: player,

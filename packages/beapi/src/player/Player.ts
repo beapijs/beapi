@@ -15,6 +15,7 @@ export class Player {
   private readonly _name: string
   private _nameTag: string
   private _vanilla: MCPlayer
+  private _previousPlayerViewVector: Player | undefined
   private _previousEntityViewVector: Entity | undefined
 
   public constructor(player: MCPlayer) {
@@ -178,7 +179,15 @@ export class Player {
     return 'the end'
   }
 
-  public setPreviosEntityViewVector(entity: Entity): void {
+  public setPreviousPlayerViewVector(player: Player | undefined): void {
+    this._previousPlayerViewVector = player
+  }
+
+  public getPreviousPlayerViewVector(): Player | undefined {
+    return this._previousPlayerViewVector
+  }
+
+  public setPreviousEntityViewVector(entity: Entity | undefined): void {
     this._previousEntityViewVector = entity
   }
 

@@ -34,6 +34,7 @@ export interface EventValues {
   BlockDestroyed: [BlockDestroyed]
   PlayerSwing: [Player]
   PlayerAttacked: [PlayerAttacked]
+  PlayerInViewVector: [PlayerInViewVector]
   EntityAttacked: [EntityAttacked]
   EntityInViewVector: [EntityInViewVector]
 }
@@ -45,6 +46,11 @@ interface EntityInViewVector {
 interface EntityAttacked {
   attacker: Player
   target: Entity
+}
+
+interface PlayerInViewVector {
+  player: Player
+  target: Player
 }
 interface PlayerAttacked {
   attacker: Player

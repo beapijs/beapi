@@ -10,6 +10,7 @@ import { BlockPlaced } from './BlockPlaced.js'
 import { BlockDestroyed } from './BlockDestroyed.js'
 import { PlayerSwing } from './PlayerSwing.js'
 import { PlayerAttacked } from './PlayerAttacked.js'
+import { PlayerInViewVector } from './PlayerInViewVector.js'
 import { EntityAttacked } from './EntityAttacked.js'
 import { EntityInViewVector } from './EntityInViewVector.js'
 
@@ -26,6 +27,7 @@ export const defaultEvents = [
   BlockDestroyed,
   PlayerSwing,
   PlayerAttacked,
+  PlayerInViewVector,
   EntityAttacked,
   EntityInViewVector,
 ]
