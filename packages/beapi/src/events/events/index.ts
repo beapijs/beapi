@@ -29,6 +29,7 @@ import { PlayerIsRiding } from './PlayerIsRiding.js'
 import { PlayerStoppedRiding } from './PlayerStoppedRiding.js'
 import { PlayerIsSprinting } from './PlayerIsSprinting.js'
 import { PlayerStoppedSprinting } from './PlayerStoppedSprinting.js'
+import { PlayerIsSwimming } from './PlayerIsSwimming.js'
 
 export const defaultEvents = [
   Tick,
@@ -62,4 +63,5 @@ export const defaultEvents = [
   PlayerStoppedRiding,
   PlayerIsSprinting,
   PlayerStoppedSprinting,
+  PlayerIsSwimming,
 ]
