@@ -51,6 +51,8 @@ export interface EventValues {
   PlayerStoppedMoving: [Player]
   PlayerIsRiding: [Player]
   PlayerStoppedRiding: [Player]
+  PlayerIsSprinting: [Player]
+  PlayerStoppedSprinting: [Player]
 }
 
 interface EntityInViewVector {
