@@ -1,7 +1,7 @@
 {
   "format_version": "1.10.0",
   "animation_controllers": {
-    "controller.animation.fire": {
+    "controller.animation.eating": {
       "states": {
         "default": {
           "transitions": [
@@ -9,15 +9,15 @@
               "scroll": "query.is_eating"
             }
           ],
-          "on_exit": ["/tag @s add \"beapi:on_fire\""]
+          "on_exit": ["/tag @s add \"beapi:on_eat\""]
         },
         "scroll": {
           "transitions": [
             {
-              "default": "!query.is_on_fire"
+              "default": "!query.is_eating"
             }
           ],
-          "on_exit": ["/tag @s add \"beapi:off_fire\""]
+          "on_exit": ["/tag @s add \"beapi:off_eat\""]
         }
       }
     }
