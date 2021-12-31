@@ -32,6 +32,7 @@ export interface EventValues {
   ItemUseOn: [ItemUseOn]
   BlockPlaced: [BlockPlaced]
   BlockDestroyed: [BlockDestroyed]
+  PlayerSwing: [Player]
 }
 
 interface BlockDestroyed {

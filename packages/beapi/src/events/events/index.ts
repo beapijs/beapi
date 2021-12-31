@@ -8,6 +8,7 @@ import { ItemUse } from './ItemUse.js'
 import { ItemUseOn } from './ItemUseOn.js'
 import { BlockPlaced } from './BlockPlaced.js'
 import { BlockDestroyed } from './BlockDestroyed.js'
+import { PlayerSwing } from './PlayerSwing.js'
 
 export const defaultEvents = [
   Tick,
@@ -20,4 +21,5 @@ export const defaultEvents = [
   ItemUseOn,
   BlockPlaced,
   BlockDestroyed,
+  PlayerSwing,
 ]
