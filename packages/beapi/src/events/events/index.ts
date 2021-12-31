@@ -19,6 +19,7 @@ import { PlayerSneak } from './PlayerSneak.js'
 import { PlayerUnsneak } from './PlayerUnsneak.js'
 import { PlayerJump } from './PlayerJump.js'
 import { PlayerLanded } from './PlayerLanded.js'
+import { PlayerInWater } from './PlayerInWater.js'
 
 export const defaultEvents = [
   Tick,
@@ -42,4 +43,5 @@ export const defaultEvents = [
   PlayerUnsneak,
   PlayerJump,
   PlayerLanded,
+  PlayerInWater,
 ]
