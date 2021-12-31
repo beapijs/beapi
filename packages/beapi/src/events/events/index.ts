@@ -10,6 +10,7 @@ import { BlockPlaced } from './BlockPlaced.js'
 import { BlockDestroyed } from './BlockDestroyed.js'
 import { PlayerSwing } from './PlayerSwing.js'
 import { PlayerAttacked } from './PlayerAttacked.js'
+import { EntityAttacked } from './EntityAttacked.js'
 
 export const defaultEvents = [
   Tick,
@@ -24,4 +25,5 @@ export const defaultEvents = [
   BlockDestroyed,
   PlayerSwing,
   PlayerAttacked,
+  EntityAttacked,
 ]

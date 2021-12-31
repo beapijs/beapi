@@ -34,8 +34,13 @@ export interface EventValues {
   BlockDestroyed: [BlockDestroyed]
   PlayerSwing: [Player]
   PlayerAttacked: [PlayerAttacked]
+  EntityAttacked: [EntityAttacked]
 }
 
+interface EntityAttacked {
+  attacker: Player
+  target: Entity
+}
 interface PlayerAttacked {
   attacker: Player
   target: Player
