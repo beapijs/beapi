@@ -1,0 +1,25 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.emote": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "scroll": "query.is_emoting"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:on_emote\""]
+        },
+        "scroll": {
+          "transitions": [
+            {
+              "default": "!query.is_emoting"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:off_emote\""]
+        }
+      }
+    }
+  }
+}

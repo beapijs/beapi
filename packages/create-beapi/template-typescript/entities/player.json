@@ -15,7 +15,9 @@
         "sneak": "controller.animation.sneak",
         "jump": "controller.animation.jump",
         "fire": "controller.animation.fire",
-        "inwater": "controller.animation.inwater"
+        "inwater": "controller.animation.inwater",
+        "eating": "controller.animation.eating",
+        "emote": "controller.animation.emote"
       }
     },
     "component_groups": {

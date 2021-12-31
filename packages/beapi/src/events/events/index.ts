@@ -22,6 +22,7 @@ import { PlayerLanded } from './PlayerLanded.js'
 import { PlayerInWater } from './PlayerInWater.js'
 import { PlayerExitWater } from './PlayerExitWater.js'
 import { PlayerOnFire } from './PlayerOnFire.js'
+import { PlayerOffFire } from './PlayerOffFire.js'
 
 export const defaultEvents = [
   Tick,
@@ -48,4 +49,5 @@ export const defaultEvents = [
   PlayerInWater,
   PlayerExitWater,
   PlayerOnFire,
+  PlayerOffFire,
 ]
