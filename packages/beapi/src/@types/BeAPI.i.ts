@@ -44,6 +44,7 @@ export interface EventValues {
   PlayerJump: [Player]
   PlayerLanded: [Player]
   PlayerInWater: [Player]
+  PlayerExitWater: [Player]
 }
 
 interface EntityInViewVector {
