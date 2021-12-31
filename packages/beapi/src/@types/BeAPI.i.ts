@@ -42,6 +42,7 @@ export interface EventValues {
   PlayerSneak: [Player]
   PlayerUnsneak: [Player]
   PlayerJump: [Player]
+  PlayerLanded: [Player]
 }
 
 interface EntityInViewVector {
