@@ -33,6 +33,12 @@ export interface EventValues {
   BlockPlaced: [BlockPlaced]
   BlockDestroyed: [BlockDestroyed]
   PlayerSwing: [Player]
+  PlayerAttacked: [PlayerAttacked]
+}
+
+interface PlayerAttacked {
+  attacker: Player
+  target: Player
 }
 
 interface BlockDestroyed {
