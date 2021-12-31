@@ -1,0 +1,25 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.fire": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "scroll": "query.is_eating"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:on_fire\""]
+        },
+        "scroll": {
+          "transitions": [
+            {
+              "default": "!query.is_on_fire"
+            }
+          ],
+          "on_exit": ["/tag @s add \"beapi:off_fire\""]
+        }
+      }
+    }
+  }
+}
