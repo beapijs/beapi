@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@1.1.1...create-beapi@1.2.0) (2021-12-31)
+
+
+### Bug Fixes
+
+* **templates:** typo ([ec34744](https://github.com/MCBE-Utilities/BeAPI/commit/ec3474443314116fa23e4f9eef5adfd4a2de6808))
+
+
+### Features
+
+* **events:** added PlayerIsMoving ([d3d08ad](https://github.com/MCBE-Utilities/BeAPI/commit/d3d08ad080383602b3dda4309a525bfcbbf5067c))
+* **events:** added PlayerIsRiding ([4698cc9](https://github.com/MCBE-Utilities/BeAPI/commit/4698cc916a19ca9a2545d0ea3107db6c967829d9))
+* **events:** added PlayerJump ([67b5045](https://github.com/MCBE-Utilities/BeAPI/commit/67b5045c8cc803c57a69f853e905d54bbc146a6f))
+* **events:** added PlayerOffFire ([fd4c609](https://github.com/MCBE-Utilities/BeAPI/commit/fd4c609281ca90d91dbeebc4fed174686d6318b7))
+* **events:** added PlayerOnFire ([ede0cb8](https://github.com/MCBE-Utilities/BeAPI/commit/ede0cb885186b24922221614ad5e13f4774c016f))
+* **events:** added PlayerOnFire ([07219e1](https://github.com/MCBE-Utilities/BeAPI/commit/07219e1c9c17d7855db780ac66676bdc5aa87e32))
+* **events:** added PlayerSleep ([4ca1860](https://github.com/MCBE-Utilities/BeAPI/commit/4ca18602c0f9ed90572762afb849bdeaf1e1a6ff))
+* **events:** added PlayerSneak ([6d97f9a](https://github.com/MCBE-Utilities/BeAPI/commit/6d97f9a1738a965fc9f0d93e95b269d471bd7d5f))
+* **events:** added PlayerStoppedRiding ([a4bf238](https://github.com/MCBE-Utilities/BeAPI/commit/a4bf238267fbb7ef566e4e29d8e92363046e5262))
+* **events:** added PlayerStoppedSwimming ([bb3e64b](https://github.com/MCBE-Utilities/BeAPI/commit/bb3e64badf474ec991a145d6539ed434064a2c38))
+
+
+
+
+
 ## [1.1.1](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@1.1.0...create-beapi@1.1.1) (2021-12-30)
 
 
