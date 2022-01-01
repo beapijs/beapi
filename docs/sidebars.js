@@ -106,6 +106,11 @@ const sidebars = {
         },
         {
           type: 'doc',
+          label: 'Gamemodes',
+          id: 'typedefs/gamemodes'
+        },
+        {
+          type: 'doc',
           label: 'Health',
           id: 'typedefs/health'
         },
