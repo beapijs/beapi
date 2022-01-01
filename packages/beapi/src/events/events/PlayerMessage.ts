@@ -31,11 +31,20 @@ export class PlayerMessage {
           message: data.message,
         })
 
-      if (data.message.startsWith(commands.getPrefix()) && commands.enabled)
+      // if (data.message.startsWith(commands.getPrefix()) && commands.enabled)
+      //   return this._events.emit('ChatCommand', {
+      //     sender: player,
+      //     command: data.message,
+      //   })
+      for (const [, manager] of commands.getAllManagers()) {
+        if (!data.message.startsWith(manager.getPrefix())) continue
+
         return this._events.emit('ChatCommand', {
           sender: player,
           command: data.message,
+          managerId: manager.getId(),
         })
+      }
 
       this._events.emit('PlayerMessage', {
         sender: player,

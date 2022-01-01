@@ -145,6 +145,12 @@ interface JsonData {
   requestId: string
 }
 
+export interface CommandManagerOptions {
+  id: string
+  prefix: string
+  color?: string
+}
+
 export interface CommandOptions {
   command: string
   aliases?: string[]
@@ -167,6 +173,7 @@ export interface CommandResponse {
 export interface ChatCommand {
   sender: Player
   command: string
+  managerId: string
 }
 
 export type Dimensions = 'overworld' | 'nether' | 'the end'
