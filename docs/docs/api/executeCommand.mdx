@@ -1,0 +1,34 @@
+---
+sidebar_position: 1
+title: executeCommand
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</Link>**
+
+Exported method that enables executing a command server-side (as the world) in any given dimension.
+
+## Method
+
+```js
+executeCommand(cmd, dimension, debug);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| cmd | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | Command to execute. |
+| dimension | <Link to="/docs/typedefs/dimensions">?Dimensions</Link> | ✔️ | `overworld` | Dimension to execute in. |
+| debug | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">?boolean</Link> | ✔️ | `false` | Pipe debug output. |
+
+## Returns
+<Link to="/docs/typedefs/executecommandresponse">ExecuteCommandResponse</Link>
+
+## Examples
+
+```js
+import { executeCommand } from 'beapi-core';
+
+executeCommand('tell @a I\'m Alive Mwahaha!');
+executeCommand('setblock 0 0 0 stone', 'nether');
+executeCommand('fill 0 0 0 10 10 10 dirt', 'nether', true);
+```

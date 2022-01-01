@@ -1,0 +1,322 @@
+---
+sidebar_position: 1
+title: Player
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</Link>**
+
+The player, quite an amazing creature eh?
+
+## Methods
+
+### getName
+Get the players Microsoft account name.
+
+```js
+getName();
+```
+
+#### Returns
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link>
+
+___
+
+### getNameTag
+Get the players ingame name.
+
+```js
+getNameTag();
+```
+
+#### Returns
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link>
+
+___
+
+### getVanilla
+Gets the players vanilla player object.
+
+```js
+getVanilla();
+```
+
+#### Returns
+<Link to="https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/player">MCPlayer</Link>
+
+___
+
+### getExecutableName
+Returns a valid name at which a command can be executed on.
+
+```js
+getExecutableName();
+```
+
+#### Returns
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link>
+
+___
+
+### setNameTag
+Sets the players ingame name.
+
+```js
+setNameTag(name);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| name | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | New name. |
+
+#### Returns
+void
+
+___
+
+### getTags
+Returns all tags on player.
+
+```js
+getTags();
+```
+
+#### Returns
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string[]</Link>
+
+___
+
+### hasTag
+Checks if player has tag.
+
+```js
+hasTag(tag);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| tag | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | Tag name. |
+
+#### Returns
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</Link>
+
+___
+
+### addTag
+Adds tag to player, returns `true` if player already has tag.
+
+```js
+addTags(tag);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| tag | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | Tag name. |
+
+#### Returns
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</Link>
+
+___
+
+### removeTag
+Removes tag from player, returns `true` if player did not have tag.
+
+```js
+removeTag(tag);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| tag | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | Tag name. |
+
+#### Returns
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</Link>
+
+___
+
+### getGamemode
+Gets the players gamemode.
+
+```js
+getGamemode();
+```
+
+#### Returns
+<Link to="/docs/typedefs/Gamemodes">Gamemodes</Link>
+
+___
+
+### getLocation
+Gets the players location.
+
+```js
+getLocation();
+```
+
+#### Returns
+<Link to="/docs/typedefs/location">Location</Link>
+
+___
+
+### sendMessage
+Sends a message to player.
+
+```js
+sendMessage(message);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| message | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | Message body to send user in chat. |
+
+#### Returns
+void
+
+___
+
+### getInventory
+Gets the players inventory.
+
+```js
+getInventory();
+```
+
+#### Returns
+<Link to="https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/playerinventorycomponentcontainer">Inventory</Link>
+
+___
+
+### executeCommand
+Executes command as the player.
+
+```js
+executeCommand(command, debug);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| command | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | Command to execute. |
+| debug | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">?boolean</Link> | ✔️ | `false` | Pipe debug info. |
+
+#### Returns
+<Link to="/docs/typedefs/executecommandresponse">ExecuteCommandResponse</Link>
+
+___
+
+### getScore
+Gets score value on certain objective of player.
+
+```js
+getScore(objective);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| objective | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | What objective to check score on. |
+
+#### Returns
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</Link>
+
+___
+
+### getHealth
+Get players health.
+
+```js
+getHealth();
+```
+#### Returns
+<Link to="/docs/typedefs/health">Health</Link>
+
+___
+
+### inPosition
+Checks if player is within a zone.
+
+```js
+inPosition(x, y, z, dx, dy, dz);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| x | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</Link> | ❌ | `null` | X coordinate. |
+| y | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</Link> | ❌ | `null` | Y coordinate. |
+| z | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</Link> | ❌ | `null` | Z coordinate. |
+| dx | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</Link> | ❌ | `null` | DX coordinate. |
+| dy | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</Link> | ❌ | `null` | DY coordinate. |
+| dz | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</Link> | ❌ | `null` | DZ coordinate. |
+
+#### Returns
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</Link>
+
+___
+
+### getDimension
+Gets what dimension the player is in.
+
+```js
+getDimension();
+```
+
+#### Returns
+<Link to="https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/dimension">Dimension</Link>
+
+___
+
+### getDimensionName
+Gets the name of what dimension the player is in.
+
+```js
+getDimensionName();
+```
+
+#### Returns
+<Link to="/docs/typedefs/dimensions">Dimensions</Link>
+
+___
+
+### setPreviousPlayerViewVector
+Set player in players previously vieewd vector.
+
+```js
+setPreviousPlayerViewVector(player);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | <Link to="/docs/typedefs/player">Player</Link> \| <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</Link> | ❌ | `undefined` | Player object. |
+
+
+#### Returns
+void
+
+___
+
+### getPreviousPlayerViewVector
+Gets previously viewed player in players view vector.
+
+```js
+getPreviousPlayerViewVector(player);
+```
+
+#### Returns
+<Link to="/docs/typedefs/player">Player</Link> | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</Link>
+
+___
+
+### setPreviousEntityViewVector
+Set entity in players previously vieewd vector.
+
+```js
+setPreviousEntityViewVector(entity);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| entity | <Link to="/docs/typedefs/entity">Entity</Link> \| <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</Link> | ❌ | `undefined` | Entity object. |
+
+
+#### Returns
+void
+
+___
+
+### getPreviousEntityViewVector
+Gets previously viewed entity in players view vector.
+
+```js
+getPreviousEntityViewVector(entity);
+```
+
+#### Returns
+<Link to="/docs/typedefs/entity">Entity</Link> | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</Link>

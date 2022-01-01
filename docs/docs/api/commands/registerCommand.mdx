@@ -1,0 +1,40 @@
+---
+sidebar_position: 4
+title: registerCommand
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</Link>**
+
+Exported method that registers a command in BeAPIs default command handler.
+
+## Method
+
+```js
+registerCommand(options, cb);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| options | <Link to="/docs/typedefs/commandoptions">CommandOptions</Link> | ❌ | `undefined` | Command options. |
+| cb | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function(<Link to="/docs/typedefs/commandresponse">CommandResponse</Link>)</Link>: void | ❌ | `undefined` | Command callback. |
+
+## Returns
+
+void
+
+## Examples
+
+```js
+import { commands } from 'beapi-core';
+
+commands.registerCommand(
+  {
+    command: 'ping',
+    description: 'Ping gametest scripts.',
+    aliases: ['p'],
+  },
+  (data) => {
+    data.sender.sendMessage('§ePong!');
+  },
+);
+```

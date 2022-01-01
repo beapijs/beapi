@@ -1,0 +1,25 @@
+---
+sidebar_position: 1
+title: enabled
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</Link>**
+
+Exported property that indicates whether BeAPIs default command manager is enabled or disabled. You can also use this to disable it or enabled it.
+
+## Examples
+
+```js
+import { commands } from 'beapi-core';
+
+if (commands.enabled) console.warn('BeAPI Command Manager is Enabled');
+else console.warn('BeAPI Command Manager is Disabled');
+```
+
+```js
+import { commands } from 'beapi-core';
+
+// Disable commands
+if (commands.enabled) commands.enabled = false;
+```

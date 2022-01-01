@@ -1,0 +1,29 @@
+---
+sidebar_position: 3
+title: getPrefix
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</Link>**
+
+Exported method that gets BeAPIs default command handlers prefix.
+
+## Method
+
+```js
+getPrefix();
+```
+
+## Returns
+
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link>
+
+## Examples
+
+```js
+import { commands } from 'beapi-core';
+
+const prefix = commands.getPrefix();
+
+console.warn('BeAPIs current prefix:', prefix);
+```

@@ -1,0 +1,20 @@
+---
+sidebar_position: 1
+title: CommandOptions
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</Link>**
+
+Command options, specifys all meta data on the command.
+
+## Properties
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| command | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | Name of command, will be called by this ingame. |
+| aliases | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">?string[]</Link> | ✔️ | `[]` | Sub names the command can be called by. |
+| description | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | Description for the command, shown ingame.|
+| permissionTags | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">?string[]</Link> | ✔️ | `[]` | Tags the player need to have ingame in order to use the command. |
+| showInList | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">?boolean</Link> | ✔️ | `true` | Whether the command should be shown in the help menu or not. |
+

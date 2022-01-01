@@ -1,0 +1,30 @@
+---
+sidebar_position: 2
+title: getCommands
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</Link>**
+
+Exported method that gets all commands registered in BeAPIs default command handler.
+
+## Method
+
+```js
+getCommands();
+```
+
+## Returns
+
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map{'<'}<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link>, <Link to="/docs/typedefs/commandmapoptions">CommandMapOptions</Link>{'>'}</Link>
+
+## Examples
+
+```js
+import { commands } from 'beapi-core';
+
+const registeredCommands = commands.getCommands();
+const helpCommand = registeredCommands.get('help');
+
+console.warn('Help command aliases:', helpCommand.options.aliases);
+```
