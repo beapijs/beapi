@@ -21,7 +21,7 @@ export class CommandManager {
 
       return console.warn(`[CommandManager] Failed to Register: A manager already exists with the prefix ${this._prefix}`) as any
     }
-    if (managers.has(this._id)) return console.warn(`[CommandManager] Failed to Register: A manager already exists with the id ${this._id}`) as any
+    if (managers.has(this._id)) return console.warn(`[CommandManager] Failed to Register: A manager already exist with the id ${this._id}`) as any
     managers.set(this._id, this)
     this._defaultCommands()
     events.on('ChatCommand', (data) => {
