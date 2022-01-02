@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@1.2.0...create-beapi@1.2.1) (2022-01-02)
+
+
+### Bug Fixes
+
+* **events:** fixed PlayerLanded ([c5c9fe3](https://github.com/MCBE-Utilities/BeAPI/commit/c5c9fe34874ed150a7f7c1ad42c5aebf6fe1ec24))
+* version bump ([aeccf40](https://github.com/MCBE-Utilities/BeAPI/commit/aeccf407d93f1ca8f484ac6656f12b9c39be8e4a))
+
+
+
+
+
 # [1.2.0](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@1.1.1...create-beapi@1.2.0) (2021-12-31)
 
 

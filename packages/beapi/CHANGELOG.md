@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.3.0...beapi-core@1.4.0) (2022-01-02)
+
+
+### Bug Fixes
+
+* **database:** fixed getEntries ([1c2fb4c](https://github.com/MCBE-Utilities/BeAPI/commit/1c2fb4c79d9fb88bdbcb5c17849404af48e44949))
+* **database:** fixed mounting issues ([e9a685e](https://github.com/MCBE-Utilities/BeAPI/commit/e9a685ec6453f5a2e070a1004cc81df674215fe3))
+* **events:** canceling BlockPlaced works now ([5336399](https://github.com/MCBE-Utilities/BeAPI/commit/53363997b7e9244969c0939a9cbec6b3f4449ed2))
+
+
+### Features
+
+* **commands:** added the ability to create multiple command managers ([319978d](https://github.com/MCBE-Utilities/BeAPI/commit/319978d30830a86bb844eda832be1a0d99bf12e2))
+
+
+
+
+
 # [1.3.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.2.1...beapi-core@1.3.0) (2021-12-31)
 
 
