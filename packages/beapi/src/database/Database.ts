@@ -90,8 +90,9 @@ export function getAllDatabases(): Map<string, Database> {
   const c: string = executeCommand('scoreboard players list').statusMessage.split('\n')
   const tables: db[] = []
   for (const t of c) {
-    if (!t.startsWith("{'database':{'name':")) continue
+    if (!t.includes("{'database':{'name':")) continue
     for (const db of t.replace(/'/g, '"').split(', ')) {
+      if (!db.includes('{"database":{"name":')) continue
       tables.push(JSON.parse(db) as db)
     }
   }
