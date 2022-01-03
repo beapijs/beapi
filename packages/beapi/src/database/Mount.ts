@@ -13,7 +13,14 @@ export function mountByName(name: string): Database | undefined {
     }
   }
   const db = tables.find((x) => x.database.name === name)
-  if (!db) return
+  if (!db)
+    return new Database(
+      {
+        name: name,
+        id: undefined,
+      },
+      false,
+    )
 
   return new Database(
     {
@@ -35,7 +42,14 @@ export function mountById(id: number): Database | undefined {
     }
   }
   const db = tables.find((x) => x.database.id === id)
-  if (!db) return
+  if (!db)
+    return new Database(
+      {
+        name: '',
+        id: id,
+      },
+      false,
+    )
 
   return new Database(
     {
