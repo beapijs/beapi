@@ -2,7 +2,7 @@ import type { db } from '../@types/BeAPI.i.js'
 import { Database } from './Database.js'
 import { executeCommand } from '../command/executeCommand.js'
 
-export function mountByName(name: string): Database | undefined {
+export function mountByName(name: string): Database {
   const c: string = executeCommand('scoreboard players list').statusMessage.split('\n')
   const tables: db[] = []
   for (const t of c) {
@@ -31,7 +31,7 @@ export function mountByName(name: string): Database | undefined {
   )
 }
 
-export function mountById(id: number): Database | undefined {
+export function mountById(id: number): Database {
   const c: string = executeCommand('scoreboard players list').statusMessage.split('\n')
   const tables: db[] = []
   for (const t of c) {
