@@ -1,0 +1,50 @@
+---
+sidebar_position: 1
+title: between
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</Link>**
+
+Exported method that checks if a number is between two numbers.
+
+:::tip
+
+Useful for checking if a coordinate is within two other coordinates.
+
+:::
+
+## Method
+
+```js
+between(a, b, num);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| a | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</Link> | ❌ | `null` | First number. |
+| b | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</Link> | ❌ | `null` | Second number. |
+| num | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</Link> | ❌ | `null` | Number to check if between. |
+
+## Returns
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</Link>
+
+## Examples
+
+```js
+import { between } from 'beapi-core';
+
+// Set a max coordinate
+const maxCoordinate = 10;
+// Set a min coordinate
+const minCoordinate = -10;
+
+// 8 is between 10 and -10?
+console.warn(between(minCoordinate, maxCoordinate, 8)) // true
+// 11 is between 10 and -10?
+console.warn(between(minCoordinate, maxCoordinate, 11)) // false
+// -6 is between 10 and -10?
+console.warn(between(minCoordinate, maxCoordinate, -6)) // true
+// -20 is between 10 and -10?
+console.warn(between(minCoordinate, maxCoordinate, -20)) // false
+```

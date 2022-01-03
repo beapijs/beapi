@@ -23,8 +23,10 @@ getCommands();
 ```js
 import { commands } from 'beapi-core';
 
+// Get all registered commands
 const registeredCommands = commands.getCommands();
+// Get help command from registered commands
 const helpCommand = registeredCommands.get('help');
-
+// Log help commands aliases
 console.warn('Help command aliases:', helpCommand.options.aliases);
 ```

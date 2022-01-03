@@ -1,0 +1,36 @@
+---
+sidebar_position: 1
+title: mountById
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</Link>**
+
+Exported method to get persistent database by its id, otherwise create it.
+
+## Method
+
+```js
+mountById(id);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| id | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</Link> | ❌ | `null` | Database id. |
+
+## Returns
+<Link to="/docs/api/db/Database">Database</Link>
+
+## Examples
+
+```js
+import { db } from 'beapi-core';
+
+// Create new database
+const database = db.mountById(69)
+// Add entry
+database.addEntry({
+  name: 'foo',
+  value: 'bar',
+})
+```

@@ -1,0 +1,29 @@
+---
+sidebar_position: 1
+title: getAllDatabases
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</Link>**
+
+Exported method to return all persistent databases.
+
+## Method
+
+```js
+getAllDatabases();
+```
+
+## Returns
+<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map{'<'}<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link>, <Link to="/docs/api/db/Database">Database</Link>{'>'}</Link>
+
+## Examples
+
+```js
+import { db } from 'beapi-core';
+
+// Get all databases
+const databases = db.getAllDatabases();
+// Log the amount of databases total
+console.warn(databases.length)
+```

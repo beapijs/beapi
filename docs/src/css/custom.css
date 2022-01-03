@@ -86,8 +86,13 @@ a.navbar__link--active {
 
 
 table {
-  display:table;
+  /* display:inline-table; */
   width:100%;
+  overflow-x: auto;
+}
+
+th {
+  width: 20rem; /* Idk how this works it just does, i guess something in docusaurus balances it out */
 }
 
 table {

@@ -32,8 +32,18 @@ const sidebars = {
       items: [
         {
           type: 'doc',
-          label: 'executeCommand',
-          id: 'api/executeCommand'
+          label: 'between',
+          id: 'api/between'
+        },
+        {
+          type: 'doc',
+          label: 'clearInterval',
+          id: 'api/clearinterval'
+        },
+        {
+          type: 'doc',
+          label: 'clearTimeout',
+          id: 'api/cleartimeout'
         },
         {
           type: 'category',
@@ -66,7 +76,39 @@ const sidebars = {
               id: 'api/commands/setPrefix'
             },
           ]
-        }
+        },
+        {
+          type: 'category',
+          label: 'db',
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              label: 'Database',
+              id: 'api/db/database'
+            },
+            {
+              type: 'doc',
+              label: 'getAllDatabases',
+              id: 'api/db/getalldatabases'
+            },
+            {
+              type: 'doc',
+              label: 'mountById',
+              id: 'api/db/mountbyid'
+            },
+            {
+              type: 'doc',
+              label: 'mountByName',
+              id: 'api/db/mountbyname'
+            },
+          ]
+        },
+        {
+          type: 'doc',
+          label: 'executeCommand',
+          id: 'api/executeCommand'
+        },
       ]
     },
     {
@@ -91,6 +133,11 @@ const sidebars = {
         },
         {
           type: 'doc',
+          label: 'DbOptions',
+          id: 'typedefs/dboptions'
+        },
+        {
+          type: 'doc',
           label: 'Dimensions',
           id: 'typedefs/dimensions'
         },
@@ -98,6 +145,11 @@ const sidebars = {
           type: 'doc',
           label: 'Entity',
           id: 'typedefs/entity'
+        },
+        {
+          type: 'doc',
+          label: 'Entry',
+          id: 'typedefs/entry'
         },
         {
           type: 'doc',
@@ -113,6 +165,11 @@ const sidebars = {
           type: 'doc',
           label: 'Health',
           id: 'typedefs/health'
+        },
+        {
+          type: 'doc',
+          label: 'Interval',
+          id: 'typedefs/interval'
         },
         {
           type: 'doc',
