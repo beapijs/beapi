@@ -1,17 +1,11 @@
-import type { db, entry } from '../@types/BeAPI.i.js'
+import type { db, entry, DbOptions } from '../@types/BeAPI.i.js'
 import { executeCommand } from '../command/executeCommand.js'
 
 export class Database {
   public readonly name: string
   public readonly id: number
 
-  public constructor(
-    options: {
-      name: string
-      id?: number
-    },
-    mount = false,
-  ) {
+  public constructor(options: DbOptions, mount = false) {
     this.name = options.name
     this.id = options.id ?? Math.round(Math.random() * 100000)
     if (!mount) {

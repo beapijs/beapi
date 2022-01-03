@@ -207,6 +207,11 @@ export interface db {
   }
 }
 
+export interface DbOptions {
+  name: string
+  id?: number
+}
+
 export interface entry {
   name: string
   value: any
