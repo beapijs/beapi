@@ -36,7 +36,7 @@ export class EventEmitter {
   // Primary Methods
   public addListener(event: string, listener: CallableFunction): void {
     if (this._listeners.size >= this.max)
-      throw new Error(`warning: possible EventEmitter memory leak detected. ${this._listeners.size} registered.`)
+      console.warn(`warning: possible EventEmitter memory leak detected. ${this._listeners.size} registered.`)
     this._listeners.set(event, [...(this._listeners.get(event) ?? []), listener])
   }
 
