@@ -7,8 +7,8 @@ export interface EventManager {
   on<S extends string | symbol>(event: Exclude<S, keyof EventValues>, callback: (...args: unknown[]) => void): this
   once<K extends keyof EventValues>(event: K, callback: (...args: EventValues[K]) => void): this
   once<S extends string | symbol>(event: Exclude<S, keyof EventValues>, callback: (...args: unknown[]) => void): this
-  emit<K extends keyof EventValues>(event: K, ...args: EventValues[K]): boolean
-  emit<S extends string | symbol>(event: Exclude<S, keyof EventValues>, ...args: unknown[]): boolean
+  emit<K extends keyof EventValues>(event: K, ...args: EventValues[K]): void
+  emit<S extends string | symbol>(event: Exclude<S, keyof EventValues>, ...args: unknown[]): void
 }
 
 export class EventManager extends emitter {
