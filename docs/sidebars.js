@@ -119,6 +119,11 @@ const sidebars = {
           label: 'Player',
           id: 'api/player'
         },
+        {
+          type: 'doc',
+          label: 'setInterval',
+          id: 'api/setinterval'
+        },
       ]
     },
     {
