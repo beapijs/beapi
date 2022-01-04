@@ -1,5 +1,5 @@
 import type { EventValues } from '../@types/BeAPI.i'
-import { emitter } from './emitter/emitter.js'
+import { EventEmitter } from './emitter/EventEmitter.js'
 import { defaultEvents } from './events/index.js'
 
 export interface EventManager {
@@ -11,7 +11,7 @@ export interface EventManager {
   emit<S extends string | symbol>(event: Exclude<S, keyof EventValues>, ...args: unknown[]): void
 }
 
-export class EventManager extends emitter {
+export class EventManager extends EventEmitter {
   private readonly _events = new Map<string, any>()
   public cancelChat = false
 

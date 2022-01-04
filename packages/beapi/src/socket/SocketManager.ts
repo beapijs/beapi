@@ -2,12 +2,12 @@ import { world as World } from 'mojang-minecraft'
 import type { JsonRequest } from '../@types/BeAPI.i'
 import { players } from '../player/PlayerManager.js'
 import { executeCommand } from '../command/executeCommand.js'
-import { emitter } from '../events/emitter/emitter.js'
+import { EventEmitter } from '../events/emitter/EventEmitter.js'
 import { events } from '../events/EventManager.js'
 import { defaultRequests } from './requests/index.js'
 import { world } from '../world/WorldManager.js'
 
-export class SocketManager extends emitter {
+export class SocketManager extends EventEmitter {
   private readonly _requests = new Map<string, any>()
   public log = false
   public enabled = false
