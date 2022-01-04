@@ -124,6 +124,11 @@ const sidebars = {
           label: 'setInterval',
           id: 'api/setinterval'
         },
+        {
+          type: 'doc',
+          label: 'setTimeout',
+          id: 'api/settimeout'
+        },
       ]
     },
     {
