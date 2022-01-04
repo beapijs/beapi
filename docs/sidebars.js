@@ -106,8 +106,18 @@ const sidebars = {
         },
         {
           type: 'doc',
+          label: 'Entity',
+          id: 'api/entity'
+        },
+        {
+          type: 'doc',
           label: 'executeCommand',
           id: 'api/executeCommand'
+        },
+        {
+          type: 'doc',
+          label: 'Player',
+          id: 'api/player'
         },
       ]
     },
@@ -143,11 +153,6 @@ const sidebars = {
         },
         {
           type: 'doc',
-          label: 'Entity',
-          id: 'typedefs/entity'
-        },
-        {
-          type: 'doc',
           label: 'Entry',
           id: 'typedefs/entry'
         },
@@ -175,11 +180,6 @@ const sidebars = {
           type: 'doc',
           label: 'Location',
           id: 'typedefs/location'
-        },
-        {
-          type: 'doc',
-          label: 'Player',
-          id: 'typedefs/player'
         },
       ]
     }
