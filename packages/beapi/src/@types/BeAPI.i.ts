@@ -57,6 +57,13 @@ export interface EventValues {
   PlayerStoppedSwimming: [Player]
 }
 
+export interface Listener {
+  eventName: string
+  runtimeId: number
+  callback: CallableFunction
+  once: boolean
+}
+
 interface EntityInViewVector {
   player: Player
   target: Entity

@@ -1,12 +1,7 @@
-interface listener {
-  eventName: string
-  runtimeId: number
-  callback: CallableFunction
-  once: boolean
-}
+import type { Listener } from '../../@types/BeAPI.i'
 
 export class emitter {
-  private listeners: listener[]
+  private listeners: Listener[]
   private runtimeId = 0
 
   public constructor() {
@@ -14,7 +9,7 @@ export class emitter {
     this.runtimeId = 0
   }
 
-  public addListner(event: string, callback: (data: any) => void, once = false): void {
+  public addListener(event: string, callback: (data: any) => void, once = false): void {
     this.runtimeId++
     this.listeners.push({
       eventName: event,
@@ -24,34 +19,34 @@ export class emitter {
     })
   }
 
-  public removeListner(event: string): void {
+  public removeListener(event: string): void {
     this.listeners.splice(
       this.listeners.findIndex((x) => x.eventName === event),
       1,
     )
   }
 
-  public removeAllListners(): void {
+  public removeAllListeners(): void {
     this.listeners = []
   }
 
-  public getListners(): listener[] {
+  public getListeners(): Listener[] {
     return this.listeners
   }
 
   public on(event: string, callback: (data: any) => void): void {
-    this.addListner(event, callback, false)
+    this.addListener(event, callback, false)
   }
 
   public once(event: string, callback: (data: any) => void): void {
-    this.addListner(event, callback, true)
+    this.addListener(event, callback, true)
   }
 
   public emit(event: string, data: unknown): void {
     this.listeners.forEach((listener) => {
       if (listener.eventName !== event) return
       listener.callback(data)
-      if (listener.once) return this.removeListner(listener.eventName)
+      if (listener.once) return this.removeListener(listener.eventName)
     })
   }
 }
