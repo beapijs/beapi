@@ -1,0 +1,36 @@
+---
+sidebar_position: 2
+title: emit
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</Link>**
+
+Exported method that enables manually envoking events.
+
+## Method
+
+```js
+emit(event, ...args);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | Event name. |
+| ...args | any[] | ✔️ | `undefined` | Optional arguments. |
+
+:::note
+
+See <Link to="/typedefs/beapievents">BeAPI Events</Link> for a list of all events.
+
+:::
+
+## Returns
+void
+
+## Examples
+```js
+import { events } from 'beapi-core';
+
+// Emits a BlockDestroyed event. Beware this will probably break things.
+events.emit('BlockDestroyed', {});
+```

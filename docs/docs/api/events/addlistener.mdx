@@ -1,0 +1,43 @@
+---
+sidebar_position: 2
+title: addListener
+---
+import Link from '@docusaurus/Link';
+
+> **<Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</Link>**
+
+Exported method that enables registering a listener for when an event is envoked.
+
+
+## Method
+
+```js
+addListener(event, callback, once);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</Link> | ❌ | `undefined` | Event name. |
+| callback | <Link to="https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_es5_d_.callablefunction.html">CallableFunction</Link> | ❌ | `undefined` | Callback. |
+| once | <Link to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">?boolean</Link> | ❌ | `false` | Only do once. |
+
+:::note
+
+See <Link to="/typedefs/beapievents">BeAPI Events</Link> for a list of all events.
+
+:::
+
+## Returns
+void
+
+## Examples
+```js
+import { events } from 'beapi-core';
+
+// Log everytime a block is broken
+events.addListener('BlockDestroyed', console.warn);
+
+// Log the name of place block
+events.addListener('BlockPlaced', (event) => {
+  console.warn(event.block.id);
+});
+```

@@ -105,6 +105,63 @@ const sidebars = {
           ]
         },
         {
+          type: 'category',
+          label: 'events',
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              label: 'addListener',
+              id: 'api/events/addlistener'
+            },
+            {
+              type: 'doc',
+              label: 'cancelChat',
+              id: 'api/events/cancelchat'
+            },
+            {
+              type: 'doc',
+              label: 'emit',
+              id: 'api/events/emit'
+            },
+            {
+              type: 'doc',
+              label: 'getEvents',
+              id: 'api/events/getevents'
+            },
+            {
+              type: 'doc',
+              label: 'getListeners',
+              id: 'api/events/getlisteners'
+            },
+            {
+              type: 'doc',
+              label: 'loadEvents',
+              id: 'api/events/loadevents'
+            },
+            {
+              type: 'doc',
+              label: 'on',
+              id: 'api/events/on'
+            },
+            {
+              type: 'doc',
+              label: 'once',
+              id: 'api/events/once'
+            },
+            {
+              type: 'doc',
+              label: 'removeAllListeners',
+              id: 'api/events/removealllisteners'
+            },
+            {
+              type: 'doc',
+              label: 'removeListener',
+              id: 'api/events/removelistener'
+            },
+          ]
+        },
+        {
           type: 'doc',
           label: 'Entity',
           id: 'api/entity'
@@ -141,6 +198,11 @@ const sidebars = {
       label: 'TypeDefs',
       collapsed: true,
       items: [
+        {
+          type: 'doc',
+          label: 'BeAPI Events',
+          id: 'typedefs/beapievents'
+        },
         {
           type: 'doc',
           label: 'CommandMapOptions',
@@ -190,6 +252,11 @@ const sidebars = {
           type: 'doc',
           label: 'Interval',
           id: 'typedefs/interval'
+        },
+        {
+          type: 'doc',
+          label: 'Listener',
+          id: 'typedefs/listener'
         },
         {
           type: 'doc',
