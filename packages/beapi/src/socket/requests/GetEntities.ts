@@ -8,7 +8,7 @@ export class GetEntities {
 
   public constructor(socket: SocketManager) {
     this._socket = socket
-    this._socket.on('Message', (packet) => {
+    this._socket.on('Message', (packet: Record<string, any>) => {
       if (packet.event !== 'GetEntities') return
       const data = []
       for (const [, entity] of entities.getEntityList()) {

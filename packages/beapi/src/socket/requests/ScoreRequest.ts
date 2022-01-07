@@ -8,7 +8,7 @@ export class ScoreRequest {
 
   public constructor(socket: SocketManager) {
     this._socket = socket
-    this._socket.on('Message', (packet) => {
+    this._socket.on('Message', (packet: Record<string, any>) => {
       if (packet.event !== 'ScoreRequest') return
       if (!players.getPlayerList().has(String(packet?.player)))
         return this._socket.sendMessage({

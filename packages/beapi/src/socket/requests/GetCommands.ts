@@ -9,7 +9,7 @@ export class GetCommands {
 
   public constructor(socket: SocketManager) {
     this._socket = socket
-    this._socket.on('Message', (packet) => {
+    this._socket.on('Message', (packet: Record<string, any>) => {
       if (packet.event !== 'GetCommands') return
       const cmds = []
       for (const [, c] of commands.getCommands()) {

@@ -8,7 +8,7 @@ export class CommandRequest {
 
   public constructor(socket: SocketManager) {
     this._socket = socket
-    this._socket.on('Message', (packet) => {
+    this._socket.on('Message', (packet: Record<string, any>) => {
       if (packet.event !== 'CommandRequest') return
       let dimension: 'overworld' | 'nether' | 'the end' = 'overworld'
       if (packet.dimension) dimension = packet.dimension

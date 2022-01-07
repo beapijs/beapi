@@ -9,7 +9,7 @@ export class UpdateEntity {
 
   public constructor(socket: SocketManager) {
     this._socket = socket
-    this._socket.on('Message', (packet) => {
+    this._socket.on('Message', (packet: Record<string, any>) => {
       if (packet.event !== 'UpdateEntity') return
       if (!entities.getEntityList().has(Number(packet.entity)))
         return this._socket.sendMessage({

@@ -17,7 +17,6 @@ export function mountByName(name: string): Database {
     return new Database(
       {
         name: name,
-        id: undefined,
       },
       false,
     )
@@ -45,7 +44,7 @@ export function mountById(id: number): Database {
   if (!db)
     return new Database(
       {
-        name: '',
+        name: (Math.random() + 1).toString(36).substring(2),
         id: id,
       },
       false,

@@ -8,7 +8,7 @@ export class GetPlayers {
 
   public constructor(socket: SocketManager) {
     this._socket = socket
-    this._socket.on('Message', (packet) => {
+    this._socket.on('Message', (packet: Record<string, any>) => {
       if (packet.event !== 'GetPlayers') return
       const data = []
       for (const [, player] of players.getPlayerList()) {

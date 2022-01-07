@@ -7,7 +7,7 @@ export class DisableRequest {
 
   public constructor(socket: SocketManager) {
     this._socket = socket
-    this._socket.on('Message', (packet) => {
+    this._socket.on('Message', (packet: Record<string, any>) => {
       if (packet.event !== 'DisableRequest' || !this._socket.enabled) return
       this._socket.enabled = false
       this._socket.sendMessage({

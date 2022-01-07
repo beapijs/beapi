@@ -27,7 +27,7 @@ export class EnableRequest {
         },
       })
     })
-    this._socket.on('Message', (packet) => {
+    this._socket.on('Message', (packet: Record<string, any>) => {
       if (packet.event !== 'EnableRequest' || this._socket.enabled) return
       this._socket.enabled = true
       this._socket.sendMessage({
