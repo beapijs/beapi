@@ -90,6 +90,9 @@ function build() {
   copyLog(`Recursively copying "${getFileName(sourceCodeRoute)}" to "${getFileName(scriptRoute)}"`)
   recursiveCopySync(sourceCodeRoute, scriptRoute)
 
+  // Copies all modules
+  copyModules(package)
+
   // Creates two regexs, one for matching synchronous imports
   // one for matching asynchronous imports. It then loops through
   // All copied files and updates modules to reference BeAPIs main
@@ -98,7 +101,10 @@ function build() {
   const syncMatcher = syncModuleMatcher('beapi-core')
   const asyncMatcher = asyncModuleMatcher('beapi-core')
   for (const file of walkDirSync(scriptRoute)) {
-    const router = path.relative(file, scriptRoute).substring(3)
+    const router = path
+      .relative(file, scriptRoute)
+      .substring(3)
+      .replace(/\\|\\\\/g, '/')
     const module = `${router.length ? '' : '.'}${router}/BEAPI_CORE_SCRIPT.js`
     const contents = fs.readFileSync(file, 'utf-8')
     fs.writeFileSync(
@@ -108,12 +114,54 @@ function build() {
     buildLog(`Wrote module transfers to "${path.relative(scriptRoute, file)}"`)
   }
 
+  // Links all beapi-modules
+  linkModules(package)
+
   // Creates new file in script dir with BeAPI dist
   buildLog(`Creating BEAPI_CORE_SCRIPT in "${getFileName(scriptRoute)}"`)
   fs.writeFileSync(path.resolve(scriptRoute, 'BEAPI_CORE_SCRIPT.js'), beapi)
 
   // Done 😊
   comLog(`Successfully Built ${chalk.grey(`in ${Date.now() - startTime}ms 😊`)}`)
+}
+
+function copyModules(package) {
+  // Removes and creates the modules folder
+  copyLog(`Recursively copying all modules to "${getFileName(scriptRoute)}"`)
+  deleteIfExists(path.resolve(`${scriptRoute}/beapi_modules`))
+  fs.mkdirSync(path.resolve(`${scriptRoute}/beapi_modules`))
+  for (const dep of Object.keys(package.dependencies)) {
+    const modulePath = path.resolve(`${cwd}/node_modules/${dep}`)
+    const modulePackage = readPackage(modulePath)
+    if (!modulePackage.beapiModule) continue
+    recursiveCopySync(
+      path.resolve(`${modulePath}/${modulePackage.main.split('/')[0]}`),
+      path.resolve(`${scriptRoute}/beapi_modules/${dep}`),
+    )
+  }
+}
+
+function linkModules(package) {
+  for (const dep of Object.keys(package.dependencies)) {
+    const modulePath = path.resolve(`${cwd}/node_modules/${dep}`)
+    const modulePackage = readPackage(modulePath)
+    if (!modulePackage.beapiModule) continue
+    const syncMatcher = syncModuleMatcher(dep)
+    const asyncMatcher = asyncModuleMatcher(dep)
+    for (const file of walkDirSync(scriptRoute)) {
+      const router = path
+        .relative(file, scriptRoute)
+        .substring(3)
+        .replace(/\\|\\\\/g, '/')
+      const module = `${router.length ? '' : '.'}${router}/beapi_modules/${dep}/${package.main.split('/')[1]}`
+      const contents = fs.readFileSync(file, 'utf-8')
+      fs.writeFileSync(
+        file,
+        contents.replace(syncMatcher, `from '${module}'`).replace(asyncMatcher, `import('${module}')`),
+      )
+      buildLog(`Linked module "${dep}" to "${path.relative(scriptRoute, file)}"`)
+    }
+  }
 }
 
 // Bundle Command
