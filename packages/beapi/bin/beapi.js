@@ -115,6 +115,7 @@ function build() {
   }
 
   // PMK: Links all beapi-modules
+  buildLog(`Linking all BeAPI compatible NPM modules`)
   linkModules(package)
 
   // Creates new file in script dir with BeAPI dist
