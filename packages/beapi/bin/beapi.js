@@ -90,7 +90,7 @@ function build() {
   copyLog(`Recursively copying "${getFileName(sourceCodeRoute)}" to "${getFileName(scriptRoute)}"`)
   recursiveCopySync(sourceCodeRoute, scriptRoute)
 
-  // Copies all modules
+  // PMK: Copies all modules
   copyModules(package)
 
   // Creates two regexs, one for matching synchronous imports
@@ -114,7 +114,7 @@ function build() {
     buildLog(`Wrote module transfers to "${path.relative(scriptRoute, file)}"`)
   }
 
-  // Links all beapi-modules
+  // PMK: Links all beapi-modules
   linkModules(package)
 
   // Creates new file in script dir with BeAPI dist
@@ -125,6 +125,7 @@ function build() {
   comLog(`Successfully Built ${chalk.grey(`in ${Date.now() - startTime}ms 😊`)}`)
 }
 
+// PMK: Start
 function copyModules(package) {
   // Removes and creates the modules folder
   copyLog(`Recursively copying all modules to "${getFileName(scriptRoute)}"`)
@@ -163,6 +164,7 @@ function linkModules(package) {
     }
   }
 }
+// PMK: End
 
 // Bundle Command
 Yargs.command(
