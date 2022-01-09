@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@1.2.1...create-beapi@1.3.0) (2022-01-09)
+
+
+### Bug Fixes
+
+* template core module versions ([3f728bf](https://github.com/MCBE-Utilities/BeAPI/commit/3f728bfd63d69ee10c2bf6d7a8891ab0c11d0f63))
+* **templates:** updated gitignore ([bdf8dd9](https://github.com/MCBE-Utilities/BeAPI/commit/bdf8dd931432b39601677b5b2b509ef62704389e))
+
+
+### Features
+
+* **core:** added ability to use external moduled ([e56e20b](https://github.com/MCBE-Utilities/BeAPI/commit/e56e20b0a8e577ea9fd7d17afc1ef35aeb2df3b0))
+
+
+
+
+
 ## [1.2.1](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@1.2.0...create-beapi@1.2.1) (2022-01-02)
 
 

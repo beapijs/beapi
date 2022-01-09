@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.4.0...beapi-core@1.5.0) (2022-01-09)
+
+
+### Bug Fixes
+
+* **commands:** typo ([e4a02d9](https://github.com/MCBE-Utilities/BeAPI/commit/e4a02d9bd12898de17408ba0e4cca122c8c50fce))
+* **core:** added comments ([f690e16](https://github.com/MCBE-Utilities/BeAPI/commit/f690e1645d433d856e8d1fce07448d52d0cc364e))
+* **core:** module linker ([01718ad](https://github.com/MCBE-Utilities/BeAPI/commit/01718ad3535234136b5a71c5eab762c1a5a41582))
+* **database:** mount methods ([72f1772](https://github.com/MCBE-Utilities/BeAPI/commit/72f177256d97a8c30d63d592b94cfe08276d7b2c))
+* **database:** mount now creates database if not exists ([e051dd8](https://github.com/MCBE-Utilities/BeAPI/commit/e051dd88fe3522889589ee49347d4b893fd9a253))
+* **database:** options interface ([9d83508](https://github.com/MCBE-Utilities/BeAPI/commit/9d835089624c39f9b3b196f6c5a42a8477814680))
+* **emitter:** event emitter completely redone (was ugly) ([e511196](https://github.com/MCBE-Utilities/BeAPI/commit/e511196f2c514bb55cd8a7ac8f1c6baa66ad5494))
+* **emitter:** listener spelt wrong ([7806968](https://github.com/MCBE-Utilities/BeAPI/commit/7806968f494dbe7928fbb5f338ceba0d79de3256))
+* **eventemitter:** reduce memory leak to a log warn rather than error ([7cc6317](https://github.com/MCBE-Utilities/BeAPI/commit/7cc6317d4fcdb3730a6da1961e2ea8bb49721279))
+* **eventemitter:** typo ([539ad94](https://github.com/MCBE-Utilities/BeAPI/commit/539ad94f54242c8fd4f5b5195e3cd0cdadb49bc1))
+* **eventmanager:** emit ([c744a04](https://github.com/MCBE-Utilities/BeAPI/commit/c744a043e67cdd5723d13456d8b5d34b4ae59546))
+* module linker ([359c673](https://github.com/MCBE-Utilities/BeAPI/commit/359c673360cd50347ec83414c65bd3a44670fd5d))
+* **typings:** exported wrongly ([d32664b](https://github.com/MCBE-Utilities/BeAPI/commit/d32664b63308498cdf538de58647e45b0563851a))
+* **version:** updated protocol ([bd65d52](https://github.com/MCBE-Utilities/BeAPI/commit/bd65d5232b25829128df8e8c27af242f52e4b752))
+
+
+### Features
+
+* **core:** added ability to use external moduled ([e56e20b](https://github.com/MCBE-Utilities/BeAPI/commit/e56e20b0a8e577ea9fd7d17afc1ef35aeb2df3b0))
+
+
+
+
+
 # [1.4.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.3.0...beapi-core@1.4.0) (2022-01-02)
 
 
