@@ -2,6 +2,65 @@ import type { db, entry, DbOptions } from '../@types/BeAPI.i.js'
 import { executeCommand } from '../command/executeCommand.js'
 
 export class Database {
+  public mountByName(name: string): Collection {
+    const c: string = executeCommand('scoreboard players list').statusMessage.split('\n')
+    const tables: db[] = []
+    for (const t of c) {
+      if (!t.includes("{'database':{'name':")) continue
+      for (const db of t.replace(/'/g, '"').split(', ')) {
+        if (!db.includes('{"database":{"name":')) continue
+        tables.push(JSON.parse(db) as db)
+      }
+    }
+    const db = tables.find((x) => x.database.name === name)
+    if (!db)
+      return new Collection(
+        {
+          name: name,
+        },
+        false,
+      )
+
+    return new Collection(
+      {
+        name: db.database.name,
+        id: db.database.id,
+      },
+      true,
+    )
+  }
+
+  public mountById(id: number): Collection {
+    const c: string = executeCommand('scoreboard players list').statusMessage.split('\n')
+    const tables: db[] = []
+    for (const t of c) {
+      if (!t.includes("{'database':{'name':")) continue
+      for (const db of t.replace(/'/g, '"').split(', ')) {
+        if (!db.includes('{"database":{"name":')) continue
+        tables.push(JSON.parse(db) as db)
+      }
+    }
+    const db = tables.find((x) => x.database.id === id)
+    if (!db)
+      return new Collection(
+        {
+          name: (Math.random() + 1).toString(36).substring(2),
+          id: id,
+        },
+        false,
+      )
+
+    return new Collection(
+      {
+        name: db.database.name,
+        id: db.database.id,
+      },
+      true,
+    )
+  }
+}
+
+export class Collection {
   public readonly name: string
   public readonly id: number
 
@@ -79,31 +138,4 @@ export class Database {
 
     return this._updateDb(dbJson)
   }
-}
-
-export function getAllDatabases(): Map<string, Database> {
-  const databases = new Map<string, Database>()
-  const c: string = executeCommand('scoreboard players list').statusMessage.split('\n')
-  const tables: db[] = []
-  for (const t of c) {
-    if (!t.includes("{'database':{'name':")) continue
-    for (const db of t.replace(/'/g, '"').split(', ')) {
-      if (!db.includes('{"database":{"name":')) continue
-      tables.push(JSON.parse(db) as db)
-    }
-  }
-  for (const table of tables) {
-    databases.set(
-      table.database.name,
-      new Database(
-        {
-          name: table.database.name,
-          id: table.database.id,
-        },
-        true,
-      ),
-    )
-  }
-
-  return databases
 }

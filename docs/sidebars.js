@@ -45,65 +45,65 @@ const sidebars = {
           label: 'clearTimeout',
           id: 'api/cleartimeout'
         },
-        {
-          type: 'category',
-          label: 'commands',
-          collapsed: true,
-          items: [
-            {
-              type: 'doc',
-              label: 'enabled',
-              id: 'api/commands/enabled'
-            },
-            {
-              type: 'doc',
-              label: 'getCommands',
-              id: 'api/commands/getCommands'
-            },
-            {
-              type: 'doc',
-              label: 'getPrefix',
-              id: 'api/commands/getPrefix'
-            },
-            {
-              type: 'doc',
-              label: 'registerCommand',
-              id: 'api/commands/registerCommand'
-            },
-            {
-              type: 'doc',
-              label: 'setPrefix',
-              id: 'api/commands/setPrefix'
-            },
-          ]
-        },
-        {
-          type: 'category',
-          label: 'db',
-          collapsed: true,
-          items: [
-            {
-              type: 'doc',
-              label: 'Database',
-              id: 'api/db/database'
-            },
-            {
-              type: 'doc',
-              label: 'getAllDatabases',
-              id: 'api/db/getalldatabases'
-            },
-            {
-              type: 'doc',
-              label: 'mountById',
-              id: 'api/db/mountbyid'
-            },
-            {
-              type: 'doc',
-              label: 'mountByName',
-              id: 'api/db/mountbyname'
-            },
-          ]
-        },
+        // {
+        //   type: 'category',
+        //   label: 'commands',
+        //   collapsed: true,
+        //   items: [
+        //     {
+        //       type: 'doc',
+        //       label: 'enabled',
+        //       id: 'api/commands/enabled'
+        //     },
+        //     {
+        //       type: 'doc',
+        //       label: 'getCommands',
+        //       id: 'api/commands/getCommands'
+        //     },
+        //     {
+        //       type: 'doc',
+        //       label: 'getPrefix',
+        //       id: 'api/commands/getPrefix'
+        //     },
+        //     {
+        //       type: 'doc',
+        //       label: 'registerCommand',
+        //       id: 'api/commands/registerCommand'
+        //     },
+        //     {
+        //       type: 'doc',
+        //       label: 'setPrefix',
+        //       id: 'api/commands/setPrefix'
+        //     },
+        //   ]
+        // },
+        // {
+        //   type: 'category',
+        //   label: 'db',
+        //   collapsed: true,
+        //   items: [
+        //     {
+        //       type: 'doc',
+        //       label: 'Database',
+        //       id: 'api/db/database'
+        //     },
+        //     {
+        //       type: 'doc',
+        //       label: 'getAllDatabases',
+        //       id: 'api/db/getalldatabases'
+        //     },
+        //     {
+        //       type: 'doc',
+        //       label: 'mountById',
+        //       id: 'api/db/mountbyid'
+        //     },
+        //     {
+        //       type: 'doc',
+        //       label: 'mountByName',
+        //       id: 'api/db/mountbyname'
+        //     },
+        //   ]
+        // },
         {
           type: 'doc',
           label: 'Entity',
