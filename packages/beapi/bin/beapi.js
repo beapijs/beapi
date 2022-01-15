@@ -109,7 +109,7 @@ function build() {
     const contents = fs.readFileSync(file, 'utf-8')
     fs.writeFileSync(
       file,
-      contents.replace(syncMatcher, `from '${module}'`).replace(asyncMatcher, `import('${module}')`),
+      contents.replace(syncMatcher, ` from '${module}'`).replace(asyncMatcher, `import('${module}')`),
     )
     buildLog(`Wrote module transfers to "${path.relative(scriptRoute, file)}"`)
   }
@@ -159,7 +159,7 @@ function linkModules(package) {
       const contents = fs.readFileSync(file, 'utf-8')
       fs.writeFileSync(
         file,
-        contents.replace(syncMatcher, `from '${module}'`).replace(asyncMatcher, `import('${module}')`),
+        contents.replace(syncMatcher, ` from '${module}'`).replace(asyncMatcher, `import('${module}')`),
       )
       buildLog(`Linked module "${dep}" to "${path.relative(scriptRoute, file)}"`)
     }

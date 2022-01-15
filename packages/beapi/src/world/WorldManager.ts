@@ -1,38 +1,25 @@
-import { world as World, BlockLocation, Entity as MCEntity } from 'mojang-minecraft'
-import type { Dimensions, Location } from '../@types/BeAPI.i'
-import type { Entity } from '../entity/Entity.js'
-import { executeCommand } from '../command/executeCommand.js'
-import { events } from '../events/EventManager.js'
-import { entities } from '../index.js'
-
+import type { Client } from '../client'
+import type { Dimension, Location } from '../types'
+import { BlockLocation, Entity as IEntity, world } from 'mojang-minecraft'
+import type { Entity } from '../entity'
 export class WorldManager {
-  public constructor() {
-    this.sendMessage('BeAPI in Development Mode...')
+  protected readonly _client: Client
+  public constructor(client: Client) {
+    this._client = client
   }
 
-  public getTicks(): number {
-    return events.getEvents().get('tick').ticks
+  public sendMessage(msg: string): void {
+    this._client.executeCommand(`tellraw @a {"rawtext":[{"text":"${msg}"}]}`)
   }
 
-  public sendMessage(message: string): void {
-    executeCommand(`tellraw @a {"rawtext":[{"text":"${message}"}]}`)
-  }
-
-  public getEntities(dimension: Dimensions, location: Location): MCEntity[] {
-    return World.getDimension(dimension).getEntitiesAtBlockLocation(
-      new BlockLocation(location.x, location.y, location.z),
-    )
+  public getEntities(dimension: Dimension, location: Location): IEntity[] {
+    return world
+      .getDimension(dimension)
+      .getEntitiesAtBlockLocation(new BlockLocation(location.x, location.y, location.z))
   }
 
   public spawnEntity(entity: string, pos: Location, name = ''): Entity | undefined {
-    executeCommand(`summon ${entity} "${name}" ${pos.x} ${pos.y} ${pos.z}`)
-    const ent = entities.getLatestEntity()
-    if (!ent) return
-
-    return ent
+    this._client.executeCommand(`summon ${entity} "${name}" ${pos.x} ${pos.y} ${pos.z}`)
+    return this._client.entities.getLastest()
   }
 }
-
-const world = new WorldManager()
-
-export { world }

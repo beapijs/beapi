@@ -1,74 +1,52 @@
-import { Entity as MCEntity, world } from 'mojang-minecraft'
-import { executeCommand } from '../index.js'
-import type { Entity } from './Entity.js'
-import { events } from '../events/EventManager.js'
+import type { Entity as IEntity } from 'mojang-minecraft'
+import { Entity } from '.'
+import type { Client } from '../client'
 
 export class EntityManager {
-  private _runtimeId = 0
-  private readonly _entities = {
-    nameTag: new Map<string, Entity>(),
-    runtimeId: new Map<number, Entity>(),
-    vanilla: new Map<MCEntity, Entity>(),
+  protected readonly _client: Client
+  protected readonly _entities = new Map<number, Entity>()
+  protected _runtimeId = 0
+  public constructor(client: Client) {
+    this._client = client
   }
 
-  public constructor() {
-    executeCommand('scoreboard objectives remove "ent:runtimeId"')
-    executeCommand('scoreboard objectives add "ent:runtimeId" dummy')
-    world.events.tick.subscribe(() => {
-      this._entityCheck()
-    })
+  public newRuntimeId(): number {
+    return this._runtimeId++
   }
 
-  private _entityCheck(): void {
-    for (const [, entity] of this._entities.runtimeId) {
-      try {
-        entity.getVanilla().id
-      } catch (err) {
-        events.emit('EntityDestroyed', entity)
-        this.removeEntity(entity)
-      }
-    }
+  public add(entity: Entity): void {
+    this._entities.set(entity.getRuntimeId(), entity)
   }
 
-  public addEntity(entity: Entity): void {
-    this._entities.nameTag.set(`${entity.getNameTag()}:${entity.getId()}`, entity)
-    this._entities.runtimeId.set(entity.getRuntimeId(), entity)
-    this._entities.vanilla.set(entity.getVanilla(), entity)
+  public create(entity: IEntity): Entity {
+    return new Entity(this._client, entity)
   }
 
-  public removeEntity(entity: Entity): void {
-    this._entities.nameTag.delete(`${entity.getNameTag()}:${entity.getId()}`)
-    this._entities.runtimeId.delete(entity.getRuntimeId())
-    this._entities.vanilla.delete(entity.getVanilla())
+  public remove(entity: Entity): void {
+    this._entities.delete(entity.getRuntimeId())
   }
 
-  public getNewRuntimeId(): number {
-    this._runtimeId++
-
-    return this._runtimeId
+  public removeByRuntimeId(runtimeId: number): void {
+    this._entities.delete(runtimeId)
   }
 
-  public getEntityByNameTag(nameTag: string, entityType: string): Entity | undefined {
-    return this._entities.nameTag.get(`${nameTag}:${entityType}`)
+  public getAll(): Map<number, Entity> {
+    return this._entities
   }
 
-  public getEntityByRuntimeId(runtimeId: number): Entity | undefined {
-    return this._entities.runtimeId.get(runtimeId)
+  public getByNameTag(nameTag: string): Entity | undefined {
+    return Array.from(this._entities.values()).find((e) => e.getNameTag() === nameTag)
   }
 
-  public getEntityByVanilla(vanilla: MCEntity): Entity | undefined {
-    return this._entities.vanilla.get(vanilla)
+  public getByRuntimeId(runtimeId: number): Entity | undefined {
+    return this._entities.get(runtimeId)
   }
 
-  public getLatestEntity(): Entity | undefined {
-    return this._entities.runtimeId.get(this._runtimeId)
+  public getByIEntity(IEntity: IEntity): Entity | undefined {
+    return Array.from(this._entities.values()).find((e) => e.getIEntity() === IEntity)
   }
 
-  public getEntityList(): Map<number, Entity> {
-    return this._entities.runtimeId
+  public getLastest(): Entity | undefined {
+    return this._entities.get(this._runtimeId - 1)
   }
 }
-
-const entities = new EntityManager()
-
-export { entities }

@@ -1,50 +1,43 @@
-import type { Player as MCPlayer } from 'mojang-minecraft'
-import type { Player } from './Player.js'
-import type { NameTagChanged } from '../@types/BeAPI.i'
-
+import { Player } from './'
+import type { Player as IPlayer } from 'mojang-minecraft'
+import type { Client } from '../client'
 export class PlayerManager {
-  private readonly _players = {
-    name: new Map<string, Player>(),
-    nameTag: new Map<string, Player>(),
-    vanilla: new Map<MCPlayer, Player>(),
+  protected readonly _players = new Map<string, Player>()
+  protected readonly _client: Client
+
+  public constructor(client: Client) {
+    this._client = client
   }
 
-  public addPlayer(player: Player): void {
-    this._players.name.set(player.getName(), player)
-    this._players.nameTag.set(player.getNameTag(), player)
-    this._players.vanilla.set(player.getVanilla(), player)
+  public add(player: Player): void {
+    this._players.set(player.getName(), player)
   }
 
-  public removePlayer(player: Player): void {
-    this._players.name.delete(player.getName())
-    this._players.nameTag.delete(player.getNameTag())
-    this._players.vanilla.delete(player.getVanilla())
+  public create(player: IPlayer): Player {
+    return new Player(this._client, player)
   }
 
-  public getPlayerList(): Map<string, Player> {
-    return this._players.name
+  public remove(player: Player) {
+    this._players.delete(player.getName())
   }
 
-  public getPlayerByName(name: string): Player | undefined {
-    return this._players.name.get(name)
+  public removeByName(playerName: string) {
+    this._players.delete(playerName)
   }
 
-  public getPlayerByNameTag(nameTag: string): Player | undefined {
-    return this._players.nameTag.get(nameTag)
+  public getAll(): Map<string, Player> {
+    return this._players
   }
 
-  public getPlayerByVanilla(vanilla: MCPlayer): Player | undefined {
-    return this._players.vanilla.get(vanilla)
+  public getByName(playerName: string): Player | undefined {
+    return this._players.get(playerName)
   }
 
-  public updateNameTag(data: NameTagChanged): void {
-    this._players.nameTag.delete(data.old)
-    // Eslint Issue?
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    this._players.nameTag.set(data.new, data.player)
+  public getByNameTag(nameTag: string): Player | undefined {
+    return Array.from(this._players.values()).find((p) => p.getNameTag() === nameTag)
+  }
+
+  public getByIPlayer(IPlayer: IPlayer): Player | undefined {
+    return Array.from(this._players.values()).find((p) => p.getIPlayer() === IPlayer)
   }
 }
-
-const players = new PlayerManager()
-
-export { players }

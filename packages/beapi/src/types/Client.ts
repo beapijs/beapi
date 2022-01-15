@@ -1,0 +1,53 @@
+import type { Player } from '../player'
+import type { Entity } from '../entity'
+import type { Block, BlockLocation, Dimension, ItemStack } from 'mojang-minecraft'
+
+export interface ClientEvents {
+  OnChat: [OnChatEvent]
+  OnJoin: [Player]
+  OnLeave: [Player | string]
+  Tick: [TickEvent]
+  ItemUse: [ItemUseEvent]
+  ItemInteract: [ItemInteractEvent]
+  EntityDestroyed: [Entity]
+  EntityCreated: [Entity]
+  BlockDestroyed: [ClientBlockEvent]
+  BlockCreated: [ClientBlockEvent]
+}
+
+export interface OnChatEvent {
+  sender: Player | undefined
+  message: string
+  cancel: CancelMethod
+}
+
+export interface TickEvent {
+  currentTick: number
+  deltaTime: number
+}
+
+export interface ItemUseEvent {
+  source: Player | Entity | undefined
+  item: ItemStack
+  cancel: CancelMethod
+}
+
+export interface ItemInteractEvent {
+  source: Player | Entity | undefined
+  item: ItemStack
+  block: Block
+  blockLocation: BlockLocation
+  direction: number
+  faceLocationX: number
+  faceLocationY: number
+  cancel: CancelMethod
+}
+
+export interface ClientBlockEvent {
+  player: Player
+  block: Block
+  dimension: Dimension
+  cancel: CancelMethod
+}
+
+export type CancelMethod = () => void
