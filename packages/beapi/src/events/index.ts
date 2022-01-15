@@ -21,3 +21,5 @@ export const events = [
   EntityDestroyed,
   Tick,
 ]
+
+export { default as AbstractEvent } from './AbstractEvent'

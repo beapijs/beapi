@@ -26,12 +26,23 @@ globalThis.console = {
 // Create New Timers Util
 const timers = new Timers()
 
-// Initialize And Export Client
-export const client = new Client()
+// Initialize Client
+const client = new Client()
 
 // Start Timers
 timers.start(client)
 
-// Export Types
+// Exports
+export { client }
+
 export * from './types'
 export * from './database'
+export * from './client'
+export * from './commands'
+export * from './entity'
+export * from './events'
+export * from './player'
+export * from './polyfill'
+export * from './utils'
+export * from './world'
+export * from './version'
