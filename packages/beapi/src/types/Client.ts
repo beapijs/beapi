@@ -19,6 +19,7 @@ export interface ClientEvents {
   EntityTag: [EntityTagEvent]
   EnteredWater: [Player]
   ExitedWater: [Player]
+  StartedBurning: [Player]
 }
 
 export interface OnChatEvent {
