@@ -27,6 +27,7 @@ import { StartedSneaking } from './StartedSneaking'
 import { StoppedSneaking } from './StoppedSneaking'
 import { StartedSprinting } from './StartedSprinting'
 import { StoppedSprinting } from './StoppedSprinting'
+import { StartedSwimming } from './StartedSwimming'
 import { Tick } from './Tick'
 
 export const events = [
@@ -45,10 +46,10 @@ export const events = [
   EntityTag,
   EnteredWater,
   ExitedWater,
-  StartedBurning,
-  StoppedBurning,
   Jump,
   Landed,
+  StartedBurning,
+  StoppedBurning,
   StartedMoving,
   StoppedMoving,
   StartedRiding,
@@ -59,6 +60,7 @@ export const events = [
   StoppedSneaking,
   StartedSprinting,
   StoppedSprinting,
+  StartedSwimming,
   Tick,
 ]
 
