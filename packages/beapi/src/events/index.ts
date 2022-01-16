@@ -26,6 +26,7 @@ import { StoppedSleeping } from './StoppedSleeping'
 import { StartedSneaking } from './StartedSneaking'
 import { StoppedSneaking } from './StoppedSneaking'
 import { StartedSprinting } from './StartedSprinting'
+import { StoppedSprinting } from './StoppedSprinting'
 import { Tick } from './Tick'
 
 export const events = [
@@ -57,6 +58,7 @@ export const events = [
   StartedSneaking,
   StoppedSneaking,
   StartedSprinting,
+  StoppedSprinting,
   Tick,
 ]
 
