@@ -39,14 +39,15 @@ export class BlockDestroyed extends AbstractEvent {
 
     this._client.emit(this.name, {
       player,
-      block: arg.block,
+      block: (arg as any).brokenBlockPermutation.type.id,
+      blockLocation: arg.block.location,
       dimension: arg.dimension,
       cancel() {
         // TEMP: Workaround Until Mojang Adds Block Destroyed Cancel Event
         // NOTE: Block broken usually returns as air, Mojang Issue
         const dim = arg.dimension
         const pos = arg.block.location
-        dim.runCommand(`setblock ${pos.x} ${pos.y} ${pos.z} ${arg.block.id}`)
+        dim.runCommand(`setblock ${pos.x} ${pos.y} ${pos.z} ${(arg as any).brokenBlockPermutation.type.id}`)
       },
     })
   }
