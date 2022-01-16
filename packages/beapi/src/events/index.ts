@@ -12,6 +12,7 @@ import { EntityInViewVector } from './EntityInViewVector'
 import { PlayerTag } from './PlayerTag'
 import { EntityTag } from './EntityTag'
 import { EnteredWater } from './EnteredWater'
+import { ExitedWater } from './ExitedWater'
 import { Tick } from './Tick'
 
 export const events = [
@@ -29,6 +30,7 @@ export const events = [
   PlayerTag,
   EntityTag,
   EnteredWater,
+  ExitedWater,
   Tick,
 ]
 
