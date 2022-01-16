@@ -31,6 +31,7 @@ export interface ClientEvents {
   StoppedSleeping: [Player]
   StartedSneaking: [Player]
   StoppedSneaking: [Player]
+  StartedSprinting: [Player]
 }
 
 export interface OnChatEvent {
