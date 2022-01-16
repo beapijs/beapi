@@ -8,6 +8,7 @@ import { ItemInteract } from './ItemInteract'
 import { EntityCreated } from './EntityCreated'
 import { EntityDestroyed } from './EntityDestroyed'
 import { PlayerInViewVector } from './PlayerInViewVector'
+import { EntityInViewVector } from './EntityInViewVector'
 import { Tick } from './Tick'
 
 export const events = [
@@ -21,6 +22,7 @@ export const events = [
   EntityCreated,
   EntityDestroyed,
   PlayerInViewVector,
+  EntityInViewVector,
   Tick,
 ]
 

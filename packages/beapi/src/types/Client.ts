@@ -14,6 +14,7 @@ export interface ClientEvents {
   BlockDestroyed: [ClientBlockBreakEvent]
   BlockCreated: [ClientBlockEvent]
   PlayerInViewVector: [PlayerInViewVectorEvent]
+  EntityInViewVector: [EntityInViewVectorEvent]
 }
 
 export interface OnChatEvent {
@@ -61,6 +62,11 @@ export interface ClientBlockEvent {
 
 export interface PlayerInViewVectorEvent {
   target: Player
+  player: Player
+}
+
+export interface EntityInViewVectorEvent {
+  target: Entity
   player: Player
 }
 
