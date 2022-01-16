@@ -15,6 +15,7 @@ export interface ClientEvents {
   BlockCreated: [ClientBlockEvent]
   PlayerInViewVector: [PlayerInViewVectorEvent]
   EntityInViewVector: [EntityInViewVectorEvent]
+  PlayerTag: [PlayerTagEvent]
 }
 
 export interface OnChatEvent {
@@ -68,6 +69,11 @@ export interface PlayerInViewVectorEvent {
 export interface EntityInViewVectorEvent {
   target: Entity
   player: Player
+}
+
+export interface PlayerTagEvent {
+  player: Player
+  tag: string
 }
 
 export type CancelMethod = () => void

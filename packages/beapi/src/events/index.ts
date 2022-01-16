@@ -9,6 +9,7 @@ import { EntityCreated } from './EntityCreated'
 import { EntityDestroyed } from './EntityDestroyed'
 import { PlayerInViewVector } from './PlayerInViewVector'
 import { EntityInViewVector } from './EntityInViewVector'
+import { PlayerTag } from './PlayerTag'
 import { Tick } from './Tick'
 
 export const events = [
@@ -23,6 +24,7 @@ export const events = [
   EntityDestroyed,
   PlayerInViewVector,
   EntityInViewVector,
+  PlayerTag,
   Tick,
 ]
 
