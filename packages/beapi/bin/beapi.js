@@ -22,6 +22,7 @@ const {
   buildLog,
   walkDirSync,
   syncModuleMatcher,
+  syncAltModuleMatcher,
   asyncModuleMatcher,
   comLog,
   bundleLog,
@@ -97,22 +98,31 @@ function build() {
   copyModules(package)
 
   // Creates two regexs, one for matching synchronous imports
-  // one for matching asynchronous imports. It then loops through
-  // All copied files and updates modules to reference BeAPIs main
-  // Script as a relative file.
+  // one for matching asynchronous imports.
   buildLog(`Attempting module transfers in "${getFileName(scriptRoute)}"`)
   const syncMatcher = syncModuleMatcher('beapi-core')
+  const syncAltMatcher = syncAltModuleMatcher('beapi-core')
   const asyncMatcher = asyncModuleMatcher('beapi-core')
+
+  // Walk all files in script directory.
   for (const file of walkDirSync(scriptRoute)) {
+    // Create a relative router resolver
     const router = path
       .relative(file, scriptRoute)
       .substring(3)
       .replace(/\\|\\\\/g, '/')
+
+    // Create pointer to module router
     const module = `${router.length ? '' : '.'}${router}/beapi_modules/BEAPI_CORE_SCRIPT.js`
+
+    // Read contents and update all imports to pointer
     const contents = fs.readFileSync(file, 'utf-8')
     fs.writeFileSync(
       file,
-      contents.replace(syncMatcher, ` from '${module}'`).replace(asyncMatcher, `import('${module}')`),
+      contents
+        .replace(syncMatcher, ` from '${module}'`)
+        .replace(syncAltMatcher, `import '${module}'`)
+        .replace(asyncMatcher, `import('${module}')`),
     )
     buildLog(`Wrote module transfers to "${path.relative(scriptRoute, file)}"`)
   }
@@ -150,6 +160,7 @@ function linkModules(package) {
     const modulePackage = readPackage(modulePath)
     if (!modulePackage.beapiModule) continue
     const syncMatcher = syncModuleMatcher(dep)
+    const syncAltMatcher = syncAltModuleMatcher(dep)
     const asyncMatcher = asyncModuleMatcher(dep)
     for (const file of walkDirSync(scriptRoute)) {
       const router = path
@@ -160,7 +171,10 @@ function linkModules(package) {
       const contents = fs.readFileSync(file, 'utf-8')
       fs.writeFileSync(
         file,
-        contents.replace(syncMatcher, ` from '${module}'`).replace(asyncMatcher, `import('${module}')`),
+        contents
+          .replace(syncMatcher, ` from '${module}'`)
+          .replace(syncAltMatcher, `import '${module}'`)
+          .replace(asyncMatcher, `import('${module}')`),
       )
       buildLog(`Linked module "${dep}" to "${path.relative(scriptRoute, file)}"`)
     }

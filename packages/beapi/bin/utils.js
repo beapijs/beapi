@@ -158,6 +158,15 @@ function syncModuleMatcher(name) {
  * @param {string} name
  * @returns {RegExp}
  */
+function syncAltModuleMatcher(name) {
+  return new RegExp(`(\\s+|)import(\\s+|)('|\`|")${name}('|\`|")`, 'ig')
+}
+
+/**
+ * Create a RegExp to match a specific module import
+ * @param {string} name
+ * @returns {RegExp}
+ */
 function asyncModuleMatcher(name) {
   return new RegExp(`import(\\s+|)\\((\\s+|)('|\`|")${name}('|\`|")(\\s+|)\\)`, 'ig')
 }
@@ -281,6 +290,7 @@ module.exports = {
   walkDirSync,
   recursiveCopySync,
   syncModuleMatcher,
+  syncAltModuleMatcher,
   asyncModuleMatcher,
   verifyManifest,
   verifyPackage,
