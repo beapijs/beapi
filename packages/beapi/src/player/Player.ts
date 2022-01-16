@@ -126,4 +126,8 @@ export class Player {
   public getHealth(): EntityHealthComponent {
     return this._IPlayer.getComponent('minecraft:health') as EntityHealthComponent
   }
+
+  public kick(reason = 'You were kicked from the game!'): void {
+    this.destroy(reason)
+  }
 }
