@@ -127,6 +127,11 @@ export class Player {
     return this._IPlayer.getComponent('minecraft:health') as EntityHealthComponent
   }
 
+  public getSelectedSlot(): number {
+    // TEMP: Until docs are updated.
+    return (this._IPlayer as any).selectedSlot as number
+  }
+
   public kick(reason = 'You were kicked from the game!'): void {
     this.destroy(reason)
   }
