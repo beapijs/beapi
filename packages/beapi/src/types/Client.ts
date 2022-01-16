@@ -21,6 +21,7 @@ export interface ClientEvents {
   ExitedWater: [Player]
   StartedBurning: [Player]
   StoppedBurning: [Player]
+  Jump: [Player]
 }
 
 export interface OnChatEvent {
