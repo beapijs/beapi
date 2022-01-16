@@ -1,4 +1,9 @@
-import type { Dimension as IDimension, Player as IPlayer } from 'mojang-minecraft'
+import type {
+  Dimension as IDimension,
+  EntityHealthComponent,
+  EntityInventoryComponent,
+  Player as IPlayer,
+} from 'mojang-minecraft'
 import { BlockLocation } from 'mojang-minecraft'
 import type { Client } from '../client'
 import type { Location, Dimension, Gamemode, ServerCommandResponse } from '../types'
@@ -112,5 +117,13 @@ export class Player {
       return 'nether'
     }
     return 'the end'
+  }
+
+  public getInventory(): EntityInventoryComponent {
+    return this._IPlayer.getComponent('minecraft:inventory') as EntityInventoryComponent
+  }
+
+  public getHealth(): EntityHealthComponent {
+    return this._IPlayer.getComponent('minecraft:health') as EntityHealthComponent
   }
 }

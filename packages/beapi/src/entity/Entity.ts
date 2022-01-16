@@ -1,4 +1,9 @@
-import type { Dimension as IDimension, Entity as IEntity } from 'mojang-minecraft'
+import type {
+  Dimension as IDimension,
+  Entity as IEntity,
+  EntityHealthComponent,
+  EntityInventoryComponent,
+} from 'mojang-minecraft'
 import { BlockLocation } from 'mojang-minecraft'
 import type { Client } from '../client'
 import type { Location, Dimension, ServerCommandResponse } from '../types'
@@ -95,5 +100,15 @@ export class Entity {
       return 'nether'
     }
     return 'the end'
+  }
+
+  public getInventory(): EntityInventoryComponent | undefined {
+    if (!this._IEntity.hasComponent('minecraft:inventory')) return
+
+    return this._IEntity.getComponent('minecraft:inventory') as EntityInventoryComponent
+  }
+
+  public getHealth(): EntityHealthComponent {
+    return this._IEntity.getComponent('minecraft:health') as EntityHealthComponent
   }
 }
