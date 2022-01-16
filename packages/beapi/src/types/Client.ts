@@ -36,6 +36,8 @@ export interface ClientEvents {
   StartedSwimming: [Player]
   StoppedSwimming: [Player]
   Swing: [Player]
+  EntityAttacked: [EntityInViewVectorEvent]
+  PlayerAttacked: [PlayerInViewVectorEvent]
 }
 
 export interface OnChatEvent {

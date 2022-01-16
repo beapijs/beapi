@@ -30,6 +30,8 @@ import { StartedSprinting } from './StartedSprinting'
 import { StoppedSprinting } from './StoppedSprinting'
 import { StartedSwimming } from './StartedSwimming'
 import { StoppedSwimming } from './StoppedSwimming'
+import { EntityAttacked } from './EntityAttacked'
+import { PlayerAttacked } from './PlayerAttacked'
 import { Tick } from './Tick'
 
 export const events = [
@@ -65,6 +67,8 @@ export const events = [
   StoppedSprinting,
   StartedSwimming,
   StoppedSwimming,
+  EntityAttacked,
+  PlayerAttacked,
   Tick,
 ]
 
