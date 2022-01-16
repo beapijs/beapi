@@ -13,10 +13,11 @@ import { PlayerTag } from './PlayerTag'
 import { EntityTag } from './EntityTag'
 import { EnteredWater } from './EnteredWater'
 import { ExitedWater } from './ExitedWater'
-import { StartedBurning } from './StartedBurning'
-import { StoppedBurning } from './StoppedBurning'
 import { Jump } from './Jump'
 import { Landed } from './Landed'
+import { Swing } from './Swing'
+import { StartedBurning } from './StartedBurning'
+import { StoppedBurning } from './StoppedBurning'
 import { StartedMoving } from './StartedMoving'
 import { StoppedMoving } from './StoppedMoving'
 import { StartedRiding } from './StartedRiding'
@@ -49,6 +50,7 @@ export const events = [
   ExitedWater,
   Jump,
   Landed,
+  Swing,
   StartedBurning,
   StoppedBurning,
   StartedMoving,
