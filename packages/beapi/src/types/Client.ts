@@ -17,6 +17,7 @@ export interface ClientEvents {
   EntityInViewVector: [EntityInViewVectorEvent]
   PlayerTag: [PlayerTagEvent]
   EntityTag: [EntityTagEvent]
+  EnteredWater: [Player]
 }
 
 export interface OnChatEvent {
