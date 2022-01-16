@@ -13,6 +13,7 @@ export interface ClientEvents {
   EntityCreated: [Entity]
   BlockDestroyed: [ClientBlockBreakEvent]
   BlockCreated: [ClientBlockEvent]
+  PlayerInViewVector: [PlayerInViewVectorEvent]
 }
 
 export interface OnChatEvent {
@@ -56,6 +57,11 @@ export interface ClientBlockEvent {
   block: Block
   dimension: Dimension
   cancel: CancelMethod
+}
+
+export interface PlayerInViewVectorEvent {
+  target: Player
+  player: Player
 }
 
 export type CancelMethod = () => void

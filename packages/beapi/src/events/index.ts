@@ -7,6 +7,7 @@ import { ItemUse } from './ItemUse'
 import { ItemInteract } from './ItemInteract'
 import { EntityCreated } from './EntityCreated'
 import { EntityDestroyed } from './EntityDestroyed'
+import { PlayerInViewVector } from './PlayerInViewVector'
 import { Tick } from './Tick'
 
 export const events = [
@@ -19,6 +20,7 @@ export const events = [
   ItemInteract,
   EntityCreated,
   EntityDestroyed,
+  PlayerInViewVector,
   Tick,
 ]
 
