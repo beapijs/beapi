@@ -24,6 +24,7 @@ export interface ClientEvents {
   Jump: [Player]
   Landed: [Player]
   StartedMoving: [Player]
+  StoppedMoving: [Player]
 }
 
 export interface OnChatEvent {

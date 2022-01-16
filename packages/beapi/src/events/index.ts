@@ -18,6 +18,7 @@ import { StoppedBurning } from './StoppedBurning'
 import { Jump } from './Jump'
 import { Landed } from './Landed'
 import { StartedMoving } from './StartedMoving'
+import { StoppedMoving } from './StoppedMoving'
 import { Tick } from './Tick'
 
 export const events = [
@@ -41,6 +42,7 @@ export const events = [
   Jump,
   Landed,
   StartedMoving,
+  StoppedMoving,
   Tick,
 ]
 
