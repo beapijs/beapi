@@ -34,6 +34,7 @@ export interface ClientEvents {
   StartedSprinting: [Player]
   StoppedSprinting: [Player]
   StartedSwimming: [Player]
+  StoppedSwimming: [Player]
 }
 
 export interface OnChatEvent {
