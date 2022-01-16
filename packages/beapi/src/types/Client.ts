@@ -16,6 +16,7 @@ export interface ClientEvents {
   PlayerInViewVector: [PlayerInViewVectorEvent]
   EntityInViewVector: [EntityInViewVectorEvent]
   PlayerTag: [PlayerTagEvent]
+  EntityTag: [EntityTagEvent]
 }
 
 export interface OnChatEvent {
@@ -73,6 +74,11 @@ export interface EntityInViewVectorEvent {
 
 export interface PlayerTagEvent {
   player: Player
+  tag: string
+}
+
+export interface EntityTagEvent {
+  entity: Entity
   tag: string
 }
 
