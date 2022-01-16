@@ -26,6 +26,9 @@ export interface ClientEvents {
   StartedMoving: [Player]
   StoppedMoving: [Player]
   StartedRiding: [Player]
+  StoppedRiding: [Player]
+  StartedSleeping: [Player]
+  StoppedSleeping: [Player]
 }
 
 export interface OnChatEvent {
