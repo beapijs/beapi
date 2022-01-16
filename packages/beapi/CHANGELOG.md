@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.5.0...beapi-core@2.0.0) (2022-01-16)
+
+
+### Bug Fixes
+
+* **cli:** alternative moduless imports ([78c2480](https://github.com/MCBE-Utilities/BeAPI/commit/78c248041466015bc8e5a4080f56b8b5d15abeb4))
+* **cli:** when in doubt, add a \n ([2e0d596](https://github.com/MCBE-Utilities/BeAPI/commit/2e0d5966c6b2571a68852b68601927d5fd806416))
+* **events:** blockDestroyed now returns the broken block ([38b0a7a](https://github.com/MCBE-Utilities/BeAPI/commit/38b0a7aa9466fdf370c46f6b4e2e7f0a30ce96f2))
+* remove old source & update exports ([97c88af](https://github.com/MCBE-Utilities/BeAPI/commit/97c88afb8a1935a4844ecb48338a7a60c074daa5))
+
+
+### Features
+
+* **actor:** added getInventory and getHealth ([7ce10d1](https://github.com/MCBE-Utilities/BeAPI/commit/7ce10d1e8ac3ff6b84be51199b6c12f930009876))
+* **database:** update database structures ([dda2ed2](https://github.com/MCBE-Utilities/BeAPI/commit/dda2ed2f14d0d1f8d002778e252658ea558745e6))
+* **events:** added EnteredWater ([bf9ab2e](https://github.com/MCBE-Utilities/BeAPI/commit/bf9ab2ebbbc41db2dc4d133d305e9a3ea0dc2d1f))
+* **events:** added EntityAttacked ([2c47f61](https://github.com/MCBE-Utilities/BeAPI/commit/2c47f61fc4be28b8fec3b96b48e28c1ed9689e8a))
+* **events:** added EntityInViewVector ([ce41bf5](https://github.com/MCBE-Utilities/BeAPI/commit/ce41bf579c82cb9612f7a00b08dd23c7fe1b4958))
+* **events:** added EntityTag ([19fb9ba](https://github.com/MCBE-Utilities/BeAPI/commit/19fb9ba6dc466a92b71e3754e98efd6d216eec76))
+* **events:** added ExitedWater ([32e208c](https://github.com/MCBE-Utilities/BeAPI/commit/32e208cf9c3dfb7987af40b623a5e0019227e6e0))
+* **events:** added Jump ([4f8a9c9](https://github.com/MCBE-Utilities/BeAPI/commit/4f8a9c9942a7bcf32ffac896f90424a81a9933f4))
+* **events:** added Landed ([6ed081b](https://github.com/MCBE-Utilities/BeAPI/commit/6ed081b74be51eead2f18835eb4f63c91b3d3f1f))
+* **events:** added PlayerAttacked ([882d5ca](https://github.com/MCBE-Utilities/BeAPI/commit/882d5ca63ab606caa3fddd4e3ec65c381b433df9))
+* **events:** added PlayerInViewVector ([133ef09](https://github.com/MCBE-Utilities/BeAPI/commit/133ef09777f7e913897a9ab98a92ca9c182646d3))
+* **events:** added PlayerTag ([682bc39](https://github.com/MCBE-Utilities/BeAPI/commit/682bc39446c86bdc8f909d30ae016f2fcf77d853))
+* **events:** added StartedBurning ([7fc4ad4](https://github.com/MCBE-Utilities/BeAPI/commit/7fc4ad47a2be4ba2dc402d5fde25f489bcf3906e))
+* **events:** added StartedMoving ([f0418cb](https://github.com/MCBE-Utilities/BeAPI/commit/f0418cb318e4846661b583f3b6c85ec8fda0a27b))
+* **events:** added StartedRiding ([1731ef1](https://github.com/MCBE-Utilities/BeAPI/commit/1731ef156c38572a6af69b73c4df8663e4f033da))
+* **events:** added StartedSleeping ([bad9132](https://github.com/MCBE-Utilities/BeAPI/commit/bad91324b9e156b9a5b714d816ac585cc24843db))
+* **events:** added StartedSneaking ([a4f4c78](https://github.com/MCBE-Utilities/BeAPI/commit/a4f4c7863ef0b91b58bce4b90296394afcd79069))
+* **events:** added StartedSprinting ([de8eff4](https://github.com/MCBE-Utilities/BeAPI/commit/de8eff4e65fc106171f2288895958c329f3413f7))
+* **events:** added StartedSwimming ([f091d32](https://github.com/MCBE-Utilities/BeAPI/commit/f091d324ed914d8eb134bc462425784ac5f6bd0e))
+* **events:** added StoppedBurning ([b166872](https://github.com/MCBE-Utilities/BeAPI/commit/b166872e309793be73f1104c2f4fce4ec7d8092f))
+* **events:** added StoppedMoving ([a3da081](https://github.com/MCBE-Utilities/BeAPI/commit/a3da0818e19648e962f9acfe50708b8cffd29ce1))
+* **events:** added StoppedRiding ([53cb5ce](https://github.com/MCBE-Utilities/BeAPI/commit/53cb5cef7bcdb58f8315154dce951b66246b1dce))
+* **events:** added StoppedSleeping ([0f0ee8e](https://github.com/MCBE-Utilities/BeAPI/commit/0f0ee8ecb543bce3ebfb97538e3f502224fe83b8))
+* **events:** added StoppedSneaking ([42ee92f](https://github.com/MCBE-Utilities/BeAPI/commit/42ee92f1372e74f1c9c423d6a262e4d07e9c041f))
+* **events:** added StoppedSprinting ([515da87](https://github.com/MCBE-Utilities/BeAPI/commit/515da872d41a7298c1ac6d712e8c91732cd71b6f))
+* **events:** added StoppedSwimming ([93dccbc](https://github.com/MCBE-Utilities/BeAPI/commit/93dccbc2bf3375b625fd47e0187772c298b1d6a2))
+* **events:** added Swing ([60599fb](https://github.com/MCBE-Utilities/BeAPI/commit/60599fb69046a48381333a8d9280d42ea3f0c887))
+* **player:** added getSelectedSlot ([f2b2fc6](https://github.com/MCBE-Utilities/BeAPI/commit/f2b2fc6051ef5248d3aff2b0199fecc37029a34e))
+* **player:** added kick ([2fc0cf1](https://github.com/MCBE-Utilities/BeAPI/commit/2fc0cf16ae5906428adcd1ac19bedc79af2d2bc0))
+
+
+
+
+
 # [1.5.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.4.0...beapi-core@1.5.0) (2022-01-09)
 
 
