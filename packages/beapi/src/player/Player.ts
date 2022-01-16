@@ -5,12 +5,16 @@ import type {
   Player as IPlayer,
 } from 'mojang-minecraft'
 import { BlockLocation } from 'mojang-minecraft'
+import type { Entity } from '..'
 import type { Client } from '../client'
 import type { Location, Dimension, Gamemode, ServerCommandResponse } from '../types'
 
 export class Player {
+  [x: string]: any
   protected readonly _client: Client
   protected readonly _IPlayer: IPlayer
+  public prevPlayerInVector: Player | undefined
+  public prevEntityInVector: Entity | undefined
   public constructor(client: Client, player: IPlayer) {
     this._client = client
     this._IPlayer = player
