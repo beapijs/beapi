@@ -20,6 +20,7 @@ export interface ClientEvents {
   EnteredWater: [Player]
   ExitedWater: [Player]
   StartedBurning: [Player]
+  StoppedBurning: [Player]
 }
 
 export interface OnChatEvent {

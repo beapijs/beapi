@@ -14,6 +14,7 @@ import { EntityTag } from './EntityTag'
 import { EnteredWater } from './EnteredWater'
 import { ExitedWater } from './ExitedWater'
 import { StartedBurning } from './StartedBurning'
+import { StoppedBurning } from './StoppedBurning'
 import { Tick } from './Tick'
 
 export const events = [
@@ -33,6 +34,7 @@ export const events = [
   EnteredWater,
   ExitedWater,
   StartedBurning,
+  StoppedBurning,
   Tick,
 ]
 
