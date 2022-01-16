@@ -121,7 +121,7 @@ function build() {
       file,
       contents
         .replace(syncMatcher, ` from '${module}'`)
-        .replace(syncAltMatcher, `import '${module}'`)
+        .replace(syncAltMatcher, `\nimport '${module}'`)
         .replace(asyncMatcher, `import('${module}')`),
     )
     buildLog(`Wrote module transfers to "${path.relative(scriptRoute, file)}"`)
@@ -173,7 +173,7 @@ function linkModules(package) {
         file,
         contents
           .replace(syncMatcher, ` from '${module}'`)
-          .replace(syncAltMatcher, `import '${module}'`)
+          .replace(syncAltMatcher, `\nimport '${module}'`)
           .replace(asyncMatcher, `import('${module}')`),
       )
       buildLog(`Linked module "${dep}" to "${path.relative(scriptRoute, file)}"`)
