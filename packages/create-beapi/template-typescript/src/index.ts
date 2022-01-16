@@ -1,8 +1,8 @@
-import { commands } from 'beapi-core'
+import { client } from 'beapi-core'
 
-commands.registerCommand(
+client.commands.register(
   {
-    command: 'ping',
+    name: 'ping',
     description: 'Ping gametest scripts.',
     aliases: ['p'],
   },
