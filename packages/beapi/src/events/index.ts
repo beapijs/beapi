@@ -20,6 +20,7 @@ import { Landed } from './Landed'
 import { StartedMoving } from './StartedMoving'
 import { StoppedMoving } from './StoppedMoving'
 import { StartedRiding } from './StartedRiding'
+import { StoppedRiding } from './StoppedRiding'
 import { Tick } from './Tick'
 
 export const events = [
@@ -45,6 +46,7 @@ export const events = [
   StartedMoving,
   StoppedMoving,
   StartedRiding,
+  StoppedRiding,
   Tick,
 ]
 

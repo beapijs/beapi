@@ -2,12 +2,12 @@ import type { PlayerTagEvent } from '..'
 import type { Client } from '../client'
 
 import AbstractEvent from './AbstractEvent'
-export class StartedRiding extends AbstractEvent {
+export class StoppedRiding extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
-  public readonly name = 'StartedRiding'
+  public readonly name = 'StoppedRiding'
   public readonly iName = 'custom'
   public readonly alwaysCancel = false
 
@@ -29,7 +29,7 @@ export class StartedRiding extends AbstractEvent {
   }
 
   protected __logic(data: PlayerTagEvent): void {
-    if (data.tag !== 'on_ride') return
+    if (data.tag !== 'off_ride') return
     this._client.emit(this.name, data.player)
   }
 }
