@@ -90,6 +90,9 @@ function build() {
   copyLog(`Recursively copying "${getFileName(sourceCodeRoute)}" to "${getFileName(scriptRoute)}"`)
   recursiveCopySync(sourceCodeRoute, scriptRoute)
 
+  // Creates modules folder
+  fs.mkdirSync(path.resolve(`${scriptRoute}/beapi_modules`))
+
   // PMK: Copies all modules
   copyModules(package)
 
@@ -105,7 +108,7 @@ function build() {
       .relative(file, scriptRoute)
       .substring(3)
       .replace(/\\|\\\\/g, '/')
-    const module = `${router.length ? '' : '.'}${router}/BEAPI_CORE_SCRIPT.js`
+    const module = `${router.length ? '' : '.'}${router}/beapi_modules/BEAPI_CORE_SCRIPT.js`
     const contents = fs.readFileSync(file, 'utf-8')
     fs.writeFileSync(
       file,
@@ -120,7 +123,7 @@ function build() {
 
   // Creates new file in script dir with BeAPI dist
   buildLog(`Creating BEAPI_CORE_SCRIPT in "${getFileName(scriptRoute)}"`)
-  fs.writeFileSync(path.resolve(scriptRoute, 'BEAPI_CORE_SCRIPT.js'), beapi)
+  fs.writeFileSync(path.resolve(scriptRoute, 'beapi_modules', 'BEAPI_CORE_SCRIPT.js'), beapi)
 
   // Done 😊
   comLog(`Successfully Built ${chalk.grey(`in ${Date.now() - startTime}ms 😊`)}`)
@@ -130,8 +133,6 @@ function build() {
 function copyModules(package) {
   // Removes and creates the modules folder
   copyLog(`Recursively copying all modules to "${getFileName(scriptRoute)}"`)
-  deleteIfExists(path.resolve(`${scriptRoute}/beapi_modules`))
-  fs.mkdirSync(path.resolve(`${scriptRoute}/beapi_modules`))
   for (const dep of Object.keys(package.dependencies)) {
     const modulePath = path.resolve(`${cwd}/node_modules/${dep}`)
     const modulePackage = readPackage(modulePath)
