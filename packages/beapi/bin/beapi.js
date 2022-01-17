@@ -149,7 +149,7 @@ function copyModules(package) {
     if (!modulePackage.beapiModule) continue
     recursiveCopySync(
       path.resolve(`${modulePath}/${modulePackage.main.split('/')[0]}`),
-      path.resolve(`${scriptRoute}/beapi_modules/${dep}`),
+      path.resolve(`${scriptRoute}/beapi_modules/${dep.replace(/\\|\\\\|\//g, '-')}`),
     )
   }
 }
@@ -167,7 +167,9 @@ function linkModules(package) {
         .relative(file, scriptRoute)
         .substring(3)
         .replace(/\\|\\\\/g, '/')
-      const module = `${router.length ? '' : '.'}${router}/beapi_modules/${dep}/${package.main.split('/')[1]}`
+      const module = `${router.length ? '' : '.'}${router}/beapi_modules/${dep.replace(/\\|\\\\|\//g, '-')}/${
+        package.main.split('/')[1]
+      }`
       const contents = fs.readFileSync(file, 'utf-8')
       fs.writeFileSync(
         file,
