@@ -95,10 +95,9 @@ export class Entity {
     const block1 = this.getDimension().getBlock(new BlockLocation(this.getLocation().x, 127, this.getLocation().z)).id
     const block2 = this.getDimension().getBlock(new BlockLocation(this.getLocation().x, 0, this.getLocation().z)).id
     const block3 = this.getDimension().getBlock(new BlockLocation(this.getLocation().x, -64, this.getLocation().z)).id
-    if (block1 === 'minecraft:air' && block2 === 'minecraft:air' && block3 === 'minecraft:bedrock') return 'overworld'
-    else if (block1 === 'minecraft:bedrock' && block2 === 'minecraft:bedrock' && block3 === 'minecraft:air') {
+    if (block3 === 'minecraft:bedrock') return 'overworld'
+    else if (block1 === 'minecraft:bedrock' && block2 === 'minecraft:bedrock' && block3 === 'minecraft:air')
       return 'nether'
-    }
     return 'the end'
   }
 
