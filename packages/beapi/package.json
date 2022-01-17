@@ -1,6 +1,6 @@
 {
   "name": "beapi-core",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsup && tsc --emitDeclarationOnly",
