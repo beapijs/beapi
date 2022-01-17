@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.0.0...beapi-core@2.0.1) (2022-01-17)
+
+
+### Bug Fixes
+
+* **core:** global var ([9e72b9e](https://github.com/MCBE-Utilities/BeAPI/commit/9e72b9ee78d86ebb7d63b13674ef22b2dc9257a1))
+* spelling errors ([6e8475b](https://github.com/MCBE-Utilities/BeAPI/commit/6e8475b1f65e07e6ae29f0e10874779b5d2fc081))
+
+
+
+
+
 # [2.0.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.5.0...beapi-core@2.0.0) (2022-01-16)
 
 
