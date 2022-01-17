@@ -32,6 +32,7 @@ import { StartedSwimming } from './StartedSwimming'
 import { StoppedSwimming } from './StoppedSwimming'
 import { EntityAttacked } from './EntityAttacked'
 import { PlayerAttacked } from './PlayerAttacked'
+import { Explosion } from './Explosion'
 import { Tick } from './Tick'
 
 export const events = [
@@ -69,6 +70,7 @@ export const events = [
   StoppedSwimming,
   EntityAttacked,
   PlayerAttacked,
+  Explosion,
   Tick,
 ]
 
