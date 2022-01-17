@@ -1,10 +1,11 @@
-import type {
+import {
+  BlockLocation,
   Dimension as IDimension,
   EntityHealthComponent,
   EntityInventoryComponent,
   Player as IPlayer,
+  world,
 } from 'mojang-minecraft'
-import { BlockLocation } from 'mojang-minecraft'
 import type { Entity } from '..'
 import type { Client } from '../client'
 import type { Location, Dimension, Gamemode, ServerCommandResponse } from '../types'
@@ -113,13 +114,29 @@ export class Player {
   }
 
   public getDimensionName(): Dimension {
-    const block1 = this.getDimension().getBlock(new BlockLocation(this.getLocation().x, 127, this.getLocation().z)).id
-    const block2 = this.getDimension().getBlock(new BlockLocation(this.getLocation().x, 0, this.getLocation().z)).id
-    const block3 = this.getDimension().getBlock(new BlockLocation(this.getLocation().x, -64, this.getLocation().z)).id
-    if (block3 === 'minecraft:bedrock') return 'overworld'
-    else if (block1 === 'minecraft:bedrock' && block2 === 'minecraft:bedrock' && block3 === 'minecraft:air')
-      return 'nether'
-    return 'the end'
+    const overworld = world
+      .getDimension('overworld')
+      .getEntitiesAtBlockLocation(
+        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
+      )
+      .find((x) => x === this._IPlayer)
+    const nether = world
+      .getDimension('nether')
+      .getEntitiesAtBlockLocation(
+        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
+      )
+      .find((x) => x === this._IPlayer)
+    const theEnd = world
+      .getDimension('the end')
+      .getEntitiesAtBlockLocation(
+        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
+      )
+      .find((x) => x === this._IPlayer)
+    if (overworld) return 'overworld'
+    if (nether) return 'nether'
+    if (theEnd) return 'the end'
+
+    return 'overworld'
   }
 
   public getInventory(): EntityInventoryComponent {
