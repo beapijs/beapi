@@ -18,7 +18,7 @@ with Minecraft Bedrock edition gametests. We achieve these goals by putting toge
 Gametest currently only supports [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript); because of this we are only really left with two primary language support options; [Typescript](https://www.typescriptlang.org/) and [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) project scaffolds.
 
 ## How It Works
-BeAPI uses NPM's cli create app feature to provide you with a setup to scaffold your projects. This allows for a clean working enviourment seperated from the core codebase. We also provide a cli for building and bundling your packs.
+BeAPI uses NPM's cli create app feature to provide you with a setup to scaffold your projects. This allows for a clean working environment separated from the core codebase. We also provide a cli for building and bundling your packs.
 
 ## Where Do I Start?
 Check out our [docs](https://mcbe-utilities.github.io/BeAPI)!
