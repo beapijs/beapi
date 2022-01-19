@@ -38,6 +38,10 @@ export class Player {
     return this._IPlayer.nameTag
   }
 
+  public setNameTag(nametag: string): void {
+    this._IPlayer.nameTag = nametag
+  }
+
   public getTags(): string[] {
     return this._IPlayer.getTags()
   }
