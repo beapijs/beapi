@@ -42,6 +42,10 @@ export class Entity {
     return this._IEntity.nameTag
   }
 
+  public setNameTag(nametag: string): void {
+    this._IEntity.nameTag = nametag
+  }
+
   public getTags(): string[] {
     return this._IEntity.getTags()
   }
