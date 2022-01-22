@@ -1,6 +1,5 @@
 import type { Client } from '../client'
 import type { Dimension, Location } from '../types'
-import { BlockLocation, Entity as IEntity, world } from 'mojang-minecraft'
 import type { Entity } from '../entity'
 export class WorldManager {
   protected readonly _client: Client
@@ -12,10 +11,12 @@ export class WorldManager {
     this._client.executeCommand(`tellraw @a {"rawtext":[{"text":"${msg}"}]}`)
   }
 
-  public getEntities(dimension: Dimension, location: Location): IEntity[] {
-    return world
-      .getDimension(dimension)
-      .getEntitiesAtBlockLocation(new BlockLocation(location.x, location.y, location.z))
+  public getEntitiesFromLocation(dimension: Dimension, location: Location): Entity[] {
+    const entities = Array.from(this._client.entities.getAll().values()).filter(
+      (x) => x.getLocation() === location && x.getDimensionName() === dimension,
+    )
+
+    return entities
   }
 
   public spawnEntity(entity: string, pos: Location, name = ''): Entity | undefined {
