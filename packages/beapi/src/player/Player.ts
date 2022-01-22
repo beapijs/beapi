@@ -83,10 +83,7 @@ export class Player {
   }
 
   public getScore(objective: string): number {
-    const command = this._client.executeCommand(
-      `scoreboard players test "${this.getName()}" "${objective}" * *`,
-      this.getDimensionName(),
-    )
+    const command = this.executeCommand(`scoreboard players test @s "${objective}" * *`)
     if (command.err) return 0
 
     return parseInt(String(command.statusMessage?.split(' ')[1]), 10)
