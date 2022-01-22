@@ -1,6 +1,7 @@
 import type { Client } from '../client'
 import type { Dimension, Location } from '../types'
 import type { Entity } from '../entity'
+import type { Player } from '../player'
 export class WorldManager {
   protected readonly _client: Client
   public constructor(client: Client) {
@@ -17,6 +18,14 @@ export class WorldManager {
     )
 
     return entities
+  }
+
+  public getPlayersFromLocation(dimension: Dimension, location: Location): Player[] {
+    const players = Array.from(this._client.players.getAll().values()).filter(
+      (x) => x.getLocation() === location && x.getDimensionName() === dimension,
+    )
+
+    return players
   }
 
   public spawnEntity(entity: string, pos: Location, name = ''): Entity | undefined {
