@@ -156,4 +156,8 @@ export class Entity {
   public teleportFacing(location: ILocation, dimension: IDimension, facingLocation: ILocation): void {
     this._IEntity.teleportFacing(location, dimension, facingLocation)
   }
+
+  public triggerEvent(event: string): void {
+    this._IEntity.triggerEvent(event)
+  }
 }
