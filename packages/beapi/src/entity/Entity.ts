@@ -5,6 +5,7 @@ import {
   EntityInventoryComponent,
   world,
   BlockLocation,
+  Vector,
 } from 'mojang-minecraft'
 import type { Client } from '../client'
 import type { Location, Dimension, ServerCommandResponse } from '../types'
@@ -137,5 +138,13 @@ export class Entity {
 
   public getHealth(): EntityHealthComponent {
     return this._IEntity.getComponent('minecraft:health') as EntityHealthComponent
+  }
+
+  public getVelocity(): Vector {
+    return this._IEntity.velocity
+  }
+
+  public setVelocity(velocity: Vector): void {
+    this._IEntity.setVelocity(velocity)
   }
 }
