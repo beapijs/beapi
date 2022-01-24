@@ -19,6 +19,20 @@ export class Collection<K extends string, V> {
     return this
   }
 
+  public update(key: K, value: Partial<V>, create = false): this {
+    if (!this.has(key) && !create) return this
+    if (typeof value === 'object') {
+      this.set(key, {
+        ...this.get(key),
+        ...value,
+      } as V)
+    } else {
+      this.set(key, value)
+    }
+
+    return this
+  }
+
   public get(key: K): V | undefined {
     return this.data[key]
   }
