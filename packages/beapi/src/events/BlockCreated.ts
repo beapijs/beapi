@@ -1,6 +1,5 @@
-import { world } from 'mojang-minecraft'
+import { world, BlockPlaceEvent } from 'mojang-minecraft'
 import type { Client } from '../client'
-import type { BlockEvent } from '../types'
 
 import AbstractEvent from './AbstractEvent'
 export class BlockCreated extends AbstractEvent {
@@ -19,22 +18,19 @@ export class BlockCreated extends AbstractEvent {
 
   public on(): void {
     if (!this._registered) {
-      // TEMP: Mojang Needs To Update Typings
-      ;(world.events as any)[this.iName].subscribe(this._logic)
-      // if (world.events.hasOwnProperty('blockPlace')) {}
+      world.events[this.iName].subscribe(this._logic)
       this._registered = true
     }
   }
 
   public off(): void {
     if (this._registered) {
-      // TEMP: Mojang Needs To Update Typings
-      ;(world.events as any)[this.iName].unsubscribe(this._logic)
+      world.events[this.iName].unsubscribe(this._logic)
       this._registered = false
     }
   }
 
-  protected __logic(arg: BlockEvent): void {
+  protected __logic(arg: BlockPlaceEvent): void {
     const player = this._client.players.getByIPlayer(arg.player)
     if (!player) return
 

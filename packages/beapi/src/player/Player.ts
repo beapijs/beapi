@@ -149,8 +149,7 @@ export class Player {
   }
 
   public getSelectedSlot(): number {
-    // TEMP: Until docs are updated.
-    return (this._IPlayer as any).selectedSlot as number
+    return this._IPlayer.selectedSlot
   }
 
   public kick(reason = 'You were kicked from the game!'): void {
