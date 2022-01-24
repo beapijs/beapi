@@ -4,6 +4,7 @@ import {
   EntityHealthComponent,
   EntityInventoryComponent,
   Player as IPlayer,
+  Vector,
   world,
 } from 'mojang-minecraft'
 import type { Entity } from '..'
@@ -154,5 +155,13 @@ export class Player {
 
   public kick(reason = 'You were kicked from the game!'): void {
     this.destroy(reason)
+  }
+
+  public getVelocity(): Vector {
+    return this._IPlayer.velocity
+  }
+
+  public setVelocity(velocity: Vector): void {
+    this._IPlayer.setVelocity(velocity)
   }
 }
