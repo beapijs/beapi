@@ -31,7 +31,7 @@ function HomepageHeader() {
         </div>
         <div className={clsx('itemm', styles.itemm)}>
           <h3>🛠️ Rich Features</h3>
-          <p>adds polyfill for more helpful events and methods.</p>
+          <p>Adds polyfill for more helpful events and methods.</p>
         </div>
         <div className={clsx('itemm', styles.itemm)}>
           <h3>📦 Optimized Build</h3>
@@ -47,7 +47,7 @@ function HomepageHeader() {
         </div>
         <div className={clsx('itemm', styles.itemm)}>
           <h3>😎 Made By Cool People</h3>
-          <p>Big thanks to <a href="https://github.com/NobUwU">NobUwU</a> and <a href="https://github.com/PMK744">PMK744</a>!</p>
+          <p>Big thanks to <a href="https://github.com/Nobu-sh">Nobu-sh</a> and <a href="https://github.com/PMK744">PMK744</a>!</p>
         </div>
       </div>
     </div>
@@ -60,6 +60,8 @@ function HomepageHeader() {
 
 export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
+  const [show, setShow] = React.useState<boolean>(true)
+
   return (
     <Layout
       title={`Docs`}
