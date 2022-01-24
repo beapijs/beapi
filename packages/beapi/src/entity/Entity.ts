@@ -160,4 +160,12 @@ export class Entity {
   public triggerEvent(event: string): void {
     this._IEntity.triggerEvent(event)
   }
+
+  public getRotation(): number {
+    return this._IEntity.bodyRotation
+  }
+
+  public getHeadLocation(): ILocation {
+    return this._IEntity.headLocation
+  }
 }
