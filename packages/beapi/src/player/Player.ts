@@ -177,4 +177,12 @@ export class Player {
   public triggerEvent(event: string): void {
     this._IPlayer.triggerEvent(event)
   }
+
+  public getRotation(): number {
+    return this._IPlayer.bodyRotation
+  }
+
+  public getHeadLocation(): ILocation {
+    return this._IPlayer.headLocation
+  }
 }
