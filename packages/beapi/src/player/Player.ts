@@ -173,4 +173,8 @@ export class Player {
   public teleportFacing(location: ILocation, dimension: IDimension, facingLocation: ILocation): void {
     this._IPlayer.teleportFacing(location, dimension, facingLocation)
   }
+
+  public triggerEvent(event: string): void {
+    this._IPlayer.triggerEvent(event)
+  }
 }
