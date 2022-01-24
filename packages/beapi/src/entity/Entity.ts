@@ -3,6 +3,7 @@ import {
   Entity as IEntity,
   EntityHealthComponent,
   EntityInventoryComponent,
+  Location as ILocation,
   world,
   BlockLocation,
   Vector,
@@ -146,5 +147,13 @@ export class Entity {
 
   public setVelocity(velocity: Vector): void {
     this._IEntity.setVelocity(velocity)
+  }
+
+  public teleport(location: ILocation, dimension: IDimension, xrot: number, yrot: number): void {
+    this._IEntity.teleport(location, dimension, xrot, yrot)
+  }
+
+  public teleportFacing(location: ILocation, dimension: IDimension, facingLocation: ILocation): void {
+    this._IEntity.teleportFacing(location, dimension, facingLocation)
   }
 }
