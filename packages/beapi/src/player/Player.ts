@@ -4,6 +4,8 @@ import {
   EntityHealthComponent,
   EntityInventoryComponent,
   Player as IPlayer,
+  Location as ILocation,
+  Vector,
   world,
 } from 'mojang-minecraft'
 import type { Entity } from '..'
@@ -154,5 +156,33 @@ export class Player {
 
   public kick(reason = 'You were kicked from the game!'): void {
     this.destroy(reason)
+  }
+
+  public getVelocity(): Vector {
+    return this._IPlayer.velocity
+  }
+
+  public setVelocity(velocity: Vector): void {
+    this._IPlayer.setVelocity(velocity)
+  }
+
+  public teleport(location: ILocation, dimension: IDimension, xrot: number, yrot: number): void {
+    this._IPlayer.teleport(location, dimension, xrot, yrot)
+  }
+
+  public teleportFacing(location: ILocation, dimension: IDimension, facingLocation: ILocation): void {
+    this._IPlayer.teleportFacing(location, dimension, facingLocation)
+  }
+
+  public triggerEvent(event: string): void {
+    this._IPlayer.triggerEvent(event)
+  }
+
+  public getRotation(): number {
+    return this._IPlayer.bodyRotation
+  }
+
+  public getHeadLocation(): ILocation {
+    return this._IPlayer.headLocation
   }
 }

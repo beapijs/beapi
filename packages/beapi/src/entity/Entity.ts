@@ -3,8 +3,10 @@ import {
   Entity as IEntity,
   EntityHealthComponent,
   EntityInventoryComponent,
+  Location as ILocation,
   world,
   BlockLocation,
+  Vector,
 } from 'mojang-minecraft'
 import type { Client } from '../client'
 import type { Location, Dimension, ServerCommandResponse } from '../types'
@@ -137,5 +139,33 @@ export class Entity {
 
   public getHealth(): EntityHealthComponent {
     return this._IEntity.getComponent('minecraft:health') as EntityHealthComponent
+  }
+
+  public getVelocity(): Vector {
+    return this._IEntity.velocity
+  }
+
+  public setVelocity(velocity: Vector): void {
+    this._IEntity.setVelocity(velocity)
+  }
+
+  public teleport(location: ILocation, dimension: IDimension, xrot: number, yrot: number): void {
+    this._IEntity.teleport(location, dimension, xrot, yrot)
+  }
+
+  public teleportFacing(location: ILocation, dimension: IDimension, facingLocation: ILocation): void {
+    this._IEntity.teleportFacing(location, dimension, facingLocation)
+  }
+
+  public triggerEvent(event: string): void {
+    this._IEntity.triggerEvent(event)
+  }
+
+  public getRotation(): number {
+    return this._IEntity.bodyRotation
+  }
+
+  public getHeadLocation(): ILocation {
+    return this._IEntity.headLocation
   }
 }
