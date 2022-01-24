@@ -1,0 +1,185 @@
+---
+sidebar_position: 4
+title: Migrating To V2
+---
+
+## Overview
+When transferring BeAPI to utilize NPM's create app features we realized how
+awkward BeAPI's API was in general. It was kinda hard to understand and
+even furthermore hard to document. With this in mind, we decided to completely
+refactor BeAPI to be object-oriented rather than well... *a mess*.
+
+## Create App
+Before you do anything, it is recommended to follow the installing guide located
+[here](/docs/starting#scaffolding-your-first-project) in a new project.
+
+BeAPI is an NPM module now therefore you will not be importing files locally anymore.
+
+```ts
+import { ... } from 'beapi-core';
+```
+
+## Client
+Everything has been changed to an object-oriented style. The main class where
+everything is located is now exported as [Client](/docs/classes/client).
+
+```ts
+import { client } from 'beapi-core';
+```
+
+## Database
+We have added a new memory-based persistent database with better performance and
+more reliability. The import remains similar to before.
+
+```ts
+import { Database } from 'beapi-core';
+```
+
+All database methods have changed however, see [here](/docs/classes/database) for more info.
+
+## Intervals and Timeouts
+The Interval and Timeout methods now are added to `globalThis` therefore they do not need to
+be imported anymore. You can use them as if it is vanilla Javascript.
+
+```ts
+const interval = setInterval(() => {
+  console.log('Interval!');
+}, 100);
+
+clearInterval(interval);
+
+const timeout = setTimeout(() => {
+  console.log('Timeout!');
+}, 100);
+
+clearTimeout(timeout);
+```
+
+## Console
+We once again targeted `globalThis` to polyfill most common console methods.
+
+```ts
+console.log('Log');
+console.warn('Warn');
+console.error('Error');
+console.info('Info');
+console.debug('Debug');
+```
+
+## Utils
+Some useful utils are exported as normal methods through the main export.
+
+```ts
+import {
+  between,
+  binToString,
+  stringToBin,
+  deprecated, // Used by BeAPI event checker, serves no other purpose.
+  getAll,
+  runCommand,
+  genUuid,
+  verifyUuid,
+} from 'beapi-core';
+```
+
+## Classes
+All classes are exported and accessible. Most classes do not need to be constructed by you as a client.
+
+```ts
+import { Player } from 'beapi-core';
+```
+
+## Types
+All types are exported and also accessible.
+
+```ts
+import type { Awaitable } from 'beapi-core';
+```
+
+## Common Things That Changed
+
+### executeCommand
+❌
+```ts
+import { executeCommand } from '...';
+executeCommand(...);
+```
+
+✔️
+```ts
+import { client } from 'beapi-core';
+client.executeCommand(...);
+```
+✔️
+```ts
+import { runCommand } from 'beapi-core';
+runCommand(...);
+```
+
+### Commands
+❌
+```ts
+import { commands } from '...';
+commands.registerCommand(...);
+```
+
+✔️
+```ts
+import { client } from 'beapi-core';
+client.commands.register(...);
+```
+
+### Events
+❌
+```ts
+import { events } from '...';
+events.on(...);
+```
+
+✔️
+```ts
+import { client } from 'beapi-core';
+client.on(...);
+```
+
+### World
+❌
+```ts
+import { world } from '...';
+world.sendMessage(...);
+```
+
+✔️
+```ts
+import { client } from 'beapi-core';
+client.world.sendMessage(...);
+```
+
+### Entities
+❌
+```ts
+import { entities } from '...';
+entities.getEntityList(...);
+```
+
+✔️
+```ts
+import { client } from 'beapi-core';
+client.entities.getAll(...);
+```
+
+### Players
+❌
+```ts
+import { players } from '...';
+players.getEntityList(...);
+```
+
+✔️
+```ts
+import { client } from 'beapi-core';
+client.players.getAll(...);
+```
+
+### Socket
+Removed...

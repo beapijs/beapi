@@ -1,0 +1,130 @@
+---
+title: CommandManager
+---
+
+The main hub for creating and managing commands.
+:::warning
+
+You should never have to construct this class yourself.
+
+```js
+import { client } from 'beapi-core';
+
+client.commands.register(...);
+```
+
+:::
+
+## Constructor
+
+```js
+new CommandManager(client);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| client | [Client](/docs/classes/client) |  ❌   | `null`  | Constructed [Client](/docs/classes/client) instance. |
+
+## Methods
+
+### createHandler
+Creates a new command handler allowing for a different prefix and more customizations.
+```js
+createHandler(prefix);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| prefix | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Prefix new handler should use. |
+
+#### Returns
+[CommandHandler](/docs/classes/commandhandler)
+___
+
+### removeHandler
+Removes a custom handler.
+```js
+removeHandler(prefix);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| prefix | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Prefix of handler. |
+
+#### Returns
+void
+___
+
+### getHandler
+Gets a custom handler.
+```js
+getHandler(prefix);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| prefix | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Prefix of handler. |
+
+#### Returns
+[CommandHandler](/docs/classes/commandhandler) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___
+
+### setHandler
+Sets a custom handler.
+```js
+setHandler(prefix, handler);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| prefix | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Prefix of handler. |
+| handler | [CommandHandler](/docs/classes/commandhandler) |  ❌   | `undefined`  | [CommandHandler](/docs/classes/commandhandler) instance. |
+
+#### Returns
+void
+___
+
+### register
+Register a command with the default handler.
+```js
+register(options, cb);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| options | [CommandOptions](/docs/typedefs/commandoptions) |  ❌   | `undefined`  | Options for command. |
+| cb | [CommandCallback](/docs/typedefs/CommandCallback) |  ❌   | `undefined`  | Callback function called on usage. |
+
+#### Returns
+void
+___
+
+### unregister
+Unregister a command on the default handler.
+```js
+unregister(name);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Name of the command. |
+
+#### Returns
+void
+___
+
+### get
+Gets a command on the default handler.
+```js
+get(name);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Name of the command. |
+
+#### Returns
+[Command](/docs/typedefs/command) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___
+
+### getAll
+Gets all commands on the default handler.
+```js
+getAll();
+```
+
+#### Returns
+[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)<[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Command](/docs/typedefs/command)>
+___

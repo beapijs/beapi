@@ -2,29 +2,24 @@
 sidebar_position: 1
 title: Getting Started
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
 
 ## Overview
+BeAPI (an abbreviation for "Bedrock edition API") is a tool that aims for a faster and more reliable
+development experience when working with Minecraft Bedrock edition gametests. We achieve these goals
+by putting together some of the most brilliant minds in the Minecraft Bedrock developer community to
+scheme up alternative ways to utilize the gametest framework so it's easier for you!
 
-BeAPI (an abbreviation for "Bedrock edition API") is a tool that aims for a faster and more reliable development expierence when working with Minecraft Bedrock edition gametests. It currently consists of two major parts:
-
-- `beapi-core`: is our core module that provides a handlful of features gametest does not offer at this time. It is also bundled with some cli commands to make development easier.
-
-- `create-beapi`: is our module create app module which enabled clients to easily scaffold their first BeAPI project.
-
-
-## Language Support
-
-With gametest support being [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) supported only we are only really left with two primary options when it comes to language support.
-
-The supported template presets are:
-
-| Javascript | Typescript |
-| :--------: | :--------: |
-| vanilla    | vanilla    |
+### How It Works
+BeAPI uses NPM's cli create app feature to provide you with a setup to scaffold your projects. This
+allows for a clean working environment separated from the core codebase. We also provide a cli for
+building and bundling your packs.
 
 ## Scaffolding Your First Project
 
-:::caution Version Warning
+:::info Version
 
 BeAPI requires [Node.js](https://nodejs.org/) version >= 12.0.0.
 
@@ -32,61 +27,99 @@ For best support it is recommended you install [Node.js LTS](https://nodejs.org/
 
 :::
 
-To scaffold your first project you will need to navigate to your Minecraft `development_behavior_packs` folder which is usually located at `C:\Users\{USER}\AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_behavior_packs`
+### Preparation
+
+To scaffold your first project you will need to navigate to your Minecraft `development_behavior_packs`
+folder. You can get to this folder by pressing `Win + R` and pasting this:
+
+```
+%LocalAppData%\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\games\com.mojang\development_behavior_packs
+```
+
+You will then need to open a terminal in this directory to proceed to the next step!
 
 ### Installing
 
-When creating BeAPI our main concern was simplicity for our end users when attempting to use our package. After some scheming we ultimetly decided NPM modules would be the best route.
+When creating BeAPI our main concern was simplicity for our end users when attempting to use our package.
+After some scheming, we ultimately decided NPM modules would be the best route.
 
-Depending on your package manager, you will need to run one of the following commands.
-
-NPM:
-```bash
-npm init beapi@latest
-```
-Yarn:
-```bash
-yarn create beapi@latest
-```
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    <CodeBlock className="language-bash">
+      npm init beapi@latest
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    <CodeBlock className="language-bash">
+      yarn create beapi@latest
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    <CodeBlock className="language-bash">
+      pnpm create beapi@latest
+    </CodeBlock>
+  </TabItem>
+</Tabs>
 
 ![createProject](./public/createProject.gif)
 
 ### Building
-Minecrafts gametest module linker is not the best thing known to man kind. To make everything function correctly you'll need to build the project every time you make a change so BeAPI can transpile its core module into your code.
+Minecraft's gametest module linker is not the best thing known to mankind. To make everything function
+correctly you'll need to build the project every time you make a change so BeAPI can transpile its core
+module into your code.
 
-NPM:
-```bash
-$ npm run build
-```
-Yarn:
-```bash
-$ yarn build
-```
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    <CodeBlock className="language-bash">
+      npm run build
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    <CodeBlock className="language-bash">
+      yarn run build
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    <CodeBlock className="language-bash">
+      pnpm run build
+    </CodeBlock>
+  </TabItem>
+</Tabs>
 
 ![buildProject](./public/buildProject.gif)
 
 ### Bundling
-Once you feel you've finished your package and you're ready to prepare it for production and distribution you may want to bundle it into a `.mcpack` first.
+Once you feel you've finished your package and you're ready to prepare it for production and distribution
+you may want to bundle it into a `.mcpack` first.
 
-NPM:
-```bash
-$ npm run bundle
-```
-Yarn:
-```bash
-$ yarn bundle
-```
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    <CodeBlock className="language-bash">
+      npm run bundle
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    <CodeBlock className="language-bash">
+      yarn run bundle
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    <CodeBlock className="language-bash">
+      pnpm run bundle
+    </CodeBlock>
+  </TabItem>
+</Tabs>
 
 ![bundleProject](./public/bundleProject.gif)
 
 #### How Do I Tell The Bundler To Include More Files?
-We realized when making Minecraft packs users may want to add more files to the final pack.
-So we made the bundler parse a property in your package called `include`.
-The bundler will recognize and recursively add any files or folders to the final bundled package.
+We realized when making Minecraft packs; users may want to add more files to the final pack.
+So we made the bundler parse a property in your package called `include`. The bundler will
+recognize and recursively add any files or folders to the final bundled package.
 
 This field should look like so:
 
-```json
+```json title="package.json"
 {
   "include": [
     "scripts",

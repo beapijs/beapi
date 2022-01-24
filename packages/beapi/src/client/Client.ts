@@ -71,6 +71,7 @@ export class Client extends EventEmitter {
     }
   }
 
+  // @ts-ignore
   public loadEvent(event: new (client: Client) => AbstractEvent): void {
     const builtEvent = new event(this)
 
@@ -108,7 +109,7 @@ export class Client extends EventEmitter {
         err: false,
       }
     } catch (error) {
-      if (debug) console.warn(`[BeAPI] [executeCommand]: ${String(error)}`)
+      if (debug) console.info(`[executeCommand]: ${String(error)}`)
 
       return {
         statusMessage: String(error),
