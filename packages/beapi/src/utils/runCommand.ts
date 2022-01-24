@@ -1,9 +1,10 @@
 import { world } from 'mojang-minecraft'
 import type { ServerCommandResponse } from '..'
+import type { Dimension } from '../types'
 
-export function runCommand(cmd: string, debug = false): ServerCommandResponse {
+export function runCommand(cmd: string, dimension: Dimension = 'overworld', debug = false): ServerCommandResponse {
   try {
-    const command = world.getDimension('overworld').runCommand(cmd)
+    const command = world.getDimension(dimension).runCommand(cmd)
 
     return {
       statusMessage: command.statusMessage,

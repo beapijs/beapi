@@ -7,19 +7,19 @@ const log = console.warn
 // @ts-expect-error
 globalThis.console = {
   log(message: string, ...optionalParams: string[]) {
-    log(`[BeAPI] [LOG]: ${message} ${optionalParams.join(' ')}`)
+    log(`§9[BeAPI]§r §b[LOG]:§r ${message} ${optionalParams.join(' ')}`)
   },
   error(message: string, ...optionalParams: string[]) {
-    log(`[BeAPI] [ERROR]: ${message} ${optionalParams.join(' ')}`)
+    log(`§9[BeAPI]§r  §c[ERROR]:§r ${message} ${optionalParams.join(' ')}`)
   },
   warn(message: string, ...optionalParams: string[]) {
-    log(`[BeAPI] [WARN]: ${message} ${optionalParams.join(' ')}`)
+    log(`§9[BeAPI]§r  §g[WARN]:§r ${message} ${optionalParams.join(' ')}`)
   },
   info(message: string, ...optionalParams: string[]) {
-    log(`[BeAPI] [INFO]: ${message} ${optionalParams.join(' ')}`)
+    log(`§9[BeAPI]§r  §a[INFO]:§r ${message} ${optionalParams.join(' ')}`)
   },
   debug(message: string, ...optionalParams: string[]) {
-    log(`[BeAPI] [DEBUG]: ${message} ${optionalParams.join(' ')}`)
+    log(`§9[BeAPI]§r  §d[DEBUG]:§r ${message} ${optionalParams.join(' ')}`)
   },
 }
 

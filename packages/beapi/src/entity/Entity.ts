@@ -1,10 +1,11 @@
-import type {
+import {
   Dimension as IDimension,
   Entity as IEntity,
   EntityHealthComponent,
   EntityInventoryComponent,
+  world,
+  BlockLocation,
 } from 'mojang-minecraft'
-import { BlockLocation } from 'mojang-minecraft'
 import type { Client } from '../client'
 import type { Location, Dimension, ServerCommandResponse } from '../types'
 
@@ -39,6 +40,10 @@ export class Entity {
 
   public getNameTag(): string {
     return this._IEntity.nameTag
+  }
+
+  public setNameTag(nametag: string): void {
+    this._IEntity.nameTag = nametag
   }
 
   public getTags(): string[] {
@@ -77,6 +82,13 @@ export class Entity {
     }
   }
 
+  public getScore(objective: string): number {
+    const command = this.executeCommand(`scoreboard players test @s "${objective}" * *`)
+    if (command.err) return 0
+
+    return parseInt(String(command.statusMessage?.split(' ')[1]), 10)
+  }
+
   public getLocation(): Location {
     const pos = this._IEntity.location
 
@@ -92,14 +104,29 @@ export class Entity {
   }
 
   public getDimensionName(): Dimension {
-    const block1 = this.getDimension().getBlock(new BlockLocation(this.getLocation().x, 127, this.getLocation().z)).id
-    const block2 = this.getDimension().getBlock(new BlockLocation(this.getLocation().x, 0, this.getLocation().z)).id
-    const block3 = this.getDimension().getBlock(new BlockLocation(this.getLocation().x, -64, this.getLocation().z)).id
-    if (block1 === 'minecraft:air' && block2 === 'minecraft:air' && block3 === 'minecraft:bedrock') return 'overworld'
-    else if (block1 === 'minecraft:bedrock' && block2 === 'minecraft:bedrock' && block3 === 'minecraft:air') {
-      return 'nether'
-    }
-    return 'the end'
+    const overworld = world
+      .getDimension('overworld')
+      .getEntitiesAtBlockLocation(
+        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
+      )
+      .find((x) => x === this._IEntity)
+    const nether = world
+      .getDimension('nether')
+      .getEntitiesAtBlockLocation(
+        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
+      )
+      .find((x) => x === this._IEntity)
+    const theEnd = world
+      .getDimension('the end')
+      .getEntitiesAtBlockLocation(
+        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
+      )
+      .find((x) => x === this._IEntity)
+    if (overworld) return 'overworld'
+    if (nether) return 'nether'
+    if (theEnd) return 'the end'
+
+    return 'overworld'
   }
 
   public getInventory(): EntityInventoryComponent | undefined {

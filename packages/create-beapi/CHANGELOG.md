@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.0.1...create-beapi@2.0.2) (2022-01-17)
+
+
+### Bug Fixes
+
+* bump ver ([8b4c09b](https://github.com/MCBE-Utilities/BeAPI/commit/8b4c09bc8538cc17992d39a288ea85476ecc89d8))
+
+
+
+
+
+## [2.0.1](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.0.0...create-beapi@2.0.1) (2022-01-17)
+
+
+### Bug Fixes
+
+* bump ver ([d11e4dc](https://github.com/MCBE-Utilities/BeAPI/commit/d11e4dcf85af63ac632ebb09daa5b353d03b88fd))
+* **core:** global var ([9e72b9e](https://github.com/MCBE-Utilities/BeAPI/commit/9e72b9ee78d86ebb7d63b13674ef22b2dc9257a1))
+* spelling errors ([6e8475b](https://github.com/MCBE-Utilities/BeAPI/commit/6e8475b1f65e07e6ae29f0e10874779b5d2fc081))
+
+
+
+
+
 # [2.0.0](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@1.3.0...create-beapi@2.0.0) (2022-01-16)
 
 

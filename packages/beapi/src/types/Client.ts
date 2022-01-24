@@ -1,6 +1,6 @@
 import type { Player } from '../player'
 import type { Entity } from '../entity'
-import type { Block, BlockLocation, Dimension, ItemStack } from 'mojang-minecraft'
+import type { Block, BlockLocation, Dimension as IDimension, ItemStack } from 'mojang-minecraft'
 
 export interface ClientEvents {
   OnChat: [OnChatEvent]
@@ -23,6 +23,7 @@ export interface ClientEvents {
   StoppedBurning: [Player]
   Jump: [Player]
   Landed: [Player]
+  Explosion: [ExplosionEvent]
   StartedMoving: [Player]
   StoppedMoving: [Player]
   StartedRiding: [Player]
@@ -72,14 +73,14 @@ export interface ClientBlockBreakEvent {
   player: Player
   block: string
   blockLocation: BlockLocation
-  dimension: Dimension
+  dimension: IDimension
   cancel: CancelMethod
 }
 
 export interface ClientBlockEvent {
   player: Player
   block: Block
-  dimension: Dimension
+  dimension: IDimension
   cancel: CancelMethod
 }
 
@@ -101,6 +102,13 @@ export interface PlayerTagEvent {
 export interface EntityTagEvent {
   entity: Entity
   tag: string
+}
+
+export interface ExplosionEvent {
+  source: Entity | undefined
+  dimension: IDimension
+  impactedBlocks: BlockLocation[]
+  cancel: CancelMethod
 }
 
 export type CancelMethod = () => void

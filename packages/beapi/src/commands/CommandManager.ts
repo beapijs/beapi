@@ -39,12 +39,16 @@ export class CommandManager {
     )
 
     this._client.on('OnChat', (data) => {
-      if (!data.sender) return
+      if (!data.sender || !data.message.startsWith('-')) return
       const result = parse(defaultPrefix, data.message)
       const command =
         this._commands.get(result.command) ??
         Array.from(this._commands.values()).find((i) => i.options.aliases?.includes(result.command))
-      if (!command) return
+      if (!command) {
+        data.sender.sendMessage("§c§cThis command doesn't exists!")
+
+        return data.cancel()
+      }
       command.cb({
         sender: data.sender,
         args: result.args,
@@ -68,6 +72,10 @@ export class CommandManager {
 
   public getHandler(prefix: string): CommandHandler | undefined {
     return this._handlers.get(prefix)
+  }
+
+  public getHandlers(): Map<string, CommandHandler> {
+    return this._handlers
   }
 
   public setHandler(prefix: string, handler: CommandHandler): void {
@@ -124,12 +132,16 @@ export class CommandHandler {
     )
 
     this._client.on('OnChat', (data) => {
-      if (!data.sender) return
+      if (!data.sender || !data.message.startsWith(this.getPrefix())) return
       const result = parse(this.prefix, data.message)
       const command =
         this._commands.get(result.command) ??
         Array.from(this._commands.values()).find((i) => i.options.aliases?.includes(result.command))
-      if (!command) return
+      if (!command) {
+        data.sender.sendMessage("§c§cThis command doesn't exists!")
+
+        return data.cancel()
+      }
       command.cb({
         sender: data.sender,
         args: result.args,

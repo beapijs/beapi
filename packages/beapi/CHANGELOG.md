@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.0.1...beapi-core@2.1.0) (2022-01-17)
+
+
+### Bug Fixes
+
+* **actor:** fix getDimensionName logic ([f71974b](https://github.com/MCBE-Utilities/BeAPI/commit/f71974b116eca32cbfc87e8fcae2b89976a225fc))
+* **actor:** updated getDimensionName logic ([bee5488](https://github.com/MCBE-Utilities/BeAPI/commit/bee5488bca8175ee6725b7a124eae6de83c07f46))
+* **core:** linker for orgs ([ee509af](https://github.com/MCBE-Utilities/BeAPI/commit/ee509affdf12fe812059df7ff16c1feb00a9e9b3))
+* **utils:** added dimension field for runCommand ([d309804](https://github.com/MCBE-Utilities/BeAPI/commit/d309804d44723ba936be886f4789548d4cbf0b76))
+
+
+### Features
+
+* **events:** added Explosion ([be77378](https://github.com/MCBE-Utilities/BeAPI/commit/be7737808c45b4bd3cd381779db178c423bd97e4))
+
+
+
+
+
+## [2.0.1](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.0.0...beapi-core@2.0.1) (2022-01-17)
+
+
+### Bug Fixes
+
+* **core:** global var ([9e72b9e](https://github.com/MCBE-Utilities/BeAPI/commit/9e72b9ee78d86ebb7d63b13674ef22b2dc9257a1))
+* spelling errors ([6e8475b](https://github.com/MCBE-Utilities/BeAPI/commit/6e8475b1f65e07e6ae29f0e10874779b5d2fc081))
+
+
+
+
+
 # [2.0.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@1.5.0...beapi-core@2.0.0) (2022-01-16)
 
 

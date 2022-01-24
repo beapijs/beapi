@@ -1,6 +1,5 @@
-import { world } from 'mojang-minecraft'
+import { world, BlockBreakEvent } from 'mojang-minecraft'
 import type { Client } from '../client'
-import type { BlockEvent } from '../types'
 
 import AbstractEvent from './AbstractEvent'
 export class BlockDestroyed extends AbstractEvent {
@@ -19,21 +18,19 @@ export class BlockDestroyed extends AbstractEvent {
 
   public on(): void {
     if (!this._registered) {
-      // TEMP: Mojang Needs To Update Typings
-      ;(world.events as any)[this.iName].subscribe(this._logic)
+      world.events[this.iName].subscribe(this._logic)
       this._registered = true
     }
   }
 
   public off(): void {
     if (this._registered) {
-      // TEMP: Mojang Needs To Update Typings
-      ;(world.events as any)[this.iName].unsubscribe(this._logic)
+      world.events[this.iName].unsubscribe(this._logic)
       this._registered = false
     }
   }
 
-  protected __logic(arg: BlockEvent): void {
+  protected __logic(arg: BlockBreakEvent): void {
     const player = this._client.players.getByIPlayer(arg.player)
     if (!player) return
 

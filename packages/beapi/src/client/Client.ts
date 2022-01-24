@@ -17,8 +17,8 @@ export interface Client {
     listener: (...args: any[]) => Awaitable<void>,
   ): void
 
-  addLisener<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>): void
-  addLisener<S extends string | symbol>(
+  addListener<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>): void
+  addListener<S extends string | symbol>(
     event: Exclude<S, keyof ClientEvents>,
     listener: (...args: any[]) => Awaitable<void>,
   ): void
