@@ -4,7 +4,7 @@ import {
   Entity as MCEntity,
 } from 'mojang-minecraft'
 import {
-  Demensions,
+  Dimensions,
   Location,
 } from '../../types/BeAPI.i'
 import { build } from '../version.js'
@@ -16,7 +16,7 @@ import { entities } from '../BeAPI.js'
 export class WorldManager {
   constructor () {
     if (build == "dev") {
-      this.sendMessage("BeAPI in Development Mode...") 
+      this.sendMessage("BeAPI in Development Mode...")
     }
   }
   public getTicks(): number {
@@ -25,11 +25,11 @@ export class WorldManager {
   public sendMessage(message: string): void {
     executeCommand(`tellraw @a {"rawtext":[{"text":"${message}"}]}`)
   }
-  public getEntities(dimension: Demensions, location: Location): MCEntity[] {
+  public getEntities(dimension: Dimensions, location: Location): MCEntity[] {
     return World.getDimension(dimension).getEntitiesAtBlockLocation(new BlockLocation(location.x, location.y, location.z))
   }
-  public spawnEntity(entity: string, pos: Location, name = ""): Entity {
-    executeCommand(`summon ${entity} "${name}" ${pos.x} ${pos.y} ${pos.z}`)
+  public spawnEntity(entity: string, dimension: Dimensions, location: Location, name = ""): Entity {
+    executeCommand(`summon ${entity} "${name}" ${location.x} ${location.y} ${location.z}`, dimension)
     const ent = entities.getLatestEntity()
 
     return ent
