@@ -4,10 +4,10 @@ import {
 } from 'mojang-minecraft'
 import {
   ExecuteCommandResponse,
-  Demensions,
+  Dimensions,
 } from '../../types/BeAPI.i'
 
-function executeCommand(command: string, dimension?: Demensions, debug = false): ExecuteCommandResponse {
+function executeCommand(command: string, dimension?: Dimensions, debug = false): ExecuteCommandResponse {
   try {
     if (!dimension) dimension = "overworld"
     const cmd = Commands.run(command, World.getDimension(dimension))

@@ -163,7 +163,7 @@ export interface ChatCommand {
   command: string
 }
 
-export type Demensions = (
+export type Dimensions = (
   "overworld" |
   "nether" |
   "the end"
