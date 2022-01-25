@@ -13,7 +13,6 @@ import type { Client } from '../client'
 import type { Location, Dimension, Gamemode, ServerCommandResponse } from '../types'
 
 export class Player {
-  [x: string]: any
   protected readonly _client: Client
   protected readonly _IPlayer: IPlayer
   public prevPlayerInVector: Player | undefined
