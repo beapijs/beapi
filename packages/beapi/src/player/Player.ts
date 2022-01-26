@@ -63,6 +63,10 @@ export class Player {
     this.executeCommand(`tellraw @s {"rawtext":[{"text":"${message}"}]}`)
   }
 
+  public sendRawMessage(message: Array<object>): void {
+    this._client.executeCommand(`tellraw @s {"rawtext":[${JSON.stringify(message)}]}`)
+  }
+
   public executeCommand(cmd: string, debug = false): ServerCommandResponse {
     try {
       const command = this._IPlayer.runCommand(cmd)
