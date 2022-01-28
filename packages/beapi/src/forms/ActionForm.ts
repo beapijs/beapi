@@ -22,6 +22,7 @@ export class ActionForm {
 
   public send(callback?: (res: ActionFormResponse) => void): void {
     this.form.title(this.title)
+    this.form.body(this.body)
     this.form
       .show(this.player.getIPlayer())
       .then((res: ActionFormResponse) => {
