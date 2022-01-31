@@ -37,6 +37,8 @@ export interface ClientEvents {
   StartedSwimming: [Player]
   StoppedSwimming: [Player]
   Swing: [Player]
+  Death: [Player]
+  Respawn: [Player]
   EntityAttacked: [EntityInViewVectorEvent]
   PlayerAttacked: [PlayerInViewVectorEvent]
 }
