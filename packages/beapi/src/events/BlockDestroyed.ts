@@ -36,8 +36,8 @@ export class BlockDestroyed extends AbstractEvent {
 
     this._client.emit(this.name, {
       player,
-      block: (arg as any).brokenBlockPermutation.type.id,
-      blockLocation: arg.block.location,
+      block: arg.block,
+      brokenBlock: arg.brokenBlockPermutation,
       dimension: arg.dimension,
       cancel() {
         // TEMP: Workaround Until Mojang Adds Block Destroyed Cancel Event

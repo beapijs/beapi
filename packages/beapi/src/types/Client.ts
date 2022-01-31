@@ -1,6 +1,6 @@
 import type { Player } from '../player'
 import type { Entity } from '../entity'
-import type { Block, BlockLocation, Dimension as IDimension, ItemStack } from 'mojang-minecraft'
+import type { Block, BlockLocation, BlockPermutation, Dimension as IDimension, ItemStack } from 'mojang-minecraft'
 
 export interface ClientEvents {
   OnChat: [OnChatEvent]
@@ -73,8 +73,8 @@ export interface ItemInteractEvent {
 
 export interface ClientBlockBreakEvent {
   player: Player
-  block: string
-  blockLocation: BlockLocation
+  block: Block
+  brokenBlock: BlockPermutation
   dimension: IDimension
   cancel: CancelMethod
 }
