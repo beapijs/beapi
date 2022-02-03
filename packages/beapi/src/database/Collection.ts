@@ -65,18 +65,24 @@ export class Collection<K extends string, V> {
   }
 
   public save(): void {
-    const raw = Database.getRawCollection(this.database, this.collection)
-    if (raw) {
+    const raw = Database.getRawCollectionChunks(this.database, this.collection)
+    for (const chunk of raw) {
       const remove = runCommand(
-        `scoreboard players reset "${Database.toRaw(raw.id, raw.name, JSON.parse(binToString(raw.bin)) as object)}" ${
-          this.database
-        }`,
+        `scoreboard players reset "${Database.toRaw(
+          chunk.id,
+          chunk.name,
+          JSON.parse(binToString(chunk.bin)) as object,
+        )}" ${this.database}`,
       )
       if (remove.err) throw new Error(remove.statusMessage)
     }
-    const add = runCommand(
-      `scoreboard players add "${Database.toRaw(this.database, this.collection, this.data)}" ${this.database} 0`,
-    )
-    if (add.err) throw new Error(add.statusMessage)
+    for (const [key, value] of this.entries()) {
+      const add = runCommand(
+        `scoreboard players add "${Database.toRaw(this.database, this.collection, { [key]: value })}" ${
+          this.database
+        } 0`,
+      )
+      if (add.err) throw new Error(add.statusMessage)
+    }
   }
 }

@@ -17,10 +17,20 @@ export class Database {
 
     // Load All Collections For This DB
     this.collections = new Map(
-      Database.getRawCollections(id).map((i) => [
-        i.name,
-        new Collection(i.id, i.name, JSON.parse(binToString(i.bin) || '{}') as object),
-      ]),
+      Database.getRawCollectionNames().map((name) => {
+        const chunks = Database.getRawCollectionChunks(id, name)
+        const data: object = chunks
+          .map(({ bin }) => JSON.parse(binToString(bin) || '{}'))
+          .reduce(
+            (obj, item) => ({
+              ...obj,
+              ...item,
+            }),
+            {},
+          )
+
+        return [name, new Collection(id, name, data)]
+      }),
     )
   }
 
@@ -61,7 +71,7 @@ export class Database {
       statusMessage
         .match(/<{\?id=\w+&name=\w+&bin=[01 ]+}>/gi)
         ?.map((i) => Database.parseRaw(i))
-        .map((i) => [i.name, i]) ?? []
+        .map((i, index) => [index, i]) ?? []
     return new Map(collections as [string, RawCollection][])
   }
 
@@ -69,8 +79,12 @@ export class Database {
     return Array.from(Database.getRawPlayers().values()).filter((i) => i.id === id)
   }
 
-  public static getRawCollection(id: string, name: string): RawCollection | undefined {
-    return Array.from(Database.getRawPlayers().values()).find((i) => i.id === id && i.name === name)
+  public static getRawCollectionNames(): string[] {
+    return Array.from(new Set(Array.from(Database.getRawPlayers().values()).map((i) => i.name)))
+  }
+
+  public static getRawCollectionChunks(id: string, name: string): RawCollection[] {
+    return Array.from(Database.getRawPlayers().values()).filter((i) => i.id === id && i.name === name)
   }
 
   public static dbExists(id: string): boolean {
@@ -92,8 +106,8 @@ export class Database {
     if (!Database.validName(name))
       throw new Error('Collection Names Can Only Contain: Letters, Numbers, and Underscores!')
     if (this.collections.has(name)) return this.collections.get(name)!
-    const add = runCommand(`scoreboard players add "${Database.toRaw(this.id, name, {})}" ${this.id} 0`)
-    if (add.err) throw new Error(add.statusMessage)
+    // const add = runCommand(`scoreboard players add "${Database.toRaw(this.id, name, {})}" ${this.id} 0`)
+    // if (add.err) throw new Error(add.statusMessage)
     const collection = new Collection<K, V>(this.id, name, {} as Record<K, V>)
     this.collections.set(name, collection)
     return collection
