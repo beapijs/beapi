@@ -1,0 +1,378 @@
+---
+title: Player
+---
+
+The main player object for BeAPI
+
+:::warning
+
+You should never have to construct this class yourself.
+
+:::
+
+## Properties
+
+### prevPlayerInVector `READONLY`
+Returns the previous player seen in the view vector.
+
+**Type:** [Player](/docs/classes/player)
+___
+
+### prevEntityInVector `READONLY`
+Returns the previous player seen in the view vector.
+
+**Type:** [Entity](/docs/classes/entity)
+___
+
+## Methods
+
+### destroy
+Destroys the Player object.
+
+```js
+destroy();
+```
+
+#### Returns
+void
+___
+
+### getIPlayer
+Returns the vanilla player object.
+
+```js
+getIPlayer();
+```
+
+#### Returns
+[IPlayer](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/player)
+___
+
+### getName
+Returns the player's microsoft gamertag.
+
+```js
+getName();
+```
+
+#### Returns
+[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+___
+
+### getNameTag
+Returns the player's above head name.
+
+```js
+getNameTag();
+```
+
+#### Returns
+[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+___
+
+### setNameTag
+Sets the player's above head name.
+
+```js
+setNameTag(nametag);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| nametag | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Nametag for the player. |
+
+#### Returns
+void
+___
+
+### getTags
+Returns the all the tags on the player.
+
+```js
+getTags();
+```
+
+#### Returns
+[string[]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+___
+
+### hasTag
+Checks if a player has a specific tag.
+
+```js
+hasTag(tag);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| tag | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The tag to check for. |
+
+#### Returns
+[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+___
+
+### addTag
+Adds a tag to the player.
+
+```js
+addTag(tag);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| tag | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The tag to add. |
+
+#### Returns
+[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+___
+
+### removeTag
+Removes a tag from the player.
+
+```js
+removeTag(tag);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| tag | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The tag to remove. |
+
+#### Returns
+[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+___
+
+### sendMessage
+Sends a message to the player.
+
+```js
+sendMessage(message);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| message | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The message to send. |
+
+#### Returns
+void
+___
+
+### executeCommand
+Executes a command as the player.
+
+```js
+executeCommand(cmd, debug);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| cmd | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Minecraft command to execute. |
+| debug | [boolean?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) |  ✔️   | `false`  | Pipe logs to debug console. |
+
+#### Returns
+[ServerCommandResponse](/docs/typedefs/servercommandresponse)
+___
+
+### getScore
+Gets the score of an objective.
+
+```js
+getScore(objective);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| objective | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The scoreboard objective name. |
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### getGamemode
+Gets the player's current gamemode.
+
+```js
+getGamemode();
+```
+
+#### Returns
+[Gamemode](/docs/typedefs/gamemode)
+___
+
+### getLocation
+Gets the player's current location.
+
+```js
+getLocation();
+```
+
+#### Returns
+[Location](/docs/typedefs/location)
+___
+
+### getDimension
+Gets the player's current dimension.
+
+```js
+getDimension();
+```
+
+#### Returns
+[IDimension](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/dimension)
+___
+
+### getDimensionName
+Gets the player's current dimension name.
+
+```js
+getDimensionName();
+```
+
+#### Returns
+[Dimension](/docs/typedefs/dimension)
+___
+
+### getInventory
+Gets the player's inventory.
+
+```js
+getInventory();
+```
+
+#### Returns
+[Inventory](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entityinventorycomponent)
+___
+
+### getHealth
+Gets the player's health.
+
+```js
+getHealth();
+```
+
+#### Returns
+[Health](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entityhealthcomponent)
+___
+
+### getSelectedSlot
+Gets the player's current selected hotbar slot.
+
+```js
+getSelectedSlot();
+```
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### kick
+Kicks the player from the game.
+
+```js
+kick(reason);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| reason | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ✔️   | `You were kicked from the game!`  | The reason for the player being kicked. |
+
+#### Returns
+void
+___
+
+### getVelocity
+Gets the player's current velocity.
+
+```js
+getVelocity();
+```
+
+#### Returns
+[Vector](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/vector)
+___
+
+### setVelocity
+Sets the player's velocity.
+
+```js
+setVelocity(velocity);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| velocity | [Vector](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/vector) |  ❌   | `undefined`  | The velocity vector. |
+
+#### Returns
+void
+___
+
+### teleport
+Teleports the player.
+
+```js
+teleport(location, dimension, xrot, yrot);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| location | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The location to be teleported. |
+| dimension | [IDimension](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/dimension) |  ❌   | `undefined`  | The dimension to be teleported. |
+| xrot | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | The xrot of the player. |
+| yrot | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | The yrot of the player. |
+
+#### Returns
+void
+___
+
+### teleportFacing
+Teleports the player facing a direction.
+
+```js
+teleportFacing(location, dimension, facingLocaton);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| location | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The location to be teleported. |
+| dimension | [IDimension](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/dimension) |  ❌   | `undefined`  | The dimension to be teleported. |
+| facingLocation | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The facing location to be teleported. |
+
+#### Returns
+void
+___
+
+### triggerEvent
+Triggers a player event from the player.json.
+
+```js
+triggerEvent(event);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The event to be triggered. |
+
+#### Returns
+void
+___
+
+### getRotation
+Gets the rotation of the player.
+
+```js
+getRotation();
+```
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### getHeadLocation
+Gets the location of the player's head.
+
+```js
+getHeadLocation();
+```
+
+#### Returns
+[ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location)
+___
