@@ -34,6 +34,9 @@ const chalk = require('chalk')
 const { zip } = require('zip-a-folder')
 const os = require('os')
 
+// Run before cli checks
+require('./beforeCli')()
+
 const cwd = process.cwd()
 const scriptRoute = path.resolve(cwd, 'scripts')
 const beapi = fs.readFileSync(path.resolve(__dirname, '../dist', 'index.mjs'), 'utf8')
