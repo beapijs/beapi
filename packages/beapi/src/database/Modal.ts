@@ -86,7 +86,13 @@ export class Modal<T extends Record<string, any>> {
   public sync(_id: string): void {
     const document = this.documents.get(_id)
     if (!document) return
-    this.delete(_id)
+    runCommand(
+      `scoreboard players reset "${DatabaseUtil.toRaw(
+        this.name,
+        _id,
+        this.schema.serialize(document.retrieveKnownInternalData()),
+      )}" "${this.scoreboardName}"`,
+    )
     const update = runCommand(
       `scoreboard players add "${DatabaseUtil.toRaw(this.name, _id, this.schema.serialize(document.asObject()))}" "${
         this.scoreboardName
