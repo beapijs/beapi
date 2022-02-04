@@ -11,6 +11,7 @@
     "indent": ["error", 2],
     "@typescript-eslint/restrict-template-expressions": 0,
     "@typescript-eslint/no-unnecessary-condition": 0,
+    "@typescript-eslint/no-namespace": 0,
     "no-redeclare": 0
   }
 }
