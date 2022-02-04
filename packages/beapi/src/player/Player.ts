@@ -166,12 +166,14 @@ export class Player {
     this._IPlayer.setVelocity(velocity)
   }
 
-  public teleport(location: ILocation, dimension: IDimension, xrot: number, yrot: number): void {
-    this._IPlayer.teleport(location, dimension, xrot, yrot)
+  public teleport(location: Location, dimension: IDimension, xrot: number, yrot: number): void {
+    const loc = new ILocation(location.x, location.y, location.z)
+    this._IPlayer.teleport(loc, dimension, xrot, yrot)
   }
 
-  public teleportFacing(location: ILocation, dimension: IDimension, facingLocation: ILocation): void {
-    this._IPlayer.teleportFacing(location, dimension, facingLocation)
+  public teleportFacing(location: Location, dimension: IDimension, facingLocation: ILocation): void {
+    const loc = new ILocation(location.x, location.y, location.z)
+    this._IPlayer.teleportFacing(loc, dimension, facingLocation)
   }
 
   public triggerEvent(event: string): void {
