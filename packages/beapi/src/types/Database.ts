@@ -1,8 +1,5 @@
-export type Serialized<T = string> = T
-export type Deserialized<T> = T
-
-export interface RawData {
-  name: string
+export interface RawCollection {
   id: string
+  name: string
   bin: string
 }
