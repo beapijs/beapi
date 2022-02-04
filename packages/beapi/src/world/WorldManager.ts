@@ -2,7 +2,7 @@ import type { Client } from '../client'
 import type { Dimension, Location } from '../types'
 import type { Entity } from '../entity'
 import type { Player } from '../player'
-import { Block, BlockLocation, world } from 'mojang-minecraft'
+import { Block, BlockLocation, world, Dimension as IDimension } from 'mojang-minecraft'
 export class WorldManager {
   protected readonly _client: Client
   public constructor(client: Client) {
@@ -36,5 +36,9 @@ export class WorldManager {
 
   public getBlock(dimension: Dimension, location: Location): Block {
     return world.getDimension(dimension).getBlock(new BlockLocation(location.x, location.y, location.z))
+  }
+
+  public getDimension(dimension: Dimension): IDimension {
+    return world.getDimension(dimension)
   }
 }
