@@ -8,6 +8,7 @@ import {
   Vector,
   world,
 } from 'mojang-minecraft'
+import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Entity } from '..'
 import type { Client } from '../client'
 import type { Location, Dimension, Gamemode, ServerCommandResponse } from '../types'
@@ -183,5 +184,17 @@ export class Player {
 
   public getHeadLocation(): ILocation {
     return this._IPlayer.headLocation
+  }
+
+  public createModalForm(): ModalForm {
+    return new ModalForm(this)
+  }
+
+  public createMessageForm(): MessageForm {
+    return new MessageForm(this)
+  }
+
+  public createActionForm(): ActionForm {
+    return new ActionForm(this)
   }
 }
