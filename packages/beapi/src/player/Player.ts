@@ -76,6 +76,14 @@ export class Player {
     this.executeCommand(`titleraw @s subtitle {"rawtext":[{"text":"${message}"}]}`)
   }
 
+  public sendSound(sound: string, location?: Location, volume?: number, pitch?: number, maxVolume?: number): void {
+    this.executeCommand(
+      `playsound ${sound} ${location?.x ?? ''} ${location?.y ?? ''} ${location?.z ?? ''} ${volume ?? ''} ${
+        pitch ?? ''
+      } ${maxVolume ?? ''}`,
+    )
+  }
+
   public executeCommand(cmd: string, debug = false): ServerCommandResponse {
     try {
       const command = this._IPlayer.runCommand(cmd)
