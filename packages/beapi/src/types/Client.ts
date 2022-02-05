@@ -18,6 +18,7 @@ export interface ClientEvents {
   ItemUse: [ItemUseEvent]
   ItemInteract: [ItemInteractEvent]
   ItemEvent: [ItemEventEvent]
+  ItemDropped: [ItemDroppedEvent]
   EntityDestroyed: [Entity]
   EntityCreated: [Entity]
   BlockDestroyed: [ClientBlockBreakEvent]
@@ -88,6 +89,11 @@ export interface ItemEventEvent {
   item: ItemStack
   event: string
   cancel: CancelMethod
+}
+
+export interface ItemDroppedEvent {
+  player: Player
+  item: Entity
 }
 
 export interface ClientBlockBreakEvent {

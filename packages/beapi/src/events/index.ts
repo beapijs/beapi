@@ -6,6 +6,7 @@ import { BlockDestroyed } from './BlockDestroyed'
 import { ItemUse } from './ItemUse'
 import { ItemInteract } from './ItemInteract'
 import { ItemEvent } from './ItemEvent'
+import { ItemDropped } from './ItemDropped'
 import { EntityCreated } from './EntityCreated'
 import { EntityDestroyed } from './EntityDestroyed'
 import { PlayerInViewVector } from './PlayerInViewVector'
@@ -50,6 +51,7 @@ export const events = [
   ItemUse,
   ItemInteract,
   ItemEvent,
+  ItemDropped,
   EntityCreated,
   EntityDestroyed,
   PlayerInViewVector,
