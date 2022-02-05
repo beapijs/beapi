@@ -1,0 +1,324 @@
+---
+title: Entity
+---
+
+The main entity object for BeAPI
+
+:::warning
+
+You should never have to construct this class yourself.
+
+:::
+
+## Methods
+
+### destroy
+Destroys the entity object.
+
+```js
+destroy();
+```
+
+#### Returns
+void
+___
+
+### getIEntity
+Returns the vanilla entity object.
+
+```js
+getIEntity();
+```
+
+#### Returns
+[IEntity](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entity)
+___
+
+### getRuntimeId
+Returns the entity's runtime id.
+
+```js
+getRuntimeId();
+```
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### getId
+Returns the entity's mob id.
+
+```js
+getId();
+```
+
+#### Returns
+[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+___
+
+### getNameTag
+Returns the entity's above head name.
+
+```js
+getNameTag();
+```
+
+#### Returns
+[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+___
+
+### setNameTag
+Sets the entity's above head name.
+
+```js
+setNameTag(nametag);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| nametag | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Nametag for the entity. |
+
+#### Returns
+void
+___
+
+### getTags
+Returns the all the tags on the entity.
+
+```js
+getTags();
+```
+
+#### Returns
+[string[]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+___
+
+### hasTag
+Checks if a entity has a specific tag.
+
+```js
+hasTag(tag);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| tag | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The tag to check for. |
+
+#### Returns
+[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+___
+
+### addTag
+Adds a tag to the entity.
+
+```js
+addTag(tag);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| tag | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The tag to add. |
+
+#### Returns
+[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+___
+
+### removeTag
+Removes a tag from the entity.
+
+```js
+removeTag(tag);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| tag | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The tag to remove. |
+
+#### Returns
+[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+___
+
+
+### executeCommand
+Executes a command as the entity.
+
+```js
+executeCommand(cmd, debug);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| cmd | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Minecraft command to execute. |
+| debug | [boolean?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) |  ✔️   | `false`  | Pipe logs to debug console. |
+
+#### Returns
+[ServerCommandResponse](/docs/typedefs/servercommandresponse)
+___
+
+### getScore
+Gets the score of an objective.
+
+```js
+getScore(objective);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| objective | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The scoreboard objective name. |
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### getLocation
+Gets the entity's current location.
+
+```js
+getLocation();
+```
+
+#### Returns
+[Location](/docs/typedefs/location)
+___
+
+### getDimension
+Gets the entity's current dimension.
+
+```js
+getDimension();
+```
+
+#### Returns
+[IDimension](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/dimension)
+___
+
+### getDimensionName
+Gets the entity's current dimension name.
+
+```js
+getDimensionName();
+```
+
+#### Returns
+[Dimension](/docs/typedefs/dimension)
+___
+
+### getInventory
+Gets the entity's inventory.
+
+```js
+getInventory();
+```
+
+#### Returns
+[Inventory](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entityinventorycomponent)
+___
+
+### getHealth
+Gets the entity's health.
+
+```js
+getHealth();
+```
+
+#### Returns
+[Health](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entityhealthcomponent)
+___
+
+### getVelocity
+Gets the entity's current velocity.
+
+```js
+getVelocity();
+```
+
+#### Returns
+[Vector](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/vector)
+___
+
+### setVelocity
+Sets the entity's velocity.
+
+```js
+setVelocity(velocity);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| velocity | [Vector](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/vector) |  ❌   | `undefined`  | The velocity vector. |
+
+#### Returns
+void
+___
+
+### teleport
+Teleports the entity.
+
+```js
+teleport(location, dimension, xrot, yrot);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| location | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The location to be teleported. |
+| dimension | [IDimension](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/dimension) |  ❌   | `undefined`  | The dimension to be teleported. |
+| xrot | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | The xrot of the entity. |
+| yrot | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | The yrot of the entity. |
+
+#### Returns
+void
+___
+
+### teleportFacing
+Teleports the entity facing a direction.
+
+```js
+teleportFacing(location, dimension, facingLocaton);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| location | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The location to be teleported. |
+| dimension | [IDimension](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/dimension) |  ❌   | `undefined`  | The dimension to be teleported. |
+| facingLocation | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The facing location to be teleported. |
+
+#### Returns
+void
+___
+
+### triggerEvent
+Triggers a entity event from the entity.json.
+
+```js
+triggerEvent(event);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The event to be triggered. |
+
+#### Returns
+void
+___
+
+### getRotation
+Gets the rotation of the entity.
+
+```js
+getRotation();
+```
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### getHeadLocation
+Gets the location of the entity's head.
+
+```js
+getHeadLocation();
+```
+
+#### Returns
+[ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location)
+___
