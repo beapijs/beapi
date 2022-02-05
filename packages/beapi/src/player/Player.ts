@@ -68,6 +68,10 @@ export class Player {
     this.executeCommand(`titleraw @s actionbar {"rawtext":[{"text":"${message}"}]}`)
   }
 
+  public sendTitle(message: string): void {
+    this.executeCommand(`titleraw @s title {"rawtext":[{"text":"${message}"}]}`)
+  }
+
   public executeCommand(cmd: string, debug = false): ServerCommandResponse {
     try {
       const command = this._IPlayer.runCommand(cmd)
