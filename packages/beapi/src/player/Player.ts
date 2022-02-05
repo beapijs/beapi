@@ -84,6 +84,14 @@ export class Player {
     )
   }
 
+  public sendAnimation(animation: string): void {
+    this.executeCommand(`playanimation @s ${animation}`)
+  }
+
+  public sendAnimation(animation: string): void {
+    this.executeCommand(`playanimation @s ${animation}`)
+  }
+
   public executeCommand(cmd: string, debug = false): ServerCommandResponse {
     try {
       const command = this._IPlayer.runCommand(cmd)
