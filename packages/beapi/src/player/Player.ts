@@ -88,8 +88,8 @@ export class Player {
     this.executeCommand(`playanimation @s ${animation}`)
   }
 
-  public sendAnimation(animation: string): void {
-    this.executeCommand(`playanimation @s ${animation}`)
+  public sendFog(type: 'pop' | 'push' | 'remove', fogId: string, globalId: string): void {
+    this.executeCommand(`fog @s ${type} ${fogId} ${globalId}`)
   }
 
   public executeCommand(cmd: string, debug = false): ServerCommandResponse {
