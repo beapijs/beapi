@@ -7,6 +7,7 @@ import type {
   Dimension as IDimension,
   ItemStack,
   BlockPistonComponent,
+  Effect,
 } from 'mojang-minecraft'
 
 export interface ClientEvents {
@@ -50,6 +51,7 @@ export interface ClientEvents {
   EntityAttacked: [EntityInViewVectorEvent]
   PlayerAttacked: [PlayerInViewVectorEvent]
   Piston: [PistonEvent]
+  EffectAdded: [EffectAddedEvent]
 }
 
 export interface OnChatEvent {
@@ -135,6 +137,12 @@ export interface PistonEvent {
   extending: boolean
   piston: BlockPistonComponent
   cancel: CancelMethod
+}
+
+export interface EffectAddedEvent {
+  target: Player | Entity | undefined
+  state: number
+  effect: Effect
 }
 
 export type CancelMethod = () => void
