@@ -38,6 +38,7 @@ import { Death } from './Death'
 import { Respawn } from './Respawn'
 import { Piston } from './Piston'
 import { EffectAdded } from './EffectAdded'
+import { WeatherUpdated } from './WeatherUpdated'
 import { Tick } from './Tick'
 
 export const events = [
@@ -81,6 +82,7 @@ export const events = [
   Respawn,
   Piston,
   EffectAdded,
+  WeatherUpdated,
   Tick,
 ]
 

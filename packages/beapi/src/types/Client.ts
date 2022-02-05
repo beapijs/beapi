@@ -52,6 +52,7 @@ export interface ClientEvents {
   PlayerAttacked: [PlayerInViewVectorEvent]
   Piston: [PistonEvent]
   EffectAdded: [EffectAddedEvent]
+  WeatherUpdated: [WeatherUpdatedEvent]
 }
 
 export interface OnChatEvent {
@@ -143,6 +144,12 @@ export interface EffectAddedEvent {
   target: Player | Entity | undefined
   state: number
   effect: Effect
+}
+
+export interface WeatherUpdatedEvent {
+  lightning: boolean
+  raining: boolean
+  dimension: IDimension
 }
 
 export type CancelMethod = () => void
