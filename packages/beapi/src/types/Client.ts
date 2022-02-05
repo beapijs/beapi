@@ -16,6 +16,7 @@ export interface ClientEvents {
   Tick: [TickEvent]
   ItemUse: [ItemUseEvent]
   ItemInteract: [ItemInteractEvent]
+  ItemEvent: [ItemEventEvent]
   EntityDestroyed: [Entity]
   EntityCreated: [Entity]
   BlockDestroyed: [ClientBlockBreakEvent]
@@ -76,6 +77,13 @@ export interface ItemInteractEvent {
   direction: number
   faceLocationX: number
   faceLocationY: number
+  cancel: CancelMethod
+}
+
+export interface ItemEventEvent {
+  player: Player
+  item: ItemStack
+  event: string
   cancel: CancelMethod
 }
 
