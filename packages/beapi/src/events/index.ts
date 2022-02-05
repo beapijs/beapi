@@ -35,6 +35,7 @@ import { PlayerAttacked } from './PlayerAttacked'
 import { Explosion } from './Explosion'
 import { Death } from './Death'
 import { Respawn } from './Respawn'
+import { Piston } from './Piston'
 import { Tick } from './Tick'
 
 export const events = [
@@ -75,6 +76,7 @@ export const events = [
   Explosion,
   Death,
   Respawn,
+  Piston,
   Tick,
 ]
 

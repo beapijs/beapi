@@ -1,11 +1,18 @@
 import type { Player } from '../player'
 import type { Entity } from '../entity'
-import type { Block, BlockLocation, BlockPermutation, Dimension as IDimension, ItemStack } from 'mojang-minecraft'
+import type {
+  Block,
+  BlockLocation,
+  BlockPermutation,
+  Dimension as IDimension,
+  ItemStack,
+  BlockPistonComponent,
+} from 'mojang-minecraft'
 
 export interface ClientEvents {
   OnChat: [OnChatEvent]
   OnJoin: [Player]
-  OnLeave: [Player | string]
+  OnLeave: [Player]
   Tick: [TickEvent]
   ItemUse: [ItemUseEvent]
   ItemInteract: [ItemInteractEvent]
@@ -41,6 +48,7 @@ export interface ClientEvents {
   Respawn: [Player]
   EntityAttacked: [EntityInViewVectorEvent]
   PlayerAttacked: [PlayerInViewVectorEvent]
+  Piston: [PistonEvent]
 }
 
 export interface OnChatEvent {
@@ -110,6 +118,14 @@ export interface ExplosionEvent {
   source: Entity | undefined
   dimension: IDimension
   impactedBlocks: BlockLocation[]
+  cancel: CancelMethod
+}
+
+export interface PistonEvent {
+  block: Block
+  dimension: IDimension
+  extending: boolean
+  piston: BlockPistonComponent
   cancel: CancelMethod
 }
 
