@@ -104,6 +104,10 @@ export class Entity {
     this.executeCommand(`scoreboard players add @s "${objective}" ${amount}`)
   }
 
+  public removeScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players remove @s "${objective}" ${amount}`)
+  }
+
   public getLocation(): Location {
     const pos = this._IEntity.location
 
