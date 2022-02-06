@@ -119,6 +119,10 @@ export class Player {
     return parseInt(String(command.statusMessage?.split(' ')[1]), 10)
   }
 
+  public addScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players add @s "${objective}" ${amount}`)
+  }
+
   public getGamemode(): Gamemode {
     const gmc = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=c]`, this.getDimensionName())
     const gma = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=a]`, this.getDimensionName())
