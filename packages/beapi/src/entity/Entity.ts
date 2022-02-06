@@ -96,6 +96,10 @@ export class Entity {
     return parseInt(String(command.statusMessage?.split(' ')[1]), 10)
   }
 
+  public setScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players set @s "${objective}" ${amount}`)
+  }
+
   public getLocation(): Location {
     const pos = this._IEntity.location
 
