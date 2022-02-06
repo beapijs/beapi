@@ -100,6 +100,10 @@ export class Entity {
     this.executeCommand(`scoreboard players set @s "${objective}" ${amount}`)
   }
 
+  public addScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players add @s "${objective}" ${amount}`)
+  }
+
   public getLocation(): Location {
     const pos = this._IEntity.location
 
