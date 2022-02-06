@@ -123,6 +123,10 @@ export class Player {
     this.executeCommand(`scoreboard players add @s "${objective}" ${amount}`)
   }
 
+  public removeScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players remove @s "${objective}" ${amount}`)
+  }
+
   public getGamemode(): Gamemode {
     const gmc = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=c]`, this.getDimensionName())
     const gma = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=a]`, this.getDimensionName())
