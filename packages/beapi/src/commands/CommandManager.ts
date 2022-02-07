@@ -14,13 +14,27 @@ export class CommandManager {
     this.default()
     this._client.on('OnChat', (data) => {
       if (!data.message.startsWith(this.prefix)) return
+      let cancel = false
       data.cancel()
       const parsed = parse(this.prefix, data.message)
       const search =
         this.commandEntries().find((x) => x.options.usage === parsed.command) ??
         this.commandEntries().find((x) => x.options?.aliases?.find((x) => x === parsed.command) ?? undefined)
-      if (!search) return data.sender?.sendMessage("§cThis command doesn't exists.")
+      if (!search) {
+        data.sender?.sendMessage("§cThis command doesn't exists.")
+
+        return data.cancel()
+      }
       const command = this._commands.get(search.id)
+      this._client.emit('CommandUsed', {
+        command,
+        sender: data.sender,
+        cancel: () => {
+          cancel = true
+        },
+      })
+      if (cancel) return
+      data.cancel()
       if (!command?.args || (command?.args?.length ?? 0) === 0) return command?.execute(data.sender)
       if (parsed.args?.length !== command.args.length) {
         for (let x = 0; x !== command.args.length; x++) {

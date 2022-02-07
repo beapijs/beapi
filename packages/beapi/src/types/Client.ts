@@ -56,6 +56,7 @@ export interface ClientEvents {
   EffectAdded: [EffectAddedEvent]
   WeatherUpdated: [WeatherUpdatedEvent]
   CommandRegistered: [CommandRegisteredEvent]
+  CommandUsed: [CommandUsedEvent]
 }
 
 export interface OnChatEvent {
@@ -162,6 +163,12 @@ export interface WeatherUpdatedEvent {
 
 export interface CommandRegisteredEvent {
   command: CommandEntry | undefined
+  cancel: CancelMethod
+}
+
+export interface CommandUsedEvent {
+  command: CommandEntry | undefined
+  sender: Player | undefined
   cancel: CancelMethod
 }
 
