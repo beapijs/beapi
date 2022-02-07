@@ -132,7 +132,7 @@ export class CommandManager {
           message.push(`  §7Name: §8${command.options.name}§r`)
           message.push(`  §7Usage: §8${command.options.usage}§r §7${args.join(' ')}§r`)
           message.push(`  §7Description: §8${command.options.description}§r`)
-          message.push(`  §7Aliases: §8${command.options.aliases?.join(', ')}§r`)
+          message.push(`  §7Aliases: §8${command.options.aliases?.join(', ') ?? 'None'}§r`)
           sender?.sendMessage(message.join('\n'))
         } else {
           const message = []
