@@ -62,6 +62,16 @@ export class CommandManager {
       args: args ?? [],
       execute: callback,
     })
+    this._client.emit('CommandRegistered', {
+      command: this._commands.get(id),
+      cancel: () => {
+        this.unregister(id)
+      },
+    })
+  }
+
+  public unregister(commandId: string): void {
+    this._commands.delete(commandId)
   }
 
   public getAll(): Map<string, CommandEntry> {

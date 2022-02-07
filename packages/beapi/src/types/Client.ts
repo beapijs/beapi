@@ -1,5 +1,6 @@
 import type { Player } from '../player'
 import type { Entity } from '../entity'
+import type { CommandEntry } from './Command'
 import type {
   Block,
   BlockLocation,
@@ -54,6 +55,7 @@ export interface ClientEvents {
   Piston: [PistonEvent]
   EffectAdded: [EffectAddedEvent]
   WeatherUpdated: [WeatherUpdatedEvent]
+  CommandRegistered: [CommandRegisteredEvent]
 }
 
 export interface OnChatEvent {
@@ -156,6 +158,11 @@ export interface WeatherUpdatedEvent {
   lightning: boolean
   raining: boolean
   dimension: IDimension
+}
+
+export interface CommandRegisteredEvent {
+  command: CommandEntry | undefined
+  cancel: CancelMethod
 }
 
 export type CancelMethod = () => void
