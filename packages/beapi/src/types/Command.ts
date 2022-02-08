@@ -1,4 +1,5 @@
 import type { Player } from '../player'
+import type { CommandTypes } from '../commands'
 
 export interface CommandOptions {
   name: string
@@ -11,7 +12,7 @@ export interface CommandOptions {
 export interface CommandArguments {
   name: string
   required: boolean
-  type: typeof String | typeof Number | typeof Boolean
+  type: typeof CommandTypes[keyof typeof CommandTypes]
 }
 
 export interface CommandEntry {
@@ -25,7 +26,7 @@ export interface ParseResult {
   command: string | undefined
   args?: {
     value: any
-    type: 'string' | 'number' | 'boolean'
+    type: typeof CommandTypes[keyof typeof CommandTypes]
   }[]
 }
 

@@ -2,6 +2,7 @@
 /* eslint-disable indent */
 import type { Client } from '../client'
 import type { CommandEntry, CommandResponse, CommandOptions, ParseResult, CommandArguments } from '../types/Command'
+import { CommandTypes } from '.'
 import { genUuid } from '../utils'
 
 export class CommandManager {
@@ -52,9 +53,9 @@ export class CommandManager {
         // @ts-ignore
         const arg = parsed?.args[x]
         if (!arg) continue
-        if (arg.type !== command.args[x].type.name.toLowerCase()) {
+        if (arg.type.value() !== command.args[x].type.value()) {
           return data.sender?.sendMessage(
-            `§cType Error: Expected type \\"${command.args[x].type.name.toLowerCase()}\\" for the argument \\"${
+            `§cType Error: Expected type \\"${command.args[x].type.value()}\\" for the argument \\"${
               command.args[x].name
             }\\".`,
           )
@@ -122,9 +123,9 @@ export class CommandManager {
           const args = []
           for (const arg of command.args ?? []) {
             if (arg.required) {
-              args.push(`§7<§8${arg.name}§7: §8${arg.type.name.toLowerCase()}§7>§r`)
+              args.push(`§7<§8${arg.name}§7: §8${arg.type.value()}§7>§r`)
             } else {
-              args.push(`§7<§8${arg.name}§7?: §8${arg.type.name.toLowerCase()}§7>§r`)
+              args.push(`§7<§8${arg.name}§7?: §8${arg.type.value()}§7>§r`)
             }
           }
           const message = []
@@ -148,7 +149,7 @@ export class CommandManager {
         {
           name: 'command',
           required: false,
-          type: String,
+          type: CommandTypes.String,
         },
       ],
     )
@@ -174,33 +175,33 @@ export function parse(prefix: string, content: string): ParseResult {
     .split(' ')
     .filter((i) => i.length)
   const command = split.shift()
-  const args: { value: any; type: 'string' | 'number' | 'boolean' }[] = []
+  const args: { value: any; type: typeof CommandTypes[keyof typeof CommandTypes] }[] = []
   for (const item of split) {
     if (!Number(item)) {
       switch (item) {
         default:
           args.push({
             value: item,
-            type: 'string',
+            type: CommandTypes.String,
           })
           break
         case 'true':
           args.push({
             value: true,
-            type: 'boolean',
+            type: CommandTypes.Boolean,
           })
           break
         case 'false':
           args.push({
             value: false,
-            type: 'boolean',
+            type: CommandTypes.Boolean,
           })
           break
       }
     } else {
       args.push({
         value: parseInt(item, 10),
-        type: 'number',
+        type: CommandTypes.Number,
       })
     }
   }
