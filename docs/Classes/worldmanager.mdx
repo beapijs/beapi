@@ -1,5 +1,5 @@
 ---
-title: World
+title: WorldManager
 ---
 
 The main world object for BeAPI
@@ -8,7 +8,21 @@ The main world object for BeAPI
 
 You should never have to construct this class yourself.
 
+```js
+import { client } from 'beapi-core';
+
+client.world...;
+```
+
 :::
+
+## Constructor
+```js
+new WorldManager(client, player);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| client | [Client](/docs/classes/client) |  ❌   | `null`  | Constructed [Client](/docs/classes/client) instance. |
 
 ## Methods
 
@@ -73,7 +87,7 @@ spawnEntity(entity, location, name);
 | name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Name of the entity. |
 
 #### Returns
-[Entity](/docs/classes/entity)
+[Entity](/docs/classes/entity) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 ___
 
 ### getBlock

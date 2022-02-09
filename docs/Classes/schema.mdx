@@ -1,0 +1,46 @@
+---
+title: Schema
+---
+
+The primary building block for starting with laying out your database collections.
+
+:::info
+See [examples/databasing](/docs/examples/databasing) for getting started with databasing.
+:::
+
+## Constructor
+```js
+new Schema(definition);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| definition | [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) |  ❌   | `null`  | Schematic for what you will be storing. |
+
+
+## Methods
+
+### serialize
+Serialize object into a string.
+```js
+serialize(data);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) |  ❌   | `null`  | Data to serialize. |
+
+#### Returns
+[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+___
+
+### deserialize
+Deserialize string into object.
+```js
+deserialize(raw);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| raw | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `null`  | Raw data to deserialize. |
+
+#### Returns
+[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+___

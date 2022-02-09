@@ -1,0 +1,143 @@
+---
+title: Modal
+---
+
+The primary interaction point for handing schemas and documents.
+
+:::info
+See [examples/databasing](/docs/examples/databasing) for getting started with databasing.
+:::
+
+## Constructor
+```js
+new Modal(name, schema, scoreboardName);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Name of model (used to reference serialized data for fetching). |
+| schema | [Schema](/docs/classes/schema) |  ❌   | `undefined`  | Blueprint for modal. |
+| scoreboardName | [string?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ✔️   | `BeAPI__DATABASE`  | Name of scoreboard documents for this modal should go under. |
+
+## Properties
+
+### schema `READONLY`
+Parent schema blueprint.
+
+**Type:** [Schema](/docs/classes/schema)
+___
+### name `READONLY`
+Schema name used to categorize documents.
+
+**Type:** [Schema](/docs/classes/schema)
+___
+### scoreboardName `READONLY`
+Scoreboard name in which schema saves documents to.
+
+**Type:** [Schema](/docs/classes/schema)
+___
+
+## Methods
+
+### asArray
+Return all documents as an array.
+```js
+asArray();
+```
+#### Returns
+[Document[]](/docs/classes/document)
+___
+
+### find
+Uses partial data provided to find a specific document.
+```js
+find(partial);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| partial | [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) | ❌ | `undefined` | Partial data matcher. |
+
+#### Returns
+[Document](/docs/classes/document) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___
+
+### findAll
+Uses partial data provided to find a all matching documents.
+```js
+findAll(partial);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| partial | [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) | ❌ | `undefined` | Partial data matcher. |
+
+#### Returns
+[Document[]](/docs/classes/document)
+___
+
+### write
+Write a new document to be stored.
+```js
+write(data);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) | ❌ | `undefined` | Data to be stored. |
+
+#### Returns
+[Document](/docs/classes/document)
+___
+
+### writeBulk
+Write a new document to be stored.
+```js
+write(data);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [object[]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) | ❌ | `undefined` | Datas to be stored. |
+
+#### Returns
+[Document[]](/docs/classes/document)
+___
+
+### delete
+Deletes documents from database.
+
+```js
+delete(id);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| id | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | ❌ | `undefined` | Document to delete. |
+
+#### Returns
+void
+___
+
+### deleteAll
+Deletes all documents from database.
+
+:::warning
+This is pretty dangerous and irreversible... Be careful!
+:::
+
+```js
+deleteAll(data);
+```
+
+#### Returns
+void
+___
+
+### sync
+Syncs document with persistent storage.
+
+```js
+sync(id);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| id | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | ❌ | `undefined` | Document to sync. |
+
+#### Returns
+void
+___

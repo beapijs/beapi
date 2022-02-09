@@ -1,0 +1,165 @@
+---
+title: EntityManager
+---
+
+The manager that keeps track of all entities.
+
+:::warning
+
+You should never have to construct this class yourself.
+
+```js
+import { client } from 'beapi-core';
+
+client.entities...;
+```
+
+:::
+
+## Constructor
+```js
+new EntityManager(client);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| client | [Client](/docs/classes/client) |  ❌   | `null`  | Constructed [Client](/docs/classes/client) instance. |
+
+## Methods
+
+### newRuntimeId
+returns a new runtime id.
+
+```js
+newRuntimeId();
+```
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### create
+Creates an entity instance.
+
+```js
+create(entity);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| entity | [IEntity](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entity) |  ❌   | `undefined`  | Entity to create. |
+
+#### Returns
+[Entity](/docs/classes/entity)
+___
+
+### add
+Adds an entity to the manager.
+
+```js
+add(entity);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| entity | [Entity](/docs/classes/entity) |  ❌   | `undefined`  | Entity to add. |
+
+#### Returns
+void
+___
+
+### remove
+Removes an entity from the manager.
+
+```js
+remove(entity);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| entity | [entity](/docs/classes/entity) |  ❌   | `undefined`  | Entity to remove. |
+
+#### Returns
+void
+___
+
+### removeByRuntimeId
+Removes an entity from the manager by its runtime id.
+
+```js
+removeByRuntimeId(id);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| id | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | Entity id to remove. |
+
+#### Returns
+void
+___
+
+### getAll
+Returns all entities as a map.
+
+```js
+getAll();
+```
+
+#### Returns
+[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)<[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), [Entity](/docs/classes/entity)>
+___
+
+### getByNameTag
+Returns an entity by its nametag.
+
+```js
+getByNameTag(name);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Entity to get. |
+
+#### Returns
+[Entity](/docs/classes/entity) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___
+
+### getByRuntimeId
+Returns an entity by its runtime id.
+
+```js
+getByRuntimeId(id);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| id | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | Entity to get. |
+
+#### Returns
+[Entity](/docs/classes/entity) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___
+
+### getByIEntity
+Returns an entity by its IEntity.
+
+```js
+getByIEntity(entity);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| entity | [IEntity](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entity) |  ❌   | `undefined`  | Entity to get. |
+
+#### Returns
+[Entity](/docs/classes/entity) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___
+
+### getLastest
+Gets most recently added entity *(supposed to be latest but this got into production so new word "lastest")*.
+
+```js
+getLastest();
+```
+
+#### Returns
+[Entity](/docs/classes/entity) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___

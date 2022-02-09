@@ -10,6 +10,15 @@ You should never have to construct this class yourself.
 
 :::
 
+## Constructor
+```js
+new Entity(client, entity);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| client | [Client](/docs/classes/client) |  ❌   | `null`  | Constructed [Client](/docs/classes/client) instance. |
+| entity | [IEntity](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entity) |  ❌   | `null`  | Minecraft IEntity Object. |
+
 ## Methods
 
 ### destroy
@@ -211,7 +220,7 @@ getInventory();
 ```
 
 #### Returns
-[Inventory](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entityinventorycomponent)
+[Inventory](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entityinventorycomponent) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 ___
 
 ### getHealth

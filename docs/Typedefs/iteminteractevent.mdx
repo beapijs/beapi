@@ -1,0 +1,21 @@
+---
+title: ItemInteractEvent
+---
+
+ItemInteract event.
+
+## Type
+- [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+## Properties
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| source | [Player](/docs/classes/player) \| [Entity](/docs/classes/entity) \| [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) |  ❌   | `null`  | Source of event. |
+| item | [ItemStack](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/itemstack) |  ❌   | `null`  | Item data. |
+| block | [Block](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/block) |  ❌   | `null`  | Block data. |
+| blockLocation | [BlockLocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/blocklocation) |  ❌   | `null`  | Block location data. |
+| direction | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `null`  | Direction. |
+| faceLocationX | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `null`  | Player facing direction X axis. |
+| faceLocationY | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `null`  | Player facing direction Y axis. |
+| cancel | [CallableFunction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) |  ❌   | `null`  | Function to cancel event. |

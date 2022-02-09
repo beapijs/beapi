@@ -16,13 +16,18 @@ client.players...;
 
 :::
 
+## Constructor
+```js
+new PlayerManager(client);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| client | [Client](/docs/classes/client) |  ❌   | `null`  | Constructed [Client](/docs/classes/client) instance. |
+
 ## Methods
 
 ### create
 Creates a Player instance.
-:::note
-You should never have to use this method.
-:::
 
 ```js
 create(player);
@@ -38,9 +43,6 @@ ___
 
 ### add
 Adds a player to the manager.
-:::note
-You should never have to use this method.
-:::
 
 ```js
 add(player);
@@ -56,9 +58,6 @@ ___
 
 ### remove
 Removes a player from the manager.
-:::note
-You should never have to use this method.
-:::
 
 ```js
 remove(player);
@@ -74,9 +73,6 @@ ___
 
 ### removeByName
 Removes a player from the manager by their name.
-:::note
-You should never have to use this method.
-:::
 
 ```js
 removeByName(name);
@@ -84,7 +80,7 @@ removeByName(name);
 
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
-| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Strings) |  ❌   | `undefined`  | Player to remove. |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Player to remove. |
 
 #### Returns
 void
@@ -98,7 +94,7 @@ getAll();
 ```
 
 #### Returns
-[Map<string, Player>](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)<[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Player](/docs/classes/player)>
 ___
 
 ### getByName
@@ -110,10 +106,10 @@ getByName(name);
 
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
-| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Strings) |  ❌   | `undefined`  | Player to get. |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Player to get. |
 
 #### Returns
-[Player](/docs/classes/player)
+[Player](/docs/classes/player) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 ___
 
 ### getByNameTag
@@ -125,10 +121,10 @@ getByNameTag(name);
 
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
-| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Strings) |  ❌   | `undefined`  | Player to get. |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Player to get. |
 
 #### Returns
-[Player](/docs/classes/player)
+[Player](/docs/classes/player) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 ___
 
 ### getByIPlayer
@@ -143,5 +139,5 @@ getByIPlayer(player);
 | player | [IPlayer](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/player) |  ❌   | `undefined`  | Player to get. |
 
 #### Returns
-[Player](/docs/classes/player)
+[Player](/docs/classes/player) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 ___

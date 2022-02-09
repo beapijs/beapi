@@ -1,0 +1,182 @@
+---
+title: EventEmitter
+---
+
+A purejs provided solution to polyfill [NodeJS EventEmitter](https://nodejs.org/api/events.html).
+
+## Contructor
+```js
+new EventEmitter(max);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| max | [number?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ✔️   | `50`  | Max number of allowed listeners before a mem leak warning is emitted. |
+
+## Methods
+
+### addListener
+Add a new listener to be synchronously called on an event.
+```js
+addListener(event, listener);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Event name to add listener to. |
+| listener | [CallableFunction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) |  ❌   | `undefined`  | Function to execute. |
+
+#### Returns
+void
+___
+
+### removeListener
+Removes a previously registered listener from an event.
+```js
+removeListener(event, listener);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Event name to remove listener from. |
+| listener | [CallableFunction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) |  ❌   | `undefined`  | Function that was given. |
+
+#### Returns
+void
+___
+
+### removeListeners
+Remove all previously registered listeners from an event.
+```js
+removeListeners(event);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Event name to remove listeners from. |
+
+#### Returns
+void
+___
+
+### removeAllListeners
+Removes all previously registered listeners from all event.
+```js
+removeAllListeners();
+```
+
+#### Returns
+void
+___
+
+### envokeEvent
+Envokes all listeners to be synchronously called on an event.
+```js
+envokeEvent(event, ...args);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Event name to envoke listeners from. |
+| args | [string[]?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ✔️  | `undefined`  | Arguments to pass through CallableFunction. |
+
+#### Returns
+void
+___
+
+### listeners
+Returns an array of all listeners on an event.
+```js
+listeners(event);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Event name to get listeners from. |
+
+#### Returns
+[CallableFunction[]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___
+
+### listenerCount
+Returns number of listeners on an event.
+```js
+listenerCount(event);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Event name to get amount of listeners from. |
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### getMaxListeners
+Returns the max amount of listeners before mem leak warning occurs.
+```js
+getMaxListeners();
+```
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### setMaxListeners
+Returns the max amount of listeners before mem leak warning occurs.
+```js
+setMaxListeners(amount);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| amount | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | New amount of listeners before mem leak warning. |
+
+#### Returns
+void
+___
+
+### on
+Add a new listener to be synchronously called on an event.
+```js
+on(event, listener);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Event name to add listener to. |
+| listener | [CallableFunction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) |  ❌   | `undefined`  | Function to execute. |
+
+#### Returns
+void
+___
+### once
+Similar to `on` however after being called *once* it cannot be called again.
+```js
+once(event, listener);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Event name to add listener to. |
+| listener | [CallableFunction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) |  ❌   | `undefined`  | Function to execute. |
+
+#### Returns
+void
+___
+### off
+Removes a previously registered listener from an event.
+```js
+removeListener(event, listener);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Event name to remove listener from. |
+| listener | [CallableFunction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) |  ❌   | `undefined`  | Function that was given. |
+
+#### Returns
+void
+___
+### emit
+Envokes all listeners to be synchronously called on an event.
+```js
+envokeEvent(event, ...args);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| event | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Event name to envoke listeners from. |
+| args | [string[]?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ✔️  | `undefined`  | Arguments to pass through CallableFunction. |
+
+#### Returns
+void
+___

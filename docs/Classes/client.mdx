@@ -164,3 +164,310 @@ executeCommand(cmd, dimension, debug);
 #### Returns
 [ServerCommandResponse](/docs/typedefs/servercommandresponse)
 ___
+
+## Events
+
+### OnChat
+Emitted on player chat message.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [OnChatEvent](/docs/typedefs/onchatevent) | - | - | Chat data. |
+___
+
+### OnJoin
+Emitted on player join.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### OnLeave
+Emitted on player leave.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) \| [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | - | - | Player instance or player name. |
+___
+
+### Tick
+Emitted on every tick (1 /50ms).
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| tick | [TickEvent](/docs/typedefs/tickevent) | - | - | Tick data. |
+___
+
+### ItemUse
+Emitted on item usage.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [ItemUseEvent](/docs/typedefs/itemuseevent) | - | - | Item use data. |
+___
+
+### ItemInteract
+Emitted on item interact.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [ItemInteractEvent](/docs/typedefs/itemuseinteract) | - | - | Item interact data. |
+___
+
+### EntityDestroyed
+Emitted when an entity is destroyed.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| entity | [Entity](/docs/classes/Entity) | - | - | Entity that was destroyed. |
+___
+
+### EntityCreated
+Emitted when an entity is created.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| entity | [Entity](/docs/classes/Entity) | - | - | Entity that was created. |
+___
+
+### BlockDestroyed
+Emitted when a client breaks a block.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [ClientBlockBreakEvent](/docs/typedefs/clientblockbreakevent) | - | - | Block break event data. |
+___
+
+### BlockCreated
+Emitted when a client places a block.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [ClientBlockEvent](/docs/typedefs/clientblockevent) | - | - | Block place event data. |
+___
+
+### PlayerInViewVector
+Emitted when a player is in view vector of another player.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [PlayerInViewVectorEvent](/docs/typedefs/playerinviewvectorevent) | - | - | View vector event data. |
+___
+
+### PlayerAttacked
+Emitted when a player is attacked.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [PlayerInViewVectorEvent](/docs/typedefs/playerinviewvectorevent) | - | - | View vector event data. |
+___
+
+### EntityInViewVector
+Emitted when an entity is in view vector of a player.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [EntityInViewVectorEvent](/docs/typedefs/entityinviewvectorevent) | - | - | View vector event data. |
+___
+
+### EntityAttacked
+Emitted when an entity is attacked.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [EntityInViewVectorEvent](/docs/typedefs/entityinviewvectorevent) | - | - | View vector event data. |
+___
+
+### PlayerTag
+Emitted when a player recieves a tag prefixed with `beapi:`.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [PlayerTagEvent](/docs/typedefs/playertagevent) | - | - | Player tag event data. |
+___
+
+### EntityTag
+Emitted when an entity recieves a tag prefixed with `beapi:`.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [EntityTagEvent](/docs/typedefs/entitytagevent) | - | - | Entity tag event data. |
+___
+
+### Explosion
+Emitted when on explosion.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| data | [ExplosionEvent](/docs/classes/explosionevent) | - | - | Explosion event data. |
+___
+
+### EnteredWater
+Emitted when a player enters water.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### ExitedWater
+Emitted when a player exits water.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StartedBurning
+Emitted when a player starts burning.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StoppedBurning
+Emitted when a player stops burning.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### Jump
+Emitted when a player jumps.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### Landed
+Emitted when a player lands.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StartedMoving
+Emitted when a player starts moving.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StoppedMoving
+Emitted when a player stops moving.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StartedRiding
+Emitted when a player starts riding.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StoppedRiding
+Emitted when a player stops riding.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StartedSleeping
+Emitted when a player starts sleeping.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StoppedSleeping
+Emitted when a player stops sleeping.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StartedSneaking
+Emitted when a player starts sneaking.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StoppedSneaking
+Emitted when a player stops sneaking.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StartedSprinting
+Emitted when a player starts sprinting.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StoppedSprinting
+Emitted when a player stops sprinting.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StartedSwimming
+Emitted when a player starts swimming.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### StoppedSwimming
+Emitted when a player stops swimming.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### Swing
+Emitted when a player swings arm.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### Death
+Emitted when a player dies.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+
+### Respawn
+Emitted when a player respawns.
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) | - | - | Player instance. |
+___
+

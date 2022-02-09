@@ -1,0 +1,30 @@
+---
+title: Timers
+---
+
+Temporary polyfill for global timer methods.
+
+:::warning
+You dont need to utilize this.
+It is used to polyfill timer events with tick instead,
+which is automatically handled before export.
+:::
+
+## Constructor
+```js
+new Timers();
+```
+
+## Methods
+
+### start
+Start handling the timers on tick events.
+
+```js
+start(client);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| client | [Client](/docs/classes/client) |  ❌   | `null`  | Constructed [Client](/docs/classes/client) instance. |
+
+___

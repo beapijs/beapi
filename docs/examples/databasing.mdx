@@ -1,0 +1,530 @@
+---
+title: Databasing
+---
+
+In this example we will be learning how to use databases by
+making a simple script that tracks some simple stats.
+
+First we will go over how to do it in Typescript, then in Javascript.
+
+## Typescript
+
+Starting off we will need to import four things from beapi
+- client
+- schema
+- modal
+- SchemaTypes
+
+You can do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+```
+
+Then, we are going to need to add an interface which will describe
+what exactly we want to store in our database documents. In this
+example we will be storing the join count, chat count, and death count.
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Database Stats Interface.
+interface Stats {
+  joinCount: number
+  chatCount: number
+  deathCount: number
+}
+```
+
+Next, we are going to want to create our database schematic or "schema".
+When creating the schematic you will need to pass in the keys you plan
+to store and then of what schema type it is so BeAPI knows how to 
+serialize the data accordingly.
+We can do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Database Stats Interface.
+interface Stats {
+  joinCount: number
+  chatCount: number
+  deathCount: number
+}
+
+// Create New Stats Schema For Database.
+const statsSchema = schema<Stats>({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+```
+
+Next, we are going to need to convert out schema into a modal so we can manage data.
+Modal names need to be unique otherwise data will start to conflict and recieve errors.
+So ensure you do not name two different modals the same name.
+We do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Database Stats Interface.
+interface Stats {
+  joinCount: number
+  chatCount: number
+  deathCount: number
+}
+
+// Create New Stats Schema For Database.
+const statsSchema = schema<Stats>({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+
+// Create New Modal Named 'stats'.
+const Stats = modal('stats', statsSchema)
+```
+
+Now we have our stats modal for the database blueprinted out. Now we need to actually create it.
+To do so we are going to use the method `findAll` to get all documents by passing in an empty object.
+We will then target the first item in the array, if it does not exist then we will create it.
+We can do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Database Stats Interface.
+interface Stats {
+  joinCount: number
+  chatCount: number
+  deathCount: number
+}
+
+// Create New Stats Schema For Database.
+const statsSchema = schema<Stats>({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+
+// Create New Modal Named 'stats'.
+const Stats = modal('stats', statsSchema)
+
+// Get All Stats Documents And Select First One.
+let statsDocument = Stats.findAll({})[0]
+// If No Stats Document, Create One And Assign It To statsDocument.
+if (!statsDocument) {
+  statsDocument = Stats.write({
+    joinCount: 0,
+    chatCount: 0,
+    deathCount: 0
+  })
+}
+```
+
+Next, we will want to create three event listeners on client. 
+One for `Death`, `Onjoin`, and `OnChat`.
+We can do this like so: 
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Database Stats Interface.
+interface Stats {
+  joinCount: number
+  chatCount: number
+  deathCount: number
+}
+
+// Create New Stats Schema For Database.
+const statsSchema = schema<Stats>({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+
+// Create New Modal Named 'stats'.
+const Stats = modal('stats', statsSchema)
+
+// Get All Stats Documents And Select First One.
+let statsDocument = Stats.findAll({})[0]
+// If No Stats Document, Create One And Assign It To statsDocument.
+if (!statsDocument) {
+  statsDocument = Stats.write({
+    joinCount: 0,
+    chatCount: 0,
+    deathCount: 0
+  })
+}
+
+// Create Event Listeners.
+client.on('OnJoin', () => {
+
+})
+client.on('OnChat', () => {
+
+})
+client.on('Death', () => {
+
+})
+```
+Now we are going to want to update our statsDocument values when
+those event listeners go off.
+We can do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Database Stats Interface.
+interface Stats {
+  joinCount: number
+  chatCount: number
+  deathCount: number
+}
+
+// Create New Stats Schema For Database.
+const statsSchema = schema<Stats>({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+
+// Create New Modal Named 'stats'.
+const Stats = modal('stats', statsSchema)
+
+// Get All Stats Documents And Select First One.
+let statsDocument = Stats.findAll({})[0]
+// If No Stats Document, Create One And Assign It To statsDocument.
+if (!statsDocument) {
+  statsDocument = Stats.write({
+    joinCount: 0,
+    chatCount: 0,
+    deathCount: 0
+  })
+}
+
+// Create Event Listeners.
+client.on('OnJoin', () => {
+  // Increment Join Count By 1.
+  statsDocument.joinCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+client.on('OnChat', () => {
+  // Increment Chat Count By 1.
+  statsDocument.chatCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+client.on('Death', () => {
+  // Increment Death Count By 1.
+  statsDocument.deathCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+```
+
+Congratulations! You have no successfully made a gametest that
+stores death, join, and chat count. However, we want to be able to
+see this data now... right?
+So finally, we will register a command that shows our stats.
+We can do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Database Stats Interface.
+interface Stats {
+  joinCount: number
+  chatCount: number
+  deathCount: number
+}
+
+// Create New Stats Schema For Database.
+const statsSchema = schema<Stats>({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+
+// Create New Modal Named 'stats'.
+const Stats = modal('stats', statsSchema)
+
+// Get All Stats Documents And Select First One.
+let statsDocument = Stats.findAll({})[0]
+// If No Stats Document, Create One And Assign It To statsDocument.
+if (!statsDocument) {
+  statsDocument = Stats.write({
+    joinCount: 0,
+    chatCount: 0,
+    deathCount: 0
+  })
+}
+
+// Create Event Listeners.
+client.on('OnJoin', () => {
+  // Increment Join Count By 1.
+  statsDocument.joinCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+client.on('OnChat', () => {
+  // Increment Chat Count By 1.
+  statsDocument.chatCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+client.on('Death', () => {
+  // Increment Death Count By 1.
+  statsDocument.deathCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+
+// Register Stats Command.
+client.commands.register({
+  name: 'stats',
+  description: 'Show server stats.',
+}, (data) => {
+  // Create Message
+  const message = `Join Count: ${statsDocument.joinCount}\n`
+  + `Chat Count: ${statsDocument.chatCount}\n`
+  + `Death Count: ${statsDocument.deathCount}`
+  // Send, Sender Stat Data.
+  data.sender.sendMessage(message) 
+})
+```
+
+Yay! Now we can see the stats in game. If we save, build, restart the world,
+then run:
+```
+-stats
+```
+We should see our chat and join went up by one:
+![example](../public/commands-database.png)
+
+## Javascript
+
+Starting off we will need to import four things from beapi
+- client
+- schema
+- modal
+- SchemaTypes
+
+You can do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+```
+
+Next, we are going to want to create our database schematic or "schema".
+When creating the schematic you will need to pass in the keys you plan
+to store and then of what schema type it is so BeAPI knows how to 
+serialize the data accordingly.
+We can do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Create New Stats Schema For Database.
+const statsSchema = schema({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+```
+
+Next, we are going to need to convert out schema into a modal so we can manage data.
+Modal names need to be unique otherwise data will start to conflict and recieve errors.
+So ensure you do not name two different modals the same name.
+We do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Create New Stats Schema For Database.
+const statsSchema = schema({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+
+// Create New Modal Named 'stats'.
+const Stats = modal('stats', statsSchema)
+```
+
+Now we have our stats modal for the database blueprinted out. Now we need to actually create it.
+To do so we are going to use the method `findAll` to get all documents by passing in an empty object.
+We will then target the first item in the array, if it does not exist then we will create it.
+We can do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Create New Stats Schema For Database.
+const statsSchema = schema({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+
+// Create New Modal Named 'stats'.
+const Stats = modal('stats', statsSchema)
+
+// Get All Stats Documents And Select First One.
+let statsDocument = Stats.findAll({})[0]
+// If No Stats Document, Create One And Assign It To statsDocument.
+if (!statsDocument) {
+  statsDocument = Stats.write({
+    joinCount: 0,
+    chatCount: 0,
+    deathCount: 0
+  })
+}
+```
+
+Next, we will want to create three event listeners on client. 
+One for `Death`, `Onjoin`, and `OnChat`.
+We can do this like so: 
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Create New Stats Schema For Database.
+const statsSchema = schema({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+
+// Create New Modal Named 'stats'.
+const Stats = modal('stats', statsSchema)
+
+// Get All Stats Documents And Select First One.
+let statsDocument = Stats.findAll({})[0]
+// If No Stats Document, Create One And Assign It To statsDocument.
+if (!statsDocument) {
+  statsDocument = Stats.write({
+    joinCount: 0,
+    chatCount: 0,
+    deathCount: 0
+  })
+}
+
+// Create Event Listeners.
+client.on('OnJoin', () => {
+
+})
+client.on('OnChat', () => {
+
+})
+client.on('Death', () => {
+
+})
+```
+Now we are going to want to update our statsDocument values when
+those event listeners go off.
+We can do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Create New Stats Schema For Database.
+const statsSchema = schema({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+
+// Create New Modal Named 'stats'.
+const Stats = modal('stats', statsSchema)
+
+// Get All Stats Documents And Select First One.
+let statsDocument = Stats.findAll({})[0]
+// If No Stats Document, Create One And Assign It To statsDocument.
+if (!statsDocument) {
+  statsDocument = Stats.write({
+    joinCount: 0,
+    chatCount: 0,
+    deathCount: 0
+  })
+}
+
+// Create Event Listeners.
+client.on('OnJoin', () => {
+  // Increment Join Count By 1.
+  statsDocument.joinCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+client.on('OnChat', () => {
+  // Increment Chat Count By 1.
+  statsDocument.chatCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+client.on('Death', () => {
+  // Increment Death Count By 1.
+  statsDocument.deathCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+```
+
+Congratulations! You have no successfully made a gametest that
+stores death, join, and chat count. However, we want to be able to
+see this data now... right?
+So finally, we will register a command that shows our stats.
+We can do this like so:
+```ts title="src/index.js"
+import { client, schema, modal, SchemaTypes } from 'beapi-core'
+
+// Create New Stats Schema For Database.
+const statsSchema = schema({
+  joinCount: SchemaTypes.Number,
+  chatCount: SchemaTypes.Number,
+  deathCount: SchemaTypes.Number
+})
+
+// Create New Modal Named 'stats'.
+const Stats = modal('stats', statsSchema)
+
+// Get All Stats Documents And Select First One.
+let statsDocument = Stats.findAll({})[0]
+// If No Stats Document, Create One And Assign It To statsDocument.
+if (!statsDocument) {
+  statsDocument = Stats.write({
+    joinCount: 0,
+    chatCount: 0,
+    deathCount: 0
+  })
+}
+
+// Create Event Listeners.
+client.on('OnJoin', () => {
+  // Increment Join Count By 1.
+  statsDocument.joinCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+client.on('OnChat', () => {
+  // Increment Chat Count By 1.
+  statsDocument.chatCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+client.on('Death', () => {
+  // Increment Death Count By 1.
+  statsDocument.deathCount += 1
+  // Save Changes.
+  statsDocument.save()
+})
+
+// Register Stats Command.
+client.commands.register({
+  name: 'stats',
+  description: 'Show server stats.',
+}, (data) => {
+  // Create Message
+  const message = `Join Count: ${statsDocument.joinCount}\n`
+  + `Chat Count: ${statsDocument.chatCount}\n`
+  + `Death Count: ${statsDocument.deathCount}`
+  // Send, Sender Stat Data.
+  data.sender.sendMessage(message) 
+})
+```
+
+Yay! Now we can see the stats in game. If we save, build, restart the world,
+then run:
+```
+-stats
+```
+We should see our chat and join went up by one:
+![example](../public/commands-database.png)

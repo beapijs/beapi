@@ -1,0 +1,85 @@
+---
+title: Document
+---
+
+The primary interaction point for managing a specfic piece of data.
+
+:::info
+See [examples/databasing](/docs/examples/databasing) for getting started with databasing.
+:::
+
+:::warning
+You should never need to construct a document manually.
+Please utilize [Modal#write](/docs/classes/modal#write)
+to make a new document.
+:::
+
+## Constructor
+```js
+new Document(modal, id, data);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| modal | [Modal](/docs/classes/modal) | `undefined`  | Modal constructor (handler of documents). |
+| id | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Document id. |
+| data | [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) |  ❌   | `undefined`  | Previous data. |
+
+
+:::note
+Data is augmented into the document class once constructed.
+We use typescript to type all the properties defined in
+the schema blueprint; which is the parent of modal which is the
+parent of documents.
+:::
+
+## Methods
+
+### retrieveKnownInternalData
+Returns an object containing a copy of non mutated data since the last save.
+
+```js
+retrieveKnownInternalData();
+```
+#### Returns
+[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+___
+
+### asObject
+Returns a sanitized object of the document.
+
+```js
+asObject();
+```
+#### Returns
+[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+___
+
+### getId
+Returns the documents id.
+
+```js
+getId();
+```
+#### Returns
+[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+___
+
+### delete
+Deletes the document.
+
+```js
+delete();
+```
+#### Returns
+void
+___
+
+### save
+Saves any changes to the augmented data to persistent storage.
+
+```js
+save();
+```
+#### Returns
+this
+___
