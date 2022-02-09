@@ -5,6 +5,8 @@ import { BlockCreated } from './BlockCreated'
 import { BlockDestroyed } from './BlockDestroyed'
 import { ItemUse } from './ItemUse'
 import { ItemInteract } from './ItemInteract'
+import { ItemEvent } from './ItemEvent'
+import { ItemDropped } from './ItemDropped'
 import { EntityCreated } from './EntityCreated'
 import { EntityDestroyed } from './EntityDestroyed'
 import { PlayerInViewVector } from './PlayerInViewVector'
@@ -35,6 +37,9 @@ import { PlayerAttacked } from './PlayerAttacked'
 import { Explosion } from './Explosion'
 import { Death } from './Death'
 import { Respawn } from './Respawn'
+import { Piston } from './Piston'
+import { EffectAdded } from './EffectAdded'
+import { WeatherUpdated } from './WeatherUpdated'
 import { Tick } from './Tick'
 
 export const events = [
@@ -45,6 +50,8 @@ export const events = [
   BlockDestroyed,
   ItemUse,
   ItemInteract,
+  ItemEvent,
+  ItemDropped,
   EntityCreated,
   EntityDestroyed,
   PlayerInViewVector,
@@ -75,6 +82,9 @@ export const events = [
   Explosion,
   Death,
   Respawn,
+  Piston,
+  EffectAdded,
+  WeatherUpdated,
   Tick,
 ]
 

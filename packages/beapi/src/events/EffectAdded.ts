@@ -1,14 +1,14 @@
-import { PlayerLeaveEvent, world } from 'mojang-minecraft'
+import { EffectAddEvent, world, Player as IPlayer } from 'mojang-minecraft'
 import type { Client } from '../client'
 
 import AbstractEvent from './AbstractEvent'
-export class OnLeave extends AbstractEvent {
+export class EffectAdded extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
-  public readonly name = 'OnLeave'
-  public readonly iName = 'playerLeave'
+  public readonly name = 'EffectAdded'
+  public readonly iName = 'effectAdd'
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {
@@ -30,9 +30,14 @@ export class OnLeave extends AbstractEvent {
     }
   }
 
-  protected __logic(arg: PlayerLeaveEvent): void {
-    const player = this._client.players.getByName(arg.playerName)
-    this._client.emit(this.name, player)
-    player.destroy()
+  protected __logic(arg: EffectAddEvent): void {
+    this._client.emit(this.name, {
+      target:
+        arg.entity instanceof IPlayer
+          ? this._client.players.getByIPlayer(arg.entity)
+          : this._client.entities.getByIEntity(arg.entity),
+      effect: arg.effect,
+      state: arg.effectState,
+    })
   }
 }

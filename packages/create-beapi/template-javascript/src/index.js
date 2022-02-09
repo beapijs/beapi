@@ -2,11 +2,44 @@ import { client } from 'beapi-core'
 
 client.commands.register(
   {
-    name: 'ping',
+    name: 'Ping',
+    usage: 'ping',
     description: 'Ping gametest scripts.',
     aliases: ['p'],
   },
-  (data) => {
-    data.sender.sendMessage('§ePong!')
+  (sender) => {
+    sender.sendMessage('§ePong!')
   },
+)
+
+client.commands.register(
+  {
+    name: 'Arg Test',
+    usage: 'argtest',
+    description: 'Tests the args system',
+    aliases: ['at'],
+  },
+  (sender, args) => {
+    const string = args.get('stringtest')
+    const number = args.get('numbertest')
+    const bool = args.get('booltest')
+    sender?.sendMessage(`${string} ${number} ${bool}`)
+  },
+  [
+    {
+      name: 'stringtest',
+      required: true,
+      type: String,
+    },
+    {
+      name: 'numbertest',
+      required: true,
+      type: Number,
+    },
+    {
+      name: 'booltest',
+      required: true,
+      type: Boolean,
+    },
+  ],
 )

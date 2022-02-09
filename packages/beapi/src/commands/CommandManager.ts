@@ -1,185 +1,171 @@
+/* eslint-disable no-negated-condition */
+/* eslint-disable indent */
 import type { Client } from '../client'
-import type { Command, CommandCallback, CommandOptions, ParseResult } from '../types/Command'
-
-const defaultPrefix = '-'
+import type { CommandEntry, CommandResponse, CommandOptions, ParseResult, CommandArguments } from '../types/Command'
+import { CommandTypes } from '.'
+import { genUuid } from '../utils'
 
 export class CommandManager {
   protected readonly _client: Client
-  protected readonly _handlers = new Map<string, CommandHandler>()
-  protected readonly _commands = new Map<string, Command>()
+  protected readonly _commands: Map<string, CommandEntry> = new Map<string, CommandEntry>()
+  public prefix = '-'
+
   public constructor(client: Client) {
     this._client = client
+    this.default()
+    this._client.on('OnChat', (data) => {
+      if (!data.message.startsWith(this.prefix)) return
+      let cancel = false
+      data.cancel()
+      const parsed = parse(this.prefix, data.message)
+      const search =
+        this.commandEntries().find((x) => x.options.usage === parsed.command) ??
+        this.commandEntries().find((x) => x.options?.aliases?.find((x) => x === parsed.command) ?? undefined)
+      if (!search) {
+        data.sender?.sendMessage("§cThis command doesn't exists.")
 
-    // Register Default Commands
+        return data.cancel()
+      }
+      const command = this._commands.get(search.id)
+      this._client.emit('CommandUsed', {
+        command,
+        sender: data.sender,
+        cancel: () => {
+          cancel = true
+        },
+      })
+      if (cancel) return
+      data.cancel()
+      if (!command?.args || (command?.args?.length ?? 0) === 0) return command?.execute(data.sender)
+      if (parsed.args?.length !== command.args.length) {
+        for (let x = 0; x !== command.args.length; x++) {
+          // @ts-ignore
+          if (parsed?.args[x]) continue
+          const arg = command.args[x]
+          if (arg.required)
+            return data.sender?.sendMessage(
+              `§cRequirement Error: The argument \\"${command.args[x].name}\\" is a required parameter.`,
+            )
+        }
+      }
+      const args = new Map<string, any>()
+      for (let x = 0; x !== command.args?.length; x++) {
+        // @ts-ignore
+        const arg = parsed?.args[x]
+        if (!arg) continue
+        if (arg.type.value() !== command.args[x].type.value()) {
+          return data.sender?.sendMessage(
+            `§cType Error: Expected type \\"${command.args[x].type.value()}\\" for the argument \\"${
+              command.args[x].name
+            }\\".`,
+          )
+        }
+        args.set(command.args[x].name, arg.value)
+      }
+
+      return command.execute(data.sender, args)
+    })
+  }
+
+  public register(options: CommandOptions, callback: CommandResponse, args?: CommandArguments[]): void {
+    if (this.commandEntries().find((x) => x.options.usage === options.usage))
+      return console.warn(`The command with the usage "${options.usage}" is already registered.`)
+    const id = genUuid()
+    this._commands.set(id, {
+      id: id,
+      options: options,
+      args: args ?? [],
+      execute: callback,
+    })
+    this._client.emit('CommandRegistered', {
+      command: this._commands.get(id),
+      cancel: () => {
+        this.unregister(id)
+      },
+    })
+  }
+
+  public unregister(commandId: string): void {
+    this._commands.delete(commandId)
+  }
+
+  public getAll(): Map<string, CommandEntry> {
+    return this._commands
+  }
+
+  private commandEntries(): CommandEntry[] {
+    const c: CommandEntry[] = []
+    for (const [, command] of this._commands) {
+      c.push(command)
+    }
+
+    return c
+  }
+
+  private default(): void {
     this.register(
       {
-        name: 'help',
-        description: `Displays a list of available commands.`,
+        name: 'Help',
+        usage: 'help',
+        description: 'Shows a list of registered commands. Type a command after to get more info on that command.',
         aliases: ['h'],
       },
-      (data) => {
-        data.sender.sendMessage('§bShowing all Available Commands:')
-        this.getAll().forEach((c) => {
-          if (c.options.hidden) return
-          data.sender.sendMessage(`  §7${defaultPrefix}${c.options.name}§r §o§8${c.options.description}`)
-        })
+      (sender, args) => {
+        const arg = args?.get('command')
+        if (arg) {
+          const command =
+            this.commandEntries().find((x) => x.options.usage === arg) ??
+            this.commandEntries().find((x) => x.options?.aliases?.find((x) => x === arg) ?? undefined)
+          if (!command)
+            return sender?.sendMessage(
+              `§cCould not find the command \\"${arg}\\". Please use ${this.prefix}help for a list of commands.`,
+            )
+          const args = []
+          for (const arg of command.args ?? []) {
+            if (arg.required) {
+              args.push(`§7<§8${arg.name}§7: §8${arg.type.value()}§7>§r`)
+            } else {
+              args.push(`§7<§8${arg.name}§7?: §8${arg.type.value()}§7>§r`)
+            }
+          }
+          const message = []
+          message.push(`§l§bShowing info for ${command.options.name}:§r`)
+          message.push(`  §7Name: §8${command.options.name}§r`)
+          message.push(`  §7Usage: §8${command.options.usage}§r §7${args.join(' ')}§r`)
+          message.push(`  §7Description: §8${command.options.description}§r`)
+          message.push(`  §7Aliases: §8${command.options.aliases?.join(', ') ?? 'None'}§r`)
+          sender?.sendMessage(message.join('\n'))
+        } else {
+          const message = []
+          message.push('§l§bShowing all available commands:§r')
+          for (const [, command] of this._commands) {
+            if (command.options.hidden) continue
+            message.push(`  §7${this.prefix}${command.options.usage} §8§o${command.options.description}§r`)
+          }
+          sender?.sendMessage(message.join('\n'))
+        }
       },
+      [
+        {
+          name: 'command',
+          required: false,
+          type: CommandTypes.String,
+        },
+      ],
     )
     this.register(
       {
-        name: 'about',
-        description: 'Shows info about the server.',
-        aliases: ['ab'],
+        name: 'About',
+        usage: 'about',
+        description: 'Sends information about the server.',
+        aliases: ['ab', 'a'],
       },
-      (data) => {
-        data.sender.sendMessage(
+      (player) => {
+        player?.sendMessage(
           `§7This server is running §9BeAPI v${this._client.currentVersion}§7 for §aMinecraft: Bedrock Edition v${this._client.currentMCBE}§7.`,
         )
       },
     )
-
-    this._client.on('OnChat', (data) => {
-      if (!data.sender || !data.message.startsWith('-')) return
-      const result = parse(defaultPrefix, data.message)
-      const command =
-        this._commands.get(result.command) ??
-        Array.from(this._commands.values()).find((i) => i.options.aliases?.includes(result.command))
-      if (!command) {
-        data.sender.sendMessage("§c§cThis command doesn't exists!")
-
-        return data.cancel()
-      }
-      command.cb({
-        sender: data.sender,
-        args: result.args,
-      })
-      data.cancel()
-    })
-  }
-
-  public createHandler(prefix: string): CommandHandler {
-    if (this._handlers.has(prefix) || prefix === defaultPrefix) {
-      throw new Error(`CommandHandler with prefix "${prefix}" already exists. Cannot exceed 1!`)
-    }
-    const handler = new CommandHandler(this._client, this, prefix)
-    this._handlers.set(prefix, handler)
-    return handler
-  }
-
-  public removeHandler(prefix: string): void {
-    this._handlers.delete(prefix)
-  }
-
-  public getHandler(prefix: string): CommandHandler | undefined {
-    return this._handlers.get(prefix)
-  }
-
-  public getHandlers(): Map<string, CommandHandler> {
-    return this._handlers
-  }
-
-  public setHandler(prefix: string, handler: CommandHandler): void {
-    if (this._handlers.has(prefix) || prefix === defaultPrefix) {
-      throw new Error(`CommandHandler with prefix "${prefix}" already exists. Cannot exceed 1!`)
-    }
-    this._handlers.set(prefix, handler)
-  }
-
-  public register(options: CommandOptions, cb: CommandCallback): void {
-    this._commands.set(options.name, {
-      options,
-      cb,
-    })
-  }
-
-  public unregister(name: string): void {
-    this._commands.delete(name)
-  }
-
-  public get(name: string): Command | undefined {
-    return this._commands.get(name) ?? Array.from(this.getAll().values()).find((c) => c.options.aliases?.includes(name))
-  }
-
-  public getAll(): Map<string, Command> {
-    return this._commands
-  }
-}
-
-export class CommandHandler {
-  protected readonly _client: Client
-  protected readonly _cm: CommandManager
-  protected readonly _commands = new Map<string, Command>()
-  protected prefix: string
-  public constructor(client: Client, cm: CommandManager, prefix: string) {
-    this._client = client
-    this._cm = cm
-    this.prefix = prefix
-
-    // Register Default Commands
-    this.register(
-      {
-        name: 'help',
-        description: `Displays a list of available commands.`,
-        aliases: ['h'],
-      },
-      (data) => {
-        data.sender.sendMessage('§bShowing all Available Commands:')
-        this.getAll().forEach((c) => {
-          if (c.options.hidden) return
-          data.sender.sendMessage(`  §7${this.prefix}${c.options.name}§r §o§8${c.options.description}`)
-        })
-      },
-    )
-
-    this._client.on('OnChat', (data) => {
-      if (!data.sender || !data.message.startsWith(this.getPrefix())) return
-      const result = parse(this.prefix, data.message)
-      const command =
-        this._commands.get(result.command) ??
-        Array.from(this._commands.values()).find((i) => i.options.aliases?.includes(result.command))
-      if (!command) {
-        data.sender.sendMessage("§c§cThis command doesn't exists!")
-
-        return data.cancel()
-      }
-      command.cb({
-        sender: data.sender,
-        args: result.args,
-      })
-      data.cancel()
-    })
-  }
-
-  public changePrefix(prefix: string): void {
-    if (this._cm.getAll().has(prefix) || prefix === defaultPrefix) {
-      throw new Error(`Cannot change prefix to "${prefix}". Another command handler already reserves that prefix!`)
-    }
-    this._cm.removeHandler(this.prefix)
-    this.prefix = prefix
-    this._cm.setHandler(prefix, this)
-  }
-
-  public getPrefix(): string {
-    return String(this.prefix)
-  }
-
-  public register(options: CommandOptions, cb: CommandCallback): void {
-    this._commands.set(options.name, {
-      options,
-      cb,
-    })
-  }
-
-  public unregister(name: string): void {
-    this._commands.delete(name)
-  }
-
-  public get(name: string): Command | undefined {
-    return this._commands.get(name) ?? Array.from(this.getAll().values()).find((c) => c.options.aliases?.includes(name))
-  }
-
-  public getAll(): Map<string, Command> {
-    return this._commands
   }
 }
 
@@ -189,8 +175,38 @@ export function parse(prefix: string, content: string): ParseResult {
     .split(' ')
     .filter((i) => i.length)
   const command = split.shift()
+  const args: { value: any; type: typeof CommandTypes[keyof typeof CommandTypes] }[] = []
+  for (const item of split) {
+    if (!Number(item)) {
+      switch (item) {
+        default:
+          args.push({
+            value: item,
+            type: CommandTypes.String,
+          })
+          break
+        case 'true':
+          args.push({
+            value: true,
+            type: CommandTypes.Boolean,
+          })
+          break
+        case 'false':
+          args.push({
+            value: false,
+            type: CommandTypes.Boolean,
+          })
+          break
+      }
+    } else {
+      args.push({
+        value: parseInt(item, 10),
+        type: CommandTypes.Number,
+      })
+    }
+  }
   return {
     command: command ?? '',
-    args: split,
+    args: args,
   }
 }

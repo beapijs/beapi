@@ -8,6 +8,7 @@ import {
   Vector,
   world,
 } from 'mojang-minecraft'
+import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Entity } from '..'
 import type { Client } from '../client'
 import type { Location, Dimension, Gamemode, ServerCommandResponse } from '../types'
@@ -63,6 +64,34 @@ export class Player {
     this.executeCommand(`tellraw @s {"rawtext":[{"text":"${message}"}]}`)
   }
 
+  public sendActionbar(message: string): void {
+    this.executeCommand(`titleraw @s actionbar {"rawtext":[{"text":"${message}"}]}`)
+  }
+
+  public sendTitle(message: string): void {
+    this.executeCommand(`titleraw @s title {"rawtext":[{"text":"${message}"}]}`)
+  }
+
+  public sendSubtitle(message: string): void {
+    this.executeCommand(`titleraw @s subtitle {"rawtext":[{"text":"${message}"}]}`)
+  }
+
+  public sendSound(sound: string, location?: Location, volume?: number, pitch?: number, maxVolume?: number): void {
+    this.executeCommand(
+      `playsound ${sound} ${location?.x ?? ''} ${location?.y ?? ''} ${location?.z ?? ''} ${volume ?? ''} ${
+        pitch ?? ''
+      } ${maxVolume ?? ''}`,
+    )
+  }
+
+  public sendAnimation(animation: string): void {
+    this.executeCommand(`playanimation @s ${animation}`)
+  }
+
+  public sendFog(type: 'pop' | 'push' | 'remove', fogId: string, globalId: string): void {
+    this.executeCommand(`fog @s ${type} ${fogId} ${globalId}`)
+  }
+
   public executeCommand(cmd: string, debug = false): ServerCommandResponse {
     try {
       const command = this._IPlayer.runCommand(cmd)
@@ -88,6 +117,18 @@ export class Player {
     if (command.err) return 0
 
     return parseInt(String(command.statusMessage?.split(' ')[1]), 10)
+  }
+
+  public setScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players set @s "${objective}" ${amount}`)
+  }
+
+  public addScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players add @s "${objective}" ${amount}`)
+  }
+
+  public removeScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players remove @s "${objective}" ${amount}`)
   }
 
   public getGamemode(): Gamemode {
@@ -165,12 +206,14 @@ export class Player {
     this._IPlayer.setVelocity(velocity)
   }
 
-  public teleport(location: ILocation, dimension: IDimension, xrot: number, yrot: number): void {
-    this._IPlayer.teleport(location, dimension, xrot, yrot)
+  public teleport(location: Location, dimension: IDimension, xrot: number, yrot: number): void {
+    const loc = new ILocation(location.x, location.y, location.z)
+    this._IPlayer.teleport(loc, dimension, xrot, yrot)
   }
 
-  public teleportFacing(location: ILocation, dimension: IDimension, facingLocation: ILocation): void {
-    this._IPlayer.teleportFacing(location, dimension, facingLocation)
+  public teleportFacing(location: Location, dimension: IDimension, facingLocation: ILocation): void {
+    const loc = new ILocation(location.x, location.y, location.z)
+    this._IPlayer.teleportFacing(loc, dimension, facingLocation)
   }
 
   public triggerEvent(event: string): void {
@@ -183,5 +226,17 @@ export class Player {
 
   public getHeadLocation(): ILocation {
     return this._IPlayer.headLocation
+  }
+
+  public createModalForm(): ModalForm {
+    return new ModalForm(this)
+  }
+
+  public createMessageForm(): MessageForm {
+    return new MessageForm(this)
+  }
+
+  public createActionForm(): ActionForm {
+    return new ActionForm(this)
   }
 }

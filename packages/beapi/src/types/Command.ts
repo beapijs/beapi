@@ -1,26 +1,33 @@
 import type { Player } from '../player'
+import type { CommandTypes } from '../commands'
 
 export interface CommandOptions {
   name: string
-  aliases?: string[]
+  usage: string
   description: string
-  permissions?: string[]
+  aliases?: string[]
   hidden?: boolean
 }
 
-export interface CommandResponse {
-  sender: Player
-  args: string[]
+export interface CommandArguments {
+  name: string
+  required: boolean
+  type: typeof CommandTypes[keyof typeof CommandTypes]
 }
 
-export interface Command {
+export interface CommandEntry {
+  id: string
   options: CommandOptions
-  cb: CommandCallback
+  args?: CommandArguments[] | undefined
+  execute: CommandResponse
 }
-
-export type CommandCallback = (data: CommandResponse) => void
 
 export interface ParseResult {
-  command: string
-  args: string[]
+  command: string | undefined
+  args?: {
+    value: any
+    type: typeof CommandTypes[keyof typeof CommandTypes]
+  }[]
 }
+
+export type CommandResponse = (player: Player | undefined, args?: Map<string, any>) => void

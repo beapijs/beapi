@@ -10,6 +10,7 @@ import {
 } from 'mojang-minecraft'
 import type { Client } from '../client'
 import type { Location, Dimension, ServerCommandResponse } from '../types'
+import { getUniqueId } from '../utils'
 
 export class Entity {
   protected readonly _client: Client
@@ -38,6 +39,10 @@ export class Entity {
 
   public getId(): string {
     return this._IEntity.id
+  }
+
+  public getUniqueId(): number {
+    return getUniqueId(this)
   }
 
   public getNameTag(): string {
@@ -89,6 +94,18 @@ export class Entity {
     if (command.err) return 0
 
     return parseInt(String(command.statusMessage?.split(' ')[1]), 10)
+  }
+
+  public setScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players set @s "${objective}" ${amount}`)
+  }
+
+  public addScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players add @s "${objective}" ${amount}`)
+  }
+
+  public removeScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players remove @s "${objective}" ${amount}`)
   }
 
   public getLocation(): Location {
