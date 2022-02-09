@@ -18,9 +18,4 @@ export namespace CommandTypes {
       return 'boolean'
     }
   }
-  export class Player extends StringConstructor {
-    public static value(): string {
-      return 'player'
-    }
-  }
 }
