@@ -84,7 +84,8 @@ loadEvent(event);
 ```
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
-| event | [AbstractEvent](/docs/classes/abstractevent) | ❌ | `undefined` | Extended [AbstractEvent](/docs/classes/abstractevent) constructor. |
+| event | AbstractEvent | ❌ | `undefined` | Extended AbstractEvent constructor. |
+<!-- | event | [AbstractEvent](/docs/classes/abstractevent) | ❌ | `undefined` | Extended [AbstractEvent](/docs/classes/abstractevent) constructor. | -->
 
 #### Returns
 void
@@ -212,7 +213,7 @@ Emitted on item interact.
 
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
-| data | [ItemInteractEvent](/docs/typedefs/itemuseinteract) | - | - | Item interact data. |
+| data | [ItemInteractEvent](/docs/typedefs/iteminteractevent) | - | - | Item interact data. |
 ___
 
 ### EntityDestroyed
@@ -300,7 +301,7 @@ Emitted when on explosion.
 
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
-| data | [ExplosionEvent](/docs/classes/explosionevent) | - | - | Explosion event data. |
+| data | [ExplosionEvent](/docs/typedefs/explosionevent) | - | - | Explosion event data. |
 ___
 
 ### EnteredWater

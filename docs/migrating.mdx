@@ -29,13 +29,9 @@ import { client } from 'beapi-core';
 
 ## Database
 We have added a new memory-based persistent database with better performance and
-more reliability. The import remains similar to before.
+more reliability. It is breaking and very different from before.
 
-```ts
-import { Database } from 'beapi-core';
-```
-
-All database methods have changed however, see [here](/docs/classes/database) for more info.
+see [databasing](/docs/examples/databasing) for more info.
 
 ## Intervals and Timeouts
 The Interval and Timeout methods now are added to `globalThis` therefore they do not need to
