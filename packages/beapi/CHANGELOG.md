@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.1.0...beapi-core@2.2.0) (2022-02-09)
+
+
+### Bug Fixes
+
+* commandManager now tells you if a command doesnt exists ([cef2330](https://github.com/MCBE-Utilities/BeAPI/commit/cef2330abf0471b53a67c8137ad479b0d5b42169))
+* **database:** issue [#15](https://github.com/MCBE-Utilities/BeAPI/issues/15) ([60fa49f](https://github.com/MCBE-Utilities/BeAPI/commit/60fa49fc51d6181b5b8dc580e390b58a092dc267))
+* **db:** [urgent] dataloss issue ([ffb20cd](https://github.com/MCBE-Utilities/BeAPI/commit/ffb20cd00a3a7e735fd95fdf16f2ac636e81d375))
+* **events:** updated BlockDestroyed ([9c05ec5](https://github.com/MCBE-Utilities/BeAPI/commit/9c05ec5fddb9b75a2aea354892b7ee77322f07a0))
+* **events:** updated BlockDestroyed ([8129023](https://github.com/MCBE-Utilities/BeAPI/commit/812902376a8c6cb0a21e5428f33eebffa2925fa6))
+* forms not ready for .10 ([3e7f3b2](https://github.com/MCBE-Utilities/BeAPI/commit/3e7f3b232c66040154b1b6e55d59a0155b576f85))
+* **forms:** fixed typo ([b45642a](https://github.com/MCBE-Utilities/BeAPI/commit/b45642ae6863197e099fd01b6afec4a69335c275))
+* **player:** removed typo ([1424743](https://github.com/MCBE-Utilities/BeAPI/commit/14247431e2517060616150e36c327aff0cb9785d))
+* updated typings ([4cddaea](https://github.com/MCBE-Utilities/BeAPI/commit/4cddaeada89279a6b097b5579ece3f90415509dd))
+
+
+### Features
+
+* beforecli version check ([f7d78dc](https://github.com/MCBE-Utilities/BeAPI/commit/f7d78dcf4566c46cf2820133d788130133876816))
+* beforecli version check ([30ea67c](https://github.com/MCBE-Utilities/BeAPI/commit/30ea67c03ce0c7dc53797421dca436136c0a89a5))
+* **database:** update method ([8d224ad](https://github.com/MCBE-Utilities/BeAPI/commit/8d224ad7ff4258f76f7a83b6f52a026342a05005))
+* **entity:** added getRotation and getHeadLocation ([aec3c69](https://github.com/MCBE-Utilities/BeAPI/commit/aec3c6985d32b03f214fd2e8d6602fc12282e7af))
+* **entity:** added getScore ([d874bfd](https://github.com/MCBE-Utilities/BeAPI/commit/d874bfd108a7706e544c571ccaedb1d0c9381974))
+* **entity:** added getVelocity & setVelocity ([4221572](https://github.com/MCBE-Utilities/BeAPI/commit/4221572b2c01707a24c5ea14508072783027f557))
+* **entity:** added setNameTag ([97aecb6](https://github.com/MCBE-Utilities/BeAPI/commit/97aecb63cdd1a27e213495ab7827eb0b195332c0))
+* **entity:** added teleport ([9ab2a3f](https://github.com/MCBE-Utilities/BeAPI/commit/9ab2a3fb2b296f1b2fd0246ba6b662411b32988f))
+* **entity:** added triggerEvent ([925f4e2](https://github.com/MCBE-Utilities/BeAPI/commit/925f4e2ced367e32d501e68ed82ef91766101d69))
+* **events:** added Death and Respawn ([56e8390](https://github.com/MCBE-Utilities/BeAPI/commit/56e8390416ac4683e54b8320c731e5695dc3a89d))
+* **events:** added Death and Respawn ([4414bce](https://github.com/MCBE-Utilities/BeAPI/commit/4414bce8abf0c0217d2f346e2242e21bcb56545d))
+* **player:** added createForms ([2b4c970](https://github.com/MCBE-Utilities/BeAPI/commit/2b4c97071e0fb8ba9b536064af713787ccfbf752))
+* **player:** added getRotation & getHeadLocation ([b70449a](https://github.com/MCBE-Utilities/BeAPI/commit/b70449af423ad37908cb8399cfbe46fab02ba36e))
+* **player:** added getVelocity & setVelocity ([cde4743](https://github.com/MCBE-Utilities/BeAPI/commit/cde4743bd5fedf616c95abb476c645f28cb81945))
+* **player:** added setNameTag ([0fc3ae6](https://github.com/MCBE-Utilities/BeAPI/commit/0fc3ae6e77d5cb5528129603bc1bcd2ccdff1772))
+* **player:** added teleport ([4b1b8ec](https://github.com/MCBE-Utilities/BeAPI/commit/4b1b8ec947c807963c9c904048beb41da0a1d270))
+* **player:** added triggerEvent ([6540295](https://github.com/MCBE-Utilities/BeAPI/commit/65402953c611d904fc423d4625eae045ae896573))
+* **world:** added getBlock ([4747859](https://github.com/MCBE-Utilities/BeAPI/commit/4747859f96de77c71f4676f68a7645dcf86911c5))
+* **world:** added getEntitiesFromLocation ([b08e404](https://github.com/MCBE-Utilities/BeAPI/commit/b08e40428de965d78192de001dc9300d12110492))
+* **world:** added getPlayersFromLocation ([e9dbe3b](https://github.com/MCBE-Utilities/BeAPI/commit/e9dbe3b2051752deb7bb0bb73163f98bff6d82d6))
+
+
+
+
+
 # [2.1.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.0.1...beapi-core@2.1.0) (2022-01-17)
 
 
