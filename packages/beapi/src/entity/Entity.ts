@@ -1,11 +1,9 @@
-import {
+import type {
   Dimension as IDimension,
   Entity as IEntity,
   EntityHealthComponent,
   EntityInventoryComponent,
   Location as ILocation,
-  world,
-  BlockLocation,
   Vector,
 } from 'mojang-minecraft'
 import type { Client } from '../client'
@@ -123,29 +121,10 @@ export class Entity {
   }
 
   public getDimensionName(): Dimension {
-    const overworld = world
-      .getDimension('overworld')
-      .getEntitiesAtBlockLocation(
-        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
-      )
-      .find((x) => x === this._IEntity)
-    const nether = world
-      .getDimension('nether')
-      .getEntitiesAtBlockLocation(
-        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
-      )
-      .find((x) => x === this._IEntity)
-    const theEnd = world
-      .getDimension('the end')
-      .getEntitiesAtBlockLocation(
-        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
-      )
-      .find((x) => x === this._IEntity)
-    if (overworld) return 'overworld'
-    if (nether) return 'nether'
-    if (theEnd) return 'the end'
+    // TEMP: Until types get updated
+    const id = ((this.getDimension() as any).id as string).split(':')[1].replace(/_/g, ' ')
 
-    return 'overworld'
+    return id as Dimension
   }
 
   public getInventory(): EntityInventoryComponent | undefined {
