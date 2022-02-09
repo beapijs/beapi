@@ -1,14 +1,14 @@
-import { PlayerLeaveEvent, world } from 'mojang-minecraft'
+import { BeforePistonActivateEvent, world } from 'mojang-minecraft'
 import type { Client } from '../client'
 
 import AbstractEvent from './AbstractEvent'
-export class OnLeave extends AbstractEvent {
+export class Piston extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
-  public readonly name = 'OnLeave'
-  public readonly iName = 'playerLeave'
+  public readonly name = 'Piston'
+  public readonly iName = 'beforePistonActivate'
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {
@@ -30,9 +30,15 @@ export class OnLeave extends AbstractEvent {
     }
   }
 
-  protected __logic(arg: PlayerLeaveEvent): void {
-    const player = this._client.players.getByName(arg.playerName)
-    this._client.emit(this.name, player)
-    player.destroy()
+  protected __logic(arg: BeforePistonActivateEvent): void {
+    this._client.emit(this.name, {
+      block: arg.block,
+      dimension: arg.dimension,
+      piston: arg.piston,
+      extending: arg.isExpanding,
+      cancel() {
+        arg.cancel = true
+      },
+    })
   }
 }

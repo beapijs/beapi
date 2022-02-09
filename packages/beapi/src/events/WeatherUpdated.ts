@@ -1,14 +1,15 @@
-import { PlayerLeaveEvent, world } from 'mojang-minecraft'
+import { WeatherChangeEvent, world } from 'mojang-minecraft'
 import type { Client } from '../client'
+import type { Dimension } from '../types'
 
 import AbstractEvent from './AbstractEvent'
-export class OnLeave extends AbstractEvent {
+export class WeatherUpdated extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
-  public readonly name = 'OnLeave'
-  public readonly iName = 'playerLeave'
+  public readonly name = 'WeatherUpdated'
+  public readonly iName = 'weatherChange'
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {
@@ -30,9 +31,12 @@ export class OnLeave extends AbstractEvent {
     }
   }
 
-  protected __logic(arg: PlayerLeaveEvent): void {
-    const player = this._client.players.getByName(arg.playerName)
-    this._client.emit(this.name, player)
-    player.destroy()
+  protected __logic(arg: WeatherChangeEvent): void {
+    const dimension = this._client.world.getDimension(arg.dimension as Dimension)
+    this._client.emit(this.name, {
+      lightning: arg.lightning,
+      raining: arg.raining,
+      dimension,
+    })
   }
 }

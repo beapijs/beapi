@@ -1,14 +1,25 @@
 import type { Player } from '../player'
 import type { Entity } from '../entity'
-import type { Block, BlockLocation, BlockPermutation, Dimension as IDimension, ItemStack } from 'mojang-minecraft'
+import type { CommandEntry } from './Command'
+import type {
+  Block,
+  BlockLocation,
+  BlockPermutation,
+  Dimension as IDimension,
+  ItemStack,
+  BlockPistonComponent,
+  Effect,
+} from 'mojang-minecraft'
 
 export interface ClientEvents {
   OnChat: [OnChatEvent]
   OnJoin: [Player]
-  OnLeave: [Player | string]
+  OnLeave: [Player]
   Tick: [TickEvent]
   ItemUse: [ItemUseEvent]
   ItemInteract: [ItemInteractEvent]
+  ItemEvent: [ItemEventEvent]
+  ItemDropped: [ItemDroppedEvent]
   EntityDestroyed: [Entity]
   EntityCreated: [Entity]
   BlockDestroyed: [ClientBlockBreakEvent]
@@ -41,6 +52,11 @@ export interface ClientEvents {
   Respawn: [Player]
   EntityAttacked: [EntityInViewVectorEvent]
   PlayerAttacked: [PlayerInViewVectorEvent]
+  Piston: [PistonEvent]
+  EffectAdded: [EffectAddedEvent]
+  WeatherUpdated: [WeatherUpdatedEvent]
+  CommandRegistered: [CommandRegisteredEvent]
+  CommandUsed: [CommandUsedEvent]
 }
 
 export interface OnChatEvent {
@@ -69,6 +85,18 @@ export interface ItemInteractEvent {
   faceLocationX: number
   faceLocationY: number
   cancel: CancelMethod
+}
+
+export interface ItemEventEvent {
+  player: Player
+  item: ItemStack
+  event: string
+  cancel: CancelMethod
+}
+
+export interface ItemDroppedEvent {
+  player: Player
+  item: Entity
 }
 
 export interface ClientBlockBreakEvent {
@@ -110,6 +138,37 @@ export interface ExplosionEvent {
   source: Entity | undefined
   dimension: IDimension
   impactedBlocks: BlockLocation[]
+  cancel: CancelMethod
+}
+
+export interface PistonEvent {
+  block: Block
+  dimension: IDimension
+  extending: boolean
+  piston: BlockPistonComponent
+  cancel: CancelMethod
+}
+
+export interface EffectAddedEvent {
+  target: Player | Entity | undefined
+  state: number
+  effect: Effect
+}
+
+export interface WeatherUpdatedEvent {
+  lightning: boolean
+  raining: boolean
+  dimension: IDimension
+}
+
+export interface CommandRegisteredEvent {
+  command: CommandEntry | undefined
+  cancel: CancelMethod
+}
+
+export interface CommandUsedEvent {
+  command: CommandEntry | undefined
+  sender: Player | undefined
   cancel: CancelMethod
 }
 

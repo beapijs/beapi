@@ -64,6 +64,34 @@ export class Player {
     this.executeCommand(`tellraw @s {"rawtext":[{"text":"${message}"}]}`)
   }
 
+  public sendActionbar(message: string): void {
+    this.executeCommand(`titleraw @s actionbar {"rawtext":[{"text":"${message}"}]}`)
+  }
+
+  public sendTitle(message: string): void {
+    this.executeCommand(`titleraw @s title {"rawtext":[{"text":"${message}"}]}`)
+  }
+
+  public sendSubtitle(message: string): void {
+    this.executeCommand(`titleraw @s subtitle {"rawtext":[{"text":"${message}"}]}`)
+  }
+
+  public sendSound(sound: string, location?: Location, volume?: number, pitch?: number, maxVolume?: number): void {
+    this.executeCommand(
+      `playsound ${sound} ${location?.x ?? ''} ${location?.y ?? ''} ${location?.z ?? ''} ${volume ?? ''} ${
+        pitch ?? ''
+      } ${maxVolume ?? ''}`,
+    )
+  }
+
+  public sendAnimation(animation: string): void {
+    this.executeCommand(`playanimation @s ${animation}`)
+  }
+
+  public sendFog(type: 'pop' | 'push' | 'remove', fogId: string, globalId: string): void {
+    this.executeCommand(`fog @s ${type} ${fogId} ${globalId}`)
+  }
+
   public executeCommand(cmd: string, debug = false): ServerCommandResponse {
     try {
       const command = this._IPlayer.runCommand(cmd)
@@ -89,6 +117,18 @@ export class Player {
     if (command.err) return 0
 
     return parseInt(String(command.statusMessage?.split(' ')[1]), 10)
+  }
+
+  public setScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players set @s "${objective}" ${amount}`)
+  }
+
+  public addScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players add @s "${objective}" ${amount}`)
+  }
+
+  public removeScore(objective: string, amount: number): void {
+    this.executeCommand(`scoreboard players remove @s "${objective}" ${amount}`)
   }
 
   public getGamemode(): Gamemode {
