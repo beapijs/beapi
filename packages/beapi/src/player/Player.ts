@@ -1,12 +1,10 @@
 import {
-  BlockLocation,
   Dimension as IDimension,
   EntityHealthComponent,
   EntityInventoryComponent,
   Player as IPlayer,
   Location as ILocation,
   Vector,
-  world,
 } from 'mojang-minecraft'
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Entity } from '..'
@@ -157,29 +155,10 @@ export class Player {
   }
 
   public getDimensionName(): Dimension {
-    const overworld = world
-      .getDimension('overworld')
-      .getEntitiesAtBlockLocation(
-        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
-      )
-      .find((x) => x === this._IPlayer)
-    const nether = world
-      .getDimension('nether')
-      .getEntitiesAtBlockLocation(
-        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
-      )
-      .find((x) => x === this._IPlayer)
-    const theEnd = world
-      .getDimension('the end')
-      .getEntitiesAtBlockLocation(
-        new BlockLocation(this.getLocation().x, this.getLocation().y + 1, this.getLocation().z),
-      )
-      .find((x) => x === this._IPlayer)
-    if (overworld) return 'overworld'
-    if (nether) return 'nether'
-    if (theEnd) return 'the end'
+    // TEMP: Until types get updated
+    const id = ((this.getDimension() as any).id as string).split(':')[1].replace(/_/g, ' ')
 
-    return 'overworld'
+    return id as Dimension
   }
 
   public getInventory(): EntityInventoryComponent {
