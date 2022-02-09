@@ -42,6 +42,10 @@ export class EntityManager {
     return this._entities.get(runtimeId)
   }
 
+  public getByUniqueId(uniqueId: number): Entity | undefined {
+    return Array.from(this._entities.values()).find((e) => e.getUniqueId() === uniqueId)
+  }
+
   public getByIEntity(IEntity: IEntity): Entity | undefined {
     return Array.from(this._entities.values()).find((e) => e.getIEntity() === IEntity)
   }
