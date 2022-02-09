@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://mcbe-utilities.github.io/BeAPI/blog</id>
+    <title>BeAPI Blog</title>
+    <updated>2022-02-09T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://mcbe-utilities.github.io/BeAPI/blog"/>
+    <subtitle>BeAPI Blog</subtitle>
+    <icon>https://mcbe-utilities.github.io/BeAPI/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Welcome]]></title>
+        <id>welcome</id>
+        <link href="https://mcbe-utilities.github.io/BeAPI/blog/welcome"/>
+        <updated>2022-02-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[First off, welcome to BeAPI's first release 🎉]]></summary>
+        <content type="html"><![CDATA[<p>First off, welcome to BeAPI&#x27;s first release 🎉
+Thank you for sticking with us and helping us
+contemplate ideas for this package. It sure
+has been an intriguing journey up to this point.</p><p><img src="./beapi.png" alt="BeAPI Logo"/></p><p>Now with that aside...</p><p>It&#x27;s 3:45 in the morning, and I just finished
+writing all the docs out for this bad boy
+<em>after procrastinating and playing Walkabout Mini Golf with some friends.</em></p><p>Let me say; Writing documentation truly makes
+you contemplate life: &quot;why am I here?&quot;,
+&quot;How did I get here?&quot;, &quot;Can I go to bed now?&quot;.
+BUT NO... I feel like a freaking world war translator
+decrypting massive files of gibberish written by my
+peers with no help.</p><p>I was ultimately planning on removing the blogs page from
+this website. My mindset at the time was something along the
+lines of: &quot;You&#x27;ve got me <!-- -->*<!-- -->*<!-- -->*<!-- -->*<!-- -->*<!-- -->*<!-- --> up if you think I am going to
+write more words!&quot;</p><p>BUT After briefly reconsidering, I figured maybe posting here
+would be fun, thus my resolve to write this.</p><p>Anyways, even though BeAPI is released to the public fully now,
+I do want to warn, we are going to violate semver a bit. We
+made some changes to the beta branch we meant to push to production,
+but we got ahead of ourselves accidentally and made a release.</p><p>I&#x27;ll probably end up just throwing changes like that in a migration
+guide or something when I decide to add version management to the docs.</p><p>_</p><p>I suppose that is all I have for this first post. I apologize if it&#x27;s
+a bit bland, but you should probably cut me some slack; It&#x27;s now 4:00 in
+the morning, and my brain is deep-fried.</p><p>Once again, thank you very much all for the continued
+support we love ya ❤️ <em>no homo... or maybe not?</em> 😳</p>]]></content>
+        <author>
+            <name>Nobu</name>
+            <uri>https://github.com/nobu-sh</uri>
+        </author>
+    </entry>
+</feed>
