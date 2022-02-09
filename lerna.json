@@ -10,7 +10,7 @@
       "push": true
     },
     "version": {
-      "allowBranch": ["1.18.20"],
+      "allowBranch": ["production"],
       "conventionalCommits": true,
       "push": true,
       "createRelease": "github"
