@@ -145,7 +145,7 @@ export class Player {
 
     return {
       x: Math.floor(pos.x),
-      y: Math.floor(pos.y - 1),
+      y: Math.floor(pos.y),
       z: Math.floor(pos.z),
     }
   }
