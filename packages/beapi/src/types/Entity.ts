@@ -6,6 +6,14 @@ import type {
   EntityMovementComponent,
   EntityRideableComponent,
   EntityUnderwaterMovementComponent,
+  EntityAgeableComponent,
+  EntityColorComponent,
+  EntityFlyingSpeedComponent,
+  EntityHealableComponent,
+  EntityLeashableComponent,
+  EntityMountTamingComponent,
+  EntityStrengthComponent,
+  EntityTameableComponent,
 } from 'mojang-minecraft'
 
 export interface EntityComponents {
@@ -18,4 +26,12 @@ export interface EntityComponents {
   'minecraft:rideable': EntityRideableComponent
   'minecraft:underwater_movement': EntityUnderwaterMovementComponent
   'minecraft:can_climb': any
+  'minecraft:ageable': EntityAgeableComponent
+  'minecraft:color': EntityColorComponent
+  'minecraft:flying_speed': EntityFlyingSpeedComponent
+  'minecraft:healable': EntityHealableComponent
+  'minecraft:leashable': EntityLeashableComponent
+  'minecraft:mount_taming': EntityMountTamingComponent
+  'minecraft:strength': EntityStrengthComponent
+  'minecraft:tameable': EntityTameableComponent
 }
