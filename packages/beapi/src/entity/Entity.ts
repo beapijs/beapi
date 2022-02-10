@@ -7,7 +7,7 @@ import type {
   Vector,
 } from 'mojang-minecraft'
 import type { Client } from '../client'
-import type { Location, Dimension, ServerCommandResponse } from '../types'
+import type { Location, Dimension, ServerCommandResponse, EntityComponents } from '../types'
 import { getUniqueId } from '../utils'
 
 export class Entity {
@@ -163,5 +163,9 @@ export class Entity {
 
   public getHeadLocation(): ILocation {
     return this._IEntity.headLocation
+  }
+
+  public getComponent<K extends keyof EntityComponents>(component: K): EntityComponents[K] {
+    return this._IEntity.getComponent(component) as any
   }
 }
