@@ -29,9 +29,9 @@ export class WorldManager {
     return players
   }
 
-  public spawnEntity(entity: string, pos: Location, name = ''): Entity | undefined {
-    this._client.executeCommand(`summon ${entity} "${name}" ${pos.x} ${pos.y} ${pos.z}`)
-    return this._client.entities.getLastest()
+  public spawnEntity(id: string, location: Location, dimension: Dimension): Entity | undefined {
+    const entity = this.getDimension(dimension).spawnEntity(id, new BlockLocation(location.x, location.y, location.z))
+    return this._client.entities.getByIEntity(entity)
   }
 
   public getBlock(dimension: Dimension, location: Location): Block {
