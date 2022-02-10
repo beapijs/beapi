@@ -14,14 +14,15 @@ export class Entity {
   protected readonly _client: Client
   protected readonly _IEntity: IEntity
   protected readonly _runtimeId: number
+  protected readonly _uniqueId: number
   public constructor(client: Client, entity: IEntity) {
     this._client = client
     this._IEntity = entity
     this._runtimeId = this._client.entities.newRuntimeId()
+    this._uniqueId = getUniqueId(this)
   }
 
   public destroy(): void {
-    this._client.entities.remove(this)
     try {
       this._IEntity.kill()
     } catch {}
@@ -40,7 +41,7 @@ export class Entity {
   }
 
   public getUniqueId(): number {
-    return getUniqueId(this)
+    return this._uniqueId
   }
 
   public getNameTag(): string {

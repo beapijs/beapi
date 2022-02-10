@@ -35,7 +35,7 @@ export class EntityDestroyed extends AbstractEvent {
         entity.getIEntity().id
       } catch {
         this._client.emit(this.name, entity)
-        entity.destroy()
+        this._client.entities.remove(entity)
       }
     }
   }
