@@ -168,4 +168,8 @@ export class Entity {
   public getComponent<K extends keyof EntityComponents>(component: K): EntityComponents[K] {
     return this._IEntity.getComponent(component) as any
   }
+
+  public hasComponent<K extends keyof EntityComponents>(component: K): boolean {
+    return this._IEntity.hasComponent(component)
+  }
 }
