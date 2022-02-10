@@ -22,7 +22,6 @@ export class Player {
   }
 
   public destroy(reason = 'Instantiated player object destroyed!'): void {
-    this._client.players.remove(this)
     this._client.executeCommand(`kick "${this.getNameTag()}" ${reason}`)
   }
 
