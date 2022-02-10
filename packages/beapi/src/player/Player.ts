@@ -211,6 +211,10 @@ export class Player {
     return this._IPlayer.getComponent(component) as any
   }
 
+  public hasComponent<K extends keyof PlayerComponents>(component: K): boolean {
+    return this._IPlayer.hasComponent(component)
+  }
+
   public createModalForm(): ModalForm {
     return new ModalForm(this)
   }
