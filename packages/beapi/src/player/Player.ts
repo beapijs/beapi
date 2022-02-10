@@ -9,7 +9,7 @@ import {
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Entity } from '..'
 import type { Client } from '../client'
-import type { Location, Dimension, Gamemode, ServerCommandResponse } from '../types'
+import type { Location, Dimension, Gamemode, ServerCommandResponse, PlayerComponents } from '../types'
 
 export class Player {
   protected readonly _client: Client
@@ -205,6 +205,10 @@ export class Player {
 
   public getHeadLocation(): ILocation {
     return this._IPlayer.headLocation
+  }
+
+  public getComponent<K extends keyof PlayerComponents>(component: K): PlayerComponents[K] {
+    return this._IPlayer.getComponent(component) as any
   }
 
   public createModalForm(): ModalForm {
