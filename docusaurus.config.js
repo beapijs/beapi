@@ -94,7 +94,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/MCBE-Utilities',
+                href: 'https://github.com/MCBE-Utilities/',
               },
               {
                 label: 'Stack Overflow',
@@ -111,7 +111,7 @@ const config = {
               },
               {
                 label: 'Repo',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/MCBE-Utilities/BeAPI',
               },
             ],
           },
