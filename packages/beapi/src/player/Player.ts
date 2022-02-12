@@ -14,11 +14,13 @@ import type { Location, Dimension, Gamemode, ServerCommandResponse, PlayerCompon
 export class Player {
   protected readonly _client: Client
   protected readonly _IPlayer: IPlayer
+  protected readonly _name: string
   public prevPlayerInVector: Player | undefined
   public prevEntityInVector: Entity | undefined
   public constructor(client: Client, player: IPlayer) {
     this._client = client
     this._IPlayer = player
+    this._name = player.name
   }
 
   public destroy(reason = 'Instantiated player object destroyed!'): void {
@@ -30,7 +32,7 @@ export class Player {
   }
 
   public getName(): string {
-    return this._IPlayer.name
+    return this._name
   }
 
   public getNameTag(): string {
