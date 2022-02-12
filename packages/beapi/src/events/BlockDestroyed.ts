@@ -41,10 +41,7 @@ export class BlockDestroyed extends AbstractEvent {
       dimension: arg.dimension,
       cancel() {
         // TEMP: Workaround Until Mojang Adds Block Destroyed Cancel Event
-        // NOTE: Block broken usually returns as air, Mojang Issue
-        const dim = arg.dimension
-        const pos = arg.block.location
-        dim.runCommand(`setblock ${pos.x} ${pos.y} ${pos.z} ${(arg as any).brokenBlockPermutation.type.id}`)
+        arg.block.setPermutation(arg.brokenBlockPermutation)
       },
     })
   }
