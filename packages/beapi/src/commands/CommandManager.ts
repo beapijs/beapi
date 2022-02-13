@@ -1,5 +1,5 @@
 import type { Client } from '../client'
-import type { Command, CommandCallback, CommandOptions, ParseResult } from '../types/Command'
+import type { Command, CommandCallback, CommandOptions, ParseResult, OnChatEvent } from '../types'
 
 const defaultPrefix = '-'
 
@@ -7,6 +7,8 @@ export class CommandManager {
   protected readonly _client: Client
   protected readonly _handlers = new Map<string, CommandHandler>()
   protected readonly _commands = new Map<string, Command>()
+  protected readonly __onChatLogic = this._onChatLogic.bind(this)
+
   public constructor(client: Client) {
     this._client = client
 
@@ -38,23 +40,29 @@ export class CommandManager {
       },
     )
 
-    this._client.on('OnChat', (data) => {
-      if (!data.sender || !data.message.startsWith('-')) return
-      const result = parse(defaultPrefix, data.message)
-      const command =
-        this._commands.get(result.command) ??
-        Array.from(this._commands.values()).find((i) => i.options.aliases?.includes(result.command))
-      if (!command) {
-        data.sender.sendMessage("§c§cThis command doesn't exists!")
+    this._client.on('OnChat', this.__onChatLogic)
+  }
 
-        return data.cancel()
-      }
-      command.cb({
-        sender: data.sender,
-        args: result.args,
-      })
-      data.cancel()
+  protected _onChatLogic(data: OnChatEvent): void {
+    if (!data.sender || !data.message.startsWith('-')) return
+    const result = parse(defaultPrefix, data.message)
+    const command =
+      this._commands.get(result.command) ??
+      Array.from(this._commands.values()).find((i) => i.options.aliases?.includes(result.command))
+    if (!command) {
+      data.sender.sendMessage("§c§cThis command doesn't exists!")
+
+      return data.cancel()
+    }
+    command.cb({
+      sender: data.sender,
+      args: result.args,
     })
+    data.cancel()
+  }
+
+  public disable(): void {
+    this._client.removeListener('OnChat', this.__onChatLogic)
   }
 
   public createHandler(prefix: string): CommandHandler {
