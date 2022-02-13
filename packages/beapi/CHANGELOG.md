@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.2.0...beapi-core@2.2.1) (2022-02-13)
+
+
+### Bug Fixes
+
+* **commands:** added option to disable default command handler ([8e01ee0](https://github.com/MCBE-Utilities/BeAPI/commit/8e01ee0fbf30d5c0cce6ba2a1e3fee0c6402fcdd))
+
+
+
+
+
 # [2.2.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.1.0...beapi-core@2.2.0) (2022-02-09)
 
 
