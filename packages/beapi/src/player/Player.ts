@@ -191,7 +191,7 @@ export class Player {
     this._IPlayer.teleport(loc, dimension, xrot, yrot)
   }
 
-  public teleportFacing(location: Location, dimension: IDimension, facingLocation: ILocation): void {
+  public teleportFacing(location: Location, dimension: IDimension, facingLocation: Location): void {
     const loc = new ILocation(location.x, location.y, location.z)
     const loc2 = new ILocation(facingLocation.x, facingLocation.y, facingLocation.z)
     this._IPlayer.teleportFacing(loc, dimension, loc2)

@@ -3,11 +3,11 @@ import type {
   Entity as IEntity,
   EntityHealthComponent,
   EntityInventoryComponent,
-  Location as ILocation,
   Vector,
 } from 'mojang-minecraft'
 import type { Client } from '../client'
 import type { Location, Dimension, ServerCommandResponse, EntityComponents } from '../types'
+import { Location as ILocation } from 'mojang-minecraft'
 import { getUniqueId } from '../utils'
 
 export class Entity {
@@ -146,12 +146,15 @@ export class Entity {
     this._IEntity.setVelocity(velocity)
   }
 
-  public teleport(location: ILocation, dimension: IDimension, xrot: number, yrot: number): void {
-    this._IEntity.teleport(location, dimension, xrot, yrot)
+  public teleport(location: Location, dimension: IDimension, xrot: number, yrot: number): void {
+    const loc = new ILocation(location.x, location.y, location.z)
+    this._IEntity.teleport(loc, dimension, xrot, yrot)
   }
 
-  public teleportFacing(location: ILocation, dimension: IDimension, facingLocation: ILocation): void {
-    this._IEntity.teleportFacing(location, dimension, facingLocation)
+  public teleportFacing(location: Location, dimension: IDimension, facingLocation: Location): void {
+    const loc = new ILocation(location.x, location.y, location.z)
+    const loc2 = new ILocation(facingLocation.x, facingLocation.y, facingLocation.z)
+    this._IEntity.teleportFacing(loc, dimension, loc2)
   }
 
   public triggerEvent(event: string): void {
