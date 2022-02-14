@@ -242,4 +242,8 @@ export class Player {
   public setItemCooldown(itemCategory: string, ticks: number): void {
     this._IPlayer.startItemCooldown(itemCategory, ticks)
   }
+
+  public getItemCooldown(itemCategory: string): number {
+    return this._IPlayer.getItemCooldown(itemCategory)
+  }
 }
