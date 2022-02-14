@@ -5,6 +5,7 @@ import {
   Player as IPlayer,
   Location as ILocation,
   Vector,
+  EffectType,
 } from 'mojang-minecraft'
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Entity } from '..'
@@ -57,6 +58,18 @@ export class Player {
 
   public removeTag(tag: string): boolean {
     return this._IPlayer.removeTag(tag)
+  }
+
+  public createModalForm(): ModalForm {
+    return new ModalForm(this)
+  }
+
+  public createMessageForm(): MessageForm {
+    return new MessageForm(this)
+  }
+
+  public createActionForm(): ActionForm {
+    return new ActionForm(this)
   }
 
   public sendMessage(message: string): void {
@@ -217,15 +230,7 @@ export class Player {
     return this._IPlayer.hasComponent(component)
   }
 
-  public createModalForm(): ModalForm {
-    return new ModalForm(this)
-  }
-
-  public createMessageForm(): MessageForm {
-    return new MessageForm(this)
-  }
-
-  public createActionForm(): ActionForm {
-    return new ActionForm(this)
+  public addEffect(effect: EffectType, duration: number, amplifier: number): void {
+    return this._IPlayer.addEffect(effect, duration, amplifier)
   }
 }
