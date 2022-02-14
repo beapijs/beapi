@@ -238,4 +238,8 @@ export class Player {
   public getEffect(effect: EffectType): Effect {
     return this._IPlayer.getEffect(effect)
   }
+
+  public setItemCooldown(itemCategory: string, ticks: number): void {
+    this._IPlayer.startItemCooldown(itemCategory, ticks)
+  }
 }
