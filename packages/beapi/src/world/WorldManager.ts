@@ -2,7 +2,7 @@ import type { Client } from '../client'
 import type { Dimension, Location } from '../types'
 import type { Entity } from '../entity'
 import type { Player } from '../player'
-import { Block, BlockLocation, world, Dimension as IDimension, ItemStack } from 'mojang-minecraft'
+import { Block, BlockLocation, world, Dimension as IDimension, ItemStack, BlockPermutation } from 'mojang-minecraft'
 export class WorldManager {
   protected readonly _client: Client
   public constructor(client: Client) {
@@ -38,8 +38,15 @@ export class WorldManager {
     ;(this.getDimension(dimension) as any).spawnItem(item, new BlockLocation(location.x, location.y, location.z))
   }
 
-  public getBlock(dimension: Dimension, location: Location): Block {
-    return world.getDimension(dimension).getBlock(new BlockLocation(location.x, location.y, location.z))
+  public setBlock(location: Location, dimension: Dimension, blockPermutation: BlockPermutation): Block {
+    const block = this.getBlock(location, dimension)
+    block.setPermutation(blockPermutation)
+
+    return block
+  }
+
+  public getBlock(location: Location, dimension: Dimension): Block {
+    return this.getDimension(dimension).getBlock(new BlockLocation(location.x, location.y, location.z))
   }
 
   public getDimension(dimension: Dimension): IDimension {

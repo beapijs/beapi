@@ -47,4 +47,4 @@ export * from './utils'
 export * from './world'
 export * from './version'
 
-export type { MinecraftItemTypes, ItemStack, EffectType } from 'mojang-minecraft'
+export type { MinecraftItemTypes, ItemStack, EffectType, BlockPermutation } from 'mojang-minecraft'
