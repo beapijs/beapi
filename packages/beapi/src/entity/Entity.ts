@@ -1,5 +1,6 @@
 import type {
   Dimension as IDimension,
+  EffectType,
   Entity as IEntity,
   EntityHealthComponent,
   EntityInventoryComponent,
@@ -175,5 +176,9 @@ export class Entity {
 
   public hasComponent<K extends keyof EntityComponents>(component: K): boolean {
     return this._IEntity.hasComponent(component)
+  }
+
+  public addEffect(effect: EffectType, duration: number, amplifier: number): void {
+    return this._IEntity.addEffect(effect, duration, amplifier)
   }
 }
