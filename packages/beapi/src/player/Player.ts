@@ -6,6 +6,7 @@ import {
   Location as ILocation,
   Vector,
   EffectType,
+  Effect,
 } from 'mojang-minecraft'
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Entity } from '..'
@@ -232,5 +233,9 @@ export class Player {
 
   public addEffect(effect: EffectType, duration: number, amplifier: number): void {
     return this._IPlayer.addEffect(effect, duration, amplifier)
+  }
+
+  public getEffect(effect: EffectType): Effect {
+    return this._IPlayer.getEffect(effect)
   }
 }
