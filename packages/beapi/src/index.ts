@@ -46,3 +46,5 @@ export * from './polyfill'
 export * from './utils'
 export * from './world'
 export * from './version'
+
+export type { MinecraftItemTypes, ItemStack } from 'mojang-minecraft'

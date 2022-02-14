@@ -2,7 +2,7 @@ import type { Client } from '../client'
 import type { Dimension, Location } from '../types'
 import type { Entity } from '../entity'
 import type { Player } from '../player'
-import { Block, BlockLocation, world, Dimension as IDimension } from 'mojang-minecraft'
+import { Block, BlockLocation, world, Dimension as IDimension, ItemStack } from 'mojang-minecraft'
 export class WorldManager {
   protected readonly _client: Client
   public constructor(client: Client) {
@@ -32,6 +32,10 @@ export class WorldManager {
   public spawnEntity(id: string, location: Location, dimension: Dimension): Entity | undefined {
     const entity = this.getDimension(dimension).spawnEntity(id, new BlockLocation(location.x, location.y, location.z))
     return this._client.entities.getByIEntity(entity)
+  }
+
+  public spawnItem(item: ItemStack, location: Location, dimension: Dimension): void {
+    ;(this.getDimension(dimension) as any).spawnItem(item, new BlockLocation(location.x, location.y, location.z))
   }
 
   public getBlock(dimension: Dimension, location: Location): Block {
