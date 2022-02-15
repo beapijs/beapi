@@ -29,7 +29,7 @@ export class ItemDropped extends AbstractEvent {
   }
 
   protected __logic(data: EntityInViewVectorEvent): void {
-    const block = this._client.world.getBlock(data.target.getDimensionName(), data.target.getLocation())
+    const block = this._client.world.getBlock(data.target.getLocation(), data.target.getDimensionName())
     if (data.target.getId() !== 'minecraft:item' || block.id !== 'minecraft:air') return
 
     this._client.emit(this.name, {
