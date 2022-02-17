@@ -24,6 +24,7 @@ export interface ClientEvents {
   EntityCreated: [Entity]
   BlockDestroyed: [ClientBlockBreakEvent]
   BlockCreated: [ClientBlockEvent]
+  BlockHit: [BlockHitEvent]
   PlayerInViewVector: [PlayerInViewVectorEvent]
   EntityInViewVector: [EntityInViewVectorEvent]
   PlayerTag: [PlayerTagEvent]
@@ -112,6 +113,11 @@ export interface ClientBlockEvent {
   block: Block
   dimension: IDimension
   cancel: CancelMethod
+}
+
+export interface BlockHitEvent {
+  player: Player
+  block: Block
 }
 
 export interface PlayerInViewVectorEvent {

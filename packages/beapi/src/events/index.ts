@@ -3,6 +3,7 @@ import { OnJoin } from './OnJoin'
 import { OnLeave } from './OnLeave'
 import { BlockCreated } from './BlockCreated'
 import { BlockDestroyed } from './BlockDestroyed'
+import { BlockHit } from './BlockHit'
 import { ItemUse } from './ItemUse'
 import { ItemInteract } from './ItemInteract'
 import { ItemEvent } from './ItemEvent'
@@ -48,6 +49,7 @@ export const events = [
   OnLeave,
   BlockCreated,
   BlockDestroyed,
+  BlockHit,
   ItemUse,
   ItemInteract,
   ItemEvent,
