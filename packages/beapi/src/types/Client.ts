@@ -22,8 +22,8 @@ export interface ClientEvents {
   ItemDropped: [ItemDroppedEvent]
   EntityDestroyed: [Entity]
   EntityCreated: [Entity]
-  BlockDestroyed: [ClientBlockBreakEvent]
-  BlockCreated: [ClientBlockEvent]
+  BlockDestroyed: [BlockDestroyedEvent]
+  BlockCreated: [BlockCreatedEvent]
   BlockHit: [BlockHitEvent]
   PlayerInViewVector: [PlayerInViewVectorEvent]
   EntityInViewVector: [EntityInViewVectorEvent]
@@ -100,7 +100,7 @@ export interface ItemDroppedEvent {
   item: Entity
 }
 
-export interface ClientBlockBreakEvent {
+export interface BlockDestroyedEvent {
   player: Player
   block: Block
   brokenBlock: BlockPermutation
@@ -108,7 +108,7 @@ export interface ClientBlockBreakEvent {
   cancel: CancelMethod
 }
 
-export interface ClientBlockEvent {
+export interface BlockCreatedEvent {
   player: Player
   block: Block
   dimension: IDimension
