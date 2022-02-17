@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.2.1...beapi-core@2.2.2) (2022-02-17)
+
+
+### Bug Fixes
+
+* **events:** fixed OnLeave ([ecbb8d5](https://github.com/MCBE-Utilities/BeAPI/commit/ecbb8d5b41ea0522290da92172f27e32eb18073c))
+
+
+
+
+
 ## [2.2.1](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.2.0...beapi-core@2.2.1) (2022-02-13)
 
 
