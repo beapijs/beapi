@@ -22,7 +22,6 @@ export class Entity {
   }
 
   public destroy(): void {
-    this._client.entities.remove(this)
     try {
       this._IEntity.kill()
     } catch {}

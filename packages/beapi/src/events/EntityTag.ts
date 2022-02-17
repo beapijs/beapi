@@ -29,14 +29,16 @@ export class EntityTag extends AbstractEvent {
 
   protected __logic(): void {
     for (const [, entity] of this._client.entities.getAll()) {
-      for (const tag of entity.getTags()) {
-        if (!tag.startsWith('beapi:')) continue
-        entity.removeTag(tag)
-        this._client.emit(this.name, {
-          entity,
-          tag: tag.replace('beapi:', ''),
-        })
-      }
+      try {
+        for (const tag of entity.getTags()) {
+          if (!tag.startsWith('beapi:')) continue
+          entity.removeTag(tag)
+          this._client.emit(this.name, {
+            entity,
+            tag: tag.replace('beapi:', ''),
+          })
+        }
+      } catch {}
     }
   }
 }

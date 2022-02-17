@@ -32,8 +32,7 @@ export class OnLeave extends AbstractEvent {
 
   protected __logic(arg: PlayerLeaveEvent): void {
     const player = this._client.players.getByName(arg.playerName)
-    if (player) player.destroy()
-
-    this._client.emit(this.name, player ?? arg.playerName)
+    this._client.emit(this.name, player)
+    this._client.players.remove(player)
   }
 }

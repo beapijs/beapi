@@ -5,7 +5,7 @@ import type { Block, BlockLocation, BlockPermutation, Dimension as IDimension, I
 export interface ClientEvents {
   OnChat: [OnChatEvent]
   OnJoin: [Player]
-  OnLeave: [Player | string]
+  OnLeave: [Player]
   Tick: [TickEvent]
   ItemUse: [ItemUseEvent]
   ItemInteract: [ItemInteractEvent]

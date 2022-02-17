@@ -29,15 +29,17 @@ export class EntityInViewVector extends AbstractEvent {
 
   protected __logic(): void {
     for (const [, player] of this._client.players.getAll()) {
-      const entity = player.getIPlayer().getEntitiesFromViewVector()[0]
-      if (!entity || entity.id === 'minecraft:player') continue
-      const target = this._client.entities.getByIEntity(entity)
-      if (!target) continue
-      player.prevEntityInVector = target
-      this._client.emit(this.name, {
-        player,
-        target,
-      })
+      try {
+        const entity = player.getIPlayer().getEntitiesFromViewVector()[0]
+        if (!entity || entity.id === 'minecraft:player') continue
+        const target = this._client.entities.getByIEntity(entity)
+        if (!target) continue
+        player.prevEntityInVector = target
+        this._client.emit(this.name, {
+          player,
+          target,
+        })
+      } catch {}
     }
   }
 }
