@@ -29,14 +29,16 @@ export class PlayerTag extends AbstractEvent {
 
   protected __logic(): void {
     for (const [, player] of this._client.players.getAll()) {
-      for (const tag of player.getTags()) {
-        if (!tag.startsWith('beapi:')) continue
-        player.removeTag(tag)
-        this._client.emit(this.name, {
-          player,
-          tag: tag.replace('beapi:', ''),
-        })
-      }
+      try {
+        for (const tag of player.getTags()) {
+          if (!tag.startsWith('beapi:')) continue
+          player.removeTag(tag)
+          this._client.emit(this.name, {
+            player,
+            tag: tag.replace('beapi:', ''),
+          })
+        }
+      } catch {}
     }
   }
 }
