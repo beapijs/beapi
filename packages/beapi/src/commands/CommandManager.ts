@@ -36,6 +36,14 @@ export class CommandManager {
       })
       if (cancel) return
       data.cancel()
+      if (command?.options.permissionTags) {
+        const tags = data.sender?.getTags()
+        for (const perm of command.options.permissionTags) {
+          if (tags?.includes(perm)) continue
+
+          return data.sender?.sendMessage("§cYou don't have permission to use this command.")
+        }
+      }
       if (!command?.args || (command?.args?.length ?? 0) === 0) return command?.execute(data.sender)
       if (parsed.args?.length !== command.args.length) {
         for (let x = 0; x !== command.args.length; x++) {

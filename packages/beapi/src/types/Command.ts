@@ -6,6 +6,7 @@ export interface CommandOptions {
   usage: string
   description: string
   aliases?: string[]
+  permissionTags?: string[]
   hidden?: boolean
 }
 
