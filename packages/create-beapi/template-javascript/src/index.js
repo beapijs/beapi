@@ -4,7 +4,7 @@ client.commands.register(
   {
     name: 'Ping',
     usage: 'ping',
-    description: 'Ping gametest scripts.',
+    description: 'Ping GameTest scripts.',
     aliases: ['p'],
   },
   (sender) => {

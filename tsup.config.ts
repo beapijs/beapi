@@ -11,7 +11,7 @@ export const tsup: Options = {
   format: ['esm', 'cjs'],
   skipNodeModulesBundle: true,
 
-  // Decaration Emission
+  // Decoration Emission
   sourcemap: true,
 
   // Entry

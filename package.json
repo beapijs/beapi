@@ -1,7 +1,7 @@
 {
   "name": "beapi-monorepo",
   "version": "1.0.0",
-  "description": "MCBE gametest wrapper monorepo",
+  "description": "MCBE GameTest wrapper monorepo",
   "private": true,
   "scripts": {
     "build": "npm run build --workspaces",

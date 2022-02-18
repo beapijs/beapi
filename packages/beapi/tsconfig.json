@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    // ES6 = Gametest
+    // ES6 = GameTest
     "module": "ES6",
     "moduleResolution": "node",
     "target": "ES6",

@@ -53,7 +53,7 @@ Yargs.updateLocale(YARG_LOCALE)
 // Build Command
 Yargs.command(
   'build',
-  chalk.gray('Build BeAPI project for gametest.'),
+  chalk.gray('Build BeAPI project for GameTest.'),
   (y) => {
     y.usage(`${chalk.hex('#698fff')('beapi')} ${chalk.gray('build')} ${chalk.grey('[flags]')}`)
     y.help('help', chalk.grey('Help for command build.'))

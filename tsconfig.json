@@ -17,7 +17,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
 
-    // Decaration Emission
+    // Decoration Emission
     "declaration": true,
     "importHelpers": true,
     "importsNotUsedAsValues": "error",

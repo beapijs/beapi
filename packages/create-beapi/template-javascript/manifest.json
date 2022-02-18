@@ -1,7 +1,7 @@
 {
   "format_version": 2,
   "header": {
-    "description": "Advanced API Wrapper for GameTests.",
+    "description": "Advanced API Wrapper for the GameTest Framework.",
     "name": "§l§9BeAPI Starter",
     "uuid": "|UUID1|",
     "version": [0, 0, 1],
@@ -9,7 +9,7 @@
   },
   "modules": [
     {
-      "description": "Advanced API Wrapper for GameTests.",
+      "description": "Advanced API Wrapper for the GameTest Framework",
       "type": "javascript",
       "uuid": "|UUID2|",
       "version": [0, 0, 1],

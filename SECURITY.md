@@ -1,7 +1,7 @@
 # Security Policy
 
 ## Supported Versions
-We will only update the most recent versions. Older versions are unsupported unstantly by their successors.
+We will only update the most recent versions. Older versions are unsupported instantly by their successors.
 
 ## Reporting a Vulnerability
 
