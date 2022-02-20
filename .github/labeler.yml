@@ -1,15 +1,15 @@
-@beapi/core:
-- packages/beapi/*
-- packages/beapi/**/*
+'@beapi/core':
+- 'packages/beapi/*'
+- 'packages/beapi/**/*'
 
-@beapi/scaffolder:
-- packages/create-beapi/*
-- packages/create-beapi/**/*
+'@beapi/scaffolder':
+- 'packages/create-beapi/*'
+- 'packages/create-beapi/**/*'
 
-@beapi/docs:
-- docs/*
-- docs/**/*
+'@beapi/docs':
+- 'docs/*'
+- 'docs/**/*'
 
-@gh:
-- .github/*
-- .github/**/*
+'@gh':
+- '.github/*'
+- '.github/**/*'
