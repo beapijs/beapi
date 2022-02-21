@@ -328,7 +328,7 @@ export class Player {
   public isAlive(val: boolean): void
   public isAlive(val?: boolean): boolean | void {
     if (typeof val === 'boolean') {
-      this._isSleeping = val
-    } else return this._isSleeping
+      this._isAlive = val
+    } else return this._isAlive
   }
 }
