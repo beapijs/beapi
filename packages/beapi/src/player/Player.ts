@@ -19,7 +19,7 @@ export class Player {
   protected readonly _name: string
   protected _isSwimming = false
   protected _isInWater = false
-  protected _isLanded = false
+  protected _isLanded = true
   protected _isBurning = false
   protected _isMoving = false
   protected _isRiding = false
@@ -273,5 +273,13 @@ export class Player {
     if (typeof val === 'boolean') {
       this._isInWater = val
     } else return this._isInWater
+  }
+
+  public isLanded(): boolean
+  public isLanded(val: boolean): void
+  public isLanded(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isLanded = val
+    } else return this._isLanded
   }
 }
