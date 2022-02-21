@@ -30,6 +30,7 @@ export class StartedSprinting extends AbstractEvent {
 
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'on_sprint') return
+    data.player.isSprinting(true)
     this._client.emit(this.name, data.player)
   }
 }
