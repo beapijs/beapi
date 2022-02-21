@@ -22,6 +22,7 @@ export class Player {
   protected _isLanded = true
   protected _isBurning = false
   protected _isMoving = false
+  protected _isSprinting = false
   protected _isRiding = false
   protected _idSleeping = false
   protected _isAlive = true
@@ -289,5 +290,13 @@ export class Player {
     if (typeof val === 'boolean') {
       this._isBurning = val
     } else return this._isBurning
+  }
+
+  public isMoving(): boolean
+  public isMoving(val: boolean): void
+  public isMoving(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isMoving = val
+    } else return this._isMoving
   }
 }
