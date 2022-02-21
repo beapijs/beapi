@@ -307,4 +307,12 @@ export class Player {
       this._isSprinting = val
     } else return this._isSprinting
   }
+
+  public isRiding(): boolean
+  public isRiding(val: boolean): void
+  public isRiding(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isRiding = val
+    } else return this._isRiding
+  }
 }
