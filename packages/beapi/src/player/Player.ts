@@ -18,6 +18,13 @@ export class Player {
   protected readonly _IPlayer: IPlayer
   protected readonly _name: string
   protected _isSwimming = false
+  protected _isInWater = false
+  protected _isLanded = false
+  protected _isBurning = false
+  protected _isMoving = false
+  protected _isRiding = false
+  protected _idSleeping = false
+  protected _isAlive = true
   public prevPlayerInVector: Player | undefined
   public prevEntityInVector: Entity | undefined
   public constructor(client: Client, player: IPlayer) {
@@ -258,5 +265,13 @@ export class Player {
     if (typeof val === 'boolean') {
       this._isSwimming = val
     } else return this._isSwimming
+  }
+
+  public isInWater(): boolean
+  public isInWater(val: boolean): void
+  public isInWater(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isInWater = val
+    } else return this._isInWater
   }
 }
