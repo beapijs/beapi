@@ -54,10 +54,6 @@ export class Player {
     this._IPlayer.nameTag = nametag
   }
 
-  public isSneaking(): boolean {
-    return this._IPlayer.isSneaking
-  }
-
   public getTags(): string[] {
     return this._IPlayer.getTags()
   }
@@ -260,6 +256,10 @@ export class Player {
     return this._IPlayer.getItemCooldown(itemCategory)
   }
 
+  public isSneaking(): boolean {
+    return this._IPlayer.isSneaking
+  }
+
   public isSwimming(): boolean
   public isSwimming(val: boolean): void
   public isSwimming(val?: boolean): boolean | void {
@@ -319,6 +319,14 @@ export class Player {
   public isSleeping(): boolean
   public isSleeping(val: boolean): void
   public isSleeping(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isSleeping = val
+    } else return this._isSleeping
+  }
+
+  public isAlive(): boolean
+  public isAlive(val: boolean): void
+  public isAlive(val?: boolean): boolean | void {
     if (typeof val === 'boolean') {
       this._isSleeping = val
     } else return this._isSleeping

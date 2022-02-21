@@ -30,6 +30,7 @@ export class Respawn extends AbstractEvent {
 
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'respawn') return
+    data.player.isAlive(true)
     this._client.emit(this.name, data.player)
   }
 }
