@@ -54,6 +54,10 @@ export class Entity {
     this._IEntity.nameTag = nametag
   }
 
+  public isSneaking(): boolean {
+    return this._IEntity.isSneaking
+  }
+
   public getTags(): string[] {
     return this._IEntity.getTags()
   }
