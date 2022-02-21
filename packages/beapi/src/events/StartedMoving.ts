@@ -31,6 +31,8 @@ export class StartedMoving extends AbstractEvent {
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'on_move') return
     data.player.isMoving(true)
+    data.player.isSleeping(true)
+    data.player.isAlive(true)
     this._client.emit(this.name, data.player)
   }
 }
