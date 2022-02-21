@@ -45,6 +45,10 @@ export class Player {
     this._IPlayer.nameTag = nametag
   }
 
+  public isSneaking(): boolean {
+    return this._IPlayer.isSneaking
+  }
+
   public getTags(): string[] {
     return this._IPlayer.getTags()
   }
