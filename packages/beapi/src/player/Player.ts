@@ -282,4 +282,12 @@ export class Player {
       this._isLanded = val
     } else return this._isLanded
   }
+
+  public isBurning(): boolean
+  public isBurning(val: boolean): void
+  public isBurning(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isBurning = val
+    } else return this._isBurning
+  }
 }
