@@ -17,6 +17,7 @@ export class Player {
   protected readonly _client: Client
   protected readonly _IPlayer: IPlayer
   protected readonly _name: string
+  protected _isSwimming = false
   public prevPlayerInVector: Player | undefined
   public prevEntityInVector: Entity | undefined
   public constructor(client: Client, player: IPlayer) {
@@ -249,5 +250,13 @@ export class Player {
 
   public getItemCooldown(itemCategory: string): number {
     return this._IPlayer.getItemCooldown(itemCategory)
+  }
+
+  public isSwimming(): boolean
+  public isSwimming(val: boolean): void
+  public isSwimming(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isSwimming = val
+    } else return this._isSwimming
   }
 }

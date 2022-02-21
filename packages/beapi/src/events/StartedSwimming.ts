@@ -30,6 +30,7 @@ export class StartedSwimming extends AbstractEvent {
 
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'on_swim') return
+    data.player.isSwimming(true)
     this._client.emit(this.name, data.player)
   }
 }
