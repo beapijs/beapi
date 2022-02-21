@@ -30,6 +30,7 @@ export class StartedSleeping extends AbstractEvent {
 
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'sleep') return
+    data.player.isSleeping(true)
     this._client.emit(this.name, data.player)
   }
 }

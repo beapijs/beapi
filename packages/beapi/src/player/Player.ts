@@ -24,7 +24,7 @@ export class Player {
   protected _isMoving = false
   protected _isSprinting = false
   protected _isRiding = false
-  protected _idSleeping = false
+  protected _isSleeping = false
   protected _isAlive = true
   public prevPlayerInVector: Player | undefined
   public prevEntityInVector: Entity | undefined
@@ -314,5 +314,13 @@ export class Player {
     if (typeof val === 'boolean') {
       this._isRiding = val
     } else return this._isRiding
+  }
+
+  public isSleeping(): boolean
+  public isSleeping(val: boolean): void
+  public isSleeping(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isSleeping = val
+    } else return this._isSleeping
   }
 }
