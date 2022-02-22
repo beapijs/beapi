@@ -24,11 +24,14 @@ BeAPI uses NPM's cli create app feature to provide you with a setup to scaffold 
 Check out our [docs](https://mcbe-utilities.github.io/BeAPI)!
 
 ## Issues / Feature Request
-Please submit an issue following the proper templates
+Please submit an issue following the guidelines on the proper template.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make be sure to **TEST** all functionality before requesting
+Please make be sure to **TEST** all functionality before requesting.
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md)!
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
