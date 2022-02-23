@@ -52,4 +52,13 @@ export class WorldManager {
   public getDimension(dimension: Dimension): IDimension {
     return world.getDimension(dimension)
   }
+
+  public getTime(): number {
+    const command = this._client.executeCommand('time query daytime')
+    if (command.err) return 0
+
+    return parseInt(command.statusMessage.split(' ')[2], 10)
+  }
+
+  public setTime(time: number)
 }
