@@ -70,4 +70,8 @@ export class WorldManager {
 
     return command.statusMessage.split(' ')[3] as Weather
   }
+
+  public setWeather(weather: Weather): void {
+    this._client.executeCommand(`weather ${weather}`)
+  }
 }
