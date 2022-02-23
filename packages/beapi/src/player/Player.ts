@@ -28,6 +28,7 @@ export class Player {
   protected _isRiding = false
   protected _isSleeping = false
   protected _isAlive = true
+  protected _isMuted = false
   public prevPlayerInVector: Player | undefined
   public prevEntityInVector: Entity | undefined
   public constructor(client: Client, player: IPlayer) {
@@ -333,6 +334,14 @@ export class Player {
     if (typeof val === 'boolean') {
       this._isAlive = val
     } else return this._isAlive
+  }
+
+  public isMuted(): boolean
+  public isMuted(val: boolean): void
+  public isMuted(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isMuted = val
+    } else return this._isMuted
   }
 
   public createAgent(): Agent {
