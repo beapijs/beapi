@@ -60,5 +60,7 @@ export class WorldManager {
     return parseInt(command.statusMessage.split(' ')[2], 10)
   }
 
-  public setTime(time: number)
+  public setTime(time: number): void {
+    this._client.executeCommand(`time set ${time}`)
+  }
 }
