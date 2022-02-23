@@ -1,5 +1,5 @@
 import type { Client } from '../client'
-import type { Dimension, Location, Weather } from '../types'
+import type { Difficulty, Dimension, Location, Weather } from '../types'
 import type { Entity } from '../entity'
 import type { Player } from '../player'
 import { Block, BlockLocation, world, Dimension as IDimension, ItemStack, BlockPermutation } from 'mojang-minecraft'
@@ -73,5 +73,9 @@ export class WorldManager {
 
   public setWeather(weather: Weather): void {
     this._client.executeCommand(`weather ${weather}`)
+  }
+
+  public setDifficulty(difficulty: Difficulty): void {
+    this._client.executeCommand(`difficulty ${difficulty}`)
   }
 }
