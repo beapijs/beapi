@@ -1,5 +1,5 @@
 import type { Client } from '../client'
-import type { Dimension, Location } from '../types'
+import type { Dimension, Location, Weather } from '../types'
 import type { Entity } from '../entity'
 import type { Player } from '../player'
 import { Block, BlockLocation, world, Dimension as IDimension, ItemStack, BlockPermutation } from 'mojang-minecraft'
@@ -62,5 +62,12 @@ export class WorldManager {
 
   public setTime(time: number): void {
     this._client.executeCommand(`time set ${time}`)
+  }
+
+  public getWeather(): Weather {
+    const command = this._client.executeCommand('weather query')
+    if (command.err) return 'clear'
+
+    return command.statusMessage.split(' ')[3] as Weather
   }
 }
