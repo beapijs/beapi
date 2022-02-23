@@ -12,11 +12,13 @@ import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Entity } from '..'
 import type { Client } from '../client'
 import type { Location, Dimension, Gamemode, ServerCommandResponse, PlayerComponents } from '../types'
+import { Agent } from '../agent/Agent'
 
 export class Player {
   protected readonly _client: Client
   protected readonly _IPlayer: IPlayer
   protected readonly _name: string
+  protected _agent: Agent | undefined
   protected _isSwimming = false
   protected _isInWater = false
   protected _isLanded = true
@@ -32,6 +34,7 @@ export class Player {
     this._client = client
     this._IPlayer = player
     this._name = player.name
+    this._agent = this.getAgent()
   }
 
   public destroy(reason = 'Instantiated player object destroyed!'): void {
@@ -330,5 +333,27 @@ export class Player {
     if (typeof val === 'boolean') {
       this._isAlive = val
     } else return this._isAlive
+  }
+
+  public createAgent(): Agent {
+    let agent = this.getAgent()
+    if (!agent) {
+      this.executeCommand('agent create')
+      const entity = this._client.entities.getLastest()
+      agent = new Agent(this._client, entity.getIEntity(), this)
+      agent.addTag(this._name)
+      this._agent = agent
+    }
+
+    return agent
+  }
+
+  public getAgent(): Agent | undefined {
+    if (this._agent) return this._agent
+    const entity = Array.from(this._client.entities.getAll().values()).find(
+      (x) => x.getId() === 'minecraft:agent' && x.hasTag(this._name),
+    )
+
+    return entity ? new Agent(this._client, entity.getIEntity(), this) : undefined
   }
 }
