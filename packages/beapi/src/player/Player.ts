@@ -296,6 +296,13 @@ export class Player {
     return command.data.level
   }
 
+  public removeXpLevel(level: number): number {
+    const command = this.executeCommand(`xp -${level}l @s`)
+    if (command.err) return 0
+
+    return command.data.level
+  }
+
   public isSneaking(): boolean {
     return this._IPlayer.isSneaking
   }
