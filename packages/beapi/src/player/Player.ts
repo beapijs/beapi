@@ -86,6 +86,28 @@ export class Player {
     return new ActionForm(this)
   }
 
+  public createAgent(): Agent {
+    let agent = this.getAgent()
+    if (!agent) {
+      this.executeCommand('agent create')
+      const entity = this._client.entities.getLastest()
+      agent = new Agent(this._client, entity.getIEntity(), this)
+      agent.addTag(this._name)
+      this._agent = agent
+    }
+
+    return agent
+  }
+
+  public getAgent(): Agent | undefined {
+    if (this._agent) return this._agent
+    const entity = Array.from(this._client.entities.getAll().values()).find(
+      (x) => x.getId() === 'minecraft:agent' && x.hasTag(this._name),
+    )
+
+    return entity ? new Agent(this._client, entity.getIEntity(), this) : undefined
+  }
+
   public sendMessage(message: string): void {
     this.executeCommand(`tellraw @s {"rawtext":[{"text":"${message}"}]}`)
   }
@@ -260,6 +282,13 @@ export class Player {
     return this._IPlayer.getItemCooldown(itemCategory)
   }
 
+  public getXp(): number {
+    const command = this.executeCommand('xp 0 @s')
+    if (command.err) return 0
+
+    return command.data.level
+  }
+
   public isSneaking(): boolean {
     return this._IPlayer.isSneaking
   }
@@ -342,27 +371,5 @@ export class Player {
     if (typeof val === 'boolean') {
       this._isMuted = val
     } else return this._isMuted
-  }
-
-  public createAgent(): Agent {
-    let agent = this.getAgent()
-    if (!agent) {
-      this.executeCommand('agent create')
-      const entity = this._client.entities.getLastest()
-      agent = new Agent(this._client, entity.getIEntity(), this)
-      agent.addTag(this._name)
-      this._agent = agent
-    }
-
-    return agent
-  }
-
-  public getAgent(): Agent | undefined {
-    if (this._agent) return this._agent
-    const entity = Array.from(this._client.entities.getAll().values()).find(
-      (x) => x.getId() === 'minecraft:agent' && x.hasTag(this._name),
-    )
-
-    return entity ? new Agent(this._client, entity.getIEntity(), this) : undefined
   }
 }
