@@ -109,7 +109,7 @@ export class Player {
   }
 
   public sendMessage(message: string): void {
-    this.executeCommand(`tellraw @s {"rawtext":[{"text":"${message}"}]}`)
+    this.executeCommand(`tellraw @s {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
   }
 
   public sendActionbar(message: string): void {
