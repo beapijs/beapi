@@ -9,8 +9,8 @@ export class WorldManager {
     this._client = client
   }
 
-  public sendMessage(msg: string): void {
-    this._client.executeCommand(`tellraw @a {"rawtext":[{"text":"${msg}"}]}`)
+  public sendMessage(message: string): void {
+    this._client.executeCommand(`tellraw @a {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
   }
 
   public getEntitiesFromLocation(dimension: Dimension, location: Location): Entity[] {
