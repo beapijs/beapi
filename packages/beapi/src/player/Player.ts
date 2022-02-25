@@ -113,7 +113,7 @@ export class Player {
   }
 
   public sendActionbar(message: string): void {
-    this.executeCommand(`titleraw @s actionbar {"rawtext":[{"text":"${message}"}]}`)
+    this.executeCommand(`titleraw @s actionbar {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
   }
 
   public sendTitle(message: string): void {
