@@ -121,7 +121,7 @@ export class Player {
   }
 
   public sendSubtitle(message: string): void {
-    this.executeCommand(`titleraw @s subtitle {"rawtext":[{"text":"${message}"}]}`)
+    this.executeCommand(`titleraw @s subtitle {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
   }
 
   public sendSound(sound: string, location?: Location, volume?: number, pitch?: number, maxVolume?: number): void {
