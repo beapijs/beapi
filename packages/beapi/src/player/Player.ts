@@ -117,7 +117,7 @@ export class Player {
   }
 
   public sendTitle(message: string): void {
-    this.executeCommand(`titleraw @s title {"rawtext":[{"text":"${message}"}]}`)
+    this.executeCommand(`titleraw @s title {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
   }
 
   public sendSubtitle(message: string): void {
