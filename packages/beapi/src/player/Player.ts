@@ -12,17 +12,30 @@ import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Entity } from '..'
 import type { Client } from '../client'
 import type { Location, Dimension, Gamemode, ServerCommandResponse, PlayerComponents } from '../types'
+import { Agent } from '../agent/Agent'
 
 export class Player {
   protected readonly _client: Client
   protected readonly _IPlayer: IPlayer
   protected readonly _name: string
+  protected _agent: Agent | undefined
+  protected _isSwimming = false
+  protected _isInWater = false
+  protected _isLanded = true
+  protected _isBurning = false
+  protected _isMoving = false
+  protected _isSprinting = false
+  protected _isRiding = false
+  protected _isSleeping = false
+  protected _isAlive = true
+  protected _isMuted = false
   public prevPlayerInVector: Player | undefined
   public prevEntityInVector: Entity | undefined
   public constructor(client: Client, player: IPlayer) {
     this._client = client
     this._IPlayer = player
     this._name = player.name
+    this._agent = this.getAgent()
   }
 
   public destroy(reason = 'Instantiated player object destroyed!'): void {
@@ -73,20 +86,42 @@ export class Player {
     return new ActionForm(this)
   }
 
+  public createAgent(): Agent {
+    let agent = this.getAgent()
+    if (!agent) {
+      this.executeCommand('agent create')
+      const entity = this._client.entities.getLastest()
+      agent = new Agent(this._client, entity.getIEntity(), this)
+      agent.addTag(this._name)
+      this._agent = agent
+    }
+
+    return agent
+  }
+
+  public getAgent(): Agent | undefined {
+    if (this._agent) return this._agent
+    const entity = Array.from(this._client.entities.getAll().values()).find(
+      (x) => x.getId() === 'minecraft:agent' && x.hasTag(this._name),
+    )
+
+    return entity ? new Agent(this._client, entity.getIEntity(), this) : undefined
+  }
+
   public sendMessage(message: string): void {
-    this.executeCommand(`tellraw @s {"rawtext":[{"text":"${message}"}]}`)
+    this.executeCommand(`tellraw @s {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
   }
 
   public sendActionbar(message: string): void {
-    this.executeCommand(`titleraw @s actionbar {"rawtext":[{"text":"${message}"}]}`)
+    this.executeCommand(`titleraw @s actionbar {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
   }
 
   public sendTitle(message: string): void {
-    this.executeCommand(`titleraw @s title {"rawtext":[{"text":"${message}"}]}`)
+    this.executeCommand(`titleraw @s title {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
   }
 
   public sendSubtitle(message: string): void {
-    this.executeCommand(`titleraw @s subtitle {"rawtext":[{"text":"${message}"}]}`)
+    this.executeCommand(`titleraw @s subtitle {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
   }
 
   public sendSound(sound: string, location?: Location, volume?: number, pitch?: number, maxVolume?: number): void {
@@ -132,16 +167,22 @@ export class Player {
     return parseInt(String(command.statusMessage?.split(' ')[1]), 10)
   }
 
-  public setScore(objective: string, amount: number): void {
+  public setScore(objective: string, amount: number): number {
     this.executeCommand(`scoreboard players set @s "${objective}" ${amount}`)
+
+    return this.getScore(objective)
   }
 
-  public addScore(objective: string, amount: number): void {
+  public addScore(objective: string, amount: number): number {
     this.executeCommand(`scoreboard players add @s "${objective}" ${amount}`)
+
+    return this.getScore(objective)
   }
 
-  public removeScore(objective: string, amount: number): void {
+  public removeScore(objective: string, amount: number): number {
     this.executeCommand(`scoreboard players remove @s "${objective}" ${amount}`)
+
+    return this.getScore(objective)
   }
 
   public getGamemode(): Gamemode {
@@ -245,5 +286,117 @@ export class Player {
 
   public getItemCooldown(itemCategory: string): number {
     return this._IPlayer.getItemCooldown(itemCategory)
+  }
+
+  public getXp(): number {
+    const command = this.executeCommand('xp 0 @s')
+    if (command.err) return 0
+
+    return command.data.level
+  }
+
+  public addXpLevel(level: number): number {
+    const command = this.executeCommand(`xp ${level}l @s`)
+    if (command.err) return 0
+
+    return command.data.level
+  }
+
+  public removeXpLevel(level: number): number {
+    const command = this.executeCommand(`xp -${level}l @s`)
+    if (command.err) return 0
+
+    return command.data.level
+  }
+
+  public addXpFloat(level: number): number {
+    const command = this.executeCommand(`xp ${level} @s`)
+    if (command.err) return 0
+
+    return command.data.level
+  }
+
+  public isSneaking(): boolean {
+    return this._IPlayer.isSneaking
+  }
+
+  public isSwimming(): boolean
+  public isSwimming(val: boolean): void
+  public isSwimming(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isSwimming = val
+    } else return this._isSwimming
+  }
+
+  public isInWater(): boolean
+  public isInWater(val: boolean): void
+  public isInWater(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isInWater = val
+    } else return this._isInWater
+  }
+
+  public isLanded(): boolean
+  public isLanded(val: boolean): void
+  public isLanded(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isLanded = val
+    } else return this._isLanded
+  }
+
+  public isBurning(): boolean
+  public isBurning(val: boolean): void
+  public isBurning(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isBurning = val
+    } else return this._isBurning
+  }
+
+  public isMoving(): boolean
+  public isMoving(val: boolean): void
+  public isMoving(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isMoving = val
+    } else return this._isMoving
+  }
+
+  public isSprinting(): boolean
+  public isSprinting(val: boolean): void
+  public isSprinting(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isSprinting = val
+    } else return this._isSprinting
+  }
+
+  public isRiding(): boolean
+  public isRiding(val: boolean): void
+  public isRiding(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isRiding = val
+    } else return this._isRiding
+  }
+
+  public isSleeping(): boolean
+  public isSleeping(val: boolean): void
+  public isSleeping(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isSleeping = val
+    } else return this._isSleeping
+  }
+
+  public isAlive(): boolean
+  public isAlive(val: boolean): void
+  public isAlive(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isAlive = val
+    } else return this._isAlive
+  }
+
+  public isMuted(): boolean
+  public isMuted(val: boolean): void
+  public isMuted(val?: boolean): boolean | void {
+    if (typeof val === 'boolean') {
+      this._isMuted = val
+    } else return this._isMuted
   }
 }

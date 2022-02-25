@@ -30,6 +30,7 @@ export class Death extends AbstractEvent {
 
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'died') return
+    data.player.isAlive(false)
     this._client.emit(this.name, data.player)
   }
 }

@@ -35,12 +35,26 @@ export class OnChat extends AbstractEvent {
       arg.cancel = true
       return
     }
+    const sender = arg.sender.name
+      ? this._client.players.getByName(arg.sender.name)
+      : this._client.players.getByNameTag(arg.sender.nameTag)
+
+    if (sender.isMuted()) {
+      arg.cancel = true
+      this._client.emit(this.name, {
+        sender,
+        message: arg.message,
+        cancel() {
+          arg.cancel = true
+        },
+      })
+
+      return
+    }
 
     // TODO: Add methods to change targets
     this._client.emit(this.name, {
-      sender: arg.sender.name
-        ? this._client.players.getByName(arg.sender.name)
-        : this._client.players.getByNameTag(arg.sender.nameTag),
+      sender,
       message: arg.message,
       cancel() {
         arg.cancel = true

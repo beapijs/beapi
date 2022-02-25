@@ -30,6 +30,7 @@ export class StoppedMoving extends AbstractEvent {
 
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'off_move') return
+    data.player.isMoving(false)
     this._client.emit(this.name, data.player)
   }
 }

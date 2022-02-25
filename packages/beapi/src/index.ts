@@ -37,6 +37,7 @@ export { client }
 
 export * from './types'
 export * from './database'
+export * from './agent'
 export * from './client'
 export * from './commands'
 export * from './entity'
@@ -48,4 +49,4 @@ export * from './utils'
 export * from './world'
 export * from './version'
 
-export { MinecraftItemTypes, ItemStack, EffectType, BlockPermutation } from 'mojang-minecraft'
+export * as Minecraft from 'mojang-minecraft'

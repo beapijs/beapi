@@ -30,6 +30,7 @@ export class StoppedSprinting extends AbstractEvent {
 
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'off_sprint') return
+    data.player.isSprinting(false)
     this._client.emit(this.name, data.player)
   }
 }

@@ -30,6 +30,7 @@ export class StoppedBurning extends AbstractEvent {
 
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'off_fire') return
+    data.player.isBurning(false)
     this._client.emit(this.name, data.player)
   }
 }

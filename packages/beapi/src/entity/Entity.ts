@@ -54,6 +54,10 @@ export class Entity {
     this._IEntity.nameTag = nametag
   }
 
+  public isSneaking(): boolean {
+    return this._IEntity.isSneaking
+  }
+
   public getTags(): string[] {
     return this._IEntity.getTags()
   }
@@ -97,16 +101,22 @@ export class Entity {
     return parseInt(String(command.statusMessage?.split(' ')[1]), 10)
   }
 
-  public setScore(objective: string, amount: number): void {
+  public setScore(objective: string, amount: number): number {
     this.executeCommand(`scoreboard players set @s "${objective}" ${amount}`)
+
+    return this.getScore(objective)
   }
 
-  public addScore(objective: string, amount: number): void {
+  public addScore(objective: string, amount: number): number {
     this.executeCommand(`scoreboard players add @s "${objective}" ${amount}`)
+
+    return this.getScore(objective)
   }
 
-  public removeScore(objective: string, amount: number): void {
+  public removeScore(objective: string, amount: number): number {
     this.executeCommand(`scoreboard players remove @s "${objective}" ${amount}`)
+
+    return this.getScore(objective)
   }
 
   public getLocation(): Location {

@@ -30,6 +30,7 @@ export class StoppedRiding extends AbstractEvent {
 
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'off_ride') return
+    data.player.isRiding(false)
     this._client.emit(this.name, data.player)
   }
 }

@@ -30,6 +30,7 @@ export class Jump extends AbstractEvent {
 
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'jump') return
+    data.player.isLanded(false)
     this._client.emit(this.name, data.player)
   }
 }

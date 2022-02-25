@@ -30,6 +30,7 @@ export class EnteredWater extends AbstractEvent {
 
   protected __logic(data: PlayerTagEvent): void {
     if (data.tag !== 'in_water') return
+    data.player.isInWater(true)
     this._client.emit(this.name, data.player)
   }
 }

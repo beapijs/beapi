@@ -1,5 +1,5 @@
 import type { Client } from '../client'
-import type { Dimension, Location } from '../types'
+import type { Difficulty, Dimension, Location, Weather } from '../types'
 import type { Entity } from '../entity'
 import type { Player } from '../player'
 import { Block, BlockLocation, world, Dimension as IDimension, ItemStack, BlockPermutation } from 'mojang-minecraft'
@@ -9,8 +9,8 @@ export class WorldManager {
     this._client = client
   }
 
-  public sendMessage(msg: string): void {
-    this._client.executeCommand(`tellraw @a {"rawtext":[{"text":"${msg}"}]}`)
+  public sendMessage(message: string): void {
+    this._client.executeCommand(`tellraw @a {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
   }
 
   public getEntitiesFromLocation(dimension: Dimension, location: Location): Entity[] {
@@ -51,5 +51,31 @@ export class WorldManager {
 
   public getDimension(dimension: Dimension): IDimension {
     return world.getDimension(dimension)
+  }
+
+  public getTime(): number {
+    const command = this._client.executeCommand('time query daytime')
+    if (command.err) return 0
+
+    return parseInt(command.statusMessage.split(' ')[2], 10)
+  }
+
+  public setTime(time: number): void {
+    this._client.executeCommand(`time set ${time}`)
+  }
+
+  public getWeather(): Weather {
+    const command = this._client.executeCommand('weather query')
+    if (command.err) return 'clear'
+
+    return command.statusMessage.split(' ')[3] as Weather
+  }
+
+  public setWeather(weather: Weather): void {
+    this._client.executeCommand(`weather ${weather}`)
+  }
+
+  public setDifficulty(difficulty: Difficulty): void {
+    this._client.executeCommand(`difficulty ${difficulty}`)
   }
 }
