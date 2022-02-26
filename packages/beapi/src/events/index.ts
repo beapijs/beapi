@@ -44,6 +44,7 @@ import { WeatherUpdated } from './WeatherUpdated'
 import { Tick } from './Tick'
 import { EntityEventTrigger } from './EntityEventTrigger'
 import { PlayerEventTrigger } from './PlayerEventTrigger'
+import { ItemEventTrigger } from './ItemEventTrigger'
 
 export const events = [
   OnChat,
@@ -92,6 +93,7 @@ export const events = [
   Tick,
   EntityEventTrigger,
   PlayerEventTrigger,
+  ItemEventTrigger,
 ]
 
 export { default as AbstractEvent } from './AbstractEvent'
