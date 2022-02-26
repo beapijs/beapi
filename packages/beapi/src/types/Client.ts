@@ -82,7 +82,6 @@ export interface ItemInteractEvent {
   item: ItemStack
   block: Block
   blockLocation: BlockLocation
-  direction: number
   faceLocationX: number
   faceLocationY: number
   cancel: CancelMethod
