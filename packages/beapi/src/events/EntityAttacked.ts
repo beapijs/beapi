@@ -19,13 +19,13 @@ export class EntityAttacked extends AbstractEvent {
 
   public on(): void {
     if (!this._registered) {
-      ;(world.events as any)[this.iName].subscribe(this._logic)
+      world.events[this.iName].subscribe(this._logic)
     }
   }
 
   public off(): void {
     if (this._registered) {
-      ;(world.events as any)[this.iName].unsubscribe(this._logic)
+      world.events[this.iName].unsubscribe(this._logic)
     }
   }
 

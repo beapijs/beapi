@@ -35,7 +35,7 @@ export class WorldManager {
   }
 
   public spawnItem(item: ItemStack, location: Location, dimension: Dimension): void {
-    ;(this.getDimension(dimension) as any).spawnItem(item, new BlockLocation(location.x, location.y, location.z))
+    this.getDimension(dimension).spawnItem(item, new BlockLocation(location.x, location.y, location.z))
   }
 
   public setBlock(location: Location, dimension: Dimension, blockPermutation: BlockPermutation): Block {
