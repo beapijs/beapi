@@ -9,6 +9,7 @@ import type {
   ItemStack,
   BlockPistonComponent,
   Effect,
+  DefinitionModifier,
 } from 'mojang-minecraft'
 
 export interface ClientEvents {
@@ -58,6 +59,7 @@ export interface ClientEvents {
   WeatherUpdated: [WeatherUpdatedEvent]
   CommandRegistered: [CommandRegisteredEvent]
   CommandUsed: [CommandUsedEvent]
+  EntityEventTrigger: [EntityEventTriggerEvent]
 }
 
 export interface OnChatEvent {
@@ -175,6 +177,13 @@ export interface CommandUsedEvent {
   command: CommandEntry | undefined
   sender: Player | undefined
   args: string[]
+  cancel: CancelMethod
+}
+
+export interface EntityEventTriggerEvent {
+  entity: Entity
+  event: string
+  data: DefinitionModifier[]
   cancel: CancelMethod
 }
 

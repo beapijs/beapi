@@ -42,6 +42,7 @@ import { Piston } from './Piston'
 import { EffectAdded } from './EffectAdded'
 import { WeatherUpdated } from './WeatherUpdated'
 import { Tick } from './Tick'
+import { EntityEventTrigger } from './EntityEventTrigger'
 
 export const events = [
   OnChat,
@@ -88,6 +89,7 @@ export const events = [
   EffectAdded,
   WeatherUpdated,
   Tick,
+  EntityEventTrigger,
 ]
 
 export { default as AbstractEvent } from './AbstractEvent'
