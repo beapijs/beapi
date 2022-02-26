@@ -30,6 +30,7 @@ export class CommandManager {
       this._client.emit('CommandUsed', {
         command,
         sender: data.sender,
+        args: parsed.args?.map((x) => x.value) ?? [],
         cancel: () => {
           cancel = true
         },

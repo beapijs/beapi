@@ -175,6 +175,7 @@ export interface CommandRegisteredEvent {
 export interface CommandUsedEvent {
   command: CommandEntry | undefined
   sender: Player | undefined
+  args: string[]
   cancel: CancelMethod
 }
 
