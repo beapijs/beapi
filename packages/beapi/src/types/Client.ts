@@ -60,6 +60,7 @@ export interface ClientEvents {
   CommandRegistered: [CommandRegisteredEvent]
   CommandUsed: [CommandUsedEvent]
   EntityEventTrigger: [EntityEventTriggerEvent]
+  PlayerEventTrigger: [PlayerEventTriggerEvent]
 }
 
 export interface OnChatEvent {
@@ -182,6 +183,13 @@ export interface CommandUsedEvent {
 
 export interface EntityEventTriggerEvent {
   entity: Entity
+  event: string
+  data: DefinitionModifier[]
+  cancel: CancelMethod
+}
+
+export interface PlayerEventTriggerEvent {
+  player: Player
   event: string
   data: DefinitionModifier[]
   cancel: CancelMethod
