@@ -1,8 +1,17 @@
 import type { Client } from '../client'
-import type { Difficulty, Dimension, Location, Weather } from '../types'
+import type { Difficulty, Dimension, Weather, Location } from '../types'
 import type { Entity } from '../entity'
 import type { Player } from '../player'
-import { Block, BlockLocation, world, Dimension as IDimension, ItemStack, BlockPermutation } from 'mojang-minecraft'
+import {
+  Block,
+  BlockLocation,
+  world,
+  Dimension as IDimension,
+  ItemStack,
+  BlockPermutation,
+  MolangVariableMap,
+  Location as ILocation,
+} from 'mojang-minecraft'
 export class WorldManager {
   protected readonly _client: Client
   public constructor(client: Client) {
@@ -36,6 +45,10 @@ export class WorldManager {
 
   public spawnItem(item: ItemStack, location: Location, dimension: Dimension): void {
     this.getDimension(dimension).spawnItem(item, new BlockLocation(location.x, location.y, location.z))
+  }
+
+  public spawnParticle(id: string, location: Location, dimension: Dimension, molangVarMap: MolangVariableMap): void {
+    this.getDimension(dimension).spawnParticle(id, new ILocation(location.x, location.y, location.z), molangVarMap)
   }
 
   public setBlock(location: Location, dimension: Dimension, blockPermutation: BlockPermutation): Block {

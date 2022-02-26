@@ -211,7 +211,6 @@ export class Player {
   }
 
   public getDimensionName(): Dimension {
-    // TEMP: Until types get updated
     const id = this.getDimension().id.split(':')[1].replace(/_/g, ' ')
 
     return id as Dimension
