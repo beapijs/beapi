@@ -160,6 +160,11 @@ export class Player {
     }
   }
 
+  public executeFunction(path: string): void {
+    const command = this.executeCommand(`function ${path}`)
+    if (command.err) return console.error(command.statusMessage)
+  }
+
   public getScore(objective: string): number {
     const command = this.executeCommand(`scoreboard players test @s "${objective}" * *`)
     if (command.err) return 0
