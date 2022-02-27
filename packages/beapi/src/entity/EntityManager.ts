@@ -34,6 +34,10 @@ export class EntityManager {
     return this._entities
   }
 
+  public getAllAsArray(): Entity[] {
+    return Array.from(this.getAll().values())
+  }
+
   public getByNameTag(nameTag: string): Entity {
     return Array.from(this._entities.values()).find((e) => e.getNameTag() === nameTag) as Entity
   }
