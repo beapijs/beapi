@@ -190,6 +190,12 @@ export class Player {
     return this.getScore(objective)
   }
 
+  public setGamemode(gamemode: Gamemode): void {
+    if (gamemode === this.getGamemode()) return
+    const command = this.executeCommand(`gamemode ${gamemode}`)
+    if (command.err) return console.error(command.statusMessage)
+  }
+
   public getGamemode(): Gamemode {
     const gmc = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=c]`, this.getDimensionName())
     const gma = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=a]`, this.getDimensionName())
