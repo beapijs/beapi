@@ -326,6 +326,19 @@ export class Player {
     return command.data.level
   }
 
+  public shakeCamera(type: 'positional' | 'rotational' | 'clear', intensity?: number, seconds?: number): void {
+    if (type === 'clear') {
+      this.executeCommand('camerashake stop @s')
+    } else {
+      this.executeCommand(`camerashake add @s ${intensity ?? 1} ${seconds ?? 1} ${type}`)
+    }
+  }
+
+  public setSpawnPoint(location: Location): void {
+    const command = this.executeCommand(`spawnpoint @s ${location.x} ${location.y} ${location.z}`)
+    if (command.err) return console.error(command.statusMessage)
+  }
+
   public isSneaking(): boolean {
     return this._IPlayer.isSneaking
   }
@@ -408,13 +421,5 @@ export class Player {
     if (typeof val === 'boolean') {
       this._isMuted = val
     } else return this._isMuted
-  }
-
-  public shakeCamera(type: 'positional' | 'rotational' | 'clear', intensity?: number, seconds?: number): void {
-    if (type === 'clear') {
-      this.executeCommand('camerashake stop @s')
-    } else {
-      this.executeCommand(`camerashake add @s ${intensity ?? 1} ${seconds ?? 1} ${type}`)
-    }
   }
 }
