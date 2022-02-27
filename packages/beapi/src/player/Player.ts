@@ -398,4 +398,12 @@ export class Player {
       this._isMuted = val
     } else return this._isMuted
   }
+
+  public shakeCamera(type: 'positional' | 'rotational' | 'clear', intensity?: number, seconds?: number): void {
+    if (type === 'clear') {
+      this.executeCommand('camerashake stop @s')
+    } else {
+      this.executeCommand(`camerashake add @s ${intensity ?? 1} ${seconds ?? 1} ${type}`)
+    }
+  }
 }
