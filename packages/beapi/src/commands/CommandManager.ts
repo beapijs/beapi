@@ -8,12 +8,14 @@ import { genUuid } from '../utils'
 export class CommandManager {
   protected readonly _client: Client
   protected readonly _commands: Map<string, CommandEntry> = new Map<string, CommandEntry>()
+  public enabled = true
   public prefix = '-'
 
   public constructor(client: Client) {
     this._client = client
     this.default()
     this._client.on('OnChat', (data) => {
+      if (!this.enabled) return
       if (!data.message.startsWith(this.prefix)) return
       let cancel = false
       data.cancel()
