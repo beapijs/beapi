@@ -26,6 +26,20 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl: 'https://github.com/MCBE-Utilities/BeAPI/tree/docs/',
+          versions: {
+            current: {
+              label: "Beta 🚧",
+              path: "beta",
+              banner: 'unreleased',
+              badge: false
+            },
+            '2.2.x': {
+              label: "v2.2.x",
+              // path: "/",
+              banner: 'none',
+              badge: false
+            }
+          }
         },
         blog: {
           showReadingTime: true,
@@ -61,7 +75,22 @@ const config = {
             position: 'left',
             label: 'Guide'
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {
+            to: '/blog',
+            label: 'Blog',
+            position: 'left'
+          },
+          {
+            type: 'docsVersionDropdown',
+            position: 'right',
+            // dropdownItemsAfter: [
+            //   {
+            //     to: '/versions',
+            //     label: 'All versions'
+            //   }
+            // ],
+            dropdownActiveClassDisabled: true,
+          },
           {
             href: 'https://github.com/MCBE-Utilities/BeAPI',
             label: 'GitHub',
@@ -79,10 +108,6 @@ const config = {
                 label: 'Getting Started',
                 to: '/docs/starting',
               },
-              // {
-              //   label: 'Installation',
-              //   to: '/docs/intro',
-              // },
             ]
           },
           {
@@ -118,56 +143,8 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} MCBE-Utilities`
       },
-      // footer: {
-      //   style: 'dark',
-      //   links: [
-      //     {
-      //       title: 'Docs',
-      //       items: [
-      //         {
-      //           label: 'Tutorial',
-      //           to: '/docs/intro',
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       title: 'Community',
-      //       items: [
-      //         {
-      //           label: 'Stack Overflow',
-      //           href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-      //         },
-      //         {
-      //           label: 'Discord',
-      //           href: 'https://discordapp.com/invite/docusaurus',
-      //         },
-      //         {
-      //           label: 'Twitter',
-      //           href: 'https://twitter.com/docusaurus',
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       title: 'More',
-      //       items: [
-      //         {
-      //           label: 'Blog',
-      //           to: '/blog',
-      //         },
-      //         {
-      //           label: 'GitHub',
-      //           href: 'https://github.com/facebook/docusaurus',
-      //         },
-      //       ],
-      //     },
-      //   ],
-      //   copyright: `Copyright © ${new Date().getFullYear()} MCBE-Utilities`,
-      // },
       prism: {
         theme: darkCodeTheme,
-        // additionalLanguages: [
-        //   'bash',
-        // ]
       },
     }),
 };

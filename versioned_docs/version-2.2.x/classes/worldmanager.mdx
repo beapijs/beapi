@@ -1,0 +1,107 @@
+---
+title: WorldManager
+---
+
+The main world object for BeAPI
+
+:::warning
+
+You should never have to construct this class yourself.
+
+```js
+import { client } from 'beapi-core';
+
+client.world...;
+```
+
+:::
+
+## Constructor
+```js
+new WorldManager(client, player);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| client | [Client](/docs/classes/client) |  ❌   | `null`  | Constructed [Client](/docs/classes/client) instance. |
+
+## Methods
+
+### sendMessage
+Sends a message to every player.
+
+```js
+sendMessage(message);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| message | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Message to send. |
+
+#### Returns
+void
+___
+
+### getEntitiesFromLocation
+Gets all the entities in a specific location.
+
+```js
+getEntitiesFromLocation(dimension, location);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| dimension | [Dimension](/docs/typedefs/dimension) |  ❌   | `undefined`  | Dimension to locate in. |
+| location | [Location](/docs/typedefs/location) |  ❌   | `undefined`  | Location to check. |
+
+#### Returns
+[Entity[]](/docs/classes/entity)
+___
+
+### getPlayersFromLocation
+Gets all the players in a specific location.
+
+```js
+getPlayersFromLocation(dimension, location);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| dimension | [Dimension](/docs/typedefs/dimension) |  ❌   | `undefined`  | Dimension to locate in. |
+| location | [Location](/docs/typedefs/location) |  ❌   | `undefined`  | Location to check. |
+
+#### Returns
+[Player[]](/docs/classes/player)
+___
+
+### spawnEntity
+Spawns an entity.
+
+```js
+spawnEntity(entity, location, name);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| entity | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Entity id. |
+| location | [Location](/docs/typedefs/location) |  ❌   | `undefined`  | Location to summon. |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Name of the entity. |
+
+#### Returns
+[Entity](/docs/classes/entity) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___
+
+### getBlock
+Gets a block from the world.
+
+```js
+getBlock(dimension, location);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| dimension | [Dimension](/docs/typedefs/dimension) |  ❌   | `undefined`  | Dimension to locate in. |
+| location | [Location](/docs/typedefs/location) |  ❌   | `undefined`  | Location to check. |
+
+#### Returns
+[Block](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/block)
+___

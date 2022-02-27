@@ -1,0 +1,143 @@
+---
+title: PlayerManager
+---
+
+The manager that keeps track of all players.
+
+:::warning
+
+You should never have to construct this class yourself.
+
+```js
+import { client } from 'beapi-core';
+
+client.players...;
+```
+
+:::
+
+## Constructor
+```js
+new PlayerManager(client);
+```
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| client | [Client](/docs/classes/client) |  ❌   | `null`  | Constructed [Client](/docs/classes/client) instance. |
+
+## Methods
+
+### create
+Creates a Player instance.
+
+```js
+create(player);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [IPlayer](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/player) |  ❌   | `undefined`  | Player to create. |
+
+#### Returns
+[Player](/docs/classes/player)
+___
+
+### add
+Adds a player to the manager.
+
+```js
+add(player);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) |  ❌   | `undefined`  | Player to add. |
+
+#### Returns
+void
+___
+
+### remove
+Removes a player from the manager.
+
+```js
+remove(player);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [Player](/docs/classes/player) |  ❌   | `undefined`  | Player to remove. |
+
+#### Returns
+void
+___
+
+### removeByName
+Removes a player from the manager by their name.
+
+```js
+removeByName(name);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Player to remove. |
+
+#### Returns
+void
+___
+
+### getAll
+Returns all players as a map.
+
+```js
+getAll();
+```
+
+#### Returns
+[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)<[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), [Player](/docs/classes/player)>
+___
+
+### getByName
+Returns a player their name.
+
+```js
+getByName(name);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Player to get. |
+
+#### Returns
+[Player](/docs/classes/player) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___
+
+### getByNameTag
+Returns a player their nameTag.
+
+```js
+getByNameTag(name);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Player to get. |
+
+#### Returns
+[Player](/docs/classes/player) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___
+
+### getByIPlayer
+Returns a player their IPlayer.
+
+```js
+getByIPlayer(player);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| player | [IPlayer](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/player) |  ❌   | `undefined`  | Player to get. |
+
+#### Returns
+[Player](/docs/classes/player) | [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+___

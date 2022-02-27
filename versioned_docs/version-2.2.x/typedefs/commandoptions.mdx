@@ -1,0 +1,18 @@
+---
+title: CommandOptions
+---
+
+Options used to create command.
+
+## Type
+- [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+## Properties
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| name | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `null`  | Name of command. |
+| aliases | [string[]?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ✔️   | `[]`  | Aliases for command. |
+| description | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `null`  | Description of command. |
+| permissions | [string[]?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ✔️   | `[]`  | Permission needed tags to use the command. |
+| hidden | [boolean?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) |  ✔️   | `false`  | Show command in help list? |

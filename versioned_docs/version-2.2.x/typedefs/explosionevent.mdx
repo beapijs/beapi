@@ -1,0 +1,17 @@
+---
+title: ExplosionEvent
+---
+
+Explosion event.
+
+## Type
+- [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+## Properties
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| source | [Entity](/docs/classes/entity) \| [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) |  ❌   | `null`  | Source of event. |
+| dimension | [IDimension](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/dimension) |  ❌   | `null`  | Dimension data. |
+| impactedBlocks | [BlockLocation[]](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/blocklocation) |  ❌   | `null`  | Block location data. |
+| cancel | [CallableFunction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) |  ❌   | `null`  | Function to cancel event. |
