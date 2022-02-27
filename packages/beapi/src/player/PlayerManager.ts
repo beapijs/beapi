@@ -29,6 +29,10 @@ export class PlayerManager {
     return this._players
   }
 
+  public getAllAsArray(): Player[] {
+    return Array.from(this.getAll().values())
+  }
+
   public getByName(playerName: string): Player {
     return this._players.get(playerName) as Player
   }
