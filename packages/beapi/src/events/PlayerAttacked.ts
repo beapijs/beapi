@@ -36,8 +36,9 @@ export class PlayerAttacked extends AbstractEvent {
     const target = this._client.players.getByIPlayer(data.hitEntity as IPlayer)
 
     return this._client.emit(this.name, {
-      player,
-      target,
+      attacker: player,
+      player: target,
+      cause: 'punch',
     })
   }
 }

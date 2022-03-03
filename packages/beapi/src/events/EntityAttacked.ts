@@ -36,8 +36,9 @@ export class EntityAttacked extends AbstractEvent {
     const target = this._client.entities.getByIEntity(data.hitEntity as IEntity)
 
     return this._client.emit(this.name, {
-      player,
-      target,
+      attacker: player,
+      entity: target,
+      cause: 'punch',
     })
   }
 }
