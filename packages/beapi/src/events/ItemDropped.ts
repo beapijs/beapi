@@ -1,5 +1,4 @@
-import type { EntityInViewVectorEvent } from '..'
-import type { Client } from '../client'
+import type { Client, Player } from '..'
 
 import AbstractEvent from './AbstractEvent'
 export class ItemDropped extends AbstractEvent {
@@ -18,23 +17,23 @@ export class ItemDropped extends AbstractEvent {
 
   public on(): void {
     if (!this._registered) {
-      this._client.addListener('EntityAttacked', this._logic)
+      this._client.addListener('Swing', this._logic)
     }
   }
 
   public off(): void {
     if (this._registered) {
-      this._client.removeListener('EntityAttacked', this._logic)
+      this._client.removeListener('Swing', this._logic)
     }
   }
 
-  protected __logic(data: EntityInViewVectorEvent): void {
-    const block = this._client.world.getBlock(data.target.getLocation(), data.target.getDimensionName())
-    if (data.target.getId() !== 'minecraft:item' || block.id !== 'minecraft:air') return
-
+  protected __logic(data: Player): void {
+    const block = this._client.world.getBlock(data.getLocation(), data.getDimensionName())
+    const entity = data.prevEntityInVector
+    if (!entity || entity?.getId() !== 'minecraft:item' || block.id !== 'minecraft:air') return
     this._client.emit(this.name, {
-      player: data.player,
-      item: data.target,
+      player: data,
+      item: entity,
     })
   }
 }
