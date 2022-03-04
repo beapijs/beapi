@@ -52,8 +52,8 @@ export interface ClientEvents {
   Swing: [Player]
   Death: [Player]
   Respawn: [Player]
-  EntityAttacked: [EntityAttackedEvent]
-  PlayerAttacked: [PlayerAttackedEvent]
+  EntityHit: [EntityHitEvent]
+  PlayerHit: [PlayerHitEvent]
   Piston: [PistonEvent]
   EffectAdded: [EffectAddedEvent]
   WeatherUpdated: [WeatherUpdatedEvent]
@@ -150,16 +150,14 @@ export interface ExplosionEvent {
   cancel: CancelMethod
 }
 
-export interface EntityAttackedEvent {
-  entity: Entity
+export interface EntityHitEvent {
+  target: Entity
   attacker: Player
-  cause: 'punch'
 }
 
-export interface PlayerAttackedEvent {
-  player: Player
+export interface PlayerHitEvent {
+  target: Player
   attacker: Player
-  cause: 'punch'
 }
 
 export interface PistonEvent {

@@ -33,8 +33,8 @@ import { StartedSprinting } from './StartedSprinting'
 import { StoppedSprinting } from './StoppedSprinting'
 import { StartedSwimming } from './StartedSwimming'
 import { StoppedSwimming } from './StoppedSwimming'
-import { EntityAttacked } from './EntityAttacked'
-import { PlayerAttacked } from './PlayerAttacked'
+import { EntityHit } from './EntityHit'
+import { PlayerHit } from './PlayerHit'
 import { Explosion } from './Explosion'
 import { Death } from './Death'
 import { Respawn } from './Respawn'
@@ -82,8 +82,8 @@ export const events = [
   StoppedSprinting,
   StartedSwimming,
   StoppedSwimming,
-  EntityAttacked,
-  PlayerAttacked,
+  EntityHit,
+  PlayerHit,
   Explosion,
   Death,
   Respawn,

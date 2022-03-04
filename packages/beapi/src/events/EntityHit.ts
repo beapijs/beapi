@@ -3,12 +3,12 @@ import type { Player as IPlayer, Entity as IEntity } from 'mojang-minecraft'
 import { world } from 'mojang-minecraft'
 
 import AbstractEvent from './AbstractEvent'
-export class EntityAttacked extends AbstractEvent {
+export class EntityHit extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
-  public readonly name = 'EntityAttacked'
+  public readonly name = 'EntityHit'
   public readonly iName = 'entityHit'
   public readonly alwaysCancel = false
 
@@ -37,8 +37,7 @@ export class EntityAttacked extends AbstractEvent {
 
     return this._client.emit(this.name, {
       attacker: player,
-      entity: target,
-      cause: 'punch',
+      target,
     })
   }
 }
