@@ -7,6 +7,7 @@ import {
   Vector,
   EffectType,
   Effect,
+  ItemStack,
 } from 'mojang-minecraft'
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Entity } from '..'
@@ -229,6 +230,10 @@ export class Player {
 
   public getInventory(): EntityInventoryComponent {
     return this._IPlayer.getComponent('minecraft:inventory') as EntityInventoryComponent
+  }
+
+  public setItem(slot: number, item: ItemStack): void {
+    this.getInventory().container.setItem(slot, item)
   }
 
   public getHealth(): EntityHealthComponent {
