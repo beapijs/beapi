@@ -240,12 +240,16 @@ export class Player {
     return this.getInventory().container.getItem(slot)
   }
 
-  public getHealth(): EntityHealthComponent {
-    return this._IPlayer.getComponent('minecraft:health') as EntityHealthComponent
-  }
-
   public getSelectedSlot(): number {
     return this._IPlayer.selectedSlot
+  }
+
+  public getTotalEmptySlots(): number {
+    return this.getInventory().container.emptySlotsCount
+  }
+
+  public getHealth(): EntityHealthComponent {
+    return this._IPlayer.getComponent('minecraft:health') as EntityHealthComponent
   }
 
   public kick(reason = 'You were kicked from the game!'): void {
