@@ -248,6 +248,10 @@ export class Player {
     return this.getInventory().container.emptySlotsCount
   }
 
+  public getInventorySize(): number {
+    return this.getInventory().container.size
+  }
+
   public getHealth(): EntityHealthComponent {
     return this._IPlayer.getComponent('minecraft:health') as EntityHealthComponent
   }
