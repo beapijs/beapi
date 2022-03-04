@@ -43,15 +43,16 @@ export class WorldManager {
     return this._client.entities.getByIEntity(entity)
   }
 
-  public spawnItem(item: ItemStack, location: Location, dimension: Dimension): void {
-    this.getDimension(dimension).spawnItem(item, new BlockLocation(location.x, location.y, location.z))
+  public spawnItem(item: ItemStack, location: Location, dimension: Dimension): Entity | undefined {
+    const entity = this.getDimension(dimension).spawnItem(item, new BlockLocation(location.x, location.y, location.z))
+    return this._client.entities.getByIEntity(entity)
   }
 
   public spawnParticle(id: string, location: Location, dimension: Dimension, molangVarMap: MolangVariableMap): void {
     this.getDimension(dimension).spawnParticle(id, new ILocation(location.x, location.y, location.z), molangVarMap)
   }
 
-  public setBlock(location: Location, dimension: Dimension, blockPermutation: BlockPermutation): Block {
+  public setBlockPermutation(location: Location, dimension: Dimension, blockPermutation: BlockPermutation): Block {
     const block = this.getBlock(location, dimension)
     block.setPermutation(blockPermutation)
 
