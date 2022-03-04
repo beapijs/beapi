@@ -236,6 +236,10 @@ export class Player {
     this.getInventory().container.setItem(slot, item)
   }
 
+  public getItem(slot: number): ItemStack | undefined {
+    return this.getInventory().container.getItem(slot)
+  }
+
   public getHealth(): EntityHealthComponent {
     return this._IPlayer.getComponent('minecraft:health') as EntityHealthComponent
   }
