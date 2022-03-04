@@ -121,6 +121,7 @@ export interface BlockCreatedEvent {
 export interface BlockHitEvent {
   player: Player
   block: Block
+  tool: ItemStack | undefined
 }
 
 export interface PlayerInViewVectorEvent {

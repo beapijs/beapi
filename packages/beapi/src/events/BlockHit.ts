@@ -37,6 +37,7 @@ export class BlockHit extends AbstractEvent {
     return this._client.emit(this.name, {
       player,
       block,
+      tool: player.getInventory().container.getItem(player.getSelectedSlot()),
     })
   }
 }
