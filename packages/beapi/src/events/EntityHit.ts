@@ -38,6 +38,7 @@ export class EntityHit extends AbstractEvent {
     return this._client.emit(this.name, {
       attacker: player,
       target,
+      weapon: player.getInventory().container.getItem(player.getSelectedSlot()),
     })
   }
 }

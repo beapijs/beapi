@@ -153,6 +153,7 @@ export interface ExplosionEvent {
 export interface EntityHitEvent {
   target: Entity
   attacker: Player
+  weapon: ItemStack | undefined
 }
 
 export interface PlayerHitEvent {
