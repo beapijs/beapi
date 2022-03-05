@@ -91,7 +91,7 @@ export class Player {
     let agent = this.getAgent()
     if (!agent) {
       this.executeCommand('agent create')
-      const entity = this._client.entities.getLastest()
+      const entity = this._client.entities.getLastest()! // Should Not, Not Exist
       agent = new Agent(this._client, entity.getIEntity(), this)
       agent.addTag(this._name)
       this._agent = agent
@@ -141,13 +141,13 @@ export class Player {
     this.executeCommand(`fog @s ${type} ${fogId} ${globalId}`)
   }
 
-  public executeCommand(cmd: string, debug = false): ServerCommandResponse {
+  public executeCommand<T>(cmd: string, debug = false): ServerCommandResponse<T> {
     try {
-      const command = this._IPlayer.runCommand(cmd)
+      const command = this._IPlayer.runCommand(cmd) as ServerCommandResponse<T>
 
       return {
         statusMessage: command.statusMessage,
-        data: command,
+        data: command as unknown as T,
         err: false,
       }
     } catch (error) {
@@ -292,7 +292,7 @@ export class Player {
   }
 
   public getComponent<K extends keyof PlayerComponents>(component: K): PlayerComponents[K] {
-    return this._IPlayer.getComponent(component) as any
+    return this._IPlayer.getComponent(component) as unknown
   }
 
   public hasComponent<K extends keyof PlayerComponents>(component: K): boolean {
@@ -316,31 +316,27 @@ export class Player {
   }
 
   public getXp(): number {
-    const command = this.executeCommand('xp 0 @s')
-    if (command.err) return 0
+    const command = this.executeCommand<{ level: number }>('xp 0 @s')
 
-    return command.data.level
+    return command.data?.level ?? 0
   }
 
   public addXpLevel(level: number): number {
-    const command = this.executeCommand(`xp ${level}l @s`)
-    if (command.err) return 0
+    const command = this.executeCommand<{ level: number }>(`xp ${level}l @s`)
 
-    return command.data.level
+    return command.data?.level ?? 0
   }
 
   public removeXpLevel(level: number): number {
-    const command = this.executeCommand(`xp -${level}l @s`)
-    if (command.err) return 0
+    const command = this.executeCommand<{ level: number }>(`xp -${level}l @s`)
 
-    return command.data.level
+    return command.data?.level ?? 0
   }
 
   public addXpFloat(level: number): number {
-    const command = this.executeCommand(`xp ${level} @s`)
-    if (command.err) return 0
+    const command = this.executeCommand<{ level: number }>(`xp ${level} @s`)
 
-    return command.data.level
+    return command.data?.level ?? 0
   }
 
   public shakeCamera(type: 'positional' | 'rotational' | 'clear', intensity?: number, seconds?: number): void {

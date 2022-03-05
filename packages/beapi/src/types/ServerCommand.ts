@@ -1,5 +1,5 @@
-export interface ServerCommandResponse {
+export interface ServerCommandResponse<T = any> {
   statusMessage: string
-  data: any // TODO: Fix These Types
+  data: T | undefined | null
   err: boolean
 }

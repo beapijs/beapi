@@ -7,15 +7,15 @@ export {}
 declare global {
   interface Console {
     // @ts-ignore
-    log(message: string, ...optionalParams: string[]): void
+    log: (message: string, ...optionalParams: string[]) => void
     // @ts-ignore
-    warn(message: string, ...optionalParams: string[]): void
+    warn: (message: string, ...optionalParams: string[]) => void
     // @ts-ignore
-    error(message: string, ...optionalParams: string[]): void
+    error: (message: string, ...optionalParams: string[]) => void
     // @ts-ignore
-    info(message: string, ...optionalParams: string[]): void
+    info: (message: string, ...optionalParams: string[]) => void
     // @ts-ignore
-    debug(message: string, ...optionalParams: string[]): void
+    debug: (message: string, ...optionalParams: string[]) => void
     // @ts-ignore
   }
   // @ts-expect-error

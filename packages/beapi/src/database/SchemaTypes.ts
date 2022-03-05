@@ -9,6 +9,10 @@ const MapConstructor = Map
 export namespace SchemaTypes {
   export class String extends StringConstructor {
     public static serialize(data: string): Serialized {
+      if (typeof data !== 'string')
+        throw Error(
+          `Passed "${data}" To Serializer As Type [string] instead found [${typeof data}]! Refusing to continue...`,
+        )
       return StringConstructor(data)
     }
 
@@ -18,6 +22,10 @@ export namespace SchemaTypes {
   }
   export class Number extends NumberConstructor {
     public static serialize(data: number): Serialized<number> {
+      if (typeof data !== 'number')
+        throw Error(
+          `Passed "${data}" To Serializer As Type [number] instead found [${typeof data}]! Refusing to continue...`,
+        )
       return NumberConstructor(data)
     }
 
@@ -27,6 +35,10 @@ export namespace SchemaTypes {
   }
   export class Boolean extends BooleanConstructor {
     public static serialize(data: boolean): Serialized<number> {
+      if (typeof data !== 'boolean')
+        throw Error(
+          `Passed "${data}" To Serializer As Type [boolean] instead found [${typeof data}]! Refusing to continue...`,
+        )
       return NumberConstructor(data ? 1 : 0)
     }
 
@@ -36,6 +48,10 @@ export namespace SchemaTypes {
   }
   export class Array extends ArrayConstructor {
     public static serialize(data: any[]): Serialized {
+      if (!Array.isArray(data))
+        throw Error(
+          `Passed "${data}" To Serializer As Type [Array] instead found [${typeof data}]! Refusing to continue...`,
+        )
       return StringConstructor(JSON.stringify(data))
     }
 
@@ -45,6 +61,10 @@ export namespace SchemaTypes {
   }
   export class Map extends MapConstructor {
     public static serialize(data: Map): Serialized {
+      if (!(data instanceof Map) && !((data as any) instanceof MapConstructor))
+        throw Error(
+          `Passed "${data}" To Serializer As Type [Map] instead found [${typeof data}]! Refusing to continue...`,
+        )
       return JSON.stringify(Array.from(data.entries()))
     }
 

@@ -7,21 +7,20 @@ name: Mark stale issues and pull requests
 
 on:
   schedule:
-  - cron: '41 23 * * *'
+    - cron: '41 23 * * *'
 
 jobs:
   stale:
-
     runs-on: ubuntu-latest
     permissions:
       issues: write
       pull-requests: write
 
     steps:
-    - uses: actions/stale@v3
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'Issue activity has been deciphered as stale. Marking issue with `stale` label'
-        stale-pr-message: 'Pull request activity has been deciphered as stale. Marking pull request with `stale` label'
-        stale-issue-label: 'stale'
-        stale-pr-label: 'stale'
+      - uses: actions/stale@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: 'Issue activity has been deciphered as stale. Marking issue with `stale` label'
+          stale-pr-message: 'Pull request activity has been deciphered as stale. Marking pull request with `stale` label'
+          stale-issue-label: 'stale'
+          stale-pr-label: 'stale'

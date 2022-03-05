@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 
-// Requires needed for this specific use case
-/* eslint-disable @typescript-eslint/no-require-imports */
-/* eslint-disable @typescript-eslint/no-var-requires */
-// Typescript Rule
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable */
 
 const {
   YARG_LOCALE,

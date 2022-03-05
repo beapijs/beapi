@@ -18,18 +18,15 @@ export class Document<T extends Record<string, any>> implements T {
 
   public asObject(): T {
     // @ts-expect-error: We Augment Data In
-    return (
-      Object.keys(this.__model__.schema.definition)
-        // @ts-expect-error: We Augment Data In
-        .map((key: keyof T) => ({ [key]: this[key] }))
-        .reduce(
-          (obj, item) => ({
-            ...obj,
-            ...item,
-          }),
-          {},
-        )
-    )
+    return Object.keys(this.__model__.schema.definition)
+      .map((key: keyof T) => ({ [key]: (this as T)[key] }))
+      .reduce(
+        (obj, item) => ({
+          ...obj,
+          ...item,
+        }),
+        {},
+      )
   }
 
   public getId(): string {
