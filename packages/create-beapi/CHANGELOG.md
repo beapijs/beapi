@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-beta.2](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.2.0-beta.1...create-beapi@2.2.0-beta.2) (2022-03-05)
+
+
+### Bug Fixes
+
+* **scaffolds:** bad template ([51e19f2](https://github.com/MCBE-Utilities/BeAPI/commit/51e19f2e834188fa7d491a0c85190de76ee0071a))
+
+
+
+
+
 # [2.2.0-beta.1](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.2.0-beta.0...create-beapi@2.2.0-beta.1) (2022-03-05)
 
 
