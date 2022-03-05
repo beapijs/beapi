@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-beta.1](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.3.0-beta.0...beapi-core@2.3.0-beta.1) (2022-03-05)
+
+
+### Features
+
+* **core:** added the abilty to include files for modules ([f7c75c0](https://github.com/MCBE-Utilities/BeAPI/commit/f7c75c09be15a210047217a11a6f95e9f80f0127))
+
+
+
+
+
 # [2.3.0-beta.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.1.0...beapi-core@2.3.0-beta.0) (2022-03-05)
 
 

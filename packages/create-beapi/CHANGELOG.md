@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-beta.3](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.2.0-beta.2...create-beapi@2.2.0-beta.3) (2022-03-05)
+
+
+### Bug Fixes
+
+* **template:** versions ([2142271](https://github.com/MCBE-Utilities/BeAPI/commit/21422715cc83549008829d9f4c413bf4604b3fd9))
+
+
+
+
+
 # [2.2.0-beta.2](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.2.0-beta.1...create-beapi@2.2.0-beta.2) (2022-03-05)
 
 
