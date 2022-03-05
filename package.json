@@ -13,7 +13,7 @@
     "prepare": "husky install",
     "pretest": "npm run build",
     "release": "env-cmd lerna publish",
-    "release-beta": "env-cmd lerna publish from-package --force-publish * --canary --pre-dist-tag beta --preid beta",
+    "release-beta": "env-cmd lerna publish --force-publish * --canary --pre-dist-tag beta --preid beta",
     "test": "jest --pass-with-no-tests",
     "test:ci": "jest --no-stack-trace --verbose --pass-with-no-tests"
   },
