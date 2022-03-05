@@ -30,7 +30,7 @@ export class ItemEvent extends AbstractEvent {
 
   protected __logic(arg: BeforeItemDefinitionTriggeredEvent): void {
     if (arg.source.id !== 'minecraft:player') return
-    const player = this._client.players.getByIPlayer(arg.source as Player)
+    const player = this._client.players.getByIPlayer(arg.source as Player)! // Cannot Not Exist
     this._client.emit(this.name, {
       player: player,
       item: arg.item,

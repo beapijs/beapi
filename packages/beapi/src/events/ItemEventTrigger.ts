@@ -32,8 +32,8 @@ export class ItemEventTrigger extends AbstractEvent {
     this._client.emit(this.name, {
       source:
         arg.source instanceof IPlayer
-          ? this._client.players.getByIPlayer(arg.source)
-          : this._client.entities.getByIEntity(arg.source),
+          ? this._client.players.getByIPlayer(arg.source)! /* Cannot Not Exist */
+          : this._client.entities.getByIEntity(arg.source)! /* Cannot Not Exist */,
       event: arg.eventName,
       item: arg.item,
       cancel: () => {

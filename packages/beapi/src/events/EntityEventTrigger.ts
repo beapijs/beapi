@@ -30,7 +30,7 @@ export class EntityEventTrigger extends AbstractEvent {
 
   protected __logic(arg: BeforeDataDrivenEntityTriggerEvent): void {
     if (arg.entity instanceof IPlayer) return
-    const entity = this._client.entities.getByIEntity(arg.entity)
+    const entity = this._client.entities.getByIEntity(arg.entity)! // Cannot Not Exist
     this._client.emit(this.name, {
       entity,
       event: arg.id,

@@ -30,7 +30,7 @@ export class PlayerEventTrigger extends AbstractEvent {
 
   protected __logic(arg: BeforeDataDrivenEntityTriggerEvent): void {
     if (arg.entity instanceof IEntity) return
-    const player = this._client.players.getByIPlayer(arg.entity)
+    const player = this._client.players.getByIPlayer(arg.entity)! // Cannot Not Exist
     this._client.emit(this.name, {
       player,
       event: arg.id,
