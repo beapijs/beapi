@@ -15,7 +15,7 @@
     "bundle": "tsc && beapi bundle"
   },
   "dependencies": {
-    "beapi-core": "^2.1.0",
+    "beapi-core": "^2.2.2",
     "typescript": "^4.5.4"
   }
 }
