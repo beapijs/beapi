@@ -1,4 +1,4 @@
-import { client } from 'beapi-core'
+import { client, CommandTypes } from 'beapi-core'
 
 client.commands.register(
   {
@@ -29,17 +29,17 @@ client.commands.register(
     {
       name: 'stringtest',
       required: true,
-      type: String,
+      type: CommandTypes.String,
     },
     {
       name: 'numbertest',
       required: true,
-      type: Number,
+      type: CommandTypes.Number,
     },
     {
       name: 'booltest',
       required: true,
-      type: Boolean,
+      type: CommandTypes.Boolean,
     },
   ],
 )
