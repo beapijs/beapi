@@ -158,6 +158,7 @@ function copyModules(package) {
 
 const nocopy = [
   'scripts',
+  'src',
   'pack_icon.png',
   'manifest.json',
   'dist',
@@ -222,13 +223,14 @@ function linkModules(package) {
     const syncAltMatcher = syncAltModuleMatcher(dep)
     const asyncMatcher = asyncModuleMatcher(dep)
     for (const file of walkDirSync(scriptRoute)) {
+      // OLD: package.main.split('/')[1]
+      const modulePathSplit = modulePackage.main.split('/')
+      const modulePath = modulePathSplit.filter((x) => x !== modulePathSplit[0]).join('/')
       const router = path
         .relative(file, scriptRoute)
         .substring(3)
         .replace(/\\|\\\\/g, '/')
-      const module = `${router.length ? '' : '.'}${router}/beapi_modules/${dep.replace(/\\|\\\\|\//g, '-')}/${
-        package.main.split('/')[1]
-      }`
+      const module = `${router.length ? '' : '.'}${router}/beapi_modules/${dep.replace(/\\|\\\\|\//g, '-')}/${modulePath}`
       const contents = fs.readFileSync(file, 'utf-8')
       fs.writeFileSync(
         file,
