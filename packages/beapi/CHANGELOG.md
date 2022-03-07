@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-beta.2](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.3.0-beta.1...beapi-core@2.3.0-beta.2) (2022-03-07)
+
+
+### Bug Fixes
+
+* **core:** fixed module linker to support nested main import ([ed5b8cd](https://github.com/MCBE-Utilities/BeAPI/commit/ed5b8cd269538a5dc013839f382fc6bb62a7b912))
+
+
+
+
+
 # [2.3.0-beta.1](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.3.0-beta.0...beapi-core@2.3.0-beta.1) (2022-03-05)
 
 
