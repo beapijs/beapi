@@ -9,15 +9,28 @@ import type { Player } from '../player'
 import type { ModalFormResponse } from '../types'
 // @ts-ignore TEMP: Until typings are made
 import { ModalFormData } from 'mojang-minecraft-ui'
+import type { Client } from '../client'
 
 export class ModalForm {
   private readonly player: Player
-  private readonly form: any
+  protected readonly _client: Client
+  protected readonly form: any
+  protected callback: ((res: ModalFormResponse) => void) | undefined
+  protected canceled = false
   public title = 'Unnamed Form'
 
-  public constructor(player: Player) {
+  public constructor(player: Player, client: Client) {
     this.player = player
+    this._client = client
     this.form = new ModalFormData()
+    this._client.emit('ModalFormCreated', {
+      player: this.player,
+      form: this,
+      result: this.result.bind(this),
+      cancel: () => {
+        this.canceled = true
+      },
+    })
   }
 
   public addInput(label: string, placeHolderText: string, defaultValue?: string): this {
@@ -57,16 +70,35 @@ export class ModalForm {
   }
 
   public send(callback?: (res: ModalFormResponse) => void): void {
+    if (this.canceled) {
+      if (this.callback) {
+        this.callback({
+          isCanceled: true,
+        })
+      }
+      if (!callback) return
+
+      return callback({
+        isCanceled: true,
+      })
+    }
     this.form.title(this.title)
     this.form
       .show(this.player.getIPlayer())
       .then((res: ModalFormResponse) => {
         if (!callback) return
+        if (this.callback) {
+          this.callback(res)
+        }
 
         return callback(res)
       })
       .catch((err: any) => {
         console.error(err)
       })
+  }
+
+  private result(callback: (data: ModalFormResponse) => void): void {
+    this.callback = callback
   }
 }

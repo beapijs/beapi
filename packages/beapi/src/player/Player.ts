@@ -76,7 +76,7 @@ export class Player {
   }
 
   public createModalForm(): ModalForm {
-    return new ModalForm(this)
+    return new ModalForm(this, this._client)
   }
 
   public createMessageForm(): MessageForm {
