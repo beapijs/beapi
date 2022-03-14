@@ -6,20 +6,33 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
+import type { Client } from '../client'
 import type { Player } from '../player'
 import type { ActionFormResponse } from '../types'
 // @ts-ignore TEMP: Until typings are made
 import { ActionFormData } from 'mojang-minecraft-ui'
 
 export class ActionForm {
-  private readonly player: Player
-  private readonly form: any
+  protected readonly player: Player
+  protected readonly _client: Client
+  protected readonly form: any
+  private callback: ((res: ActionFormResponse) => void) | undefined
+  protected canceled = false
   public title = 'Unnamed Form'
   public body = ''
 
-  public constructor(player: Player) {
+  public constructor(player: Player, client: Client) {
     this.player = player
+    this._client = client
     this.form = new ActionFormData()
+    this._client.emit('ActionFormCreated', {
+      player: this.player,
+      form: this,
+      result: this.result.bind(this),
+      cancel: () => {
+        this.canceled = true
+      },
+    })
   }
 
   public addButton(text: string, iconPath?: string): this {
@@ -29,17 +42,36 @@ export class ActionForm {
   }
 
   public send(callback?: (res: ActionFormResponse) => void): void {
+    if (this.canceled) {
+      if (!callback) return
+      if (this.callback) {
+        this.callback({
+          isCanceled: true,
+        })
+      }
+
+      return callback({
+        isCanceled: true,
+      })
+    }
     this.form.title(this.title)
     this.form.body(this.body)
     this.form
       .show(this.player.getIPlayer())
       .then((res: ActionFormResponse) => {
         if (!callback) return
+        if (this.callback) {
+          this.callback(res)
+        }
 
         return callback(res)
       })
       .catch((err: any) => {
         console.error(err)
       })
+  }
+
+  private result(callback: (data: ActionFormResponse) => void): void {
+    this.callback = callback
   }
 }

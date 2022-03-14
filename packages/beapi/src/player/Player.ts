@@ -84,7 +84,7 @@ export class Player {
   }
 
   public createActionForm(): ActionForm {
-    return new ActionForm(this)
+    return new ActionForm(this, this._client)
   }
 
   public createAgent(): Agent {
