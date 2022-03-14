@@ -7,6 +7,7 @@ import { Events, world } from 'mojang-minecraft'
 import { EntityManager } from '../entity'
 import { CommandManager } from '../commands'
 import { WorldManager } from '../world'
+import { ScoreboardManager } from '../scoreboard'
 import { version, mcbe, protocol } from '../version'
 import { deprecated } from '../utils'
 
@@ -63,6 +64,7 @@ export class Client extends EventEmitter {
   public readonly entities = new EntityManager(this)
   public readonly commands = new CommandManager(this)
   public readonly world = new WorldManager(this)
+  public readonly scoreboards = new ScoreboardManager(this)
   public readonly currentVersion = version
   public readonly currentMCBE = mcbe
   public readonly currentProtocol = protocol
