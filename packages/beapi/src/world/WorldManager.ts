@@ -11,6 +11,7 @@ import {
   BlockPermutation,
   MolangVariableMap,
   Location as ILocation,
+  ExplosionOptions,
 } from 'mojang-minecraft'
 export class WorldManager {
   protected readonly _client: Client
@@ -91,5 +92,9 @@ export class WorldManager {
 
   public setDifficulty(difficulty: Difficulty): void {
     this._client.executeCommand(`difficulty ${difficulty}`)
+  }
+
+  public createExplosion(location: Location, radius: number, dimension: Dimension, options: ExplosionOptions): void {
+    this.getDimension(dimension).createExplosion(new ILocation(location.x, location.y, location.z), radius, options)
   }
 }
