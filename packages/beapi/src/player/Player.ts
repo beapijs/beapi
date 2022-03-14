@@ -12,7 +12,7 @@ import {
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Entity } from '..'
 import type { Client } from '../client'
-import type { Location, Dimension, Gamemode, ServerCommandResponse, PlayerComponents } from '../types'
+import type { Location, Dimension, Gamemode, ServerCommandResponse, PlayerComponents, Objective } from '../types'
 import { Agent } from '../agent/Agent'
 
 export class Player {
@@ -166,27 +166,27 @@ export class Player {
     if (command.err) return console.error(command.statusMessage)
   }
 
-  public getScore(objective: string): number {
-    const command = this.executeCommand(`scoreboard players test @s "${objective}" * *`)
+  public getScore(objective: Objective): number {
+    const command = this.executeCommand(`scoreboard players test @s "${objective.id}" * *`)
     if (command.err) return 0
 
     return parseInt(String(command.statusMessage?.split(' ')[1]), 10)
   }
 
-  public setScore(objective: string, amount: number): number {
-    this.executeCommand(`scoreboard players set @s "${objective}" ${amount}`)
+  public setScore(objective: Objective, amount: number): number {
+    this.executeCommand(`scoreboard players set @s "${objective.id}" ${amount}`)
 
     return this.getScore(objective)
   }
 
-  public addScore(objective: string, amount: number): number {
-    this.executeCommand(`scoreboard players add @s "${objective}" ${amount}`)
+  public addScore(objective: Objective, amount: number): number {
+    this.executeCommand(`scoreboard players add @s "${objective.id}" ${amount}`)
 
     return this.getScore(objective)
   }
 
-  public removeScore(objective: string, amount: number): number {
-    this.executeCommand(`scoreboard players remove @s "${objective}" ${amount}`)
+  public removeScore(objective: Objective, amount: number): number {
+    this.executeCommand(`scoreboard players remove @s "${objective.id}" ${amount}`)
 
     return this.getScore(objective)
   }
