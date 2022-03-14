@@ -7,6 +7,7 @@ import {
   Vector,
   EffectType,
   Effect,
+  ItemStack,
 } from 'mojang-minecraft'
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Entity } from '..'
@@ -90,7 +91,7 @@ export class Player {
     let agent = this.getAgent()
     if (!agent) {
       this.executeCommand('agent create')
-      const entity = this._client.entities.getLastest()
+      const entity = this._client.entities.getLastest()! // Should Not, Not Exist
       agent = new Agent(this._client, entity.getIEntity(), this)
       agent.addTag(this._name)
       this._agent = agent
@@ -140,13 +141,13 @@ export class Player {
     this.executeCommand(`fog @s ${type} ${fogId} ${globalId}`)
   }
 
-  public executeCommand(cmd: string, debug = false): ServerCommandResponse {
+  public executeCommand<T>(cmd: string, debug = false): ServerCommandResponse<T> {
     try {
-      const command = this._IPlayer.runCommand(cmd)
+      const command = this._IPlayer.runCommand(cmd) as ServerCommandResponse<T>
 
       return {
         statusMessage: command.statusMessage,
-        data: command,
+        data: command as unknown as T,
         err: false,
       }
     } catch (error) {
@@ -158,6 +159,11 @@ export class Player {
         err: true,
       }
     }
+  }
+
+  public executeFunction(path: string): void {
+    const command = this.executeCommand(`function ${path}`)
+    if (command.err) return console.error(command.statusMessage)
   }
 
   public getScore(objective: string): number {
@@ -183,6 +189,12 @@ export class Player {
     this.executeCommand(`scoreboard players remove @s "${objective}" ${amount}`)
 
     return this.getScore(objective)
+  }
+
+  public setGamemode(gamemode: Gamemode): void {
+    if (gamemode === this.getGamemode()) return
+    const command = this.executeCommand(`gamemode ${gamemode}`)
+    if (command.err) return console.error(command.statusMessage)
   }
 
   public getGamemode(): Gamemode {
@@ -211,8 +223,7 @@ export class Player {
   }
 
   public getDimensionName(): Dimension {
-    // TEMP: Until types get updated
-    const id = ((this.getDimension() as any).id as string).split(':')[1].replace(/_/g, ' ')
+    const id = this.getDimension().id.split(':')[1].replace(/_/g, ' ')
 
     return id as Dimension
   }
@@ -221,12 +232,28 @@ export class Player {
     return this._IPlayer.getComponent('minecraft:inventory') as EntityInventoryComponent
   }
 
-  public getHealth(): EntityHealthComponent {
-    return this._IPlayer.getComponent('minecraft:health') as EntityHealthComponent
+  public setItem(slot: number, item: ItemStack): void {
+    this.getInventory().container.setItem(slot, item)
+  }
+
+  public getItem(slot: number): ItemStack | undefined {
+    return this.getInventory().container.getItem(slot)
   }
 
   public getSelectedSlot(): number {
     return this._IPlayer.selectedSlot
+  }
+
+  public getTotalEmptySlots(): number {
+    return this.getInventory().container.emptySlotsCount
+  }
+
+  public getInventorySize(): number {
+    return this.getInventory().container.size
+  }
+
+  public getHealth(): EntityHealthComponent {
+    return this._IPlayer.getComponent('minecraft:health') as EntityHealthComponent
   }
 
   public kick(reason = 'You were kicked from the game!'): void {
@@ -265,7 +292,7 @@ export class Player {
   }
 
   public getComponent<K extends keyof PlayerComponents>(component: K): PlayerComponents[K] {
-    return this._IPlayer.getComponent(component) as any
+    return this._IPlayer.getComponent(component) as unknown
   }
 
   public hasComponent<K extends keyof PlayerComponents>(component: K): boolean {
@@ -289,31 +316,40 @@ export class Player {
   }
 
   public getXp(): number {
-    const command = this.executeCommand('xp 0 @s')
-    if (command.err) return 0
+    const command = this.executeCommand<{ level: number }>('xp 0 @s')
 
-    return command.data.level
+    return command.data?.level ?? 0
   }
 
   public addXpLevel(level: number): number {
-    const command = this.executeCommand(`xp ${level}l @s`)
-    if (command.err) return 0
+    const command = this.executeCommand<{ level: number }>(`xp ${level}l @s`)
 
-    return command.data.level
+    return command.data?.level ?? 0
   }
 
   public removeXpLevel(level: number): number {
-    const command = this.executeCommand(`xp -${level}l @s`)
-    if (command.err) return 0
+    const command = this.executeCommand<{ level: number }>(`xp -${level}l @s`)
 
-    return command.data.level
+    return command.data?.level ?? 0
   }
 
   public addXpFloat(level: number): number {
-    const command = this.executeCommand(`xp ${level} @s`)
-    if (command.err) return 0
+    const command = this.executeCommand<{ level: number }>(`xp ${level} @s`)
 
-    return command.data.level
+    return command.data?.level ?? 0
+  }
+
+  public shakeCamera(type: 'positional' | 'rotational' | 'clear', intensity?: number, seconds?: number): void {
+    if (type === 'clear') {
+      this.executeCommand('camerashake stop @s')
+    } else {
+      this.executeCommand(`camerashake add @s ${intensity ?? 1} ${seconds ?? 1} ${type}`)
+    }
+  }
+
+  public setSpawnPoint(location: Location): void {
+    const command = this.executeCommand(`spawnpoint @s ${location.x} ${location.y} ${location.z}`)
+    if (command.err) return console.error(command.statusMessage)
   }
 
   public isSneaking(): boolean {

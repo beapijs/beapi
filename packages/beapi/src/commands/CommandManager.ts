@@ -8,12 +8,14 @@ import { genUuid } from '../utils'
 export class CommandManager {
   protected readonly _client: Client
   protected readonly _commands: Map<string, CommandEntry> = new Map<string, CommandEntry>()
+  public enabled = true
   public prefix = '-'
 
   public constructor(client: Client) {
     this._client = client
     this.default()
     this._client.on('OnChat', (data) => {
+      if (!this.enabled) return
       if (!data.message.startsWith(this.prefix)) return
       let cancel = false
       data.cancel()
@@ -76,9 +78,13 @@ export class CommandManager {
     })
   }
 
-  public register(options: CommandOptions, callback: CommandResponse, args?: CommandArguments[]): void {
+  public register(
+    options: CommandOptions,
+    callback: CommandResponse,
+    args?: CommandArguments[],
+  ): CommandEntry | undefined {
     if (this.commandEntries().find((x) => x.options.usage === options.usage))
-      return console.warn(`The command with the usage "${options.usage}" is already registered.`)
+      return console.warn(`The command with the usage "${options.usage}" is already registered.`) as undefined
     const id = genUuid()
     this._commands.set(id, {
       id: id,
@@ -92,6 +98,8 @@ export class CommandManager {
         this.unregister(id)
       },
     })
+
+    return this._commands.get(id)
   }
 
   public unregister(commandId: string): void {

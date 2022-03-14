@@ -37,7 +37,6 @@ export class ItemInteract extends AbstractEvent {
       item: arg.item,
       block: arg.source.dimension.getBlock(arg.blockLocation),
       blockLocation: arg.blockLocation,
-      direction: arg.direction,
       faceLocationX: arg.faceLocationX,
       faceLocationY: arg.faceLocationY,
       cancel() {

@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-beta.4](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.2.0-beta.3...create-beapi@2.2.0-beta.4) (2022-03-07)
+
+
+### Bug Fixes
+
+* **scaffold:** versions ([40bd5b5](https://github.com/MCBE-Utilities/BeAPI/commit/40bd5b5944c22f38635341a54d01e71ff29a4e93))
+
+
+
+
+
+# [2.2.0-beta.3](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.2.0-beta.2...create-beapi@2.2.0-beta.3) (2022-03-05)
+
+
+### Bug Fixes
+
+* **template:** versions ([2142271](https://github.com/MCBE-Utilities/BeAPI/commit/21422715cc83549008829d9f4c413bf4604b3fd9))
+
+
+
+
+
+# [2.2.0-beta.2](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.2.0-beta.1...create-beapi@2.2.0-beta.2) (2022-03-05)
+
+
+### Bug Fixes
+
+* **scaffolds:** bad template ([51e19f2](https://github.com/MCBE-Utilities/BeAPI/commit/51e19f2e834188fa7d491a0c85190de76ee0071a))
+
+
+
+
+
+# [2.2.0-beta.1](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.2.0-beta.0...create-beapi@2.2.0-beta.1) (2022-03-05)
+
+
+### Bug Fixes
+
+* **versions:** scaffold versions wrong whoops ([d10cab7](https://github.com/MCBE-Utilities/BeAPI/commit/d10cab7230f888815f461e9ae496d5654e05876c))
+
+
+
+
+
+# [2.2.0-beta.0](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.0.2...create-beapi@2.2.0-beta.0) (2022-03-05)
+
+
+### Bug Fixes
+
+* **core:** added UI module to manifest ([ba49103](https://github.com/MCBE-Utilities/BeAPI/commit/ba49103be0e6f00709b177584f76cc8218eb84cf))
+* **database:** issue [#15](https://github.com/MCBE-Utilities/BeAPI/issues/15) ([60fa49f](https://github.com/MCBE-Utilities/BeAPI/commit/60fa49fc51d6181b5b8dc580e390b58a092dc267))
+* **versions:** bump to production ([58f1b83](https://github.com/MCBE-Utilities/BeAPI/commit/58f1b83f3150cdc63c02ace31f1aa621acf38951))
+
+
+### Features
+
+* **commands:** new commandManager ([e9016fb](https://github.com/MCBE-Utilities/BeAPI/commit/e9016fb2953c640420ad95e784ab936437a3503a))
+* **events:** added Death and Respawn ([56e8390](https://github.com/MCBE-Utilities/BeAPI/commit/56e8390416ac4683e54b8320c731e5695dc3a89d))
+* **events:** added Death and Respawn ([4414bce](https://github.com/MCBE-Utilities/BeAPI/commit/4414bce8abf0c0217d2f346e2242e21bcb56545d))
+
+
+### Reverts
+
+* even two branches out ([c7e815e](https://github.com/MCBE-Utilities/BeAPI/commit/c7e815ec3f4da5fa82ce26d29b668ae0e98032fb))
+* manifest deps ([08646d3](https://github.com/MCBE-Utilities/BeAPI/commit/08646d36779051e922fc2c01049ab4b289b40959))
+
+
+
+
+
 ## [2.0.2](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.0.1...create-beapi@2.0.2) (2022-01-17)
 
 

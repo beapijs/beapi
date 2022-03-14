@@ -9,11 +9,16 @@ export class Schema<T extends Record<string, any>> {
   }
 
   public serialize(data: Deserialized<T>): Serialized {
+    for (const key of Object.keys(this.definition)) {
+      if (data[key] === undefined || data[key] === null)
+        throw Error(`Attempted To Serialize Data That Is Missing Required Property "${key}". Refusing to continue...`)
+    }
+
     return JSON.stringify(
       entries<Deserialized<T>>(data)
         .map(([key, value]) => {
           const Type = this.definition[key]
-          if (!Type) throw Error(`Invalid Object Property "${key}"`)
+          if (!Type) throw Error(`Invalid Object Property "${key}", Not In Schematic. Refusing to continue...`)
 
           return { [key]: Type.serialize(value as never) }
         })
@@ -31,7 +36,7 @@ export class Schema<T extends Record<string, any>> {
     return entries<Deserialized<T>>(JSON.parse(raw) as Deserialized<T>)
       .map(([key, value]) => {
         const Type = this.definition[key]
-        if (!Type) throw Error(`Invalid Object Property "${key}"`)
+        if (!Type) throw Error(`Invalid Object Property "${key}", Not In Schematic. Refusing to continue...`)
 
         return { [key]: Type.deserialize(value as never) }
       })

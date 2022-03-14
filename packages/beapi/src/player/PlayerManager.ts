@@ -29,15 +29,19 @@ export class PlayerManager {
     return this._players
   }
 
-  public getByName(playerName: string): Player {
-    return this._players.get(playerName) as Player
+  public getAllAsArray(): Player[] {
+    return Array.from(this.getAll().values())
   }
 
-  public getByNameTag(nameTag: string): Player {
-    return Array.from(this._players.values()).find((p) => p.getNameTag() === nameTag) as Player
+  public getByName(playerName: string): Player | undefined {
+    return this._players.get(playerName)
   }
 
-  public getByIPlayer(IPlayer: IPlayer): Player {
-    return Array.from(this._players.values()).find((p) => p.getIPlayer() === IPlayer) as Player
+  public getByNameTag(nameTag: string): Player | undefined {
+    return Array.from(this._players.values()).find((p) => p.getNameTag() === nameTag)
+  }
+
+  public getByIPlayer(IPlayer: IPlayer): Player | undefined {
+    return Array.from(this._players.values()).find((p) => p.getIPlayer() === IPlayer)
   }
 }

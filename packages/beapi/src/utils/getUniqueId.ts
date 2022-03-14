@@ -1,6 +1,11 @@
 import { client, genUuid } from '..'
 import type { Entity } from '..'
 
+interface ParseResult {
+  statusCode: string
+  statusMessage: string
+}
+
 export function getUniqueId(entity: Entity): number {
   const objective = genUuid().substring(0, 16)
   client.executeCommand(`scoreboard objectives add "${objective}" dummy`)
@@ -8,7 +13,7 @@ export function getUniqueId(entity: Entity): number {
   client.executeCommand(`scoreboard objectives remove "${objective}"`)
   if (!err) return 0
 
-  const raw: { statusCode: string; statusMessage: string } = JSON.parse(statusMessage)
+  const raw: ParseResult = JSON.parse(statusMessage) as ParseResult
   const id = Number(raw.statusMessage.split(' ')[1])
 
   return id

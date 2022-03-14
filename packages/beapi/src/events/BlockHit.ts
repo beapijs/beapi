@@ -1,5 +1,5 @@
 import type { Client } from '../client'
-import type { Player as IPlayer, Block } from 'mojang-minecraft'
+import type { Player as IPlayer, EntityHitEvent } from 'mojang-minecraft'
 import { world } from 'mojang-minecraft'
 
 import AbstractEvent from './AbstractEvent'
@@ -19,24 +19,25 @@ export class BlockHit extends AbstractEvent {
 
   public on(): void {
     if (!this._registered) {
-      ;(world.events as any)[this.iName].subscribe(this._logic)
+      world.events[this.iName].subscribe(this._logic)
     }
   }
 
   public off(): void {
     if (this._registered) {
-      ;(world.events as any)[this.iName].unsubscribe(this._logic)
+      world.events[this.iName].unsubscribe(this._logic)
     }
   }
 
-  protected __logic(data: any): void {
+  protected __logic(data: EntityHitEvent): void {
     if (!data.hitBlock) return
-    const player = this._client.players.getByIPlayer(data.entity as IPlayer)
-    const block = data.hitBlock as Block
+    const player = this._client.players.getByIPlayer(data.entity as IPlayer)! // Cannot Not Exist
+    const block = data.hitBlock
 
     return this._client.emit(this.name, {
       player,
       block,
+      tool: player.getInventory().container.getItem(player.getSelectedSlot()),
     })
   }
 }

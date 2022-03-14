@@ -12,8 +12,9 @@
     "lint:fix": "eslint packages --ext mjs,js,ts --fix",
     "prepare": "husky install",
     "pretest": "npm run build",
-    "release": "env-cmd lerna publish",
-    "release-beta": "env-cmd lerna publish --canary --preid beta",
+    "lerna": "env-cmd lerna",
+    "canary-release": "env-cmd lerna publish --conventional-prerelease --pre-dist-tag beta --preid beta",
+    "graduate-release": "env-cmd lerna publish --conventional-graduate",
     "test": "jest --pass-with-no-tests",
     "test:ci": "jest --no-stack-trace --verbose --pass-with-no-tests"
   },

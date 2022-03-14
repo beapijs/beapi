@@ -50,3 +50,4 @@ export * from './world'
 export * from './version'
 
 export * as Minecraft from 'mojang-minecraft'
+export * as Gametest from 'mojang-gametest'

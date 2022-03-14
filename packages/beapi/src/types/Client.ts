@@ -9,6 +9,7 @@ import type {
   ItemStack,
   BlockPistonComponent,
   Effect,
+  DefinitionModifier,
 } from 'mojang-minecraft'
 
 export interface ClientEvents {
@@ -51,13 +52,16 @@ export interface ClientEvents {
   Swing: [Player]
   Death: [Player]
   Respawn: [Player]
-  EntityAttacked: [EntityInViewVectorEvent]
-  PlayerAttacked: [PlayerInViewVectorEvent]
+  EntityHit: [EntityHitEvent]
+  PlayerHit: [PlayerHitEvent]
   Piston: [PistonEvent]
   EffectAdded: [EffectAddedEvent]
   WeatherUpdated: [WeatherUpdatedEvent]
   CommandRegistered: [CommandRegisteredEvent]
   CommandUsed: [CommandUsedEvent]
+  EntityEventTrigger: [EntityEventTriggerEvent]
+  PlayerEventTrigger: [PlayerEventTriggerEvent]
+  ItemEventTrigger: [ItemEventTriggerEvent]
 }
 
 export interface OnChatEvent {
@@ -82,7 +86,6 @@ export interface ItemInteractEvent {
   item: ItemStack
   block: Block
   blockLocation: BlockLocation
-  direction: number
   faceLocationX: number
   faceLocationY: number
   cancel: CancelMethod
@@ -118,6 +121,7 @@ export interface BlockCreatedEvent {
 export interface BlockHitEvent {
   player: Player
   block: Block
+  tool: ItemStack | undefined
 }
 
 export interface PlayerInViewVectorEvent {
@@ -145,6 +149,18 @@ export interface ExplosionEvent {
   dimension: IDimension
   impactedBlocks: BlockLocation[]
   cancel: CancelMethod
+}
+
+export interface EntityHitEvent {
+  target: Entity
+  attacker: Player
+  weapon: ItemStack | undefined
+}
+
+export interface PlayerHitEvent {
+  target: Player
+  attacker: Player
+  weapon: ItemStack | undefined
 }
 
 export interface PistonEvent {
@@ -176,6 +192,27 @@ export interface CommandUsedEvent {
   command: CommandEntry | undefined
   sender: Player | undefined
   args: string[]
+  cancel: CancelMethod
+}
+
+export interface EntityEventTriggerEvent {
+  entity: Entity
+  event: string
+  data: DefinitionModifier[]
+  cancel: CancelMethod
+}
+
+export interface PlayerEventTriggerEvent {
+  player: Player
+  event: string
+  data: DefinitionModifier[]
+  cancel: CancelMethod
+}
+
+export interface ItemEventTriggerEvent {
+  source: Player | Entity
+  event: string
+  item: ItemStack
   cancel: CancelMethod
 }
 

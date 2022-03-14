@@ -11,44 +11,50 @@ import { version, mcbe, protocol } from '../version'
 import { deprecated } from '../utils'
 
 export interface Client {
-  on<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>): void
-  on<S extends string | symbol>(
-    event: Exclude<S, keyof ClientEvents>,
-    listener: (...args: any[]) => Awaitable<void>,
-  ): void
+  on: (<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>) => void) &
+    (<S extends string | symbol>(
+      event: Exclude<S, keyof ClientEvents>,
+      listener: (...args: any[]) => Awaitable<void>,
+    ) => void)
 
-  addListener<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>): void
-  addListener<S extends string | symbol>(
-    event: Exclude<S, keyof ClientEvents>,
-    listener: (...args: any[]) => Awaitable<void>,
-  ): void
+  addListener: (<K extends keyof ClientEvents>(
+    event: K,
+    listener: (...args: ClientEvents[K]) => Awaitable<void>,
+  ) => void) &
+    (<S extends string | symbol>(
+      event: Exclude<S, keyof ClientEvents>,
+      listener: (...args: any[]) => Awaitable<void>,
+    ) => void)
 
-  once<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>): this
-  once<S extends string | symbol>(
-    event: Exclude<S, keyof ClientEvents>,
-    listener: (...args: any[]) => Awaitable<void>,
-  ): void
+  once: (<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>) => this) &
+    (<S extends string | symbol>(
+      event: Exclude<S, keyof ClientEvents>,
+      listener: (...args: any[]) => Awaitable<void>,
+    ) => void)
 
-  emit<K extends keyof ClientEvents>(event: K, ...args: ClientEvents[K]): void
-  emit<S extends string | symbol>(event: Exclude<S, keyof ClientEvents>, ...args: unknown[]): void
+  emit: (<K extends keyof ClientEvents>(event: K, ...args: ClientEvents[K]) => void) &
+    (<S extends string | symbol>(event: Exclude<S, keyof ClientEvents>, ...args: unknown[]) => void)
 
-  envokeEvent<K extends keyof ClientEvents>(event: K, ...args: ClientEvents[K]): void
-  envokeEvent<S extends string | symbol>(event: Exclude<S, keyof ClientEvents>, ...args: unknown[]): void
+  envokeEvent: (<K extends keyof ClientEvents>(event: K, ...args: ClientEvents[K]) => void) &
+    (<S extends string | symbol>(event: Exclude<S, keyof ClientEvents>, ...args: unknown[]) => void)
 
-  off<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>): void
-  off<S extends string | symbol>(
-    event: Exclude<S, keyof ClientEvents>,
-    listener: (...args: any[]) => Awaitable<void>,
-  ): void
+  off: (<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>) => void) &
+    (<S extends string | symbol>(
+      event: Exclude<S, keyof ClientEvents>,
+      listener: (...args: any[]) => Awaitable<void>,
+    ) => void)
 
-  removeListener<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>): void
-  removeListener<S extends string | symbol>(
-    event: Exclude<S, keyof ClientEvents>,
-    listener: (...args: any[]) => Awaitable<void>,
-  ): void
+  removeListener: (<K extends keyof ClientEvents>(
+    event: K,
+    listener: (...args: ClientEvents[K]) => Awaitable<void>,
+  ) => void) &
+    (<S extends string | symbol>(
+      event: Exclude<S, keyof ClientEvents>,
+      listener: (...args: any[]) => Awaitable<void>,
+    ) => void)
 
-  removeListeners<K extends keyof ClientEvents>(event?: K): void
-  removeListeners<S extends string | symbol>(event?: Exclude<S, keyof ClientEvents>): void
+  removeListeners: (<K extends keyof ClientEvents>(event?: K) => void) &
+    (<S extends string | symbol>(event?: Exclude<S, keyof ClientEvents>) => void)
 }
 
 export class Client extends EventEmitter {
@@ -99,13 +105,13 @@ export class Client extends EventEmitter {
     return Object.keys(Events.prototype)
   }
 
-  public executeCommand(cmd: string, dimension: Dimension = 'overworld', debug = false): ServerCommandResponse {
+  public executeCommand<T>(cmd: string, dimension: Dimension = 'overworld', debug = false): ServerCommandResponse<T> {
     try {
-      const command = world.getDimension(dimension).runCommand(cmd)
+      const command = world.getDimension(dimension).runCommand(cmd) as ServerCommandResponse<T>
 
       return {
         statusMessage: command.statusMessage,
-        data: command,
+        data: command as unknown as T,
         err: false,
       }
     } catch (error) {

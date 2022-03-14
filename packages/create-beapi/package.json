@@ -1,6 +1,6 @@
 {
   "name": "create-beapi",
-  "version": "2.0.2",
+  "version": "2.2.0-beta.4",
   "license": "MIT",
   "author": "MCBE - Utilites",
   "main": "index.js",

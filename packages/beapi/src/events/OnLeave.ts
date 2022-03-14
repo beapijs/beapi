@@ -31,7 +31,7 @@ export class OnLeave extends AbstractEvent {
   }
 
   protected __logic(arg: PlayerLeaveEvent): void {
-    const player = this._client.players.getByName(arg.playerName)
+    const player = this._client.players.getByName(arg.playerName)! // Cannot Not Exist
     this._client.emit(this.name, player)
     this._client.players.remove(player)
   }

@@ -1,3 +1,11 @@
+// We are forced to ignore alot of our linter related warnings
+// Due to minecraft not typing their stuff :/
+
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+
 import type { Player } from '../player'
 import type { MessageFormResponse } from '../types'
 // @ts-ignore TEMP: Until typings are made

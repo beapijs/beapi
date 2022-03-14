@@ -1,6 +1,5 @@
-// Requires needed for this specific use case
-/* eslint-disable @typescript-eslint/no-require-imports */
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable */
+
 const chalk = require('chalk')
 const fs = require('fs')
 const path = require('path')
@@ -219,7 +218,7 @@ function generateNewUuids(m, onlyIfNotPresent = true) {
  * @returns {string}
  */
 function pkgMainToPath(m) {
-  const primaryRoute = m.split(/\/|\\|\\\\/).filter((i) => i.length > 0)[0]
+  const primaryRoute = m.split(/\/|\/\/|\\|\\\\/).filter((i) => i.length > 0 && i !== '.')[0]
 
   return primaryRoute.toLowerCase().endsWith('.js') ? '' : primaryRoute
 }

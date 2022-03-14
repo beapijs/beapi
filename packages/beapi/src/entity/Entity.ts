@@ -74,13 +74,13 @@ export class Entity {
     return this._IEntity.removeTag(tag)
   }
 
-  public executeCommand(cmd: string, debug = false): ServerCommandResponse {
+  public executeCommand<T>(cmd: string, debug = false): ServerCommandResponse<T> {
     try {
-      const command = this._IEntity.runCommand(cmd)
+      const command = this._IEntity.runCommand(cmd) as ServerCommandResponse<T>
 
       return {
         statusMessage: command.statusMessage,
-        data: command,
+        data: command as unknown as T,
         err: false,
       }
     } catch (error) {
@@ -135,7 +135,7 @@ export class Entity {
 
   public getDimensionName(): Dimension {
     // TEMP: Until types get updated
-    const id = ((this.getDimension() as any).id as string).split(':')[1].replace(/_/g, ' ')
+    const id = this.getDimension().id.split(':')[1].replace(/_/g, ' ')
 
     return id as Dimension
   }
@@ -182,7 +182,7 @@ export class Entity {
   }
 
   public getComponent<K extends keyof EntityComponents>(component: K): EntityComponents[K] {
-    return this._IEntity.getComponent(component) as any
+    return this._IEntity.getComponent(component) as unknown
   }
 
   public hasComponent<K extends keyof EntityComponents>(component: K): boolean {

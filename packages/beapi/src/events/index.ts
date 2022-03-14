@@ -33,8 +33,8 @@ import { StartedSprinting } from './StartedSprinting'
 import { StoppedSprinting } from './StoppedSprinting'
 import { StartedSwimming } from './StartedSwimming'
 import { StoppedSwimming } from './StoppedSwimming'
-import { EntityAttacked } from './EntityAttacked'
-import { PlayerAttacked } from './PlayerAttacked'
+import { EntityHit } from './EntityHit'
+import { PlayerHit } from './PlayerHit'
 import { Explosion } from './Explosion'
 import { Death } from './Death'
 import { Respawn } from './Respawn'
@@ -42,6 +42,9 @@ import { Piston } from './Piston'
 import { EffectAdded } from './EffectAdded'
 import { WeatherUpdated } from './WeatherUpdated'
 import { Tick } from './Tick'
+import { EntityEventTrigger } from './EntityEventTrigger'
+import { PlayerEventTrigger } from './PlayerEventTrigger'
+import { ItemEventTrigger } from './ItemEventTrigger'
 
 export const events = [
   OnChat,
@@ -79,8 +82,8 @@ export const events = [
   StoppedSprinting,
   StartedSwimming,
   StoppedSwimming,
-  EntityAttacked,
-  PlayerAttacked,
+  EntityHit,
+  PlayerHit,
   Explosion,
   Death,
   Respawn,
@@ -88,6 +91,9 @@ export const events = [
   EffectAdded,
   WeatherUpdated,
   Tick,
+  EntityEventTrigger,
+  PlayerEventTrigger,
+  ItemEventTrigger,
 ]
 
 export { default as AbstractEvent } from './AbstractEvent'

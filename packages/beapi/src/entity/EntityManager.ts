@@ -34,23 +34,27 @@ export class EntityManager {
     return this._entities
   }
 
-  public getByNameTag(nameTag: string): Entity {
-    return Array.from(this._entities.values()).find((e) => e.getNameTag() === nameTag) as Entity
+  public getAllAsArray(): Entity[] {
+    return Array.from(this.getAll().values())
   }
 
-  public getByRuntimeId(runtimeId: number): Entity {
-    return this._entities.get(runtimeId) as Entity
+  public getByNameTag(nameTag: string): Entity | undefined {
+    return Array.from(this._entities.values()).find((e) => e.getNameTag() === nameTag)
   }
 
-  public getByUniqueId(uniqueId: number): Entity {
-    return Array.from(this._entities.values()).find((e) => e.getUniqueId() === uniqueId) as Entity
+  public getByRuntimeId(runtimeId: number): Entity | undefined {
+    return this._entities.get(runtimeId)
   }
 
-  public getByIEntity(IEntity: IEntity): Entity {
-    return Array.from(this._entities.values()).find((e) => e.getIEntity() === IEntity) as Entity
+  public getByUniqueId(uniqueId: number): Entity | undefined {
+    return Array.from(this._entities.values()).find((e) => e.getUniqueId() === uniqueId)
   }
 
-  public getLastest(): Entity {
-    return this._entities.get(this._runtimeId - 1) as Entity
+  public getByIEntity(IEntity: IEntity): Entity | undefined {
+    return Array.from(this._entities.values()).find((e) => e.getIEntity() === IEntity)
+  }
+
+  public getLastest(): Entity | undefined {
+    return this._entities.get(this._runtimeId - 1)
   }
 }

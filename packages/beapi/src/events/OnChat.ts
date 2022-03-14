@@ -37,8 +37,8 @@ export class OnChat extends AbstractEvent {
       return
     }
     const sender = arg.sender.name
-      ? this._client.players.getByName(arg.sender.name)
-      : this._client.players.getByNameTag(arg.sender.nameTag)
+      ? this._client.players.getByName(arg.sender.name)! // Cannot Not Exist
+      : this._client.players.getByNameTag(arg.sender.nameTag)! // Cannot Not Exist
 
     if (sender.isMuted()) {
       arg.cancel = true

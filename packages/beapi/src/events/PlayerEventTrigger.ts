@@ -1,14 +1,14 @@
-import { BeforeItemDefinitionTriggeredEvent, world, Player } from 'mojang-minecraft'
+import { world, Entity as IEntity, BeforeDataDrivenEntityTriggerEvent } from 'mojang-minecraft'
 import type { Client } from '../client'
 
 import AbstractEvent from './AbstractEvent'
-export class ItemEvent extends AbstractEvent {
+export class PlayerEventTrigger extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
-  public readonly name = 'ItemEvent'
-  public readonly iName = 'beforeItemDefinitionEvent'
+  public readonly name = 'PlayerEventTrigger'
+  public readonly iName = 'beforeDataDrivenEntityTriggerEvent'
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {
@@ -28,14 +28,14 @@ export class ItemEvent extends AbstractEvent {
     }
   }
 
-  protected __logic(arg: BeforeItemDefinitionTriggeredEvent): void {
-    if (arg.source.id !== 'minecraft:player') return
-    const player = this._client.players.getByIPlayer(arg.source as Player)! // Cannot Not Exist
+  protected __logic(arg: BeforeDataDrivenEntityTriggerEvent): void {
+    if (arg.entity instanceof IEntity) return
+    const player = this._client.players.getByIPlayer(arg.entity)! // Cannot Not Exist
     this._client.emit(this.name, {
-      player: player,
-      item: arg.item,
-      event: arg.eventName,
-      cancel() {
+      player,
+      event: arg.id,
+      data: arg.modifiers,
+      cancel: () => {
         arg.cancel = true
       },
     })
