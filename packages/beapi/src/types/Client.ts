@@ -71,6 +71,7 @@ export interface ClientEvents {
   MessageFormCreated: [MessageFormCreatedEvent]
   ModalFormCreated: [ModalFormCreatedEvent]
   PlayerTagsUpdated: [PlayerTagsUpdatedEvent]
+  EntityTagsUpdated: [EntityTagsUpdatedEvent]
 }
 
 export interface OnChatEvent {
@@ -264,6 +265,13 @@ export interface ModalFormCreatedEvent {
 
 export interface PlayerTagsUpdatedEvent {
   player: Player
+  tag: string
+  method: 'remove' | 'add'
+  cancel: CancelMethod
+}
+
+export interface EntityTagsUpdatedEvent {
+  entity: Entity
   tag: string
   method: 'remove' | 'add'
   cancel: CancelMethod
