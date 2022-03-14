@@ -16,7 +16,7 @@ export class ActionForm {
   protected readonly player: Player
   protected readonly _client: Client
   protected readonly form: any
-  private callback: ((res: ActionFormResponse) => void) | undefined
+  protected callback: ((res: ActionFormResponse) => void) | undefined
   protected canceled = false
   public title = 'Unnamed Form'
   public body = ''
@@ -43,12 +43,12 @@ export class ActionForm {
 
   public send(callback?: (res: ActionFormResponse) => void): void {
     if (this.canceled) {
-      if (!callback) return
       if (this.callback) {
         this.callback({
           isCanceled: true,
         })
       }
+      if (!callback) return
 
       return callback({
         isCanceled: true,

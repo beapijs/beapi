@@ -80,7 +80,7 @@ export class Player {
   }
 
   public createMessageForm(): MessageForm {
-    return new MessageForm(this)
+    return new MessageForm(this, this._client)
   }
 
   public createActionForm(): ActionForm {

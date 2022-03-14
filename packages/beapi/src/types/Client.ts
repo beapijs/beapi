@@ -12,8 +12,8 @@ import type {
   DefinitionModifier,
 } from 'mojang-minecraft'
 import type { Objective } from './Scoreboards'
-import type { ActionForm } from '../forms'
-import type { ActionFormResponse } from './Forms'
+import type { ActionForm, MessageForm } from '../forms'
+import type { ActionFormResponse, MessageFormResponse } from './Forms'
 
 export interface ClientEvents {
   OnChat: [OnChatEvent]
@@ -67,6 +67,7 @@ export interface ClientEvents {
   ItemEventTrigger: [ItemEventTriggerEvent]
   ScoreUpdated: [ScoreUpdatedEvent]
   ActionFormCreated: [ActionFormCreatedEvent]
+  MessageFormCreated: [MessageFormCreatedEvent]
 }
 
 export interface OnChatEvent {
@@ -233,6 +234,13 @@ export interface ActionFormCreatedEvent {
   player: Player
   form: ActionForm
   result: (callback: (data: ActionFormResponse) => void) => void
+  cancel: CancelMethod
+}
+
+export interface MessageFormCreatedEvent {
+  player: Player
+  form: MessageForm
+  result: (callback: (data: MessageFormResponse) => void) => void
   cancel: CancelMethod
 }
 
