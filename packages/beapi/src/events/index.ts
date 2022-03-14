@@ -47,6 +47,7 @@ import { PlayerEventTrigger } from './PlayerEventTrigger'
 import { ItemEventTrigger } from './ItemEventTrigger'
 import { PlayerScoreUpdated } from './PlayerScoreUpdated'
 import { EntityScoreUpdated } from './EntityScoreUpdated'
+import { PlayerTagsUpdated } from './PlayerTagsUpdated'
 
 export const events = [
   OnChat,
@@ -98,6 +99,7 @@ export const events = [
   ItemEventTrigger,
   PlayerScoreUpdated,
   EntityScoreUpdated,
+  PlayerTagsUpdated,
 ]
 
 export { default as AbstractEvent } from './AbstractEvent'

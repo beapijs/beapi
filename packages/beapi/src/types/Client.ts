@@ -70,6 +70,7 @@ export interface ClientEvents {
   ActionFormCreated: [ActionFormCreatedEvent]
   MessageFormCreated: [MessageFormCreatedEvent]
   ModalFormCreated: [ModalFormCreatedEvent]
+  PlayerTagsUpdated: [PlayerTagsUpdatedEvent]
 }
 
 export interface OnChatEvent {
@@ -258,6 +259,13 @@ export interface ModalFormCreatedEvent {
   player: Player
   form: ModalForm
   result: (callback: (data: ModalFormResponse) => void) => void
+  cancel: CancelMethod
+}
+
+export interface PlayerTagsUpdatedEvent {
+  player: Player
+  tag: string
+  method: 'remove' | 'add'
   cancel: CancelMethod
 }
 
