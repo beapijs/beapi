@@ -268,15 +268,15 @@ export class Player {
     this._IPlayer.setVelocity(velocity)
   }
 
-  public teleport(location: Location, dimension: IDimension, xrot: number, yrot: number): void {
+  public teleport(location: Location, dimension: Dimension, xrot: number, yrot: number): void {
     const loc = new ILocation(location.x, location.y, location.z)
-    this._IPlayer.teleport(loc, dimension, xrot, yrot)
+    this._IPlayer.teleport(loc, this._client.world.getDimension(dimension), xrot, yrot)
   }
 
-  public teleportFacing(location: Location, dimension: IDimension, facingLocation: Location): void {
+  public teleportFacing(location: Location, dimension: Dimension, facingLocation: Location): void {
     const loc = new ILocation(location.x, location.y, location.z)
     const loc2 = new ILocation(facingLocation.x, facingLocation.y, facingLocation.z)
-    this._IPlayer.teleportFacing(loc, dimension, loc2)
+    this._IPlayer.teleportFacing(loc, this._client.world.getDimension(dimension), loc2)
   }
 
   public triggerEvent(event: string): void {
