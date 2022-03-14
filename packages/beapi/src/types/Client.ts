@@ -11,6 +11,7 @@ import type {
   Effect,
   DefinitionModifier,
 } from 'mojang-minecraft'
+import type { Objective } from './Scoreboards'
 
 export interface ClientEvents {
   OnChat: [OnChatEvent]
@@ -62,6 +63,7 @@ export interface ClientEvents {
   EntityEventTrigger: [EntityEventTriggerEvent]
   PlayerEventTrigger: [PlayerEventTriggerEvent]
   ItemEventTrigger: [ItemEventTriggerEvent]
+  ScoreUpdated: [ScoreUpdatedEvent]
 }
 
 export interface OnChatEvent {
@@ -213,6 +215,14 @@ export interface ItemEventTriggerEvent {
   source: Player | Entity
   event: string
   item: ItemStack
+  cancel: CancelMethod
+}
+
+export interface ScoreUpdatedEvent {
+  player: Player
+  objective: Objective
+  value: number
+  old: number
   cancel: CancelMethod
 }
 
