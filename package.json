@@ -56,8 +56,5 @@
     "prettier": "^2.5.1",
     "tsup": "^5.11.9",
     "typescript": "^4.5.4"
-  },
-  "dependencies": {
-    "@types/mojang-minecraft": "^0.1.3"
   }
 }
