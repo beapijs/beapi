@@ -3,14 +3,14 @@ import type { Player } from '../player'
 import type { Objective } from '../types'
 
 import AbstractEvent from './AbstractEvent'
-export class ScoreUpdated extends AbstractEvent {
+export class PlayerScoreUpdated extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
   protected readonly oldScores = new Map<Player, { score: number; objective: Objective }[]>()
   protected ignoreNext = false
 
-  public readonly name = 'ScoreUpdated'
+  public readonly name = 'PlayerScoreUpdated'
   public readonly iName = 'custom'
   public readonly alwaysCancel = false
 

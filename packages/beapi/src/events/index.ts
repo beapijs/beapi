@@ -45,7 +45,8 @@ import { Tick } from './Tick'
 import { EntityEventTrigger } from './EntityEventTrigger'
 import { PlayerEventTrigger } from './PlayerEventTrigger'
 import { ItemEventTrigger } from './ItemEventTrigger'
-import { ScoreUpdated } from './ScoreUpdated'
+import { PlayerScoreUpdated } from './PlayerScoreUpdated'
+import { EntityScoreUpdated } from './EntityScoreUpdated'
 
 export const events = [
   OnChat,
@@ -95,7 +96,8 @@ export const events = [
   EntityEventTrigger,
   PlayerEventTrigger,
   ItemEventTrigger,
-  ScoreUpdated,
+  PlayerScoreUpdated,
+  EntityScoreUpdated,
 ]
 
 export { default as AbstractEvent } from './AbstractEvent'

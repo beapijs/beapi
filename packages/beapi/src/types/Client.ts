@@ -65,7 +65,8 @@ export interface ClientEvents {
   EntityEventTrigger: [EntityEventTriggerEvent]
   PlayerEventTrigger: [PlayerEventTriggerEvent]
   ItemEventTrigger: [ItemEventTriggerEvent]
-  ScoreUpdated: [ScoreUpdatedEvent]
+  PlayerScoreUpdated: [PlayerScoreUpdatedEvent]
+  EntityScoreUpdated: [EntityScoreUpdatedEvent]
   ActionFormCreated: [ActionFormCreatedEvent]
   MessageFormCreated: [MessageFormCreatedEvent]
   ModalFormCreated: [ModalFormCreatedEvent]
@@ -223,8 +224,16 @@ export interface ItemEventTriggerEvent {
   cancel: CancelMethod
 }
 
-export interface ScoreUpdatedEvent {
+export interface PlayerScoreUpdatedEvent {
   player: Player
+  objective: Objective
+  value: number
+  old: number
+  cancel: CancelMethod
+}
+
+export interface EntityScoreUpdatedEvent {
+  entity: Entity
   objective: Objective
   value: number
   old: number
