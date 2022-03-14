@@ -31,6 +31,7 @@ export class OnChat extends AbstractEvent {
   }
 
   protected __logic(arg: BeforeChatEvent): void {
+    if (arg.message.startsWith(this._client.commands.prefix)) return
     if (this.alwaysCancel) {
       arg.cancel = true
       return
