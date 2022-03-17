@@ -163,13 +163,13 @@ export interface ExplosionEvent {
 
 export interface EntityHitEvent {
   target: Entity
-  attacker: Player
+  attacker: Player | Entity | undefined
   weapon: ItemStack | undefined
 }
 
 export interface PlayerHitEvent {
   target: Player
-  attacker: Player
+  attacker: Player | Entity | undefined
   weapon: ItemStack | undefined
 }
 

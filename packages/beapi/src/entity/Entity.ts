@@ -146,6 +146,10 @@ export class Entity {
     return this._IEntity.getComponent('minecraft:inventory') as EntityInventoryComponent
   }
 
+  public getSelectedSlot(): number {
+    return 0
+  }
+
   public getHealth(): EntityHealthComponent {
     return this._IEntity.getComponent('minecraft:health') as EntityHealthComponent
   }

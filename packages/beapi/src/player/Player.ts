@@ -47,6 +47,10 @@ export class Player {
     return this._IPlayer
   }
 
+  public getId(): string {
+    return this._IPlayer.id
+  }
+
   public getName(): string {
     return this._name
   }

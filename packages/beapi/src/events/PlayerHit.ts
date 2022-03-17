@@ -1,6 +1,5 @@
 import type { Client } from '../client'
-import type { EntityHitEvent, Player as IPlayer } from 'mojang-minecraft'
-import { world } from 'mojang-minecraft'
+import { world, EntityHitEvent, Player as IPlayer } from 'mojang-minecraft'
 
 import AbstractEvent from './AbstractEvent'
 export class PlayerHit extends AbstractEvent {
@@ -32,13 +31,16 @@ export class PlayerHit extends AbstractEvent {
   protected __logic(data: EntityHitEvent): void {
     if (!data.hitEntity) return
     if (data.hitEntity.id !== 'minecraft:player') return
-    const player = this._client.players.getByIPlayer(data.entity as IPlayer)! // Cannot Not Exist
+    const attacker =
+      data.entity instanceof IPlayer
+        ? this._client.players.getByIPlayer(data.entity)
+        : this._client.entities.getByIEntity(data.entity)
     const target = this._client.players.getByIPlayer(data.hitEntity as IPlayer)! // Cannot Not Exist
 
     return this._client.emit(this.name, {
-      attacker: player,
+      attacker,
       target,
-      weapon: player.getInventory().container.getItem(player.getSelectedSlot()),
+      weapon: attacker?.getInventory()?.container.getItem(attacker.getSelectedSlot()) ?? undefined,
     })
   }
 }
