@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-beta.3](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.3.0-beta.2...beapi-core@2.3.0-beta.3) (2022-03-21)
+
+
+### Bug Fixes
+
+* **core:** updated types ([0cb5cf2](https://github.com/MCBE-Utilities/BeAPI/commit/0cb5cf252f59e9dcb36d91094c69030a5f09ebdd))
+* **entity:** fixed teleport methods ([db1bb48](https://github.com/MCBE-Utilities/BeAPI/commit/db1bb4877eb4e1b950fc7ebf32755de5be1aae2f))
+* **entity:** updated entity to use Objective ([a8d5ab5](https://github.com/MCBE-Utilities/BeAPI/commit/a8d5ab59402adf25a6704787adc1c7654f0fbdc5))
+* **events:** fixed OnChat ([3a51905](https://github.com/MCBE-Utilities/BeAPI/commit/3a51905af67fab812eb261300b5802289d9c6502))
+* **player:** fixed teleport methods ([9e6cf6a](https://github.com/MCBE-Utilities/BeAPI/commit/9e6cf6acf8bebb4dcb50561aca4e1c05d002fc73))
+* **player:** updated player to use Objective ([87c1ddc](https://github.com/MCBE-Utilities/BeAPI/commit/87c1ddc7608358752cad71ef1b6c6c28b0c20ac0))
+
+
+### Features
+
+* **events:** added ActionFormCreated ([72cddf2](https://github.com/MCBE-Utilities/BeAPI/commit/72cddf2ea932771f6f6c72d223df9901a5e2ab43))
+* **events:** added EntityScoreUpdated ([1b9bd4c](https://github.com/MCBE-Utilities/BeAPI/commit/1b9bd4c562ec6892259f3911da22d9ebec449b4d))
+* **events:** added EntityTagsUpdated ([cb6c3cf](https://github.com/MCBE-Utilities/BeAPI/commit/cb6c3cfced898b7c7307fae4ca7a5ec9e557bae6))
+* **events:** added MessageFormCreated ([63797a4](https://github.com/MCBE-Utilities/BeAPI/commit/63797a48cc53a8c3dfd091642ef68e19a7a9f152))
+* **events:** added ModalFormCreated ([6f458e6](https://github.com/MCBE-Utilities/BeAPI/commit/6f458e62c779b4edf49aa50fa46afac63dac947c))
+* **events:** added PlayerTagsUpdated ([433bb91](https://github.com/MCBE-Utilities/BeAPI/commit/433bb913e54dcbfc3fc4e78f19c9f9eb190e19a1))
+* **events:** added ScoreUpdated ([33738fb](https://github.com/MCBE-Utilities/BeAPI/commit/33738fb03a2ba7d7bd7ec11c37f10605101f71d9))
+* **player:** added getId ([1cef22d](https://github.com/MCBE-Utilities/BeAPI/commit/1cef22d8e55c3dfbcb6c2aadbbef2c60577be592))
+* **scoreboards:** added ScoreboardManager ([2ef3cd2](https://github.com/MCBE-Utilities/BeAPI/commit/2ef3cd2b85533c746ca19b4866411210075a1f38))
+* **world:** added createExplosion ([b2879c7](https://github.com/MCBE-Utilities/BeAPI/commit/b2879c7e78814dc33b087acb77a10d54e849e16b))
+
+
+
+
+
 # [2.3.0-beta.2](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.3.0-beta.1...beapi-core@2.3.0-beta.2) (2022-03-07)
 
 
