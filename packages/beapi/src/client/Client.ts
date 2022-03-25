@@ -2,7 +2,7 @@ import type AbstractEvent from '../events/AbstractEvent'
 import { EventEmitter } from '../polyfill'
 import { events } from '../events'
 import { PlayerManager } from '../player'
-import type { Dimension, ServerCommandResponse, ClientEvents, Awaitable } from '../types'
+import type { Dimension, ServerCommandResponse, ClientEvents, Awaitable, ClientOptions } from '../types'
 import { Events, world } from 'mojang-minecraft'
 import { EntityManager } from '../entity'
 import { CommandManager } from '../commands'
@@ -60,6 +60,7 @@ export interface Client {
 
 export class Client extends EventEmitter {
   protected readonly _events = new Map<string, AbstractEvent>()
+  protected readonly _options: ClientOptions
   public readonly players = new PlayerManager(this)
   public readonly entities = new EntityManager(this)
   public readonly commands = new CommandManager(this)
@@ -69,17 +70,39 @@ export class Client extends EventEmitter {
   public readonly currentMCBE = mcbe
   public readonly currentProtocol = protocol
 
-  public constructor() {
+  public constructor(options: ClientOptions = {}) {
     super()
+    this._options = options
 
-    for (const event of events) {
-      if (!this._events.has(event.name)) {
-        this.loadEvent(event)
+    // If enableEvents array then we only
+    // want to enable the events they have
+    // defined.
+    if (this._options.enableEvents) {
+      for (const event of events) {
+        // If included events contains
+        // events name.
+        if (this._options.enableEvents.includes(event.prototype.name)) {
+          // If events does not already contain
+          if (!this._events.has(event.name)) {
+            // Load the unregistered event.
+            this.loadEvent(event)
+          }
+        }
+      }
+      // Else we want to assume all need to be
+      // Enabled
+    } else {
+      // For each event exported from events
+      for (const event of events) {
+        // If events does not already contain
+        if (!this._events.has(event.name)) {
+          // Load the unregistered event.
+          this.loadEvent(event)
+        }
       }
     }
   }
 
-  // @ts-ignore
   public loadEvent(event: new (client: Client) => AbstractEvent): void {
     const builtEvent = new event(this)
 

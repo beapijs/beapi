@@ -1,6 +1,6 @@
 import type { Player } from '../player'
 import type { Entity } from '../entity'
-import type { CommandEntry } from './Command'
+import type { CommandEntry } from '.'
 import type {
   Block,
   BlockLocation,
@@ -14,6 +14,23 @@ import type {
 import type { Objective } from './Scoreboards'
 import type { ActionForm, MessageForm, ModalForm } from '../forms'
 import type { ActionFormResponse, MessageFormResponse, ModalFormResponse } from './Forms'
+import type { events } from '../events'
+
+/**
+ * Helper type that converts types in an array into a union
+ */
+export type ArrayItemType<T extends Array<any>> = T extends Array<infer I> ? I : any
+
+/**
+ * Custom Client Options.
+ */
+export interface ClientOptions {
+  /**
+   * If defined client will only enable events defined
+   * in array. (Or none if empty array)
+   */
+  enableEvents?: ArrayItemType<typeof events>['prototype']['name'][]
+}
 
 export interface ClientEvents {
   OnChat: [OnChatEvent]
@@ -194,12 +211,12 @@ export interface WeatherUpdatedEvent {
 }
 
 export interface CommandRegisteredEvent {
-  command: CommandEntry | undefined
+  command: CommandEntry<never> | undefined
   cancel: CancelMethod
 }
 
 export interface CommandUsedEvent {
-  command: CommandEntry | undefined
+  command: CommandEntry<never> | undefined
   sender: Player | undefined
   args: string[]
   cancel: CancelMethod

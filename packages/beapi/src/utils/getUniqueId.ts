@@ -1,4 +1,5 @@
-import { client, genUuid } from '..'
+import { genUuid } from '..'
+import { client } from '../poly'
 import type { Entity } from '..'
 
 interface ParseResult {
