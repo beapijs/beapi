@@ -5,6 +5,7 @@ import type { Deserialized, Serialized } from '../types'
 export class Schema<T extends Record<string, any>> {
   public readonly definition: Record<keyof T, typeof SchemaTypes[keyof typeof SchemaTypes]>
   public constructor(definition: Record<keyof T, typeof SchemaTypes[keyof typeof SchemaTypes]>) {
+    // Be sure to verify assignments here...
     this.definition = definition
   }
 
