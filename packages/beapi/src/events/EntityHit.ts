@@ -1,14 +1,18 @@
 import type { Client } from '../client'
 import { world, Player as IPlayer, EntityHitEvent } from 'mojang-minecraft'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class EntityHit extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
+  @setProto('EntityHit')
   public readonly name = 'EntityHit'
+
+  @setProto('entityHit')
   public readonly iName = 'entityHit'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

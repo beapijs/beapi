@@ -83,7 +83,7 @@ export class Client extends EventEmitter {
         // events name.
         if (this._options.enableEvents.includes(event.prototype.name)) {
           // If events does not already contain
-          if (!this._events.has(event.name)) {
+          if (!this._events.has(event.prototype.name)) {
             // Load the unregistered event.
             this.loadEvent(event)
           }
@@ -95,7 +95,7 @@ export class Client extends EventEmitter {
       // For each event exported from events
       for (const event of events) {
         // If events does not already contain
-        if (!this._events.has(event.name)) {
+        if (!this._events.has(event.prototype.name)) {
           // Load the unregistered event.
           this.loadEvent(event)
         }

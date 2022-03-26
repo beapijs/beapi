@@ -1,14 +1,18 @@
 import { PlayerJoinEvent, world } from 'mojang-minecraft'
 import type { Client } from '../client'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class OnJoin extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
+  @setProto('OnJoin')
   public readonly name = 'OnJoin'
+
+  @setProto('playerJoin')
   public readonly iName = 'playerJoin'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

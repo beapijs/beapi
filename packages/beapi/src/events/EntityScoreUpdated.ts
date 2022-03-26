@@ -1,7 +1,7 @@
 import type { Client } from '../client'
 import type { Entity } from '../entity'
 import type { Objective } from '../types'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class EntityScoreUpdated extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
@@ -10,8 +10,12 @@ export class EntityScoreUpdated extends AbstractEvent {
   protected readonly oldScores = new Map<Entity, { score: number; objective: Objective }[]>()
   protected ignoreNext = false
 
+  @setProto('EntityScoreUpdated')
   public readonly name = 'EntityScoreUpdated'
+
+  @setProto('custom')
   public readonly iName = 'custom'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

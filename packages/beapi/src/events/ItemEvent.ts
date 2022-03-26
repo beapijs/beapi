@@ -1,14 +1,18 @@
 import { BeforeItemDefinitionTriggeredEvent, world, Player } from 'mojang-minecraft'
 import type { Client } from '../client'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class ItemEvent extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
+  @setProto('ItemEvent')
   public readonly name = 'ItemEvent'
+
+  @setProto('beforeItemDefinitionEvent')
   public readonly iName = 'beforeItemDefinitionEvent'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

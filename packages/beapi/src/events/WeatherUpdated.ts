@@ -1,15 +1,19 @@
 import { WeatherChangeEvent, world } from 'mojang-minecraft'
 import type { Client } from '../client'
 import type { Dimension } from '../types'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class WeatherUpdated extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
+  @setProto('WeatherUpdated')
   public readonly name = 'WeatherUpdated'
+
+  @setProto('weatherChange')
   public readonly iName = 'weatherChange'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

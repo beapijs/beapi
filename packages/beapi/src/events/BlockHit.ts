@@ -1,5 +1,6 @@
 import type { Client } from '../client'
 import type { Player as IPlayer, EntityHitEvent } from 'mojang-minecraft'
+import { setProto } from '../'
 import { world } from 'mojang-minecraft'
 
 import AbstractEvent from './AbstractEvent'
@@ -8,8 +9,12 @@ export class BlockHit extends AbstractEvent {
   protected readonly _client: Client
   protected _registered = false
 
+  @setProto('BlockHit')
   public readonly name = 'BlockHit'
+
+  @setProto('entityHit')
   public readonly iName = 'entityHit'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

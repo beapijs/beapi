@@ -1,6 +1,7 @@
 import './poly'
 
 export * from './types'
+export * from './decorators'
 export * from './database'
 export * from './agent'
 export * from './client'

@@ -1,6 +1,6 @@
 import type { Client } from '../client'
 import type { Player } from '../player'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class PlayerTagsUpdated extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
@@ -10,8 +10,12 @@ export class PlayerTagsUpdated extends AbstractEvent {
   protected ignoreNextAdd = false
   protected ignoreNextRemove = false
 
+  @setProto('PlayerTagsUpdated')
   public readonly name = 'PlayerTagsUpdated'
+
+  @setProto('custom')
   public readonly iName = 'custom'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

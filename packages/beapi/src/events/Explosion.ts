@@ -1,14 +1,18 @@
 import { BeforeExplosionEvent, world } from 'mojang-minecraft'
 import type { Client } from '../client'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class Explosion extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
+  @setProto('Explosion')
   public readonly name = 'Explosion'
+
+  @setProto('beforeExplosion')
   public readonly iName = 'beforeExplosion'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

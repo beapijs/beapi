@@ -1,13 +1,17 @@
 import type { Client, Player } from '..'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class ItemDropped extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
+  @setProto('ItemDropped')
   public readonly name = 'ItemDropped'
+
+  @setProto('custom')
   public readonly iName = 'custom'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

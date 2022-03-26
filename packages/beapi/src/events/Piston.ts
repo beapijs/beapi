@@ -1,14 +1,18 @@
 import { BeforePistonActivateEvent, world } from 'mojang-minecraft'
 import type { Client } from '../client'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class Piston extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
+  @setProto('Piston')
   public readonly name = 'Piston'
+
+  @setProto('beforePistonActivate')
   public readonly iName = 'beforePistonActivate'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

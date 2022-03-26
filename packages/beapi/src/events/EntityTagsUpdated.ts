@@ -1,6 +1,6 @@
 import type { Client } from '../client'
 import type { Entity } from '../entity'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class EntityTagsUpdated extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
@@ -10,8 +10,12 @@ export class EntityTagsUpdated extends AbstractEvent {
   protected ignoreNextAdd = false
   protected ignoreNextRemove = false
 
+  @setProto('EntityTagsUpdated')
   public readonly name = 'EntityTagsUpdated'
+
+  @setProto('custom')
   public readonly iName = 'custom'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

@@ -1,14 +1,18 @@
 import { world, BlockBreakEvent } from 'mojang-minecraft'
 import type { Client } from '../client'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class BlockDestroyed extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
+  @setProto('BlockDestroyed')
   public readonly name = 'BlockDestroyed'
+
+  @setProto('blockBreak')
   public readonly iName = 'blockBreak'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

@@ -1,14 +1,18 @@
 import { world, Entity as IEntity, BeforeDataDrivenEntityTriggerEvent } from 'mojang-minecraft'
 import type { Client } from '../client'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class PlayerEventTrigger extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
+  @setProto('PlayerEventTrigger')
   public readonly name = 'PlayerEventTrigger'
+
+  @setProto('beforeDataDrivenEntityTriggerEvent')
   public readonly iName = 'beforeDataDrivenEntityTriggerEvent'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {

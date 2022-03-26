@@ -1,14 +1,18 @@
 import { PlayerLeaveEvent, world } from 'mojang-minecraft'
 import type { Client } from '../client'
-
+import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class OnLeave extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
   protected _registered = false
 
+  @setProto('OnLeave')
   public readonly name = 'OnLeave'
+
+  @setProto('playerLeave')
   public readonly iName = 'playerLeave'
+
   public readonly alwaysCancel = false
 
   public constructor(client: Client) {
