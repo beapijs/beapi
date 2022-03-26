@@ -101,6 +101,16 @@ export class Client extends EventEmitter {
         }
       }
     }
+    // Checks if commands were disabled in the options
+    if (this._options.commandsDisabled) {
+      // Disables the command manager
+      this.commands.disable()
+    }
+    // Checks if a custom prefix was provided
+    if (this._options.commandsPrefix) {
+      // Sets the prefix
+      this.commands.setPrefix(this._options.commandsPrefix)
+    }
   }
 
   public loadEvent(event: new (client: Client) => AbstractEvent): void {

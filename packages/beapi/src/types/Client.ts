@@ -45,6 +45,8 @@ export interface ClientOptions {
    * to see all events and what they need to work properly.
    */
   enableEvents?: ArrayItemType<typeof events>['prototype']['name'][]
+  commandsDisabled?: boolean
+  commandsPrefix?: string
 }
 
 export interface ClientEvents {
