@@ -27,7 +27,22 @@ export type ArrayItemType<T extends Array<any>> = T extends Array<infer I> ? I :
 export interface ClientOptions {
   /**
    * If defined client will only enable events defined
-   * in array. (Or none if empty array)
+   * in array. (Or none if empty array).
+   *  ___
+   * ** WARNING
+   *
+   * This can be very breaking. Certain events control
+   * the filling/revoking of certain objects in BeAPI.
+   *
+   * For example if you dont enable `OnJoin` and `OnLeave`
+   * then no players will ever be added to the players map in
+   * `Client.players` this means any events that use a player
+   * object could error out because it was expected to exist.
+   *
+   * @todo Make this more safe to utilize in the future.
+   *
+   * Take a look at [packages/beapi/src/events](https://github.com/MCBE-Utilities/BeAPI/tree/beta/packages/beapi/src/events)
+   * to see all events and what they need to work properly.
    */
   enableEvents?: ArrayItemType<typeof events>['prototype']['name'][]
 }
