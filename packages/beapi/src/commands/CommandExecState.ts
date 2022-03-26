@@ -53,8 +53,20 @@ export class CommandExecState {
     // Remove prefix from execution string, split on space, and assign to split property.
     this._split = this.execString.substring(this._manager.getPrefix().length).split(' ')
 
-    // Attempt to get command from first argument.
-    this._cmdRef = this._manager.getCommand(this._split[this._splitPos++])
+    // Attempt to get command from first argument could be alias or actual name so we
+    // extract the name from arguments array and attempt to find a matching command
+    // in the command array by checking against aliases and names.
+    const commandName = this._split[this._splitPos++]
+    this._cmdRef = this._manager.getAllAsArray().find((c) => c.name === commandName || c.aliases?.includes(commandName))
+  }
+
+  /**
+   * Checks if the command was valid or not.
+   * @returns {boolean}
+   */
+  public isValid(): boolean {
+    if (this._cmdRef) return true
+    return false
   }
 
   /**
@@ -145,11 +157,26 @@ export class CommandExecState {
   }
 
   /**
+   * Checks if the user has sufficient permissions to execute
+   * the command.
+   */
+  protected _checkPermissions(): void {
+    if (this._cmdRef?.permissionTags?.length) {
+      for (const tag of this._cmdRef.permissionTags) {
+        if (!this._player.hasTag(tag)) return this.throwPermissionError()
+      }
+    }
+  }
+
+  /**
    * Attempts to execute the command state.
    */
   public tryExecute(): void {
     // If no command reference then invalid command.
     if (!this._cmdRef) return this._throwInvalidCommand()
+
+    // Verify permissions before continue
+    this._checkPermissions()
 
     // Attempt to build the arguments. Can return undefined as mentioned.
     const args = this._buildArgs()
@@ -162,6 +189,54 @@ export class CommandExecState {
   }
 
   /**
+   * Throws a insufficient permission error not allowing the client to
+   * continue.
+   */
+  public throwPermissionError(): void {
+    throw new Error('You do not have sufficient permissions to use this command!')
+  }
+
+  /**
+   * Generates a usage string for the current command.
+   *
+   * @returns {string}
+   */
+  public generateUsage(): string {
+    // If predefined usage return that instead of generating one.
+    if (this._cmdRef?.usage) return this._cmdRef.usage
+
+    // Grab all keys as array from parameter schema.
+    const keys = Object.keys(this._cmdRef?.schema ?? {})
+
+    // Map the keys into individual strings.
+    const args = keys
+      .map((k) => {
+        // Get value from key in object schema.
+        const obj = this._cmdRef!.schema[k]
+
+        // Get the constructor, schema value can be
+        // of type array. If array constructor should
+        // be in index 0.
+        const constructor = Array.isArray(obj) ? obj[0] : obj
+        // Get optional status of command if its an array
+        // Its located at index 1 otherwise assume not optional
+        const optional = Array.isArray(obj) ? obj[1] ?? false : false
+
+        // Create correct opening and closing braces
+        const openingBrace = optional ? '[' : '<'
+        const closingBrace = optional ? ']' : '>'
+
+        // Put the cake together.
+        return `${openingBrace}${k}: ${constructor.displayName}${closingBrace}`
+      })
+      // Join with spaces.
+      .join(' ')
+
+    // Return new usage :).
+    return `${this._manager.getPrefix()}${this._cmdRef?.name} ${args}`
+  }
+
+  /**
    * Throws a syntax error to the executor.
    * It will contain useful information on what was
    * messed up and how to possibly fix it.
@@ -171,12 +246,12 @@ export class CommandExecState {
    * @param {string} msg Pointer tip message.
    */
   public throwSyntaxError(msg: string): void {
+    const pad = Array(this._getIndex()).fill('').join(' ')
+
     throw new Error(
-      `Invalid command usage:\n --> at 0:${this._getIndex()}\n  |\n  | ${this.execString}\n  | ${`${Array(
-        this._getIndex(),
-      )
-        .fill('')
-        .join(' ')}^ ${msg}`}\n  |`,
+      `${this.generateUsage()}\n --> Invalid usage at 0:${this._getIndex()}\n  |\n  | ${
+        this.execString
+      }\n  | ${pad}^ ${msg}\n  |`,
     )
   }
 }

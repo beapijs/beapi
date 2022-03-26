@@ -1,4 +1,4 @@
-import type { CommandEntry, CommandOptions, CommandCallable, CommandArguments } from '../types'
+import type { CommandEntry, CommandOptions, CommandCallable, CommandArguments, OnChatEvent } from '../types'
 import { checkObjectForCommandTypes, CommandExecState } from '.'
 import type { Client } from '../client'
 import type { Player } from '../player'
@@ -21,7 +21,7 @@ export class CommandManager {
   /**
    * Command manager should be used?
    */
-  protected _enabled = true
+  protected _enabled = false
 
   /**
    * Prefix to use.
@@ -29,24 +29,43 @@ export class CommandManager {
   protected _prefix = '-'
 
   /**
+   * Bound handler reference.
+   */
+  protected __onChatHandler = this._onChatHandler.bind(this)
+
+  /**
    * ...
    */
   public constructor(client: Client) {
     this._client = client
+
+    this.enable()
+  }
+
+  /**
+   * Logic for try executing commands when chat is used.
+   * @param e On chat event.
+   */
+  protected _onChatHandler(e: OnChatEvent): void {
+    return this.tryExecuteFrom(e.message, e.sender!, e)
   }
 
   /**
    * Disable command manager.
    */
   public disable(): void {
+    if (!this._enabled) return
     this._enabled = false
+    this._client.removeListener('OnChat', this.__onChatHandler)
   }
 
   /**
    * Enable command manager.
    */
   public enable(): void {
+    if (this._enabled) return
     this._enabled = true
+    this._client.addListener('OnChat', this.__onChatHandler)
   }
 
   /**
@@ -86,7 +105,7 @@ export class CommandManager {
    * @returns {CommandEntry<never>[]}
    */
   public getAllAsArray(): CommandEntry<never>[] {
-    return Array.from(Object.values(this._commands))
+    return Array.from(this._commands.values())
   }
 
   /**
@@ -248,20 +267,21 @@ export class CommandManager {
    * @param str Command String.
    * @param player Player executor.
    */
-  public tryExecuteFrom(str: string, player: Player): void {
+  public tryExecuteFrom(str: string, player: Player, e: OnChatEvent): void {
     // If string does not start with prefix
     // no need to continue.
     if (!str.startsWith(this._prefix)) return
+    e.cancel()
 
     // Create a new command execution state
     const state = new CommandExecState(this, player, str)
 
     // Try to execute new command state.
     try {
-      return state.tryExecute()
+      state.tryExecute()
     } catch (error) {
       const messageContent = (error as Error).message
-      player.sendMessage(messageContent)
+      player.sendMessage(`§c§¢${messageContent}`)
       // console.error(messageContent)
     }
   }

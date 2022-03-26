@@ -27,6 +27,11 @@ export namespace CommandTypes {
    */
   export class String extends StringConstructor {
     /**
+     * Display name used when generating the command usage.
+     */
+    public static displayName = 'string'
+
+    /**
      * Extract method, accepts a command execution state
      * and attempts to pick up off where last extractor completed.
      *
@@ -59,9 +64,9 @@ export namespace CommandTypes {
             // Push current argument to final scope array.
             final.push(i)
 
-            // If current argument endswith quotation then
-            // scope was ended so stop loop.
-            if (i.endsWith('"')) break
+            // If current argument endswith quotation and its not the
+            // first quotation mark, scope was ended so stop loop.
+            if (i.endsWith('"') && (i.length > 1 || final.length > 1)) break
           }
 
           // If last element in final string scope does end with
@@ -80,6 +85,11 @@ export namespace CommandTypes {
   }
 
   export class Number extends NumberConstructor {
+    /**
+     * Display name used when generating the command usage.
+     */
+    public static displayName = 'number'
+
     /**
      * Extract method, accepts a command execution state
      * and attempts to pick up off where last extractor completed.
@@ -114,6 +124,11 @@ export namespace CommandTypes {
   }
 
   export class Boolean extends BooleanConstructor {
+    /**
+     * Display name used when generating the command usage.
+     */
+    public static displayName = 'boolean'
+
     /**
      * Extract method, accepts a command execution state
      * and attempts to pick up off where last extractor completed.
