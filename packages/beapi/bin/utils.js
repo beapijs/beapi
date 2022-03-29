@@ -201,12 +201,15 @@ function verifyPackage(p) {
 function generateNewUuids(m, onlyIfNotPresent = true) {
   const uuid1 = m.header.uuid
   const uuid2 = m.modules[0].uuid
+  const uuid3 = m.modules[1].uuid
   if (onlyIfNotPresent) {
     if (uuid1.includes('UUID1')) m.header.uuid = v4()
     if (uuid2.includes('UUID2')) m.modules[0].uuid = v4()
+    if (uuid3.includes('UUID3')) m.modules[1].uuid = v4()
   } else {
     m.header.uuid = v4()
     m.modules[0].uuid = v4()
+    m.modules[1].uuid = v4()
   }
 
   return m
