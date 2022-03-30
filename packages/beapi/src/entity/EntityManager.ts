@@ -38,8 +38,8 @@ export class EntityManager {
     return Array.from(this.getAll().values())
   }
 
-  public getByNameTag(nameTag: string): Entity | undefined {
-    return Array.from(this._entities.values()).find((e) => e.getNameTag() === nameTag)
+  public getByNameTag(nameTag: string): Entity[] | undefined {
+    return Array.from(this._entities.values()).filter((e) => e.getNameTag() === nameTag)
   }
 
   public getByRuntimeId(runtimeId: number): Entity | undefined {
