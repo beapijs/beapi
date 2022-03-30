@@ -1,5 +1,5 @@
 import type { Client, Dimension, Location } from '..'
-import type { Block as IBlock, Dimension as IDimension, BlockType } from 'mojang-minecraft'
+import type { Block as IBlock, Dimension as IDimension, BlockType, BlockPermutation } from 'mojang-minecraft'
 
 export class Block {
   protected readonly _client: Client
@@ -26,6 +26,14 @@ export class Block {
     this._IBlock.setType(type)
   }
 
+  public getPermutation(): BlockPermutation {
+    return this._IBlock.permutation
+  }
+
+  public setPermutation(permutation: BlockPermutation): void {
+    this._IBlock.setPermutation(permutation)
+  }
+
   public getDimension(): IDimension {
     return this._IBlock.dimension
   }
@@ -44,5 +52,26 @@ export class Block {
       y: Math.floor(pos.y),
       z: Math.floor(pos.z),
     }
+  }
+
+  public isEmpty(): boolean {
+    return this._IBlock.isEmpty
+  }
+
+  public isWaterLogged(): boolean {
+    return this._IBlock.isWaterlogged
+  }
+
+  public getTags(): string[] {
+    return this._IBlock.getTags()
+  }
+
+  public hasTag(tag: string): boolean {
+    return this._IBlock.hasTag(tag)
+  }
+
+  // TODO: Make typings
+  public getComponent(component: string): any {
+    return this._IBlock.getComponent(component)
   }
 }
