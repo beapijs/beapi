@@ -10,7 +10,6 @@ import {
   ItemStack,
 } from 'mojang-minecraft'
 import { ModalForm, MessageForm, ActionForm } from '../forms'
-import type { Entity } from '..'
 import type { Client } from '../client'
 import type { Location, Dimension, Gamemode, ServerCommandResponse, PlayerComponents, Objective } from '../types'
 import { Agent } from '../agent/Agent'
@@ -30,8 +29,6 @@ export class Player {
   protected _isSleeping = false
   protected _isAlive = true
   protected _isMuted = false
-  public prevPlayerInVector: Player | undefined
-  public prevEntityInVector: Entity | undefined
   public constructor(client: Client, player: IPlayer) {
     this._client = client
     this._IPlayer = player

@@ -33,7 +33,7 @@ export class ItemDropped extends AbstractEvent {
 
   protected __logic(data: Player): void {
     const block = this._client.world.getBlock(data.getLocation(), data.getDimensionName())
-    const entity = data.prevEntityInVector
+    const entity = this._client.entities.getLastest()
     if (!entity || entity?.getId() !== 'minecraft:item' || block.id !== 'minecraft:air') return
     this._client.emit(this.name, {
       player: data,
