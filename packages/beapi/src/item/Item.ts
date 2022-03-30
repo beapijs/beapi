@@ -1,13 +1,7 @@
 import type { Client } from '..'
-import type {
-  ItemStack as IItem,
-  EnchantmentType,
-  EntityInventoryComponent,
-  BlockInventoryComponent,
-} from 'mojang-minecraft'
+import type { ItemStack as IItem, EnchantmentType } from 'mojang-minecraft'
+import type { EntityInventory, BlockInventory } from '../inventory'
 import { getEnchantments } from '../'
-
-// TODO: added method to set in a targets slot
 
 export class Item {
   protected readonly _client: Client
@@ -79,7 +73,7 @@ export class Item {
   }
 
   // TODO: convert to new inventory
-  public setInSlot(slot: number, inventory: EntityInventoryComponent | BlockInventoryComponent): void {
-    inventory.container.setItem(slot, this._IItem)
+  public setInSlot(slot: number, inventory: EntityInventory | BlockInventory): void {
+    inventory.setItem(slot, this)
   }
 }

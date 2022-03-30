@@ -7,12 +7,12 @@ import {
   Vector,
   EffectType,
   Effect,
-  ItemStack,
 } from 'mojang-minecraft'
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import type { Client } from '../client'
 import type { Location, Dimension, Gamemode, ServerCommandResponse, PlayerComponents, Objective } from '../types'
 import { Agent } from '../agent/Agent'
+import { EntityInventory } from '../inventory'
 
 export class Player {
   protected readonly _client: Client
@@ -229,28 +229,15 @@ export class Player {
     return id as Dimension
   }
 
-  public getInventory(): EntityInventoryComponent {
-    return this._IPlayer.getComponent('minecraft:inventory') as EntityInventoryComponent
-  }
-
-  public setItem(slot: number, item: ItemStack): void {
-    this.getInventory().container.setItem(slot, item)
-  }
-
-  public getItem(slot: number): ItemStack | undefined {
-    return this.getInventory().container.getItem(slot)
+  public getInventory(): EntityInventory {
+    return new EntityInventory(
+      this._client,
+      this._IPlayer.getComponent('minecraft:inventory') as EntityInventoryComponent,
+    )
   }
 
   public getSelectedSlot(): number {
     return this._IPlayer.selectedSlot
-  }
-
-  public getTotalEmptySlots(): number {
-    return this.getInventory().container.emptySlotsCount
-  }
-
-  public getInventorySize(): number {
-    return this.getInventory().container.size
   }
 
   public getHealth(): EntityHealthComponent {

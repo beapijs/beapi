@@ -15,6 +15,7 @@ import type { ActionForm, MessageForm, ModalForm } from '../forms'
 import type { ActionFormResponse, MessageFormResponse, ModalFormResponse } from './Forms'
 import type { events } from '../events'
 import type { Block } from '../block'
+import type { Item } from '../item'
 
 /**
  * Helper type that converts types in an array into a union
@@ -165,7 +166,7 @@ export interface BlockCreatedEvent {
 export interface BlockHitEvent {
   player: Player
   block: Block
-  tool: ItemStack | undefined
+  tool: Item | undefined
 }
 
 export interface PlayerInViewVectorEvent {
@@ -198,13 +199,13 @@ export interface ExplosionEvent {
 export interface EntityHitEvent {
   target: Entity
   attacker: Player | Entity | undefined
-  weapon: ItemStack | undefined
+  weapon: Item | undefined
 }
 
 export interface PlayerHitEvent {
   target: Player
   attacker: Player | Entity | undefined
-  weapon: ItemStack | undefined
+  weapon: Item | undefined
 }
 
 export interface PistonEvent {

@@ -11,6 +11,7 @@ import type { Client } from '../client'
 import type { Location, Dimension, ServerCommandResponse, EntityComponents, Objective } from '../types'
 import { Location as ILocation } from 'mojang-minecraft'
 import { getUniqueId } from '../utils'
+import { EntityInventory } from '../inventory'
 
 export class Entity {
   protected readonly _client: Client
@@ -140,10 +141,13 @@ export class Entity {
     return id as Dimension
   }
 
-  public getInventory(): EntityInventoryComponent | undefined {
+  public getInventory(): EntityInventory | undefined {
     if (!this._IEntity.hasComponent('minecraft:inventory')) return
 
-    return this._IEntity.getComponent('minecraft:inventory') as EntityInventoryComponent
+    return new EntityInventory(
+      this._client,
+      this._IEntity.getComponent('minecraft:inventory') as EntityInventoryComponent,
+    )
   }
 
   public getSelectedSlot(): number {
