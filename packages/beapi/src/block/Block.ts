@@ -1,6 +1,7 @@
 import type { Client, Dimension, Location } from '..'
 import { BlockType, Permutation } from './'
 import type { Block as IBlock, Dimension as IDimension, BlockInventoryComponent } from 'mojang-minecraft'
+import { BlockInventory } from '../inventory'
 
 export class Block {
   protected readonly _client: Client
@@ -76,7 +77,7 @@ export class Block {
     return this._IBlock.getComponent(component)
   }
 
-  public getInventory(): BlockInventoryComponent {
-    return this._IBlock.getComponent('inventory') as BlockInventoryComponent
+  public getInventory(): BlockInventory | undefined {
+    return new BlockInventory(this._client, this._IBlock.getComponent('inventory') as BlockInventoryComponent)
   }
 }
