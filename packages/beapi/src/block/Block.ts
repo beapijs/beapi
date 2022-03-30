@@ -1,8 +1,8 @@
 import type { Client, Dimension, Location } from '..'
+import { BlockType } from './'
 import type {
   Block as IBlock,
   Dimension as IDimension,
-  BlockType,
   BlockPermutation,
   BlockInventoryComponent,
 } from 'mojang-minecraft'
@@ -25,11 +25,11 @@ export class Block {
   }
 
   public getType(): BlockType {
-    return this._IBlock.type
+    return new BlockType(this._client, this._IBlock.type)
   }
 
   public setType(type: BlockType): void {
-    this._IBlock.setType(type)
+    this._IBlock.setType(type.getIBlockType())
   }
 
   public getPermutation(): BlockPermutation {
