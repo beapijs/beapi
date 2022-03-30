@@ -42,6 +42,10 @@ export class EntityManager {
     return Array.from(this._entities.values()).filter((e) => e.getNameTag() === nameTag)
   }
 
+  public getByIdentity(id: string): Entity[] | undefined {
+    return Array.from(this._entities.values()).filter((e) => e.getId() === id)
+  }
+
   public getByRuntimeId(runtimeId: number): Entity | undefined {
     return this._entities.get(runtimeId)
   }
