@@ -1,5 +1,6 @@
 import { world, BlockPlaceEvent } from 'mojang-minecraft'
 import type { Client } from '../client'
+import { Block } from '../block'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class BlockCreated extends AbstractEvent {
@@ -40,7 +41,7 @@ export class BlockCreated extends AbstractEvent {
 
     this._client.emit(this.name, {
       player,
-      block: arg.block,
+      block: new Block(this._client, arg.block),
       dimension: arg.dimension,
       cancel() {
         // TEMP: Workaround Until Mojang Adds Block Placed Cancel Event

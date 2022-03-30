@@ -2,7 +2,6 @@ import type { Player } from '../player'
 import type { Entity } from '../entity'
 import type { CommandEntry } from '.'
 import type {
-  Block,
   BlockLocation,
   BlockPermutation,
   Dimension as IDimension,
@@ -15,6 +14,7 @@ import type { Objective } from './Scoreboards'
 import type { ActionForm, MessageForm, ModalForm } from '../forms'
 import type { ActionFormResponse, MessageFormResponse, ModalFormResponse } from './Forms'
 import type { events } from '../events'
+import type { Block } from '../block'
 
 /**
  * Helper type that converts types in an array into a union

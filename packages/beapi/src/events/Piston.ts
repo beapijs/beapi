@@ -1,5 +1,6 @@
 import { BeforePistonActivateEvent, world } from 'mojang-minecraft'
 import type { Client } from '../client'
+import { Block } from '../block'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class Piston extends AbstractEvent {
@@ -36,7 +37,7 @@ export class Piston extends AbstractEvent {
 
   protected __logic(arg: BeforePistonActivateEvent): void {
     this._client.emit(this.name, {
-      block: arg.block,
+      block: new Block(this._client, arg.block),
       dimension: arg.dimension,
       piston: arg.piston,
       extending: arg.isExpanding,
