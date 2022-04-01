@@ -51,6 +51,7 @@ import { PlayerTagsUpdated } from './PlayerTagsUpdated'
 import { EntityTagsUpdated } from './EntityTagsUpdated'
 import { EntityHurt } from './EntityHurt'
 import { PlayerHurt } from './PlayerHurt'
+import { Lever } from './Lever'
 
 export const events = [
   OnChat,
@@ -106,6 +107,7 @@ export const events = [
   EntityTagsUpdated,
   EntityHurt,
   PlayerHurt,
+  Lever,
 ]
 
 export { default as AbstractEvent } from './AbstractEvent'

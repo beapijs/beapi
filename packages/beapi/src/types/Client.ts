@@ -109,6 +109,7 @@ export interface ClientEvents {
   EntityTagsUpdated: [EntityTagsUpdatedEvent]
   EntityHurt: [EntityHurtEvent]
   PlayerHurt: [PlayerHurtEvent]
+  Lever: [LeverEvent]
 }
 
 export interface OnChatEvent {
@@ -330,6 +331,12 @@ export interface PlayerHurtEvent {
   cause: string
   damage: number
   projectile?: Entity | undefined
+}
+
+export interface LeverEvent {
+  block: Block
+  dimension: IDimension
+  powered: boolean
 }
 
 export type CancelMethod = () => void
