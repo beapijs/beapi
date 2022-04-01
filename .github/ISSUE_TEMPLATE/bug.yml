@@ -11,21 +11,14 @@ body:
 
         - Is this clearly a BeAPI defect?
 
-        - Do I have basic ideas about where it goes wrong? (For example, if
-        there are stack traces, are they pointing at the core script?)
+        - Do I have basic ideas about where it goes wrong? (For example, if there are stack traces, are they pointing at the core script?)
 
         - Could it be because of my own mistakes?
 
 
-        **The GitHub issue tracker is not a support forum.** If you are not sure
-        whether it could be your mistakes, ask in the [Discord
-        Guild](https://discord.gg/DPRYsU4yf4). The quickest way to verify
-        whether it's a BeAPI defect is through a **reproduction**, starting with
-        a fresh installation and making changes until the bug is reproduced.
+        **The GitHub issue tracker is not a support forum.** If you are not sure whether it could be your mistakes, ask in the [Discord Guild](https://discord.gg/DPRYsU4yf4). The quickest way to verify whether it's a BeAPI defect is through a **reproduction**, starting with a fresh installation and making changes until the bug is reproduced.
 
-
-        Make the bug obvious. Ideally, we should be able to understand it
-        without running any code.
+        Make the bug obvious. Ideally, we should be able to understand it without running any code.
 
 
         Bugs are fixed faster if you include:
@@ -62,9 +55,7 @@ body:
     attributes:
       label: Reproducible demo
       description: |
-        Paste the link to an example repository with the code to reproduce the
-        bug. The repository should include everything given in the scaffold
-        template plus any extra files needed to reproduce the bug. 
+        Paste the link to an example repository with the code to reproduce the bug. The repository should include everything given in the scaffold template plus any extra files needed to reproduce the bug. 
 
         > **What happens if you skip this step?** Someone will read your bug report, and maybe will be able to help you, but it's unlikely that it will get much attention from the team. Eventually, the issue will likely get closed in favor of issues that have reproducible demos.
 
