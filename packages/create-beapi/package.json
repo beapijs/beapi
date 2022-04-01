@@ -16,6 +16,7 @@
     "cba": "index.js"
   },
   "scripts": {
+    "i": "npm install",
     "build": "echo \"create-beapi does not need compilation\" && exit 0"
   },
   "repository": {

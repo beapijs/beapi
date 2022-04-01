@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ❓ Questions - Discord chat
+    url: https://discord.gg/DPRYsU4yf4
+    about: This issue tracker is not for technical support. Please use our Discord chat, and ask the community for help.
+  - name: ❓ Questions - Stack Overflow
+    url: https://stackoverflow.com/questions/tagged/BeAPI
+    about: This issue tracker is not for technical support. Please use Stack Overflow, and ask the community for help.

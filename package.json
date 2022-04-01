@@ -4,6 +4,7 @@
   "description": "MCBE gametest wrapper monorepo",
   "private": true,
   "scripts": {
+    "i": "npm install && npm run i --workspaces",
     "build": "npm run build --workspaces",
     "clean": "rimraf packages/**/dist packages/**/*.tsbuildinfo",
     "commit": "commit",
