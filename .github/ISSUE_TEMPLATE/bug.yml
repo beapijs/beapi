@@ -43,8 +43,7 @@ body:
         - label: |
             I have read the [Issues Contributing
             Guidelines](https://github.com/MCBE-Utilities/BeAPI/blob/beta/CONTRIBUTING.md#issues).
-          validations:
-            required: true
+          required: true
   - type: checkboxes
     attributes:
       label: Prerequisites
@@ -53,17 +52,9 @@ body:
         know you've done these steps first.
       options:
         - label: I'm using the latest version of BeAPI.
-          validations:
-            required: false
         - label: I have tried deleting and reinstalling `node_modules`?
-          validations:
-            required: false
         - label: I have successfully made a reproduction repository for the bug?
-          validations:
-            required: false
         - label: I have ensured the stack trace points to BeAPI core script?
-          validations:
-            required: false
   - type: textarea
     attributes:
       label: Description
