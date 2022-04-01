@@ -337,6 +337,7 @@ export interface LeverEvent {
   block: Block
   dimension: IDimension
   powered: boolean
+  cancel: CancelMethod
 }
 
 export type CancelMethod = () => void

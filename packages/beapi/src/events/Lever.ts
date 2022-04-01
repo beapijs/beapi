@@ -44,12 +44,19 @@ export class Lever extends AbstractEvent {
     }
   }
 
-  // TODO: added cancel method
   protected __logic(arg: LeverActivateEvent): void {
+    const block = new Block(this._client, arg.block)
     this._client.emit(this.name, {
-      block: new Block(this._client, arg.block),
+      block,
       dimension: arg.dimension,
       powered: arg.isPowered,
+      cancel: () => {
+        const permutation = block.getPermutation()
+        const bit = permutation.getProperty('open_bit') as { name: string; value: boolean }
+        if (bit.value) bit.value = false
+        if (!bit.value) bit.value = true
+        block.setPermutation(permutation)
+      },
     })
   }
 }
