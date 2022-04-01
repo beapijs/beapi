@@ -77,7 +77,11 @@ export class Block {
     return this._IBlock.getComponent(component)
   }
 
+  // TODO: make has component
+
   public getInventory(): BlockInventory | undefined {
+    if (!this.getComponent('inventory')) return
+
     return new BlockInventory(this._client, this._IBlock.getComponent('inventory') as BlockInventoryComponent)
   }
 }

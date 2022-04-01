@@ -110,6 +110,7 @@ export interface ClientEvents {
   EntityHurt: [EntityHurtEvent]
   PlayerHurt: [PlayerHurtEvent]
   Lever: [LeverEvent]
+  ChestOpened: [ChestOpenedEvent]
 }
 
 export interface OnChatEvent {
@@ -337,6 +338,13 @@ export interface LeverEvent {
   block: Block
   dimension: IDimension
   powered: boolean
+  cancel: CancelMethod
+}
+
+export interface ChestOpenedEvent {
+  block: Block
+  player: Player
+  type: string
   cancel: CancelMethod
 }
 
