@@ -3,6 +3,7 @@ import type { Client } from '../client'
 import { Block } from '../block'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
+import { Item } from '../item'
 export class ItemInteract extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
@@ -39,7 +40,7 @@ export class ItemInteract extends AbstractEvent {
         arg.source instanceof IPlayer
           ? this._client.players.getByIPlayer(arg.source)
           : this._client.entities.getByIEntity(arg.source),
-      item: arg.item,
+      item: new Item(this._client, arg.item ?? undefined) ?? undefined,
       block: new Block(this._client, arg.source.dimension.getBlock(arg.blockLocation)),
       blockLocation: arg.blockLocation,
       faceLocationX: arg.faceLocationX,

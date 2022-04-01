@@ -2,6 +2,7 @@ import { BeforeItemDefinitionTriggeredEvent, world, Player } from 'mojang-minecr
 import type { Client } from '../client'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
+import { Item } from '../item'
 export class ItemEvent extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
@@ -37,7 +38,7 @@ export class ItemEvent extends AbstractEvent {
     const player = this._client.players.getByIPlayer(arg.source as Player)! // Cannot Not Exist
     this._client.emit(this.name, {
       player: player,
-      item: arg.item,
+      item: new Item(this._client, arg.item),
       event: arg.eventName,
       cancel() {
         arg.cancel = true

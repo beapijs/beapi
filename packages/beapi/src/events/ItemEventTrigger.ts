@@ -2,6 +2,7 @@ import { world, Player as IPlayer, BeforeItemDefinitionTriggeredEvent } from 'mo
 import type { Client } from '../client'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
+import { Item } from '../item'
 export class ItemEventTrigger extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
@@ -39,7 +40,7 @@ export class ItemEventTrigger extends AbstractEvent {
           ? this._client.players.getByIPlayer(arg.source)! /* Cannot Not Exist */
           : this._client.entities.getByIEntity(arg.source)! /* Cannot Not Exist */,
       event: arg.eventName,
-      item: arg.item,
+      item: new Item(this._client, arg.item),
       cancel: () => {
         arg.cancel = true
       },

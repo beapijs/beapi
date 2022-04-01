@@ -2,6 +2,7 @@ import { BeforeItemUseEvent, world, Player as IPlayer } from 'mojang-minecraft'
 import type { Client } from '../client'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
+import { Item } from '../item'
 export class ItemUse extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
@@ -38,7 +39,7 @@ export class ItemUse extends AbstractEvent {
         arg.source instanceof IPlayer
           ? this._client.players.getByIPlayer(arg.source)
           : this._client.entities.getByIEntity(arg.source),
-      item: arg.item,
+      item: new Item(this._client, arg.item ?? undefined) ?? undefined,
       cancel() {
         arg.cancel = true
       },

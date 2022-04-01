@@ -5,7 +5,6 @@ import type {
   BlockLocation,
   BlockPermutation,
   Dimension as IDimension,
-  ItemStack,
   BlockPistonComponent,
   Effect,
   DefinitionModifier,
@@ -126,13 +125,13 @@ export interface TickEvent {
 
 export interface ItemUseEvent {
   source: Player | Entity | undefined
-  item: ItemStack
+  item: Item
   cancel: CancelMethod
 }
 
 export interface ItemInteractEvent {
   source: Player | Entity | undefined
-  item: ItemStack
+  item: Item
   block: Block
   blockLocation: BlockLocation
   faceLocationX: number
@@ -142,7 +141,7 @@ export interface ItemInteractEvent {
 
 export interface ItemEventEvent {
   player: Player
-  item: ItemStack
+  item: Item
   event: string
   cancel: CancelMethod
 }
@@ -261,7 +260,7 @@ export interface PlayerEventTriggerEvent {
 export interface ItemEventTriggerEvent {
   source: Player | Entity
   event: string
-  item: ItemStack
+  item: Item
   cancel: CancelMethod
 }
 
