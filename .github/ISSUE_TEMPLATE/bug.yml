@@ -40,23 +40,24 @@ body:
       options:
         - label: I have read the [Issues Contributing Guidelines](https://github.com/MCBE-Utilities/BeAPI/blob/beta/CONTRIBUTING.md#issues).
           required: true
+  
   - type: checkboxes
     attributes:
       label: Prerequisites
-      description: |
-        Please check the following items before creating a issue. This way we
-        know you've done these steps first.
+      description: Please check the following items before creating a issue. This way we know you've done these steps first.
       options:
         - label: I'm using the latest version of BeAPI.
         - label: I have tried deleting and reinstalling `node_modules`?
         - label: I have successfully made a reproduction repository for the bug?
         - label: I have ensured the stack trace points to BeAPI core script?
+  
   - type: textarea
     attributes:
       label: Description
       description: A clear and concise description of what the bug is.
     validations:
       required: true
+  
   - type: input
     attributes:
       label: Reproducible demo
@@ -74,17 +75,6 @@ body:
         - You might figure out the issues yourself as you work on extracting it.
 
         Thanks for helping us help you!
-
-  - type: textarea
-    attributes:
-      label: Steps to reproduce
-      description: Write down the steps to reproduce the bug. You should start with a fresh installation, or your git repository linked above.
-      placeholder: |
-        1. Step 1...
-        2. Step 2...
-        3. Step 3...
-    validations:
-      required: true
 
   - type: textarea
     attributes:
