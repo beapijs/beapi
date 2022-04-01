@@ -38,7 +38,6 @@ export class EntityInViewVector extends AbstractEvent {
         if (!entity || entity.id === 'minecraft:player') continue
         const target = this._client.entities.getByIEntity(entity)
         if (!target) continue
-        player.prevEntityInVector = target
         this._client.emit(this.name, {
           player,
           target,

@@ -1,5 +1,6 @@
 import { BeforeItemUseOnEvent, world, Player as IPlayer } from 'mojang-minecraft'
 import type { Client } from '../client'
+import { Block } from '../block'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class ItemInteract extends AbstractEvent {
@@ -39,7 +40,7 @@ export class ItemInteract extends AbstractEvent {
           ? this._client.players.getByIPlayer(arg.source)
           : this._client.entities.getByIEntity(arg.source),
       item: arg.item,
-      block: arg.source.dimension.getBlock(arg.blockLocation),
+      block: new Block(this._client, arg.source.dimension.getBlock(arg.blockLocation)),
       blockLocation: arg.blockLocation,
       faceLocationX: arg.faceLocationX,
       faceLocationY: arg.faceLocationY,

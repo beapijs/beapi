@@ -2,16 +2,21 @@
   "format_version": 2,
   "header": {
     "description": "Advanced API Wrapper for GameTests.",
-    "name": "§l§9BeAPI Starter",
+    "name": "§l§9BeAPI Starter§r",
     "uuid": "|UUID1|",
     "version": [0, 0, 1],
     "min_engine_version": [1, 14, 0]
   },
   "modules": [
     {
+      "type": "data",
+      "uuid": "|UUID2|",
+      "version": [1, 0, 0]
+    },
+    {
       "description": "Advanced API Wrapper for GameTests.",
       "type": "javascript",
-      "uuid": "|UUID2|",
+      "uuid": "|UUID3|",
       "version": [0, 0, 1],
       "entry": "scripts/index.js"
     }

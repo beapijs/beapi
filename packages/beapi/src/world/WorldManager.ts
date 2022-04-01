@@ -2,13 +2,12 @@ import type { Client } from '../client'
 import type { Difficulty, Dimension, Weather, Location } from '../types'
 import type { Entity } from '../entity'
 import type { Player } from '../player'
+import { Block, Permutation } from '../block'
 import {
-  Block,
   BlockLocation,
   world,
   Dimension as IDimension,
   ItemStack,
-  BlockPermutation,
   MolangVariableMap,
   Location as ILocation,
   ExplosionOptions,
@@ -53,15 +52,18 @@ export class WorldManager {
     this.getDimension(dimension).spawnParticle(id, new ILocation(location.x, location.y, location.z), molangVarMap)
   }
 
-  public setBlockPermutation(location: Location, dimension: Dimension, blockPermutation: BlockPermutation): Block {
+  public setBlockPermutation(location: Location, dimension: Dimension, permutation: Permutation): Block {
     const block = this.getBlock(location, dimension)
-    block.setPermutation(blockPermutation)
+    block.setPermutation(permutation)
 
     return block
   }
 
   public getBlock(location: Location, dimension: Dimension): Block {
-    return this.getDimension(dimension).getBlock(new BlockLocation(location.x, location.y, location.z))
+    return new Block(
+      this._client,
+      this.getDimension(dimension).getBlock(new BlockLocation(location.x, location.y, location.z)),
+    )
   }
 
   public getDimension(dimension: Dimension): IDimension {

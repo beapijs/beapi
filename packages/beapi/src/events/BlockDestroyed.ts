@@ -1,5 +1,6 @@
 import { world, BlockBreakEvent } from 'mojang-minecraft'
 import type { Client } from '../client'
+import { Block } from '../block'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 export class BlockDestroyed extends AbstractEvent {
@@ -40,7 +41,7 @@ export class BlockDestroyed extends AbstractEvent {
 
     this._client.emit(this.name, {
       player,
-      block: arg.block,
+      block: new Block(this._client, arg.block),
       brokenBlock: arg.brokenBlockPermutation,
       dimension: arg.dimension,
       cancel() {

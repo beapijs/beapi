@@ -39,7 +39,6 @@ export class PlayerInViewVector extends AbstractEvent {
         if (!entity || entity.id !== 'minecraft:player') continue
         const target = this._client.players.getByIPlayer(entity as IPlayer)
         if (!target) continue
-        player.prevPlayerInVector = target
         this._client.emit(this.name, {
           player,
           target,

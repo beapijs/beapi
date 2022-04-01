@@ -1,5 +1,6 @@
 import type { Client } from '../client'
 import type { Player as IPlayer, EntityHitEvent } from 'mojang-minecraft'
+import { Block } from '../block'
 import { setProto } from '../'
 import { world } from 'mojang-minecraft'
 
@@ -41,8 +42,8 @@ export class BlockHit extends AbstractEvent {
 
     return this._client.emit(this.name, {
       player,
-      block,
-      tool: player.getInventory().container.getItem(player.getSelectedSlot()),
+      block: new Block(this._client, block),
+      tool: player.getInventory().getItem(player.getSelectedSlot()),
     })
   }
 }

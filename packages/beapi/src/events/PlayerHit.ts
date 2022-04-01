@@ -44,7 +44,7 @@ export class PlayerHit extends AbstractEvent {
     return this._client.emit(this.name, {
       attacker,
       target,
-      weapon: attacker?.getInventory()?.container.getItem(attacker.getSelectedSlot()) ?? undefined,
+      weapon: attacker?.getInventory()?.getItem(attacker.getSelectedSlot()) ?? undefined,
     })
   }
 }
