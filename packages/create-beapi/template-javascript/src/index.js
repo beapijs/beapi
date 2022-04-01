@@ -1,45 +1,47 @@
-import { client, CommandTypes } from 'beapi-core'
+import { Client, CommandTypes } from 'beapi-core'
+
+const client = new Client()
+
+client.commands.register('ping', 'Ping BeAPI script.', (sender) => {
+  sender.sendMessage('§ePong!§r')
+})
 
 client.commands.register(
+  'aliastest',
+  'Test command aliases,',
   {
-    name: 'Ping',
-    usage: 'ping',
-    description: 'Ping gametest scripts.',
-    aliases: ['p'],
+    aliases: ['at'],
   },
   (sender) => {
-    sender.sendMessage('§ePong!')
+    sender.sendMessage('Hello World!')
   },
 )
 
 client.commands.register(
+  'argtest',
+  'Test argument system.',
   {
-    name: 'Arg Test',
-    usage: 'argtest',
-    description: 'Tests the args system',
-    aliases: ['at'],
+    string: CommandTypes.String,
+    optionalNumber: [CommandTypes.Number, true],
+    optionalBoolean: [CommandTypes.Boolean, true],
   },
   (sender, args) => {
-    const string = args.get('stringtest')
-    const number = args.get('numbertest')
-    const bool = args.get('booltest')
-    sender?.sendMessage(`${string} ${number} ${bool}`)
+    sender.sendMessage(`${args.string} ${args.optionalNumber} ${args.optionalBoolean}`)
   },
-  [
-    {
-      name: 'stringtest',
-      required: true,
-      type: CommandTypes.String,
-    },
-    {
-      name: 'numbertest',
-      required: true,
-      type: CommandTypes.Number,
-    },
-    {
-      name: 'booltest',
-      required: true,
-      type: CommandTypes.Boolean,
-    },
-  ],
+)
+
+client.commands.register(
+  'aliasargtest',
+  'Test argument system with aliases.',
+  {
+    aliases: ['aat'],
+  },
+  {
+    string: CommandTypes.String,
+    optionalNumber: [CommandTypes.Number, true],
+    optionalBoolean: [CommandTypes.Boolean, true],
+  },
+  (sender, args) => {
+    sender.sendMessage(`${args.string} ${args.optionalNumber} ${args.optionalBoolean}`)
+  },
 )
