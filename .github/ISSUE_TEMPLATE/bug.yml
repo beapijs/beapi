@@ -1,8 +1,6 @@
 name: 🐛 Bug Report
 description: Help us improve by reporting something that is not working as intended.
-labels:
-  - bug
-  - 'status: needs triage'
+labels: [bug, 'status: needs triage']
 body:
   - type: markdown
     attributes:
@@ -40,9 +38,7 @@ body:
     attributes:
       label: Have you read the Issues Contributing Guidelines?
       options:
-        - label: |
-            I have read the [Issues Contributing
-            Guidelines](https://github.com/MCBE-Utilities/BeAPI/blob/beta/CONTRIBUTING.md#issues).
+        - label: I have read the [Issues Contributing Guidelines](https://github.com/MCBE-Utilities/BeAPI/blob/beta/CONTRIBUTING.md#issues).
           required: true
   - type: checkboxes
     attributes:
