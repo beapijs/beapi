@@ -6,25 +6,19 @@ body:
     attributes:
       value: |
         ## Before you continue...
-
         Please help us by asking yourself these questions first:
 
         - Is this clearly a BeAPI defect?
-
         - Do I have basic ideas about where it goes wrong? (For example, if there are stack traces, are they pointing at the core script?)
-
         - Could it be because of my own mistakes?
-
 
         **The GitHub issue tracker is not a support forum.** If you are not sure whether it could be your mistakes, ask in the [Discord Guild](https://discord.gg/DPRYsU4yf4). The quickest way to verify whether it's a BeAPI defect is through a **reproduction**, starting with a fresh installation and making changes until the bug is reproduced.
 
         Make the bug obvious. Ideally, we should be able to understand it without running any code.
 
-
         Bugs are fixed faster if you include:
 
         - A reproduction repository to inspect the code
-
         - A video displaying the bug in action (if feasible)
 
   - type: checkboxes
