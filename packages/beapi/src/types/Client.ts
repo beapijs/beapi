@@ -107,6 +107,8 @@ export interface ClientEvents {
   ModalFormCreated: [ModalFormCreatedEvent]
   PlayerTagsUpdated: [PlayerTagsUpdatedEvent]
   EntityTagsUpdated: [EntityTagsUpdatedEvent]
+  EntityHurt: [EntityHurtEvent]
+  PlayerHurt: [PlayerHurtEvent]
 }
 
 export interface OnChatEvent {
@@ -310,6 +312,24 @@ export interface EntityTagsUpdatedEvent {
   tag: string
   method: 'remove' | 'add'
   cancel: CancelMethod
+}
+
+export interface EntityHurtEvent {
+  target: Entity
+  attacker: Player | Entity | undefined
+  weapon: Item | undefined
+  cause: string
+  damage: number
+  projectile?: Entity | undefined
+}
+
+export interface PlayerHurtEvent {
+  target: Player
+  attacker: Player | Entity | undefined
+  weapon: Item | undefined
+  cause: string
+  damage: number
+  projectile?: Entity | undefined
 }
 
 export type CancelMethod = () => void
