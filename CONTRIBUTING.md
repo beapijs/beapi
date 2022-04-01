@@ -73,8 +73,8 @@ If you intend to make any non-trivial changes to existing implementations, we re
 A good place to dip your toes in the BeAPI codebase would be issues tagged [good first issue](https://github.com/MCBE-Utilities/BeAPI/labels/good%20first%20issue). This would be a great place to get started.
 
 Apart from the `good first issue` label, these are also labels worth looking at:
-- [`help wanted`](https://github.com/MCBE-Utilities/BeAPI/labels/help wanted): if you have specific knowledge in one domain, working on these issues can make your expertise shine.
-- [`status: accepting pr`](https://github.com/MCBE-Utilities/BeAPI/labels/status: accepting pr): community contributors can feel free to claim any of these.
+- [`help wanted`](https://github.com/MCBE-Utilities/BeAPI/labels/help%20wanted): if you have specific knowledge in one domain, working on these issues can make your expertise shine.
+- [`status: accepting pr`](https://github.com/MCBE-Utilities/BeAPI/labels/status:%20accepting%20pr): community contributors can feel free to claim any of these.
 
 If you would like to work on an issue, just drop a message saying "I'd like to work on this", and we will assign the issue to you and update the the issue's status as "claimed". **You are expected to send a pull request within seven days** after that, so we can still delegate the issue to someone else if you are unavailable.
 
