@@ -1,7 +1,6 @@
 import type { Client, Enchantment } from '..'
 import {
   ItemStack as IItem,
-  EnchantmentType,
   ItemEnchantsComponent,
   MinecraftEnchantmentTypes,
   Enchantment as IEnchantment,
@@ -76,8 +75,16 @@ export class Item {
     return this._IItem.getComponent(component)
   }
 
-  public getEnchantments(): { type: EnchantmentType; level: number }[] {
-    return getEnchantments(this._IItem)
+  public getEnchantments(): (Enchantment | undefined)[] {
+    const enchantments: (Enchantment | undefined)[] = []
+    for (const x of getEnchantments(this._IItem)) {
+      const enchant = this.getEnchantment({
+        name: x.type.id as keyof typeof MinecraftEnchantmentTypes,
+      })
+      enchantments.push(enchant)
+    }
+
+    return enchantments
   }
 
   public addEnchatment(enchantment: Enchantment): boolean {
@@ -117,6 +124,20 @@ export class Item {
     if (status === 0) return false
 
     return true
+  }
+
+  public getEnchantment(enchantment: Enchantment): Enchantment | undefined {
+    if (!this.hasComponent('minecraft:enchantments')) return
+    if (!this.hasEnchantment(enchantment)) return
+    const component = this._IItem.getComponent('minecraft:enchantments') as ItemEnchantsComponent
+    const enchantments = component.enchantments
+    // @ts-ignore
+    const found = enchantments.getEnchantment(new IEnchantment(MinecraftEnchantmentTypes[enchantment.name]).type)
+
+    return {
+      name: found.type.id as keyof typeof MinecraftEnchantmentTypes,
+      level: found.level ?? 0,
+    }
   }
 
   public setInSlot(slot: number, inventory: EntityInventory | BlockInventory): void {
