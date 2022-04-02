@@ -94,13 +94,29 @@ export class Item {
     return true
   }
 
-  public removeEnchantment(enchantment: Enchantment): void {
-    if (!this.hasComponent('minecraft:enchantments')) return
+  public removeEnchantment(enchantment: Enchantment): boolean {
+    if (!this.hasComponent('minecraft:enchantments')) return false
+    if (!this.hasEnchantment(enchantment)) return false
     const component = this._IItem.getComponent('minecraft:enchantments') as ItemEnchantsComponent
     const enchantments = component.enchantments
     // @ts-ignore
     enchantments.removeEnchantment(new IEnchantment(MinecraftEnchantmentTypes[enchantment.name]).type)
     component.enchantments = enchantments
+
+    return true
+  }
+
+  public hasEnchantment(enchantment: Enchantment): boolean {
+    if (!this.hasComponent('minecraft:enchantments')) return false
+    const component = this._IItem.getComponent('minecraft:enchantments') as ItemEnchantsComponent
+    const enchantments = component.enchantments
+    const status = enchantments.hasEnchantment(
+      // @ts-ignore
+      new IEnchantment(MinecraftEnchantmentTypes[enchantment.name]).type,
+    )
+    if (status === 0) return false
+
+    return true
   }
 
   public setInSlot(slot: number, inventory: EntityInventory | BlockInventory): void {
