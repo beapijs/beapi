@@ -4,11 +4,15 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+// This was yoinked from somewhere on github. Origin forgotten
+// We will all just pretend to understand what it does
+// And leave it alone because it works as is.
+
 const fs = require('fs')
 const path = require('path')
 const argv = require('minimist')(process.argv.slice(2), { string: ['_'] })
 const prompts = require('prompts')
-const { yellow, blue, red, gray } = require('kolorist')
+const { yellow, red, gray, cyan } = require('kolorist')
 
 const cwd = process.cwd()
 
@@ -25,7 +29,7 @@ const TEMPLATES = [
   {
     name: 'typescript',
     display: 'Typescript',
-    color: blue,
+    color: cyan,
   },
 ]
 
