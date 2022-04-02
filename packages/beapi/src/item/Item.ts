@@ -1,11 +1,19 @@
-import type { Client } from '..'
-import type { ItemStack as IItem, EnchantmentType } from 'mojang-minecraft'
+import type { Client, Enchantment } from '..'
+import {
+  ItemStack as IItem,
+  EnchantmentType,
+  ItemEnchantsComponent,
+  MinecraftEnchantmentTypes,
+  Enchantment as IEnchantment,
+} from 'mojang-minecraft'
 import type { EntityInventory, BlockInventory } from '../inventory'
 import { getEnchantments } from '../'
 
+// TODO: wrap enchantment
+
 export class Item {
   protected readonly _client: Client
-  protected readonly _IItem: IItem
+  protected _IItem: IItem
 
   public constructor(client: Client, IItem: IItem) {
     this._client = client
@@ -72,7 +80,29 @@ export class Item {
     return getEnchantments(this._IItem)
   }
 
-  // TODO: convert to new inventory
+  public addEnchatment(enchantment: Enchantment): boolean {
+    if (!this.hasComponent('minecraft:enchantments')) return false
+    const component = this._IItem.getComponent('minecraft:enchantments') as ItemEnchantsComponent
+    const enchantments = component.enchantments
+    const status = enchantments.addEnchantment(
+      // @ts-ignore
+      new IEnchantment(MinecraftEnchantmentTypes[enchantment.name], enchantment?.level ?? 1),
+    )
+    if (!status) return false
+    component.enchantments = enchantments
+
+    return true
+  }
+
+  public removeEnchantment(enchantment: Enchantment): void {
+    if (!this.hasComponent('minecraft:enchantments')) return
+    const component = this._IItem.getComponent('minecraft:enchantments') as ItemEnchantsComponent
+    const enchantments = component.enchantments
+    // @ts-ignore
+    enchantments.removeEnchantment(new IEnchantment(MinecraftEnchantmentTypes[enchantment.name]).type)
+    component.enchantments = enchantments
+  }
+
   public setInSlot(slot: number, inventory: EntityInventory | BlockInventory): void {
     inventory.setItem(slot, this)
   }
