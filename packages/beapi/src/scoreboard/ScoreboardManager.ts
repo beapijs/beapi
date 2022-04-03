@@ -36,11 +36,7 @@ export class ScoreboardManager {
     )
 
     // If error log to console and return false.
-    if (command.err) {
-      console.error('[ScoreboardManager] [createObjective]:', command.statusMessage)
-
-      return false
-    }
+    if (command.err) return false
 
     // Everything was successful, return true.
     return true
@@ -59,11 +55,7 @@ export class ScoreboardManager {
     const command = this._client.executeCommand(`scoreboard objectives remove ${id}`)
 
     // If error log to console and return false.
-    if (command.err) {
-      console.error('[ScoreboardManager] [removeObjective]:', command.statusMessage)
-
-      return false
-    }
+    if (command.err) return false
 
     // Everything was successful, return true.
     return true
@@ -120,12 +112,14 @@ export class ScoreboardManager {
    * Set the display of a specfic objective.
    * @param objective Objective to set.
    * @param slot Set slot of objective.
+   * @returns true means success
    */
-  public setDisplay(objective: Objective, slot: ScoreboardSlot): void {
+  public setDisplay(objective: Objective, slot: ScoreboardSlot): boolean {
     // Attempt to set the display of the given objective.
     const command = this._client.executeCommand(`scoreboard objectives setdisplay ${slot} ${objective.id}`)
 
     // If error log error.
-    if (command.err) console.error('[ScoreboardManager] [setDisplay]:', command.statusMessage)
+    if (command.err) return false
+    return true
   }
 }
