@@ -26,7 +26,7 @@ export class BlockInventory {
     return this._IContainer.size
   }
 
-  public getEmtptySlots(): number {
+  public getEmptySlots(): number {
     return this._IContainer.emptySlotsCount
   }
 

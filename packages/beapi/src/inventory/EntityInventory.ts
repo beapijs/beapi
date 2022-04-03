@@ -29,7 +29,7 @@ export class EntityInventory {
     return this._IContainer.size
   }
 
-  public getEmtptySlots(): number {
+  public getEmptySlots(): number {
     return this._IContainer.emptySlotsCount
   }
 
