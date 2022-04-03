@@ -52,3 +52,13 @@ export interface PlayerComponents {
    */
   'minecraft:can_climb': any
 }
+
+/**
+ * Fog types.
+ */
+export type FogType = 'pop' | 'push' | 'remove'
+
+/**
+ * Camera shake types.
+ */
+export type CameraShakeType = 'positional' | 'rotational' | 'clear'
