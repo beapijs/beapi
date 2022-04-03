@@ -1,17 +1,26 @@
-import { genUuid } from '..'
-import { client } from '../poly'
+// Regular imports.
+import { genUuid, runCommand } from '..'
+
+// Type imports.
 import type { Entity } from '..'
 
+// Temp parse result interface.
 interface ParseResult {
   statusCode: string
   statusMessage: string
 }
 
+/**
+ * Attempts to get the minecraft assigned unique id for
+ * the given entity.
+ * @param entity Entity to try get id for.
+ * @returns
+ */
 export function getUniqueId(entity: Entity): number {
   const objective = genUuid().substring(0, 16)
-  client.executeCommand(`scoreboard objectives add "${objective}" dummy`)
+  runCommand(`scoreboard objectives add "${objective}" dummy`)
   const { err, statusMessage } = entity.executeCommand(`scoreboard players test @s "${objective}" * *`)
-  client.executeCommand(`scoreboard objectives remove "${objective}"`)
+  runCommand(`scoreboard objectives remove "${objective}"`)
   if (!err) return 0
 
   const raw: ParseResult = JSON.parse(statusMessage) as ParseResult

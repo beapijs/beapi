@@ -1,3 +1,8 @@
+/**
+ * Converts binary string to utf-8 string.
+ * @param bin Raw binary string.
+ * @returns
+ */
 export function binToString(bin: string): string {
   return bin
     .split(' ')
@@ -5,6 +10,11 @@ export function binToString(bin: string): string {
     .join('')
 }
 
+/**
+ * Converts utf-8 text to raw binary string.
+ * @param str utf-8 text.
+ * @returns
+ */
 export function stringToBin(str: string): string {
   return str
     .split('')

@@ -1,6 +1,7 @@
-export * from './deprecatedWarning'
+// Export everything from all files
+// For centralized imports.
 export * from './uuidv4'
-export * from './getAll'
+export * from './getCoordinatesBetween'
 export * from './between'
 export * from './runCommand'
 export * from './binary'

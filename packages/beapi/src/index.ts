@@ -1,5 +1,9 @@
+// Initialize the polyfill.
 import './poly'
 
+// SECTION Root level exports.
+
+// BeAPI exports.
 export * from './types'
 export * from './decorators'
 export * from './database'
@@ -18,5 +22,8 @@ export * from './utils'
 export * from './world'
 export * from './version'
 
+// Circular Mojang exports.
 export * as Minecraft from 'mojang-minecraft'
 export * as Gametest from 'mojang-gametest'
+
+// !SECTION
