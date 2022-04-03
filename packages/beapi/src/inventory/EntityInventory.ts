@@ -12,7 +12,7 @@ import type { BlockInventory } from './'
 /**
  * BeAPI entity inventory wrapper.
  * Acts as a central point for easily interacting
- * with a player/entities inventory.
+ * with a player/entity inventories.
  */
 export class EntityInventory {
   /**
