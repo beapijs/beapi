@@ -751,7 +751,7 @@ export interface ItemEventTriggerEvent {
   /**
    * Player or entity with the item.
    */
-  source: Player | Entity
+  source: Player | Entity | undefined
   /**
    * Event that occured.
    */
