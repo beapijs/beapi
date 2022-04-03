@@ -70,7 +70,7 @@ export class BlockDestroyed extends AbstractEvent {
 
   // Predefined in AbstractEvent.
   protected __logic(arg: BlockBreakEvent): void {
-    // Attempt to get the player who created the block.
+    // Attempt to get the player who destroyed the block.
     const player = this._client.players.getByIPlayer(arg.player)
     // If not player could be found return.
     if (!player) return
