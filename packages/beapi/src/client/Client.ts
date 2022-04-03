@@ -9,7 +9,6 @@ import { CommandManager } from '../commands'
 import { WorldManager } from '../world'
 import { ScoreboardManager } from '../scoreboard'
 import { version, mcbe, protocol } from '../version'
-import { deprecated } from '../utils'
 
 export interface Client {
   on: (<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>) => void) &
@@ -113,10 +112,16 @@ export class Client extends EventEmitter {
     }
   }
 
+  protected deprecated(name: string): void {
+    return console.warn(
+      `[BeAPI]: Event "${name}" appears be deprecated, skipping registration. Please report this issue here: https://github.com/MCBE-Utilities/BeAPI/issues`,
+    )
+  }
+
   public loadEvent(event: new (client: Client) => AbstractEvent): void {
     const builtEvent = new event(this)
 
-    if (!this.verifyIEvent(builtEvent.iName)) return deprecated(builtEvent.iName)
+    if (!this.verifyIEvent(builtEvent.iName)) return this.deprecated(builtEvent.iName)
 
     this._events.set(builtEvent.name, builtEvent)
     builtEvent.on()
