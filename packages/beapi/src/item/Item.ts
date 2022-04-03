@@ -158,7 +158,7 @@ export class Item {
    * Adds an enchant to the item.
    * @param enchantment Enchant name..
    * @param level Enchant level.
-   * @returns
+   * @returns true means success
    */
   public addEnchantment(enchantment: OnlyEnchants, level: number): boolean {
     // If item does not have enchants component return.
@@ -173,14 +173,19 @@ export class Item {
   /**
    * Removes an enchant from the item.
    * @param enchantment Enchant name.
-   * @returns
+   * @returns true means success
    */
   public removeEnchantment(enchantment: OnlyEnchants): boolean {
+    // If item does not have enchants component return.
     if (!this.hasComponent('minecraft:enchantments')) return false
+    // If not item has enchant return false.
     if (!this.hasEnchantment(enchantment)) return false
+    // Get enchants component.
     const component = this._IItem.getComponent('minecraft:enchantments') as ItemEnchantsComponent
+    // Remove enchant from enchants component.
     component.enchantments.removeEnchantment(MinecraftEnchantmentTypes[enchantment])
 
+    // Return true.
     return true
   }
 
@@ -190,22 +195,29 @@ export class Item {
    * @returns
    */
   public hasEnchantment(enchantment: OnlyEnchants): boolean {
+    // If item does not have enchants component return.
     if (!this.hasComponent('minecraft:enchantments')) return false
+    // Get enchants component.
     const component = this._IItem.getComponent('minecraft:enchantments') as ItemEnchantsComponent
 
+    // Return whether enchant exists or no.
     return component.enchantments.hasEnchantment(MinecraftEnchantmentTypes[enchantment]) === 0 ? false : true
   }
 
   /**
    * Attempts to get the enchantment from item.
    * @param enchantment Enchant name.
-   * @returns
+   * @returns can return `undefined`
    */
   public getEnchantment(enchantment: OnlyEnchants): Enchantment | undefined {
+    // If item does not have enchants component return.
     if (!this.hasComponent('minecraft:enchantments')) return
+    // If item does not have enchant return.
     if (!this.hasEnchantment(enchantment)) return
+    // Get enchants component.
     const component = this._IItem.getComponent('minecraft:enchantments') as ItemEnchantsComponent
 
+    // Return component enchant provided.
     return component.enchantments.getEnchantment(MinecraftEnchantmentTypes[enchantment])
   }
 
