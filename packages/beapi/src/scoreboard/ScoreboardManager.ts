@@ -11,7 +11,7 @@ export class ScoreboardManager {
   public createObjective(objective: Objective): boolean {
     if (this.getObjectives().find((x) => x.id === objective.id)) return false
     const command = this._client.executeCommand(
-      `scoreboard objectives add ${objective.id} ${objective?.type ?? 'dummy'} "${objective?.display ?? objective.id}"`,
+      `scoreboard objectives add ${objective.id} ${objective.type ?? 'dummy'} "${objective.display ?? objective.id}"`,
     )
     if (command.err) {
       console.error(command.statusMessage)
