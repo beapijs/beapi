@@ -80,7 +80,7 @@ export class EntityHit extends AbstractEvent {
         ? this._client.players.getByIPlayer(data.entity)
         : this._client.entities.getByIEntity(data.entity)
 
-    // Attempt to get the targer hit entity.
+    // Attempt to get the target hit entity.
     const target = this._client.entities.getByIEntity(data.hitEntity)
 
     // If no target return
