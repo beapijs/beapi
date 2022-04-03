@@ -1,3 +1,4 @@
+// Import all events.
 import { OnChat } from './OnChat'
 import { OnJoin } from './OnJoin'
 import { OnLeave } from './OnLeave'
@@ -54,6 +55,7 @@ import { PlayerHurt } from './PlayerHurt'
 import { Lever } from './Lever'
 import { ChestOpened } from './ChestOpened'
 
+// Export all events as an array.
 export const events = [
   OnChat,
   OnJoin,
@@ -114,4 +116,5 @@ export const events = [
   ChestOpened,
 ]
 
+// Export abstract event.
 export { default as AbstractEvent } from './AbstractEvent'
