@@ -31,7 +31,7 @@ export class EntityEventTrigger extends AbstractEvent {
   public readonly alwaysCancel = false
 
   /**
-   * BeAPI entity event trigger destroyed event. Contains the logic
+   * BeAPI entity event trigger event. Contains the logic
    * for translating Minecraft event data to BeAPI
    * wrapped data.
    * @param client Client referece.
