@@ -1,6 +1,13 @@
 // Type imports.
 import type { Client } from '../client/Client'
 
+// FIXME - All event that use ignoreNext
+// is not good practice, if another event
+// is queued before that then it will cancel
+// a completely different event.
+// Instead it needs to be "ignoreNextFor"
+// which is an array of player ids
+
 /**
  * Abstract Event Class. This must extended when
  * creating a new event so Client methods know
