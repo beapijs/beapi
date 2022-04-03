@@ -1,9 +1,20 @@
-// EventEmitter Polyfill by [Nobu](https://github.com/NobUwU)
+// EventEmitter Polyfill by [Nobu](https://github.com/nobu-sh)
 
+/**
+ * 0.8 to 1 replica of NodeJS EventEmitter.
+ * It fundamentally works the same. Some methods
+ * may just be named slightly different.
+ */
 export class EventEmitter {
-  private readonly _listeners = new Map<string, CallableFunction[]>()
-  private max: number
+  protected readonly _listeners = new Map<string, CallableFunction[]>()
+  protected max: number
 
+  /**
+   * 0.8 to 1 replica of NodeJS EventEmitter.
+   * It fundamentally works the same. Some methods
+   * may just be named slightly different.
+   * @param max Max listeners before mem leak warnings.
+   */
   public constructor(max = 50) {
     this.max = max
   }
