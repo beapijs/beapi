@@ -2,6 +2,10 @@ import type { Client } from '../client'
 import type { Entity } from '../entity'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
+
+// FIXME: Broken event see:
+// LINK: ./index.ts
+
 export class EntityTagsUpdated extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client

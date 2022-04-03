@@ -3,6 +3,10 @@ import type { Player } from '../player'
 import type { Objective } from '../types'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
+
+// FIXME: Broken event see:
+// LINK: ./index.ts
+
 export class PlayerScoreUpdated extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
   protected readonly _client: Client
