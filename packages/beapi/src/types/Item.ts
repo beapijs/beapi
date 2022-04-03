@@ -1,8 +1,7 @@
 // Type imports.
 import type { MinecraftEnchantmentTypes } from 'mojang-minecraft'
 
-// FIXME: This is uneeded, remove once cleanup reaches item class.
-export interface Enchantment {
-  name: keyof typeof MinecraftEnchantmentTypes
-  level?: number
-}
+/**
+ * Get only enchant names on MinecraftEnchantmentTypes.
+ */
+export type OnlyEnchants<T = keyof typeof MinecraftEnchantmentTypes> = T extends 'prototype' ? never : T
