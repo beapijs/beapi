@@ -1,5 +1,6 @@
-// We are forced to ignore alot of our linter related warnings
+// FIXME: We are forced to ignore alot of our linter related warnings
 // Due to minecraft not typing their stuff :/
+// TODO: Make this better later
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -7,7 +8,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import type { Player } from '../player'
 import type { ModalFormResponse } from '../types'
-// @ts-ignore TEMP: Until typings are made
+// @ts-ignore FIXME: Once typings are made
 import { ModalFormData } from 'mojang-minecraft-ui'
 import type { Client } from '../client'
 
