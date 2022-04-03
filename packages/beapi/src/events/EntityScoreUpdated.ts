@@ -114,8 +114,19 @@ export class EntityScoreUpdated extends AbstractEvent {
         // If current score equals old score skip.
         if (currentScore.score === oldScore.score) continue
 
-        // FIXME: multiple scoreboard will cause an infinite loop here.
-        // ignoreNext should contain a scoreboard id and entity id to check against.
+        // FIXME: ignoreNext is not a good practice nor idea here or anywhere else
+        // since everything is syncronous, ignoring the next "update" will actually ignore
+        // the next iteration if there is one.
+        // Its the same for any other ignore nexts aswell if another event is queued before it
+        // This will cause major issues of canceling an event that is not supposed to be canceled.
+        // The fix proposal would be to have a map or array of runtime ids and the next event with that runtime id
+        // Will be ignored. And even better if it needs to be a specfic tag or objective include it in that map
+        // So we dont accidently ignore the wrong thing all together.
+
+        // FIXME: also we need to ensure if we are storing any array of map data as here with
+        // entities etc that we clean up entities or players that no longer exist from the map.
+        // If we dont then this is a memory leak and we end up with issues where long runtimes will
+        // be storing data that is no longer even valid clogging up memory usage.
 
         // If ignore next, ignore this iteration
         if (this.ignoreNext) {
@@ -141,16 +152,16 @@ export class EntityScoreUpdated extends AbstractEvent {
     }
 
     // Cleanup old entity scores to prevent possible memory leak
-    for (const [entity] of this.oldScores) {
-      // Try to get the entities id. If it returns an error
-      // (which it will when its dead as you are trying to access
-      // released memory through a now invalidated pointer)
-      // The remove it from old scores.
-      try {
-        entity.getIEntity().id
-      } catch {
-        this.oldScores.delete(entity)
-      }
-    }
+    // for (const [entity] of this.oldScores) {
+    //   // Try to get the entities id. If it returns an error
+    //   // (which it will when its dead as you are trying to access
+    //   // released memory through a now invalidated pointer)
+    //   // The remove it from old scores.
+    //   try {
+    //     entity.getIEntity().id
+    //   } catch {
+    //     this.oldScores.delete(entity)
+    //   }
+    // }
   }
 }

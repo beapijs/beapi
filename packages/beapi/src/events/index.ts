@@ -103,7 +103,7 @@ export const events = [
   PlayerEventTrigger,
   ItemEventTrigger,
   // FIXME: disabled until fixed see:
-  // LINK: ./EntityScoreUpdated.ts
+  // LINK: ./EntityScoreUpdated.ts:117
   // PlayerScoreUpdated,
   // EntityScoreUpdated,
   // PlayerTagsUpdated,

@@ -5,7 +5,7 @@ import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 
 // FIXME: Broken event see:
-// LINK: ./index.ts
+// LINK: ./index.ts:106
 
 export class PlayerScoreUpdated extends AbstractEvent {
   protected readonly _logic = this.__logic.bind(this)
