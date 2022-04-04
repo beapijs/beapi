@@ -195,8 +195,19 @@ export class Player {
    * @returns
    */
   public hasAgent(): boolean {
-    if (this._agent) return true
-    return false
+    // Try to get the entities id. If it returns an error
+    // (which it will when its dead as you are trying to access
+    // released memory through a now invalidated pointer)
+    // Then removes the agent
+    try {
+      if (this._agent?.getId()) return true
+
+      return false
+    } catch {
+      this._agent = undefined
+
+      return false
+    }
   }
 
   /**
@@ -235,6 +246,8 @@ export class Player {
    * @returns can return `undefined`.
    */
   protected attemptFindAgent(): Agent | undefined {
+    // If there is no agent.
+    if (!this.hasAgent()) return
     // If this._agent then return it.
     if (this._agent) return this._agent
 

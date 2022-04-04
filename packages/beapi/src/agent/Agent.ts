@@ -24,6 +24,12 @@ export class Agent extends Entity {
     this._owner = owner
   }
 
+  public override destroy(): void {
+    super.destroy()
+
+    this._owner.hasAgent()
+  }
+
   public getOwner(): Player {
     return this._owner
   }
