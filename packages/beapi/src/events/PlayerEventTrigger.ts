@@ -14,6 +14,7 @@ import type { Client } from '../client'
 export class PlayerEventTrigger extends AbstractEvent {
   // Predefined in AbstractEvent.
   protected readonly _logic = this.__logic.bind(this)
+  // Predefined in AbstractEvent.
   protected readonly _client: Client
   // Predefined in AbstractEvent.
   protected _registered = false
