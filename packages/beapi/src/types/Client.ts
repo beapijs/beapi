@@ -329,7 +329,7 @@ export interface TickEvent {
    */
   currentTick: number
   /**
-   * Time difference in between last and current ticked events played.
+   * Time since last tick was globally fired.
    */
   deltaTime: number
 }
