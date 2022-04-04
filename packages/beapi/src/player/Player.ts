@@ -51,7 +51,7 @@ export class Player {
   // Protected player states.
   protected _isSwimming = false
   protected _isInWater = false
-  protected _isLanded = true
+  protected _isGrounded = true
   protected _isBurning = false
   protected _isMoving = false
   protected _isSprinting = false
@@ -726,14 +726,14 @@ export class Player {
   }
 
   /**
-   * Gets the players landed status.
+   * Gets the players Grounded status.
    */
-  public isLanded(): boolean
-  public isLanded(val: boolean): void
-  public isLanded(val?: boolean): boolean | void {
+  public isGrounded(): boolean
+  public isGrounded(val: boolean): void
+  public isGrounded(val?: boolean): boolean | void {
     if (typeof val === 'boolean') {
-      this._isLanded = val
-    } else return this._isLanded
+      this._isGrounded = val
+    } else return this._isGrounded
   }
 
   /**
