@@ -165,14 +165,12 @@ export class Item {
     if (!this.hasComponent('minecraft:enchantments')) return false
     // Get component from item.
     const component = this._IItem.getComponent('minecraft:enchantments') as ItemEnchantsComponent
-
+    // Gets the enchantments
+    const enchantments = component.enchantments
     // Attempt add the enchantment.
-    const res = component.enchantments.addEnchantment(new Enchantment(MinecraftEnchantmentTypes[enchantment], level))
-
-    // FIXME: Minecraft enchants are slightly broken and go against Javacsripts
-    // Referance based style....?????
-    // eslint-disable-next-line no-self-assign
-    component.enchantments = component.enchantments
+    const res = enchantments.addEnchantment(new Enchantment(MinecraftEnchantmentTypes[enchantment], level))
+    // Sets the enchantments to the component
+    component.enchantments = enchantments
 
     // Return result from add enchant.
     return res
@@ -190,13 +188,12 @@ export class Item {
     if (!this.hasEnchantment(enchantment)) return false
     // Get enchants component.
     const component = this._IItem.getComponent('minecraft:enchantments') as ItemEnchantsComponent
+    // Gets the enchantments
+    const enchantments = component.enchantments
     // Remove enchant from enchants component.
-    component.enchantments.removeEnchantment(MinecraftEnchantmentTypes[enchantment])
-
-    // FIXME: Minecraft enchants are slightly broken and go against Javacsripts
-    // Referance based style....?????
-    // eslint-disable-next-line no-self-assign
-    component.enchantments = component.enchantments
+    enchantments.removeEnchantment(MinecraftEnchantmentTypes[enchantment])
+    // Sets the enchantments to the component
+    component.enchantments = enchantments
 
     // Return true.
     return true
