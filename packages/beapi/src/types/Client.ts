@@ -16,6 +16,7 @@ import type { ActionFormResponse, MessageFormResponse, ModalFormResponse } from 
 import type { events } from '../events'
 import type { Block } from '../block'
 import type { Item } from '../item'
+import type { DynamicPropertiesDefinition } from '../types/World'
 
 /**
  * Helper type that converts types in an array into a union
@@ -300,6 +301,10 @@ export interface ClientEvents {
    * Emitted when a chest is opened.
    */
   ChestOpened: [ChestOpenedEvent]
+  /**
+   * Emitted when server is started
+   */
+  ServerInitialized: [ServerInitializedEvent]
 }
 
 /**
@@ -1034,6 +1039,21 @@ export interface ChestOpenedEvent {
    * Cancel chest from being opened.
    */
   cancel: CancelMethod
+}
+
+/**
+ * When server starts
+ */
+export interface ServerInitializedEvent {
+  /**
+   * Allows to register world property
+   */
+  registerWorldProperty: (property: DynamicPropertiesDefinition) => void
+  /**
+   * Allows to register entity property
+   */
+  // TODO: Fix when mojang adds typings
+  registerEntityProperty: (property: DynamicPropertiesDefinition, entity: any) => void
 }
 
 /**
