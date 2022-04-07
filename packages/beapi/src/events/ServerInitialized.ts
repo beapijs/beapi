@@ -1,6 +1,7 @@
+import * as Minecraft from 'mojang-minecraft'
 import { world } from 'mojang-minecraft'
 import type { Client } from '../client'
-import type { PropertyRegistry, DynamicPropertiesDefinition } from '../types'
+import type { PropertyRegistry, PropertyType, DynamicPropertiesDefinition } from '../types'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 
@@ -75,13 +76,37 @@ export class ServerInitialized extends AbstractEvent {
   // Predefined in AbstractEvent.
   protected __logic(arg: WorldInitializeEvent): void {
     // Emit the client event.
+
+    // @ts-ignore
     this._client.emit(this.name, {
-      registerWorldProperty: (property: DynamicPropertiesDefinition): void => {
-        return arg.propertyRegistry.registerWorldDynamicProperties(property)
+      registerWorldProperty: (property: PropertyType, id: string, length = 10): void => {
+        const dynamic = new (Minecraft as any).DynamicPropertiesDefinition() as DynamicPropertiesDefinition
+        switch (property) {
+          case 'string':
+            dynamic.defineString(id, length)
+            return arg.propertyRegistry.registerWorldDynamicProperties(dynamic)
+          case 'number':
+            dynamic.defineNumber(id)
+            return arg.propertyRegistry.registerWorldDynamicProperties(dynamic)
+          case 'boolean':
+            dynamic.defineBoolean(id)
+            return arg.propertyRegistry.registerWorldDynamicProperties(dynamic)
+        }
       },
       // TODO: Fix typings once added by mojang
-      registerEntityProperty: (property: DynamicPropertiesDefinition, entity: any): void => {
-        return arg.propertyRegistry.registerEntityTypeDynamicProperties(property, entity)
+      registerEntityProperty: (entity: any, property: PropertyType, id: string, length = 10): void => {
+        const dynamic = new (Minecraft as any).DynamicPropertiesDefinition() as DynamicPropertiesDefinition
+        switch (property) {
+          case 'string':
+            dynamic.defineString(id, length)
+            return arg.propertyRegistry.registerEntityTypeDynamicProperties(dynamic, entity)
+          case 'number':
+            dynamic.defineNumber(id)
+            return arg.propertyRegistry.registerEntityTypeDynamicProperties(dynamic, entity)
+          case 'boolean':
+            dynamic.defineBoolean(id)
+            return arg.propertyRegistry.registerEntityTypeDynamicProperties(dynamic, entity)
+        }
       },
     })
   }

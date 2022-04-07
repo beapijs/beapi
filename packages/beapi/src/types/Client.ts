@@ -16,7 +16,7 @@ import type { ActionFormResponse, MessageFormResponse, ModalFormResponse } from 
 import type { events } from '../events'
 import type { Block } from '../block'
 import type { Item } from '../item'
-import type { DynamicPropertiesDefinition } from '../types/World'
+import type { PropertyType } from '../types/World'
 
 /**
  * Helper type that converts types in an array into a union
@@ -1048,12 +1048,12 @@ export interface ServerInitializedEvent {
   /**
    * Allows to register world property
    */
-  registerWorldProperty: (property: DynamicPropertiesDefinition) => void
+  registerWorldProperty: (property: PropertyType, id: string, length?: number) => void
   /**
    * Allows to register entity property
    */
   // TODO: Fix when mojang adds typings
-  registerEntityProperty: (property: DynamicPropertiesDefinition, entity: any) => void
+  registerEntityProperty: (entity: any, property: PropertyType, id: string, length?: number) => void
 }
 
 /**

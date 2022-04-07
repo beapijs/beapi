@@ -220,4 +220,13 @@ export class WorldManager {
   public createExplosion(location: Location, radius: number, dimension: Dimension, options: ExplosionOptions): void {
     this.getDimension(dimension).createExplosion(new ILocation(location.x, location.y, location.z), radius, options)
   }
+
+  /**
+   * Gets a property on the World.
+   * @param {id} id Id of property.
+   * @returns {string | number | boolean} Value of the property.
+   */
+  public getProperty(id: string): string | number | boolean {
+    return (world as any).getDynamicProperty(id)
+  }
 }
