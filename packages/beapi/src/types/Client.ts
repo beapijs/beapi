@@ -9,6 +9,7 @@ import type {
   BlockPistonComponent,
   Effect,
   DefinitionModifier,
+  Vector,
 } from 'mojang-minecraft'
 import type { Objective } from './Scoreboards'
 import type { ActionForm, MessageForm, ModalForm } from '../forms'
@@ -302,9 +303,17 @@ export interface ClientEvents {
    */
   ChestOpened: [ChestOpenedEvent]
   /**
-   * Emitted when server is started
+   * Emitted when server is started.
    */
   ServerInitialized: [ServerInitializedEvent]
+  /**
+   * Emitted when a block is hit by projectile.
+   */
+  ProjectileHitBlock: [ProjectileHitBlockEvent]
+  /**
+   * Emitted when an entity is hit by projectile.
+   */
+  ProjectileHitEntity: [ProjectileHitEntityEvent]
 }
 
 /**
@@ -1042,18 +1051,75 @@ export interface ChestOpenedEvent {
 }
 
 /**
- * When server starts
+ * When server starts.
  */
 export interface ServerInitializedEvent {
   /**
-   * Allows to register world property
+   * Allows to register world property.
    */
   registerWorldProperty: (property: PropertyType, id: string, length?: number) => void
   /**
-   * Allows to register entity property
+   * Allows to register entity property.
    */
-  // TODO: Fix when mojang adds typings
+  // TODO: Fix when mojang adds typings.
   registerEntityProperty: (entity: any, property: PropertyType, id: string, length?: number) => void
+}
+
+/**
+ * When block is hit by projectile.
+ */
+export interface ProjectileHitBlockEvent {
+  /**
+   * Source of the projectile.
+   */
+  attacker: Player | Entity | undefined
+  /**
+   * Projectile entity.
+   */
+  projectile: Entity | undefined
+  /**
+   * Block of the hit projectile.
+   */
+  block: Block
+  /**
+   * Dimension the projectile is in.
+   */
+  dimension: IDimension
+  /**
+   * Location of hit block.
+   */
+  location: BlockLocation
+  /**
+   * Vector of projectile.
+   */
+  vector: Vector
+}
+
+export interface ProjectileHitEntityEvent {
+  /**
+   * Source of the projectile.
+   */
+  attacker: Player | Entity | undefined
+  /**
+   * Projectile entity.
+   */
+  projectile: Entity | undefined
+  /**
+   * Block of the hit projectile.
+   */
+  target: Player | Entity | undefined
+  /**
+   * Dimension the projectile is in.
+   */
+  dimension: IDimension
+  /**
+   * Location of hit block.
+   */
+  location: BlockLocation
+  /**
+   * Vector of projectile.
+   */
+  vector: Vector
 }
 
 /**
