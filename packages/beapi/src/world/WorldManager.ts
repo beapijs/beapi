@@ -239,4 +239,13 @@ export class WorldManager {
   public setProperty(id: string, value: PropertyValue): boolean {
     return (world as any).setDynamicProperty(id, value)
   }
+
+  /**
+   * Removes a property.
+   * @param {string} id ID of property.
+   * @returns {boolean}
+   */
+  public removeProperty(id: string): boolean {
+    return (world as any).removeDynamicProperty(id)
+  }
 }
