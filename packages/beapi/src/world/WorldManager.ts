@@ -11,7 +11,7 @@ import {
 import { Block, Permutation } from '../block'
 
 // Type imports.
-import type { Difficulty, Dimension, Weather, Location } from '../types'
+import type { Difficulty, Dimension, Weather, Location, PropertyValue } from '../types'
 import type { Client } from '../client'
 import type { Entity } from '../entity'
 import type { Player } from '../player'
@@ -223,10 +223,20 @@ export class WorldManager {
 
   /**
    * Gets a property on the World.
-   * @param {id} id Id of property.
-   * @returns {string | number | boolean} Value of the property.
+   * @param {id} id ID of property.
+   * @returns {PropertyValue} Value of the property.
    */
-  public getProperty(id: string): string | number | boolean {
+  public getProperty(id: string): PropertyValue {
     return (world as any).getDynamicProperty(id)
+  }
+
+  /**
+   * Sets the value of a property.
+   * @param {id} id ID of property.
+   * @param {PropertyValue} value Value for the property.
+   * @returns {boolean}
+   */
+  public setProperty(id: string, value: PropertyValue): boolean {
+    return (world as any).setDynamicProperty(id, value)
   }
 }
