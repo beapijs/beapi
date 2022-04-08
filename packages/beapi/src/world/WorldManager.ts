@@ -7,6 +7,7 @@ import {
   MolangVariableMap,
   Location as ILocation,
   ExplosionOptions,
+  World as IWorld,
 } from 'mojang-minecraft'
 import { Block, Permutation } from '../block'
 
@@ -27,6 +28,11 @@ export class WorldManager {
   protected readonly _client: Client
 
   /**
+   * Private world reference.
+   */
+  protected readonly _IWorld: IWorld
+
+  /**
    * World Manager is the primary interaction point for world related
    * methods that had no other categorization placing.
    * @param {Client} client
@@ -34,6 +40,16 @@ export class WorldManager {
   public constructor(client: Client) {
     // Assign private client reference.
     this._client = client
+    // Assign private world reference.
+    this._IWorld = world
+  }
+
+  /**
+   * Get the vanilla world class.
+   * @returns {IWorld} Vanilla world class.
+   */
+  public getIWorld(): IWorld {
+    return this._IWorld
   }
 
   /**
@@ -152,7 +168,7 @@ export class WorldManager {
    * @returns {IDimension}
    */
   public getDimension(dimension: Dimension): IDimension {
-    return world.getDimension(dimension)
+    return this._IWorld.getDimension(dimension)
   }
 
   /**
