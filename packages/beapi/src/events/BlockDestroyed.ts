@@ -80,7 +80,7 @@ export class BlockDestroyed extends AbstractEvent {
       player,
       block: new Block(this._client, arg.block),
       brokenBlock: arg.brokenBlockPermutation,
-      dimension: arg.dimension,
+      dimension: player.getDimension(),
       cancel() {
         // FIXME: Temp Workaround Until Mojang Adds Block Destroyed Cancel Event.
         arg.block.setPermutation(arg.brokenBlockPermutation)

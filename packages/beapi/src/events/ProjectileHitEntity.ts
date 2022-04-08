@@ -103,7 +103,7 @@ export class ProjectileHitEntity extends AbstractEvent {
           ? this._client.players.getByIPlayer(data.source)
           : this._client.entities.getByIEntity(data.source) ?? undefined,
       projectile: this._client.entities.getByIEntity(data.projectile),
-      dimension: data.dimension,
+      dimension: this._client.world.getDimension(data.dimension),
       location: data.location,
       vector: data.hitVector,
     })

@@ -70,7 +70,7 @@ export class ItemDropped extends AbstractEvent {
     // FIXME: This is pretty unreliable, throwing an item while facing a wall will void this.
 
     // Get block location of swing.
-    const block = this._client.world.getBlock(data.getLocation(), data.getDimensionName())
+    const block = data.getDimension().getBlock(data.getLocation())
     // Get latest entity.
     const entity = this._client.entities.getLastest()
     // If latest entity is not an item or block that was swung at was not air return.

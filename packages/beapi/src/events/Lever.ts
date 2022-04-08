@@ -82,7 +82,7 @@ export class Lever extends AbstractEvent {
     // Emit the client event.
     this._client.emit(this.name, {
       block,
-      dimension: arg.dimension,
+      dimension: this._client.world.getDimension(arg.dimension),
       powered: arg.isPowered,
       cancel: () => {
         // For cancel we just permute the block to its original state.

@@ -101,7 +101,7 @@ export class ProjectileHitBlock extends AbstractEvent {
           : this._client.entities.getByIEntity(data.source) ?? undefined,
       block: new Block(this._client, data.blockHit),
       projectile: this._client.entities.getByIEntity(data.projectile),
-      dimension: data.dimension,
+      dimension: this._client.world.getDimension(data.dimension),
       location: data.location,
       vector: data.hitVector,
     })

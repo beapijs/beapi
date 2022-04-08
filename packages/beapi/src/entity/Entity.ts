@@ -1,5 +1,4 @@
 import type {
-  Dimension as IDimension,
   Effect,
   EffectType,
   Entity as IEntity,
@@ -8,7 +7,8 @@ import type {
   Vector,
 } from 'mojang-minecraft'
 import type { Client } from '../client'
-import type { Location, Dimension, ServerCommandResponse, EntityComponents, Objective } from '../types'
+import type { Location, DimensionType, ServerCommandResponse, EntityComponents, Objective } from '../types'
+import type { Dimension } from '../world'
 import { Location as ILocation } from 'mojang-minecraft'
 import { getUniqueId } from '../utils'
 import { EntityInventory } from '../inventory'
@@ -130,15 +130,8 @@ export class Entity {
     }
   }
 
-  public getDimension(): IDimension {
-    return this._IEntity.dimension
-  }
-
-  public getDimensionName(): Dimension {
-    // TEMP: Until types get updated
-    const id = this.getDimension().id.split(':')[1].replace(/_/g, ' ')
-
-    return id as Dimension
+  public getDimension(): Dimension {
+    return this._client.world.getDimension(this._IEntity.dimension)
   }
 
   public getInventory(): EntityInventory | undefined {
@@ -166,15 +159,15 @@ export class Entity {
     this._IEntity.setVelocity(velocity)
   }
 
-  public teleport(location: Location, dimension: Dimension, xrot: number, yrot: number): void {
+  public teleport(location: Location, dimension: DimensionType, xrot: number, yrot: number): void {
     const loc = new ILocation(location.x, location.y, location.z)
-    this._IEntity.teleport(loc, this._client.world.getDimension(dimension), xrot, yrot)
+    this._IEntity.teleport(loc, this._client.world.getDimension(dimension).getIDimension(), xrot, yrot)
   }
 
-  public teleportFacing(location: Location, dimension: Dimension, facingLocation: Location): void {
+  public teleportFacing(location: Location, dimension: DimensionType, facingLocation: Location): void {
     const loc = new ILocation(location.x, location.y, location.z)
     const loc2 = new ILocation(facingLocation.x, facingLocation.y, facingLocation.z)
-    this._IEntity.teleportFacing(loc, this._client.world.getDimension(dimension), loc2)
+    this._IEntity.teleportFacing(loc, this._client.world.getDimension(dimension).getIDimension(), loc2)
   }
 
   public triggerEvent(event: string): void {

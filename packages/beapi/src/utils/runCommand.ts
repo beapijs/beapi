@@ -3,7 +3,7 @@ import { world } from 'mojang-minecraft'
 
 // Type imports.
 import type { ServerCommandResponse } from '..'
-import type { Dimension } from '../types'
+import type { DimensionType } from '../types'
 
 /**
  * Standalone method for running a command. Worlds the same as `Client#runCommand`.
@@ -14,7 +14,7 @@ import type { Dimension } from '../types'
  */
 export function runCommand<T>(
   cmd: string,
-  dimension: Dimension = 'overworld',
+  dimension: DimensionType = 'overworld',
   debug = false,
 ): ServerCommandResponse<T> {
   try {

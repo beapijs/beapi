@@ -5,7 +5,6 @@ import type { CommandEntry } from '.'
 import type {
   BlockLocation,
   BlockPermutation,
-  Dimension as IDimension,
   BlockPistonComponent,
   Effect,
   DefinitionModifier,
@@ -18,6 +17,7 @@ import type { events } from '../events'
 import type { Block } from '../block'
 import type { Item } from '../item'
 import type { PropertyType } from '../types/World'
+import type { Dimension } from '../world'
 
 /**
  * Helper type that converts types in an array into a union
@@ -455,7 +455,7 @@ export interface BlockDestroyedEvent {
   /**
    * Dimension event occured in.
    */
-  dimension: IDimension
+  dimension: Dimension
   /**
    * Stop event from occuring.
    */
@@ -477,7 +477,7 @@ export interface BlockCreatedEvent {
   /**
    * Dimension event occured in.
    */
-  dimension: IDimension
+  dimension: Dimension
   /**
    * Stop event from occuring.
    */
@@ -569,7 +569,7 @@ export interface ExplosionEvent {
   /**
    * Dimension boom occured in.
    */
-  dimension: IDimension
+  dimension: Dimension
   /**
    * Blocks that were boomed.
    */
@@ -627,7 +627,7 @@ export interface PistonEvent {
   /**
    * Dimension that event occured in.
    */
-  dimension: IDimension
+  dimension: Dimension
   /**
    * Piston is extending?
    */
@@ -675,7 +675,7 @@ export interface WeatherUpdatedEvent {
   /**
    * Dimension it occured in.
    */
-  dimension: IDimension
+  dimension: Dimension
 }
 
 /**
@@ -1017,7 +1017,7 @@ export interface LeverEvent {
   /**
    * Dimension it occured in.
    */
-  dimension: IDimension
+  dimension: Dimension
   /**
    * Lever is powered?
    */
@@ -1084,7 +1084,7 @@ export interface ProjectileHitBlockEvent {
   /**
    * Dimension the projectile is in.
    */
-  dimension: IDimension
+  dimension: Dimension
   /**
    * Location of hit block.
    */
@@ -1111,7 +1111,7 @@ export interface ProjectileHitEntityEvent {
   /**
    * Dimension the projectile is in.
    */
-  dimension: IDimension
+  dimension: Dimension
   /**
    * Location of hit block.
    */

@@ -2,7 +2,7 @@ import type AbstractEvent from '../events/AbstractEvent'
 import { EventEmitter } from '../polyfill'
 import { events } from '../events'
 import { PlayerManager } from '../player'
-import type { Dimension, ServerCommandResponse, ClientEvents, Awaitable, ClientOptions } from '../types'
+import type { DimensionType, ServerCommandResponse, ClientEvents, Awaitable, ClientOptions } from '../types'
 import { Events, world } from 'mojang-minecraft'
 import { EntityManager } from '../entity'
 import { CommandManager } from '../commands'
@@ -145,7 +145,11 @@ export class Client extends EventEmitter {
     return Object.keys(Events.prototype)
   }
 
-  public executeCommand<T>(cmd: string, dimension: Dimension = 'overworld', debug = false): ServerCommandResponse<T> {
+  public executeCommand<T>(
+    cmd: string,
+    dimension: DimensionType = 'overworld',
+    debug = false,
+  ): ServerCommandResponse<T> {
     try {
       const command = world.getDimension(dimension).runCommand(cmd) as ServerCommandResponse<T>
 

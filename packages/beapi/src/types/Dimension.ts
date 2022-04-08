@@ -1,4 +1,4 @@
 /**
  * Dimension names.
  */
-export type Dimension = 'overworld' | 'nether' | 'the end'
+export type DimensionType = 'overworld' | 'nether' | 'the end'
