@@ -1,10 +1,20 @@
-import type { Client, DimensionType, ServerCommandResponse, Item, Location, Entity, Player, ParticleOptions } from '..'
+import type {
+  Client,
+  DimensionType,
+  ServerCommandResponse,
+  Item,
+  Location,
+  Entity,
+  Player,
+  ParticleOptions,
+  ExplosionOptions,
+} from '..'
 import {
   Dimension as IDimension,
   Location as ILocation,
   BlockLocation,
   MolangVariableMap,
-  ExplosionOptions,
+  ExplosionOptions as IExplosionOptions,
   Color,
   Vector,
 } from 'mojang-minecraft'
@@ -74,7 +84,7 @@ export class Dimension {
    */
   public spawnItem(item: Item, location: Location): Entity | undefined {
     try {
-      const entity = this._IDimension.spawnItem(item.getIItem(), new ILocation(location.x, location.y, location.x))
+      const entity = this._IDimension.spawnItem(item.getIItem(), new ILocation(location.x, location.y, location.z))
 
       return this._client.entities.getByIEntity(entity)
     } catch {
@@ -90,7 +100,7 @@ export class Dimension {
    */
   public spawnEntity(id: string, location: Location): Entity | undefined {
     try {
-      const entity = this._IDimension.spawnEntity(id, new ILocation(location.x, location.y, location.x))
+      const entity = this._IDimension.spawnEntity(id, new ILocation(location.x, location.y, location.z))
 
       return this._client.entities.getByIEntity(entity)
     } catch {
@@ -103,26 +113,28 @@ export class Dimension {
    * @param {string} id Particle identifier.
    * @param {Location} location Location to spawn particle.
    */
-  public spawnParticle(id: string, location: Location, options: ParticleOptions[]): void {
+  public spawnParticle(id: string, location: Location, options?: ParticleOptions[]): void {
     const variableMap = new MolangVariableMap()
-    for (const option of options) {
-      switch (option.type) {
-        case 'RGB':
-          variableMap.setColorRGB(option.id, option.color ?? new Color(0, 0, 0, 0))
-          break
-        case 'RGBA':
-          variableMap.setColorRGBA(option.id, option.color ?? new Color(0, 0, 0, 0))
-          break
-        case 'SpeedAndDirection':
-          variableMap.setSpeedAndDirection(option.id, option.speed ?? 0, option.vector ?? new Vector(0, 0, 0))
-          break
-        case 'Vector':
-          variableMap.setVector3(option.id, option.vector ?? new Vector(0, 0, 0))
-          break
+    if (options) {
+      for (const option of options) {
+        switch (option.type) {
+          case 'RGB':
+            variableMap.setColorRGB(option.id, option.color ?? new Color(0, 0, 0, 0))
+            break
+          case 'RGBA':
+            variableMap.setColorRGBA(option.id, option.color ?? new Color(0, 0, 0, 0))
+            break
+          case 'SpeedAndDirection':
+            variableMap.setSpeedAndDirection(option.id, option.speed ?? 0, option.vector ?? new Vector(0, 0, 0))
+            break
+          case 'Vector':
+            variableMap.setVector3(option.id, option.vector ?? new Vector(0, 0, 0))
+            break
+        }
       }
     }
 
-    this._IDimension.spawnParticle(id, new ILocation(location.x, location.y, location.x), variableMap)
+    this._IDimension.spawnParticle(id, new ILocation(location.x, location.y, location.z), variableMap)
   }
 
   /**
@@ -147,7 +159,7 @@ export class Dimension {
    * @returns {Block}
    */
   public getBlock(location: Location): Block {
-    return new Block(this._client, this._IDimension.getBlock(new BlockLocation(location.x, location.y, location.x)))
+    return new Block(this._client, this._IDimension.getBlock(new BlockLocation(location.x, location.y, location.z)))
   }
 
   /**
@@ -155,10 +167,15 @@ export class Dimension {
    * @param {Location} location Location of the explosion.
    * @param {number} radius Radius of the explosion.
    */
-  public createExplosion(location: Location, radius: number): void {
-    // TODO: Add methods to customize the options.
-    const options = new ExplosionOptions()
+  public createExplosion(location: Location, radius: number, options?: ExplosionOptions): void {
+    const explosionOptions = new IExplosionOptions()
+    if (options) {
+      explosionOptions.allowUnderwater = options.allowUnderwater
+      explosionOptions.breaksBlocks = options.breaksBlocks
+      explosionOptions.causesFire = options.causesFire
+      explosionOptions.source = options.source.getIEntity()
+    }
 
-    this._IDimension.createExplosion(new ILocation(location.x, location.y, location.x), radius, options)
+    this._IDimension.createExplosion(new ILocation(location.x, location.y, location.z), radius, explosionOptions)
   }
 }
