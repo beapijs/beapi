@@ -1,10 +1,12 @@
-import type { Client, DimensionType, ServerCommandResponse, Item, Location, Entity, Player } from '..'
+import type { Client, DimensionType, ServerCommandResponse, Item, Location, Entity, Player, ParticleOptions } from '..'
 import {
   Dimension as IDimension,
   Location as ILocation,
   BlockLocation,
   MolangVariableMap,
   ExplosionOptions,
+  Color,
+  Vector,
 } from 'mojang-minecraft'
 import { Block } from '../block'
 
@@ -101,9 +103,24 @@ export class Dimension {
    * @param {string} id Particle identifier.
    * @param {Location} location Location to spawn particle.
    */
-  public spawnParticle(id: string, location: Location): void {
-    // TODO: Add methods to customize the variable map.
+  public spawnParticle(id: string, location: Location, options: ParticleOptions[]): void {
     const variableMap = new MolangVariableMap()
+    for (const option of options) {
+      switch (option.type) {
+        case 'RGB':
+          variableMap.setColorRGB(option.id, option.color ?? new Color(0, 0, 0, 0))
+          break
+        case 'RGBA':
+          variableMap.setColorRGBA(option.id, option.color ?? new Color(0, 0, 0, 0))
+          break
+        case 'SpeedAndDirection':
+          variableMap.setSpeedAndDirection(option.id, option.speed ?? 0, option.vector ?? new Vector(0, 0, 0))
+          break
+        case 'Vector':
+          variableMap.setVector3(option.id, option.vector ?? new Vector(0, 0, 0))
+          break
+      }
+    }
 
     this._IDimension.spawnParticle(id, new ILocation(location.x, location.y, location.x), variableMap)
   }
