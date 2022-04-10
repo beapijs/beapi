@@ -1,8 +1,8 @@
 import type { Client, Location } from '..'
 import { BlockType, Permutation } from './'
-import type { Block as IBlock, BlockInventoryComponent } from 'mojang-minecraft'
+import { Block as IBlock, BlockInventoryComponent, MinecraftBlockTypes } from 'mojang-minecraft'
 import { BlockInventory } from '../inventory'
-import type { Dimension } from '../'
+import type { Dimension, BlockTypes } from '../'
 
 export class Block {
   protected readonly _client: Client
@@ -25,8 +25,9 @@ export class Block {
     return new BlockType(this._client, this._IBlock.type)
   }
 
-  public setType(type: BlockType): void {
-    this._IBlock.setType(type.getIBlockType())
+  public setType(type: BlockTypes): void {
+    // @ts-ignore Not sure why it is mad. Nobu check it out.
+    this._IBlock.setType(MinecraftBlockTypes[type])
   }
 
   public getPermutation(): Permutation {

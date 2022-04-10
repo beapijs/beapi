@@ -2,6 +2,7 @@
 export * from './Client'
 export * from './Dimension'
 export * from './ServerCommand'
+export * from './Block'
 export * from './BlockEvent'
 export * from './Location'
 export * from './Gamemode'

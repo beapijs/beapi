@@ -19,6 +19,7 @@ import {
   Vector,
 } from 'mojang-minecraft'
 import { Block } from '../block'
+import type { BlockTypes } from '../types'
 
 export class Dimension {
   protected readonly _client: Client
@@ -49,7 +50,7 @@ export class Dimension {
    * Executes a command in the dimension.
    * @param {string} cmd Command to execute.
    * @param {boolean} debug Option to log command results.
-   * @returns {ServerCommandResponse}
+   * @returns {ServerCommandResponse} Returns the command response.
    */
   public executeCommand(cmd: string, debug = false): ServerCommandResponse {
     try {
@@ -80,7 +81,7 @@ export class Dimension {
    * Spawn an item.
    * @param {Item} item Item class to spawn.
    * @param {Location} location Location to spawn item.
-   * @returns {Entity | undefined}
+   * @returns {Entity | undefined} Returns the spawned item.
    */
   public spawnItem(item: Item, location: Location): Entity | undefined {
     try {
@@ -96,7 +97,7 @@ export class Dimension {
    * Spawn an entity.
    * @param {string} id Entity identifier.
    * @param {Location} location Location to spawn entity.
-   * @returns {Entity | undefined}
+   * @returns {Entity | undefined} Returns the spawned entity.
    */
   public spawnEntity(id: string, location: Location): Entity | undefined {
     try {
@@ -156,10 +157,23 @@ export class Dimension {
   /**
    * Get a block in the dimension.
    * @param {Location} location Location of the block.
-   * @returns {Block}
+   * @returns {Block} Returns the block.
    */
   public getBlock(location: Location): Block {
     return new Block(this._client, this._IDimension.getBlock(new BlockLocation(location.x, location.y, location.z)))
+  }
+
+  /**
+   * Set a block in the dimension.
+   * @param location Location to set the block.
+   * @param type The block type to set.
+   * @returns {Block} Returns the set block.
+   */
+  public setBlock(location: Location, type: BlockTypes): Block {
+    const block = this.getBlock(location)
+    block.setType(type)
+
+    return block
   }
 
   /**
