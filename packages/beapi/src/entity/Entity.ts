@@ -7,7 +7,14 @@ import type {
   Vector,
 } from 'mojang-minecraft'
 import type { Client } from '../client'
-import type { Location, DimensionType, ServerCommandResponse, EntityComponents, Objective } from '../types'
+import type {
+  Location,
+  DimensionType,
+  ServerCommandResponse,
+  EntityComponents,
+  Objective,
+  PropertyValue,
+} from '../types'
 import type { Dimension } from '../world'
 import { Location as ILocation } from 'mojang-minecraft'
 import { getUniqueId } from '../utils'
@@ -196,5 +203,14 @@ export class Entity {
 
   public getEffect(effect: EffectType): Effect {
     return this._IEntity.getEffect(effect)
+  }
+
+  /**
+   * Gets a property on the Entity.
+   * @param {id} id ID of property.
+   * @returns {PropertyValue} Value of the property.
+   */
+  public getProperty(id: string): PropertyValue {
+    return (this._IEntity as any).getDynamicProperty(id)
   }
 }
