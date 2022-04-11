@@ -223,4 +223,13 @@ export class Entity {
   public setProperty(id: string, value: PropertyValue): boolean {
     return (this._IEntity as any).setDynamicProperty(id, value)
   }
+
+  /**
+   * Removes a property.
+   * @param {string} id ID of property.
+   * @returns {boolean}
+   */
+  public removeProperty(id: string): boolean {
+    return (this._IEntity as any).removeDynamicProperty(id)
+  }
 }
