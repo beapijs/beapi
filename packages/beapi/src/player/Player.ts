@@ -298,6 +298,14 @@ export class Player {
   }
 
   /**
+   * Clear current title message.
+   */
+  public clearTitle(): void {
+    const display = (this._IPlayer as DisplayPlayer).onScreenDisplay
+    display.clearTitle()
+  }
+
+  /**
    * Sends a sound to the player.
    * @param sound Minecraft sound id.
    * @param location Optional location to play at.
