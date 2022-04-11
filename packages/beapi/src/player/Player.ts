@@ -848,4 +848,13 @@ export class Player {
   public setProperty(id: string, value: PropertyValue): boolean {
     return (this._IPlayer as any).setDynamicProperty(id, value)
   }
+
+  /**
+   * Removes a property.
+   * @param {string} id ID of property.
+   * @returns {boolean}
+   */
+  public removeProperty(id: string): boolean {
+    return (this._IPlayer as any).removeDynamicProperty(id)
+  }
 }
