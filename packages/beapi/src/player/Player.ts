@@ -25,6 +25,7 @@ import type {
   FogType,
   CameraShakeType,
   DisplayPlayer, // TODO: Remove once types are made.
+  PropertyValue,
 } from '../types'
 
 /**
@@ -827,5 +828,14 @@ export class Player {
     if (typeof val === 'boolean') {
       this._isMuted = val
     } else return this._isMuted
+  }
+
+  /**
+   * Gets a property on the Player.
+   * @param {id} id ID of property.
+   * @returns {PropertyValue} Value of the property.
+   */
+  public getProperty(id: string): PropertyValue {
+    return (this._IPlayer as any).getDynamicProperty(id)
   }
 }
