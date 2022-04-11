@@ -24,6 +24,7 @@ import type {
   Objective,
   FogType,
   CameraShakeType,
+  DisplayPlayer, // TODO: Remove once types are made.
 } from '../types'
 
 /**
@@ -273,7 +274,8 @@ export class Player {
    * @param message Message content to set.
    */
   public sendActionbar(message: string): void {
-    this.executeCommand(`titleraw @s actionbar {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
+    const display = (this._IPlayer as DisplayPlayer).onScreenDisplay
+    display.setActionBar(message)
   }
 
   /**
@@ -281,7 +283,9 @@ export class Player {
    * @param message Message content to set.
    */
   public sendTitle(message: string): void {
-    this.executeCommand(`titleraw @s title {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
+    // TODO: Add title options.
+    const display = (this._IPlayer as DisplayPlayer).onScreenDisplay
+    display.setTitle(message)
   }
 
   /**
@@ -289,7 +293,8 @@ export class Player {
    * @param message Message content to set.
    */
   public sendSubtitle(message: string): void {
-    this.executeCommand(`titleraw @s subtitle {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
+    const display = (this._IPlayer as DisplayPlayer).onScreenDisplay
+    display.updateSubtitle(message)
   }
 
   /**
