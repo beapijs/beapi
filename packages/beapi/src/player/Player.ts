@@ -436,6 +436,11 @@ export class Player {
    */
   public setGamemode(gamemode: Gamemode): boolean {
     if (gamemode === this.getGamemode()) return true
+    if (gamemode === 'spectator') {
+      const command = this.executeCommand('gamemode 6')
+      if (command.err) return false
+      return true
+    }
     const command = this.executeCommand(`gamemode ${gamemode}`)
     if (command.err) return false
     return true
@@ -453,7 +458,7 @@ export class Player {
     if (!gma.err) return 'adventure'
     if (!gms.err) return 'survival'
 
-    return 'unknown'
+    return 'spectator'
   }
 
   /**
