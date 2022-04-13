@@ -19,6 +19,7 @@ import type { Dimension } from '../world'
 import { Location as ILocation } from 'mojang-minecraft'
 import { getUniqueId } from '../utils'
 import { EntityInventory } from '../inventory'
+import { Item } from '../item'
 
 export class Entity {
   protected readonly _client: Client
@@ -231,5 +232,17 @@ export class Entity {
    */
   public removeProperty(id: string): boolean {
     return (this._IEntity as any).removeDynamicProperty(id)
+  }
+
+  /**
+   * Gets the Item instance if the entity is a item.
+   * @returns {Item | undefined} Item instance.
+   */
+  public getItemStack(): Item | undefined {
+    if (!this.hasComponent('minecraft:item')) return
+    const component = this.getComponent('minecraft:item')
+    const item = new Item(this._client, component.itemStack)
+
+    return item
   }
 }

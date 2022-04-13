@@ -6,8 +6,6 @@ import { getEnchantments, OnlyEnchants } from '../'
 import type { Client } from '..'
 import type { EntityInventory, BlockInventory } from '../inventory'
 
-// TODO: wrap enchantment
-
 /**
  * Item wraps Minecrafts IItem. It adds helpful methods
  * utilizing item components cutting out the complication for
