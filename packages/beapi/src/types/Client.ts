@@ -427,13 +427,13 @@ export interface ItemEventEvent {
  */
 export interface ItemDroppedEvent {
   /**
-   * Player who dropped item.
+   * Entity instance of the item.
    */
-  player: Player
+  entity: Entity
   /**
-   * Item (which is now an entity because its on the ground).
+   * Item instance.
    */
-  item: Entity
+  item: Item
 }
 
 /**
