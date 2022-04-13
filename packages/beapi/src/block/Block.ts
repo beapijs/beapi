@@ -1,8 +1,9 @@
 import type { Client, Location } from '..'
+import { snakeCaseToCamelCase } from '..'
 import { BlockType, Permutation } from './'
 import { Block as IBlock, BlockInventoryComponent, MinecraftBlockTypes } from 'mojang-minecraft'
 import { BlockInventory } from '../inventory'
-import type { Dimension, BlockTypes } from '../'
+import type { Dimension, BlockTypes, CamelToSnakeCase } from '../'
 
 export class Block {
   protected readonly _client: Client
@@ -25,9 +26,14 @@ export class Block {
     return new BlockType(this._client, this._IBlock.type)
   }
 
-  public setType(type: BlockTypes): void {
-    // @ts-ignore Not sure why it is mad. Nobu check it out.
-    this._IBlock.setType(MinecraftBlockTypes[type])
+  public setType(type: CamelToSnakeCase<BlockTypes> | BlockType): void {
+    if (type instanceof BlockType) {
+      this._IBlock.setType(type.getIBlockType())
+    } else {
+      const camel = snakeCaseToCamelCase(type) as BlockTypes
+      // @ts-ignore Not sure why it is mad. Nobu check it out.
+      this._IBlock.setType(MinecraftBlockTypes[camel])
+    }
   }
 
   public getPermutation(): Permutation {

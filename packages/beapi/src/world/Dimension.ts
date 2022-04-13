@@ -19,7 +19,7 @@ import {
   Vector,
 } from 'mojang-minecraft'
 import { Block } from '../block'
-import type { BlockTypes } from '../types'
+import type { BlockTypes, CamelToSnakeCase } from '../types'
 
 export class Dimension {
   protected readonly _client: Client
@@ -169,11 +169,15 @@ export class Dimension {
    * @param type The block type to set.
    * @returns {Block} Returns the set block.
    */
-  public setBlock(location: Location, type: BlockTypes): Block {
-    const block = this.getBlock(location)
-    block.setType(type)
-
-    return block
+  public setBlock(location: Location, block: CamelToSnakeCase<BlockTypes> | Block): Block {
+    const selected = this.getBlock(location)
+    if (block instanceof Block) {
+      selected.setType(block.getType())
+      selected.setPermutation(block.getPermutation())
+      return selected
+    }
+    selected.setType(block)
+    return selected
   }
 
   /**
