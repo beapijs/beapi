@@ -85,9 +85,9 @@ export class Dimension {
    */
   public spawnItem(item: Item, location: Location): Entity | undefined {
     try {
-      const entity = this._IDimension.spawnItem(item.getIItem(), new ILocation(location.x, location.y, location.z))
+      this._IDimension.spawnItem(item.getIItem(), new ILocation(location.x, location.y, location.z))
 
-      return this._client.entities.getByIEntity(entity)
+      return this._client.entities.getLastest()
     } catch {
       return undefined
     }
@@ -101,9 +101,9 @@ export class Dimension {
    */
   public spawnEntity(id: string, location: Location): Entity | undefined {
     try {
-      const entity = this._IDimension.spawnEntity(id, new ILocation(location.x, location.y, location.z))
+      this._IDimension.spawnEntity(id, new ILocation(location.x, location.y, location.z))
 
-      return this._client.entities.getByIEntity(entity)
+      return this._client.entities.getLastest()
     } catch {
       return undefined
     }
