@@ -8,6 +8,7 @@ import { EntityManager } from '../entity'
 import { CommandManager } from '../commands'
 import { WorldManager } from '../world'
 import { ScoreboardManager } from '../scoreboard'
+import { TestManager } from '../tests'
 import { version, mcbe, protocol } from '../version'
 
 export interface Client {
@@ -65,6 +66,7 @@ export class Client extends EventEmitter {
   public readonly commands = new CommandManager(this)
   public readonly world = new WorldManager(this)
   public readonly scoreboards = new ScoreboardManager(this)
+  public readonly tests = new TestManager(this)
   public readonly currentVersion = version
   public readonly currentMCBE = mcbe
   public readonly currentProtocol = protocol
