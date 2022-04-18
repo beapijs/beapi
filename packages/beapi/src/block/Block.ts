@@ -1,5 +1,4 @@
 import type { Client, Location } from '..'
-import { snakeCaseToCamelCase } from '..'
 import { BlockType, Permutation } from './'
 import { Block as IBlock, BlockInventoryComponent, MinecraftBlockTypes } from 'mojang-minecraft'
 import { BlockInventory } from '../inventory'
@@ -29,10 +28,14 @@ export class Block {
   public setType(type: CamelToSnakeCase<BlockTypes> | BlockType): void {
     if (type instanceof BlockType) {
       this._IBlock.setType(type.getIBlockType())
+    } else if (type.includes(':')) {
+      const namespace = type.split(':')[0]
+      const id = type.split(':')[1]
+      const blockType = MinecraftBlockTypes.get(`${namespace}:${id}`)
+      this._IBlock.setType(blockType)
     } else {
-      const camel = snakeCaseToCamelCase(type) as BlockTypes
-      // @ts-ignore Not sure why it is mad. Nobu check it out.
-      this._IBlock.setType(MinecraftBlockTypes[camel])
+      const blockType = MinecraftBlockTypes.get(`minecraft:${type}`)
+      this._IBlock.setType(blockType)
     }
   }
 
