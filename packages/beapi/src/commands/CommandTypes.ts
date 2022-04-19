@@ -9,7 +9,7 @@ const BooleanConstructor = Boolean
 
 /**
  * Dedicated namespace to organize different command parameter types.
- * Namespace were chosen because they are easy to add on to and look
+ * Namespaces were chosen because they are easy to add on to and look
  * better.
  */
 export namespace CommandTypes {
@@ -84,6 +84,18 @@ export namespace CommandTypes {
     }
   }
 
+  /**
+   * Number command parameter type. When used expects user input of:
+   * ```n
+   * 1
+   * ```
+   *
+   * or
+   *
+   * ```n
+   * 0.1
+   * ```
+   */
   export class Number extends NumberConstructor {
     /**
      * Display name used when generating the command usage.
@@ -123,6 +135,18 @@ export namespace CommandTypes {
     }
   }
 
+  /**
+   * Boolean command parameter type. When used expects user input of:
+   * ```n
+   * true
+   * ```
+   *
+   * or
+   *
+   * ```n
+   * false
+   * ```
+   */
   export class Boolean extends BooleanConstructor {
     /**
      * Display name used when generating the command usage.
