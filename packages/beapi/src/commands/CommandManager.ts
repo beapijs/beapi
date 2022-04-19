@@ -224,6 +224,9 @@ export class CommandManager {
       else _schema = schemaOrCallback
     }
 
+    // TODO: if schema ensure defined schema type is in command types
+    // and that if array is structured correctly.
+
     // If callback exists then 5th argument was defined and
     // It must be the callback.
     if (callback) _callback = callback
