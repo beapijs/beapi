@@ -26,6 +26,8 @@ export class Modal<T extends Record<string, any>> {
 
     for (const rawdata of DatabaseUtil.retrieveSerializedData(this.name)) {
       const data = this.schema.deserialize(binToString(rawdata.bin))
+      // TODO: if rawdata contains fields schema does not have delete old rawdata and write new one really quick
+      // then set.
       this.documents.set(rawdata.id, new Document(this, rawdata.id, data) as Document<T> & T)
     }
   }
