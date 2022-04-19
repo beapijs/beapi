@@ -87,7 +87,7 @@ export class Entity {
   }
 
   /**
-   * Gets the entities UUID *(FIXME: unknown if persistant or not)*.
+   * Gets the entities UUID *(persistant)*.
    * @returns
    */
   public getUniqueId(): number {
