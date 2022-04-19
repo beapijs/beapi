@@ -63,7 +63,7 @@ export class Player {
   /**
    * BeAPI wrapper for the Mojang Minecraft player object.
    * Main object for interacting with a player.
-   * @param client Client regerence.
+   * @param client Client reference.
    * @param player IPlayer to wrap.
    */
   public constructor(client: Client, player: IPlayer) {
@@ -369,7 +369,7 @@ export class Player {
 
   /**
    * Attempts to get the score of the player on an objective.
-   * @param objective Object to use.
+   * @param objective Objective to use.
    * @returns
    */
   public getScore(objective: Objective): number {
