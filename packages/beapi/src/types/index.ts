@@ -1,8 +1,8 @@
 // Export all files for centralized imports.
+export * from './Block'
 export * from './Client'
 export * from './Dimension'
 export * from './ServerCommand'
-export * from './BlockEvent'
 export * from './Location'
 export * from './Gamemode'
 export * from './Commands'
