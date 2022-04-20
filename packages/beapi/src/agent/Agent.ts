@@ -66,7 +66,7 @@ export class Agent extends Entity {
 
   /**
    * Get the owner.
-   * @returns {Player} BeAPI Player
+   * @returns
    */
   public getOwner(): Player {
     return this._owner
@@ -75,7 +75,7 @@ export class Agent extends Entity {
   /**
    * Move the agent.
    * @param {AgentDirection} dir Direction.
-   * @returns {this} Agent instance.
+   * @returns
    */
   public move(dir: AgentDirection): this {
     this._owner.executeCommand(`agent move ${dir}`)
@@ -86,7 +86,7 @@ export class Agent extends Entity {
   /**
    * Rotate the agent.
    * @param {AgentRotation} dir Rotation.
-   * @returns {this} Agent Instance.
+   * @returns
    */
   public turn(dir: AgentRotation): this {
     this._owner.executeCommand(`agent turn ${dir}`)
@@ -97,7 +97,7 @@ export class Agent extends Entity {
   /**
    * Force the agent to attack.
    * @param {AgentDirection} dir Direction.
-   * @returns {this} Agent instance.
+   * @returns
    */
   public attack(dir: AgentDirection): this {
     this._owner.executeCommand(`agent attack ${dir}`)
@@ -108,7 +108,7 @@ export class Agent extends Entity {
   /**
    * Force the agent to break a block.
    * @param {AgentDirection} dir Direction.
-   * @returns {this} Agent instance.
+   * @returns
    */
   public breakBlock(dir: AgentDirection): this {
     this._owner.executeCommand(`agent destroy ${dir}`)
@@ -120,7 +120,7 @@ export class Agent extends Entity {
    * Force the agent to place a block.
    * @param {AgentDirection} dir Direction.
    * @param {number} slot Slot number.
-   * @returns {this} Agent instance.
+   * @returns
    */
   public placeBlock(dir: AgentDirection, slot = 1): this {
     this._owner.executeCommand(`agent place ${slot} ${dir}`)
@@ -131,7 +131,7 @@ export class Agent extends Entity {
   /**
    * Force the agent to till dirt.
    * @param {AgentDirection} dir Direction.
-   * @returns {this} Agent instance.
+   * @returns
    */
   public till(dir: AgentDirection): this {
     this._owner.executeCommand(`agent till ${dir}`)
@@ -142,7 +142,7 @@ export class Agent extends Entity {
   /**
    * Force agent to grab item.
    * @param {CamelToSnakeCase<keyof typeof MinecraftItemTypes>} item Item Id.
-   * @returns {this} Agent instance.
+   * @returns
    */
   public grabItem(item: CamelToSnakeCase<keyof typeof MinecraftItemTypes>): this {
     this._owner.executeCommand(`agent collect ${item}`)
@@ -155,7 +155,7 @@ export class Agent extends Entity {
    * @param {AgentDirection} dir Direction.
    * @param {number} amount Amount to drop.
    * @param {number} slot Slot number.
-   * @returns {this} Agent instance.
+   * @returns
    */
   public dropItem(dir: AgentDirection, amount = 1, slot = 1): this {
     this._owner.executeCommand(`agent drop ${slot} ${amount} ${dir}`)
