@@ -1,8 +1,7 @@
-import type AbstractEvent from '../events/AbstractEvent'
+// Regulat imports.
 import { EventEmitter } from '../polyfill'
 import { events } from '../events'
 import { PlayerManager } from '../player'
-import type { Dimension, ServerCommandResponse, ClientEvents, Awaitable, ClientOptions } from '../types'
 import { Events, world } from 'mojang-minecraft'
 import { EntityManager } from '../entity'
 import { CommandManager } from '../commands'
@@ -10,6 +9,11 @@ import { WorldManager } from '../world'
 import { ScoreboardManager } from '../scoreboard'
 import { version, mcbe, protocol } from '../version'
 
+// Type imports.
+import type AbstractEvent from '../events/AbstractEvent'
+import type { Dimension, ServerCommandResponse, ClientEvents, Awaitable, ClientOptions } from '../types'
+
+// Client Listener Type Event Overrides.
 export interface Client {
   on: (<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => Awaitable<void>) => void) &
     (<S extends string | symbol>(
@@ -57,22 +61,75 @@ export interface Client {
     (<S extends string | symbol>(event?: Exclude<S, keyof ClientEvents>) => void)
 }
 
+/**
+ * Client is the main entrypoint of BeAPI. Here is where
+ * you will interact with almost everything!
+ *
+ * ```ts
+ *  import { Client } from 'beapi-core';
+ *
+ *  const client = new Client();
+ *  ...
+ * ```
+ */
 export class Client extends EventEmitter {
+  /**
+   * Protected map to keep track of registered events.
+   */
   protected readonly _events = new Map<string, AbstractEvent>()
+  /**
+   * Protected reference to client options.
+   */
   protected readonly _options: ClientOptions
+
+  /**
+   * The main hub for interacting with and managing players in the world.
+   */
   public readonly players = new PlayerManager(this)
+  /**
+   * The main hub for interacting with and manging entities in the world.
+   */
   public readonly entities = new EntityManager(this)
+  /**
+   * The main hub for interacting with BeAPI chat commands in the world.
+   */
   public readonly commands = new CommandManager(this)
+  /**
+   * The main hub for interacting with the Minecraft world.
+   */
   public readonly world = new WorldManager(this)
+  /**
+   * The main hub for interacting with scoreboards in the world.
+   */
   public readonly scoreboards = new ScoreboardManager(this)
+  /**
+   * Current BeAPI version.
+   */
   public readonly currentVersion = version
+  /**
+   * Current MCBE version.
+   */
   public readonly currentMCBE = mcbe
+  /**
+   * Current MCBE protocol version.
+   */
   public readonly currentProtocol = protocol
 
+  /**
+   * Client is the main entrypoint of BeAPI. Here is where
+   * you will interact with almost everything!
+   *
+   * ```ts
+   *  import { Client } from 'beapi-core';
+   *
+   *  const client = new Client();
+   *  ...
+   * ```
+   * @param options Optional client options.
+   */
   public constructor(options: ClientOptions = {}) {
     super()
     this._options = options
-
     // If enableEvents array then we only
     // want to enable the events they have
     // defined.
@@ -112,12 +169,23 @@ export class Client extends EventEmitter {
     }
   }
 
+  /**
+   * Sends deprecated event message in content log.
+   * @param name Name of event
+   * @returns
+   */
   protected deprecated(name: string): void {
     return console.warn(
       `[BeAPI]: Event "${name}" appears be deprecated, skipping registration. Please report this issue here: https://github.com/MCBE-Utilities/BeAPI/issues`,
     )
   }
 
+  /**
+   * Loads a new event on the client. Events loaded MUST extend `AbstractClass`.
+   * See [events folder](https://github.com/MCBE-Utilities/BeAPI/tree/beta/packages/beapi/src/events) for formatting.
+   * @param event Non contructed event to load.
+   * @returns
+   */
   public loadEvent(event: new (client: Client) => AbstractEvent): void {
     const builtEvent = new event(this)
 
@@ -127,24 +195,51 @@ export class Client extends EventEmitter {
     builtEvent.on()
   }
 
+  /**
+   * Removes an event from the client and calls the events `off` method.
+   * @param name Name of the event.
+   */
   public removeEvent(name: string): void {
     const event = this._events.get(name)
     if (this._events.delete(name)) event?.off()
   }
 
+  /**
+   * Attempts to get an event by its name.
+   * @param name Name of the event.
+   * @returns can be `undefined`
+   */
   public getEvent(name: string): AbstractEvent | undefined {
     return this._events.get(name)
   }
 
+  /**
+   * Verifies an event is a valid Minecraft IEvent.
+   * The name `custom` returns `true` because BeAPI registers
+   * a handful of custom events not made by Minecraft.
+   * @param name Name of IEvent.
+   * @returns `true` means exists.
+   */
   public verifyIEvent(name: string): boolean {
     if (name === 'custom') return true
     return Object.keys(Events.prototype).includes(name)
   }
 
+  /**
+   * Returns an array of all Minecraft IEvents.
+   * @returns
+   */
   public getAllIEvents(): string[] {
     return Object.keys(Events.prototype)
   }
 
+  /**
+   * Executes a world level command.
+   * @param cmd Command string.
+   * @param dimension Optional dimensino to execute in.
+   * @param debug Send errors to content log?
+   * @returns
+   */
   public executeCommand<T>(cmd: string, dimension: Dimension = 'overworld', debug = false): ServerCommandResponse<T> {
     try {
       const command = world.getDimension(dimension).runCommand(cmd) as ServerCommandResponse<T>
