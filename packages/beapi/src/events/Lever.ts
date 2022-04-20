@@ -4,7 +4,7 @@ import { Block } from '../block'
 import { setProto } from '../'
 import AbstractEvent from './AbstractEvent'
 
-// FIXME: TEMP - Mojang keep on top of your typings or hire me at <Nobu : chat@nobu.sh>
+// TEMP: Mojang keep on top of your typings or hire me at <Nobu : chat@nobu.sh>
 export interface LeverActivateEvent {
   block: IBlock
   dimension: IDimension
@@ -52,7 +52,7 @@ export class Lever extends AbstractEvent {
     if (!this._registered) {
       // Subscribe to Minecraft world event with IName
       // And use bound _logic for the callback.
-      // @ts-ignore FIXME: TEMP - util Minecraft typings are updated.
+      // @ts-ignore TEMP: util Minecraft typings are updated.
       world.events[this.iName].subscribe(this._logic)
       // Set registered to true so this cannot be called
       // Again before off being called.
@@ -66,7 +66,7 @@ export class Lever extends AbstractEvent {
     if (this._registered) {
       // Remove Minecraft event listener on IName
       // With bound _logic callback.
-      // @ts-ignore FIXME: TEMP - util Minecraft typings are updated.
+      // @ts-ignore TEMP: util Minecraft typings are updated.
       world.events[this.iName].unsubscribe(this._logic)
       // Set registered to false so this cannot be called
       // Again before on being called.

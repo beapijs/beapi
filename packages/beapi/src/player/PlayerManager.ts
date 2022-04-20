@@ -18,6 +18,10 @@ export class PlayerManager {
    * Protected client circular reference.
    */
   protected readonly _client: Client
+  /**
+   * Current BeAPI runtime id.
+   */
+  protected _runtimeId = 0
 
   /**
    * Player manager is the main hub for interacting with
@@ -26,6 +30,16 @@ export class PlayerManager {
    */
   public constructor(client: Client) {
     this._client = client
+  }
+
+  /**
+   * Creates a new runtime id that can be used.
+   * *Two ids will not overlap in the same runtime
+   * but can overlap in two different runtimes.*
+   * @returns
+   */
+  public newRuntimeId(): number {
+    return this._runtimeId++
   }
 
   /**

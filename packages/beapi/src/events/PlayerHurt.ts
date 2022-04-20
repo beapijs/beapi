@@ -47,7 +47,7 @@ export class PlayerHurt extends AbstractEvent {
     if (!this._registered) {
       // Subscribe to Minecraft world event with IName
       // And use bound _logic for the callback.
-      // @ts-ignore FIXME: TEMP - util Minecraft typings are updated.
+      // @ts-ignore TEMP: util Minecraft typings are updated.
       world.events[this.iName].subscribe(this._logic)
       // Set registered to true so this cannot be called
       // Again before off being called.
@@ -61,7 +61,7 @@ export class PlayerHurt extends AbstractEvent {
     if (this._registered) {
       // Remove Minecraft event listener on IName
       // With bound _logic callback.
-      // @ts-ignore FIXME: TEMP - util Minecraft typings are updated.
+      // @ts-ignore TEMP: util Minecraft typings are updated.
       world.events[this.iName].unsubscribe(this._logic)
       // Set registered to false so this cannot be called
       // Again before on being called.

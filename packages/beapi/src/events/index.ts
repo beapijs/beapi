@@ -44,8 +44,8 @@ import { Tick } from './Tick'
 import { EntityEventTrigger } from './EntityEventTrigger'
 import { PlayerEventTrigger } from './PlayerEventTrigger'
 import { ItemEventTrigger } from './ItemEventTrigger'
-// import { PlayerScoreUpdated } from './PlayerScoreUpdated'
-// import { EntityScoreUpdated } from './EntityScoreUpdated'
+import { PlayerScoreUpdated } from './PlayerScoreUpdated'
+import { EntityScoreUpdated } from './EntityScoreUpdated'
 // import { PlayerTagsUpdated } from './PlayerTagsUpdated'
 // import { EntityTagsUpdated } from './EntityTagsUpdated'
 import { EntityHurt } from './EntityHurt'
@@ -100,10 +100,8 @@ export const events = [
   EntityEventTrigger,
   PlayerEventTrigger,
   ItemEventTrigger,
-  // FIXME: disabled until fixed see:
-  // LINK: ./EntityScoreUpdated.ts:117
-  // PlayerScoreUpdated,
-  // EntityScoreUpdated,
+  PlayerScoreUpdated,
+  EntityScoreUpdated,
   // PlayerTagsUpdated,
   // EntityTagsUpdated,
   EntityHurt,

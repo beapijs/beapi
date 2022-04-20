@@ -80,7 +80,6 @@ export class OnChat extends AbstractEvent {
     if (sender.isMuted()) arg.cancel = true
 
     // Emit event.
-    // TODO: Add methods to change targets
     this._client.emit(this.name, {
       sender,
       message: arg.message,

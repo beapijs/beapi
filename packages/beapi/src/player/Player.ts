@@ -48,6 +48,11 @@ export class Player {
    */
   protected _agent: Agent | undefined
 
+  /**
+   * Protected BeAPI runtime id for player.
+   */
+  protected readonly _runtimeId: number
+
   // Protected player states.
   protected _isSwimming = false
   protected _isInWater = false
@@ -70,6 +75,7 @@ export class Player {
     this._client = client
     this._IPlayer = player
     this._name = player.name
+    this._runtimeId = client.players.newRuntimeId()
     this._agent = this.attemptFindAgent()
   }
 
@@ -95,6 +101,14 @@ export class Player {
    */
   public getId(): string {
     return this._IPlayer.id
+  }
+
+  /**
+   * Gets BeAPI runtime ID *(non persistant)*.
+   * @returns
+   */
+  public getRuntimeId(): number {
+    return this._runtimeId
   }
 
   /**

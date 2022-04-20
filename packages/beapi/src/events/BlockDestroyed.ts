@@ -82,7 +82,7 @@ export class BlockDestroyed extends AbstractEvent {
       brokenBlock: arg.brokenBlockPermutation,
       dimension: arg.dimension,
       cancel() {
-        // FIXME: Temp Workaround Until Mojang Adds Block Destroyed Cancel Event.
+        // TEMP: Until mojang actually adds a cancel event.
         arg.block.setPermutation(arg.brokenBlockPermutation)
       },
     })

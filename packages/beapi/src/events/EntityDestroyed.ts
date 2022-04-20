@@ -46,7 +46,7 @@ export class EntityDestroyed extends AbstractEvent {
     if (!this._registered) {
       // Subscribe to Client event with needed logic
       // And use bound _logic for the callback.
-      // FIXME: TEMP - Mojang Needs To Add Entity Destroyed Event
+      // TEMP: Mojang Needs To Add Entity Destroyed Event
       this._client.addListener('Tick', this._logic)
       // Set registered to true so this cannot be called
       // Again before off being called.
@@ -60,7 +60,7 @@ export class EntityDestroyed extends AbstractEvent {
     if (this._registered) {
       // Remove Client event listener used
       // With bound _logic callback.
-      // FIXME: TEMP - Mojang Needs To Add Entity Destroyed Event
+      // TEMP: Mojang Needs To Add Entity Destroyed Event
       this._client.removeListener('Tick', this._logic)
       // Set registered to false so this cannot be called
       // Again before on being called.
