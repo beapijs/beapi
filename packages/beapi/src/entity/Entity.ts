@@ -278,7 +278,7 @@ export class Entity {
 
   /**
    * Gets entites selected slot.
-   * @returns FIXME?: Currently returns `0`...
+   * @returns
    */
   public getSelectedSlot(): number {
     return 0

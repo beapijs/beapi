@@ -113,14 +113,6 @@ export interface ClientEvents {
    */
   BlockHit: [BlockHitEvent]
   /**
-   * Emitted when a player is in the view vector of another player.
-   */
-  PlayerInViewVector: [PlayerInViewVectorEvent]
-  /**
-   * Emitted when an entity is in a players view vector.
-   */
-  EntityInViewVector: [EntityInViewVectorEvent]
-  /**
    * Emitted when a tag is added to a player prefixed with `beapi:`
    */
   PlayerTag: [PlayerTagEvent]
@@ -486,34 +478,6 @@ export interface BlockHitEvent {
    * Item that was used to punch it (or undefined).
    */
   tool: Item | undefined
-}
-
-/**
- * Player in Player view vector event trigger data.
- */
-export interface PlayerInViewVectorEvent {
-  /**
-   * Player being peeped.
-   */
-  target: Player
-  /**
-   * Player thats peeping.
-   */
-  player: Player
-}
-
-/**
- * Entity in Player view vector event trigger data.
- */
-export interface EntityInViewVectorEvent {
-  /**
-   * Entity being peeped.
-   */
-  target: Entity
-  /**
-   * Player thats peeping
-   */
-  player: Player
 }
 
 /**

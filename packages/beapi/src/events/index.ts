@@ -11,8 +11,6 @@ import { ItemEvent } from './ItemEvent'
 import { ItemDropped } from './ItemDropped'
 import { EntityCreated } from './EntityCreated'
 import { EntityDestroyed } from './EntityDestroyed'
-import { PlayerInViewVector } from './PlayerInViewVector'
-import { EntityInViewVector } from './EntityInViewVector'
 import { PlayerTag } from './PlayerTag'
 import { EntityTag } from './EntityTag'
 import { EnteredWater } from './EnteredWater'
@@ -69,8 +67,6 @@ export const events = [
   ItemDropped,
   EntityCreated,
   EntityDestroyed,
-  PlayerInViewVector,
-  EntityInViewVector,
   PlayerTag,
   EntityTag,
   EnteredWater,
