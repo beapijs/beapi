@@ -4,6 +4,11 @@ import type { Client } from '../client'
 import type { Player } from '../player'
 import { CommandTypes } from './CommandTypes'
 
+// FIXME
+// Help command pipeline
+// Command Used Event
+// Command Registered Event
+
 // Static array of command type constructors.
 const commandTypes: typeof CommandTypes[keyof typeof CommandTypes][] = []
 for (const key in CommandTypes) {

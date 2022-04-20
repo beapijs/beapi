@@ -28,7 +28,7 @@ export class PlayerScoreUpdated extends AbstractEvent {
   // Map of old scores per player.
   protected readonly oldScores = new Map<Player, OldScore[]>()
   // Protected event for ignoring next score update for player id.
-  protected ignoreNextFor: number[] = []
+  protected ignoreNextFor: Player[] = []
 
   // Predefined in AbstractEvent.
   @setProto('PlayerScoreUpdated')
@@ -113,9 +113,9 @@ export class PlayerScoreUpdated extends AbstractEvent {
         if (currentScore.score === oldScore.score) continue
 
         // If ignore next, ignore this iteration
-        if (this.ignoreNextFor.includes(entity.getRuntimeId())) {
+        if (this.ignoreNextFor.includes(entity)) {
           // Remove first occurance of their id in removeNextFor array.
-          this.ignoreNextFor.splice(this.ignoreNextFor.indexOf(entity.getRuntimeId()), 1)
+          this.ignoreNextFor.splice(this.ignoreNextFor.indexOf(entity), 1)
           continue
         }
 
@@ -126,7 +126,7 @@ export class PlayerScoreUpdated extends AbstractEvent {
           value: currentScore.score,
           old: oldScore.score,
           cancel: () => {
-            this.ignoreNextFor.push(entity.getRuntimeId())
+            this.ignoreNextFor.push(entity)
             entity.setScore(oldScore.objective, oldScore.score)
           },
         })
@@ -145,7 +145,7 @@ export class PlayerScoreUpdated extends AbstractEvent {
       try {
         entity.getIPlayer().id
       } catch {
-        this.ignoreNextFor = this.ignoreNextFor.filter((i) => i !== entity.getRuntimeId())
+        this.ignoreNextFor = this.ignoreNextFor.filter((i) => i !== entity)
         this.oldScores.delete(entity)
       }
     }
