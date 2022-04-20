@@ -67,7 +67,7 @@ export class ItemDropped extends AbstractEvent {
   }
 
   protected __logic(data: Player): void {
-    // FIXME: This is pretty unreliable, throwing an item while facing a wall will void this.
+    // TODO: This is pretty unreliable, throwing an item while facing a wall will void this.
 
     // Get block location of swing.
     const block = this._client.world.getBlock(data.getLocation(), data.getDimensionName())

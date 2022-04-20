@@ -81,7 +81,7 @@ export class BlockCreated extends AbstractEvent {
       block: new Block(this._client, arg.block),
       dimension: arg.dimension,
       cancel() {
-        // FIXME: change this to a block permutation instead.
+        // TODO: change this to a block permutation instead.
         const dim = arg.dimension
         const pos = arg.block.location
         if (player.getGamemode() === 'creative') {
