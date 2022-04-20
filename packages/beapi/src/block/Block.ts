@@ -1,4 +1,4 @@
-import type { Client, Dimension, Location } from '..'
+import type { Client, Dimension, Location, BlockComponents } from '..'
 import { BlockType, Permutation } from './'
 import type { Block as IBlock, Dimension as IDimension, BlockInventoryComponent } from 'mojang-minecraft'
 import { BlockInventory } from '../inventory'
@@ -72,12 +72,15 @@ export class Block {
     return this._IBlock.hasTag(tag)
   }
 
-  // TODO: Make typings
-  public getComponent(component: string): any {
+  public getComponent<K extends keyof BlockComponents>(component: K): BlockComponents[K] {
     return this._IBlock.getComponent(component)
   }
 
-  // TODO: make has component
+  public hasComponent<K extends keyof BlockComponents>(component: K): boolean {
+    if (this.getComponent(component) === null) return false
+
+    return true
+  }
 
   public getInventory(): BlockInventory | undefined {
     if (!this.getComponent('inventory')) return

@@ -4,7 +4,6 @@ import { genUuid, runCommand } from '..'
 // Type imports.
 import type { Entity } from '..'
 
-// Temp parse result interface.
 interface ParseResult {
   statusCode: string
   statusMessage: string
