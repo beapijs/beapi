@@ -1,19 +1,10 @@
 // Regular imports.
 import AbstractEvent from './AbstractEvent'
 import { setProto } from '../'
-import { world, Player as IPlayer, Entity as IEntity } from 'mojang-minecraft'
+import { world, Player as IPlayer, Entity as IEntity, EntityHurtEvent } from 'mojang-minecraft'
 
 // Type imports.
 import type { Client } from '../client'
-
-// FIXME: TEMP - Mojang keep on top of your typings or hire me at <Nobu : chat@nobu.sh>
-interface EntityHurtEvent {
-  cause: string
-  damage: number
-  damagingEntity: IEntity
-  hurtEntity: IEntity
-  projectile?: IEntity
-}
 
 /**
  * BeAPI player hurt event. Contains the logic
