@@ -8,4 +8,4 @@ export const version = v
 export const mcbe = '1.18.30'
 
 // Export MCBE protcol version correlating with BeAPI.
-export const protocol = 504
+export const protocol = 503
