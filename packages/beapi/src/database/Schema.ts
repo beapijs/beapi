@@ -2,7 +2,7 @@
 import { entries } from '../utils'
 
 // Type imports.
-import type { SchemaTypes } from './SchemaTypes'
+import { SchemaTypes } from './SchemaTypes'
 import type { Deserialized, Serialized } from '../types'
 
 /**
@@ -21,7 +21,16 @@ export class Schema<T extends Record<string, any>> {
    * @param definition Object schematic definition.
    */
   public constructor(definition: Record<keyof T, typeof SchemaTypes[keyof typeof SchemaTypes]>) {
-    // TODO: Be sure to verify assignments here schema types here
+    const schemaTypes: typeof SchemaTypes[keyof typeof SchemaTypes][] = []
+    for (const key in SchemaTypes) {
+      if (key) schemaTypes.push(SchemaTypes[key as keyof typeof SchemaTypes])
+    }
+
+    for (const key of Object.keys(definition)) {
+      const Type = definition[key]
+      if (!schemaTypes.includes(Type)) throw new Error(`Invalid schema type for "${key}" on schema!`)
+    }
+
     this.definition = definition
   }
 
