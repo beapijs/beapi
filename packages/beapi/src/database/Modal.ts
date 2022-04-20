@@ -74,10 +74,17 @@ export class Modal<T extends Record<string, any>> {
     for (const rawdata of DatabaseUtil.retrieveSerializedData(this.name)) {
       // Attempt to deserialize the data and convert binary to string.
       const data = this.schema.deserialize(binToString(rawdata.bin))
-      // TODO: if rawdata contains fields schema does not have delete old rawdata and write new one really quick
-      // then set.
-      // Set document in memory stored documents.
+      // Set document in current documents.
       this.documents.set(rawdata.id, new Document(this, rawdata.id, data) as Document<T> & T)
+
+      // If document had old not defined keys on it and needed migration delete from scoreboard
+      // and sync the new data.
+      if (data.__documentNeedsMigrate__) {
+        delete data.__documentNeedsMigrate__
+        const _dataRaw = DatabaseUtil.toRaw(rawdata.name, rawdata.id, rawdata.bin)
+        runCommand(`scoreboard players reset "${_dataRaw}" "${this.scoreboardName}"`)
+        this.sync(rawdata.id)
+      }
     }
   }
 

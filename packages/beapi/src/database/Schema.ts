@@ -12,6 +12,27 @@ for (const key in SchemaTypes) {
 }
 
 /**
+ * Verifies schema definition has only SchemaTypes as values, nothing else.
+ * @param definition
+ * @returns
+ */
+function verifyDefinitionTypes<T extends Record<string, string>>(
+  definition: Record<keyof T, typeof SchemaTypes[keyof typeof SchemaTypes]>,
+): string | undefined {
+  for (const key of Object.keys(definition)) {
+    const Type = definition[key]
+    if (!schemaTypes.includes(Type)) return key
+  }
+}
+
+/**
+ * Interface for needs migration header.
+ */
+interface NeedsMigrate {
+  __documentNeedsMigrate__?: boolean
+}
+
+/**
  * BeAPI database schematic builder. Used to create a schematic
  * for the data objects will be holding in the database documents.
  */
@@ -27,10 +48,8 @@ export class Schema<T extends Record<string, any>> {
    * @param definition Object schematic definition.
    */
   public constructor(definition: Record<keyof T, typeof SchemaTypes[keyof typeof SchemaTypes]>) {
-    for (const key of Object.keys(definition)) {
-      const Type = definition[key]
-      if (!schemaTypes.includes(Type)) throw new Error(`Invalid schema type for "${key}" on schema!`)
-    }
+    const bad = verifyDefinitionTypes(definition)
+    if (bad) throw new Error(`Invalid schema type found on ${bad} when creating schema!`)
 
     this.definition = definition
   }
@@ -62,17 +81,14 @@ export class Schema<T extends Record<string, any>> {
           const Type = this.definition[key]
 
           // Temporary until below.
-          if (!Type) throw Error(`Invalid Object Property "${key}", Not In Schematic. Refusing to continue...`)
+          // if (!Type) throw Error(`Invalid Object Property "${key}", Not In Schematic. Refusing to continue...`)
 
-          // TODO
           // If not defined in schema just ignore.
           // This should not affect anything anywhere because
           // there are checks in place in Modal.contructor to
           // ensure rawdata with not defined fields is rewritten
           // without those fields
-          // if (!Type) return {}
-
-          // TODO: make sure type is a valid command type.
+          if (!Type) return {}
 
           // Return key and value.
           return { [key]: Type.serialize(value as never) }
@@ -94,23 +110,21 @@ export class Schema<T extends Record<string, any>> {
    * @param raw Raw string data.
    * @returns
    */
-  public deserialize(raw: Serialized): Deserialized<T> {
+  public deserialize(raw: Serialized): Deserialized<T & NeedsMigrate> {
     // Get all entries in the given data as a 2d array.
     return (
-      entries<Deserialized<T>>(JSON.parse(raw) as Deserialized<T>)
+      entries<Deserialized<T & NeedsMigrate>>(JSON.parse(raw) as Deserialized<T>)
         // Map each key and value. Deserialzing the value of each
         // key with the pipeline. This will also functionally
         // convert the 2d array to a { [key]: deserialized_value }[]
         .map(([key, value]) => {
           const Type = this.definition[key]
 
-          // Temporary until below.
-          if (!Type) throw Error(`Invalid Object Property "${key}", Not In Schematic. Refusing to continue...`)
-
-          // TODO: if no type then we have an extra field that needs to be migrated
+          // If no type then we have an extra field that needs to be migrated
           // We will want to add `__documentNeedsMigrate__` header to tell modal
           // when filling all the persistant data to remove the uneeded fields and
           // override the last document.
+          if (!Type) return { __documentNeedsMigrate__: true }
 
           // Return key and value.
           return { [key]: Type.deserialize(value as never) }
@@ -122,7 +136,7 @@ export class Schema<T extends Record<string, any>> {
             ...item,
           }),
           {},
-        ) as T
+        ) as T & NeedsMigrate
     )
   }
 }
