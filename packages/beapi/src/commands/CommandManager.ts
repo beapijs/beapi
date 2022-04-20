@@ -2,6 +2,30 @@ import type { CommandEntry, CommandOptions, CommandCallable, CommandArguments, O
 import { checkObjectForCommandTypes, CommandExecState } from '.'
 import type { Client } from '../client'
 import type { Player } from '../player'
+import { CommandTypes } from './CommandTypes'
+
+// Static array of command type constructors.
+const commandTypes: typeof CommandTypes[keyof typeof CommandTypes][] = []
+for (const key in CommandTypes) {
+  if (key) commandTypes.push(CommandTypes[key as keyof typeof CommandTypes])
+}
+
+/**
+ * Verifies command schema has only command types as values
+ * or [CommandType, boolean] otherwise returns key of the invalid.
+ * @param schema
+ * @returns
+ */
+function verifyDefinitionTypes<T extends CommandArguments>(schema: T): string | undefined {
+  for (const key of Object.keys(schema)) {
+    const v = schema[key]
+    if (Array.isArray(v)) {
+      if (v.length > 2) return key
+      if (!commandTypes.includes(v[0])) return key
+      if (typeof v[1] !== 'boolean') return key
+    } else if (!commandTypes.includes(v)) return key
+  }
+}
 
 /**
  * Primary class for interacting with BeAPI commands.
@@ -224,12 +248,18 @@ export class CommandManager {
       else _schema = schemaOrCallback
     }
 
-    // TODO: if schema ensure defined schema type is in command types
-    // and that if array is structured correctly.
-
     // If callback exists then 5th argument was defined and
     // It must be the callback.
     if (callback) _callback = callback
+
+    // Verify everything on the schema is correct
+    if (_schema) {
+      const check = verifyDefinitionTypes(_schema)
+      if (check)
+        throw new Error(
+          `Invalid argument schema when registering command "${name}". Key "${check}" expected a CommandType or [CommandType, boolean]!`,
+        )
+    }
 
     // Create a new command entry.
     const entry: CommandEntry<T> = {

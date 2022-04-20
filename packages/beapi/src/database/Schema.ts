@@ -49,7 +49,7 @@ export class Schema<T extends Record<string, any>> {
    */
   public constructor(definition: Record<keyof T, typeof SchemaTypes[keyof typeof SchemaTypes]>) {
     const bad = verifyDefinitionTypes(definition)
-    if (bad) throw new Error(`Invalid schema type found on ${bad} when creating schema!`)
+    if (bad) throw new Error(`Invalid SchemaType found on key "${bad}" when creating schema!`)
 
     this.definition = definition
   }
@@ -66,7 +66,7 @@ export class Schema<T extends Record<string, any>> {
       // Throw new error.
       // TODO: redo database to make all fields optional by default
       if (data[key] === undefined || data[key] === null)
-        throw Error(`Attempted To Serialize Data That Is Missing Required Property "${key}". Refusing to continue...`)
+        throw Error(`Attempted to serialize data that is missing required property "${key}". Refusing to continue...`)
     }
 
     // Return serialized object JSON string.
