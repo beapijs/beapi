@@ -60,5 +60,5 @@ export const client = new Client({
 // Create New Timers Util
 const timers = new Timers()
 
-// Start Timers
+// Start Timerss
 timers.start(client)
