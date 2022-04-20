@@ -4,11 +4,6 @@ import type { Client } from '../client'
 import type { Player } from '../player'
 import { CommandTypes } from './CommandTypes'
 
-// FIXME
-// Help command pipeline
-// Command Used Event
-// Command Registered Event
-
 // Static array of command type constructors.
 const commandTypes: typeof CommandTypes[keyof typeof CommandTypes][] = []
 for (const key in CommandTypes) {
@@ -68,6 +63,20 @@ export class CommandManager {
   public constructor(client: Client) {
     this._client = client
 
+    // Create help command ahead of time
+    this.register(
+      'help',
+      'Get help on all registered commands!',
+      {
+        aliases: ['h'],
+      },
+      {
+        command: [CommandTypes.String, true],
+      },
+      this.onHelpCommand,
+    )
+
+    // Enable command handler.
     this.enable()
   }
 
@@ -95,6 +104,14 @@ export class CommandManager {
     if (this._enabled) return
     this._enabled = true
     this._client.addListener('OnChat', this.__onChatHandler)
+  }
+
+  /**
+   * Gets circular client reference.
+   * @returns
+   */
+  public getClient(): Client {
+    return this._client
   }
 
   /**
@@ -281,6 +298,14 @@ export class CommandManager {
     // Set it in commands map.
     this._commands.set(name, entry)
 
+    // Emit command registered event
+    this._client.emit('CommandRegistered', {
+      command: entry,
+      cancel: () => {
+        this._commands.delete(name)
+      },
+    })
+
     // Return the new entry.
     return entry
   }
@@ -322,5 +347,21 @@ export class CommandManager {
       player.sendMessage(`§c§¢${messageContent}`)
       // console.error(messageContent)
     }
+  }
+
+  /**
+   * Called when help command is called.
+   * If you would like to custom style your
+   * help command you can reassign this method to
+   * your own like so:
+   *
+   * ```ts
+   * client.command.onHelpCommand = (player, args) => {
+   *  ... My logic handling sending response
+   * }
+   * ```
+   */
+  public onHelpCommand(player: Player, args: { command: string | undefined | null }): void {
+    player.sendMessage(args.command ?? 'Help commando')
   }
 }

@@ -183,6 +183,21 @@ export class CommandExecState {
     // If arguments are undefined we assume it was an error so return.
     if (!args) return
 
+    // Emit command used event
+    let cancel = false
+    this._manager.getClient().emit('CommandUsed', {
+      command: this._cmdRef,
+      sender: this._player,
+      args,
+      cancel: () => {
+        cancel = true
+      },
+    })
+
+    // If cancelled return.
+    // Cancels must be syncronous and pretty instant.
+    if (cancel) return
+
     // If all is well then we call the commands callback with the player
     // and the final constructed arguments.
     this._cmdRef.call(this._player, args as never)

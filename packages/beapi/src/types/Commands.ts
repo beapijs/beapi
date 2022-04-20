@@ -88,10 +88,10 @@ export interface CommandPartial<T extends CommandArguments> {
  */
 export type RemapCommandArguments<T extends Record<string, any>> = {
   [key in keyof T]: T[key] extends [CommandArgumentTypes, boolean]
-    ? T[key][0] extends true
-      ? ReturnType<T[key][0]['extract']> | undefined | null
-      : ReturnType<T[key][0]['extract']>
-    : ReturnType<T[key]['extract']>
+    ? T[key][1] extends true
+      ? NonNullable<ReturnType<T[key][0]['extract']>> | undefined | null
+      : NonNullable<ReturnType<T[key][0]['extract']>>
+    : NonNullable<ReturnType<T[key]['extract']>>
 }
 
 /**
