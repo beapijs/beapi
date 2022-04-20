@@ -27,7 +27,7 @@ body:
       options:
         - label: I have read the [Issues Contributing Guidelines](https://github.com/MCBE-Utilities/BeAPI/blob/beta/CONTRIBUTING.md#issues).
           required: true
-  
+
   - type: checkboxes
     attributes:
       label: Prerequisites
@@ -37,14 +37,14 @@ body:
         - label: I have tried deleting and reinstalling `node_modules`?
         - label: I have successfully made a reproduction repository for the bug?
         - label: I have ensured the stack trace points to BeAPI core script?
-  
+
   - type: textarea
     attributes:
       label: Description
       description: A clear and concise description of what the bug is.
     validations:
       required: true
-  
+
   - type: input
     attributes:
       label: Reproducible demo
