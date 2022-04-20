@@ -35,6 +35,9 @@ interface NeedsMigrate {
 /**
  * BeAPI database schematic builder. Used to create a schematic
  * for the data objects will be holding in the database documents.
+ *
+ * Think of this as a blueprint for a folder. This is telling us exactly
+ * what the files inside can contain.
  */
 export class Schema<T extends Record<string, any>> {
   /**

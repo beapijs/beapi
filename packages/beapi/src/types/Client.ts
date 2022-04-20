@@ -635,7 +635,7 @@ export interface CommandRegisteredEvent {
   /**
    * Command registered.
    */
-  command: CommandEntry<never> | undefined
+  command: CommandEntry<never>
   /**
    * Cancel registery.
    */
@@ -649,15 +649,15 @@ export interface CommandUsedEvent {
   /**
    * Command that was used.
    */
-  command: CommandEntry<never> | undefined
+  command: CommandEntry<never>
   /**
    * Player attempting to use command.
    */
-  sender: Player | undefined
+  sender: Player
   /**
    * Arguments from command?
    */
-  args: string[]
+  args: Record<string, any>
   /**
    * Cancel the command result.
    */
