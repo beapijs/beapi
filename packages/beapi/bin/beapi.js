@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 
-// Requires needed for this specific use case
-/* eslint-disable @typescript-eslint/no-require-imports */
-/* eslint-disable @typescript-eslint/no-var-requires */
-// Typescript Rule
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable */
 
 const {
   YARG_LOCALE,
@@ -26,6 +22,7 @@ const {
   asyncModuleMatcher,
   comLog,
   bundleLog,
+  warnLog,
 } = require('./utils')
 const fs = require('fs')
 const path = require('path')
@@ -97,6 +94,8 @@ function build() {
   // Creates modules folder
   fs.mkdirSync(path.resolve(`${scriptRoute}/beapi_modules`))
 
+  // PMK: Copies all resources listed in files
+  copyResources(package)
   // PMK: Copies all modules
   copyModules(package)
 
@@ -157,6 +156,64 @@ function copyModules(package) {
   }
 }
 
+const nocopy = [
+  'scripts',
+  'src',
+  'pack_icon.png',
+  'manifest.json',
+  'dist',
+  'node_modules',
+  'package.json',
+  'package-lock.json'
+]
+
+// PMK: Copy files includes module files
+function copyResources(package) {
+  copyLog(`Recursively copying all includes module files to "${getFileName(cwd)}"`)
+  const files = []
+  for (const dep of Object.keys(package.dependencies)) {
+    const modulePath = path.resolve(`${cwd}/node_modules/${dep}`)
+    const modulePackage = readPackage(modulePath)
+    if (!modulePackage.beapiModule || !modulePackage.files) continue
+    for (const resource of modulePackage.files) {
+      if (nocopy.includes(resource)) continue
+      const resourcePath = path.resolve(`${cwd}/node_modules/${dep}/${resource}`)
+      if (!fs.existsSync(resourcePath)) {
+        warnLog(`The included file "${resource}" does not exist in the main root... skipping file.`)
+
+        continue
+      }
+      if (resource.includes('.')) {
+        files.push({
+          name: resource,
+          path: resourcePath,
+          type: 'file',
+        })
+      } else {
+        files.push({
+          name: resource,
+          path: resourcePath,
+          type: 'folder',
+        })
+      }
+    }
+  }
+  for (const folder of files.filter((x) => x.type === 'folder')) {
+    const newPath = path.resolve(`${cwd}/${folder.name}`)
+    copyLog(`Recursively copying "${folder.name}" to "${getFileName(cwd)}\\${getFileName(newPath)}"`)
+    if (!fs.existsSync(newPath)) fs.mkdirSync(newPath)
+    recursiveCopySync(
+      path.resolve(`${folder.path}`),
+      path.resolve(`${cwd}/${folder.name}`),
+    )
+  }
+  for (const file of files.filter((x) => x.type === 'file')) {
+    const newPath = path.resolve(`${cwd}/${file.name}`)
+    copyLog(`Recursively copying "${file.name}" to "${getFileName(cwd)}\\${getFileName(newPath)}"`)
+    fs.copyFileSync(file.path, newPath)
+  }
+}
+
 function linkModules(package) {
   for (const dep of Object.keys(package.dependencies)) {
     const modulePath = path.resolve(`${cwd}/node_modules/${dep}`)
@@ -166,13 +223,14 @@ function linkModules(package) {
     const syncAltMatcher = syncAltModuleMatcher(dep)
     const asyncMatcher = asyncModuleMatcher(dep)
     for (const file of walkDirSync(scriptRoute)) {
+      // OLD: package.main.split('/')[1]
+      const modulePathSplit = modulePackage.main.split('/')
+      const modulePath = modulePathSplit.filter((x) => x !== modulePathSplit[0]).join('/')
       const router = path
         .relative(file, scriptRoute)
         .substring(3)
         .replace(/\\|\\\\/g, '/')
-      const module = `${router.length ? '' : '.'}${router}/beapi_modules/${dep.replace(/\\|\\\\|\//g, '-')}/${
-        package.main.split('/')[1]
-      }`
+      const module = `${router.length ? '' : '.'}${router}/beapi_modules/${dep.replace(/\\|\\\\|\//g, '-')}/${modulePath}`
       const contents = fs.readFileSync(file, 'utf-8')
       fs.writeFileSync(
         file,

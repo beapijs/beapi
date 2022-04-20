@@ -4,6 +4,7 @@
   "description": "MCBE gametest wrapper monorepo",
   "private": true,
   "scripts": {
+    "i": "npm install && npm run i --workspaces",
     "build": "npm run build --workspaces",
     "clean": "rimraf packages/*/dist packages/*/*.tsbuildinfo",
     "commit": "commit",
@@ -12,8 +13,9 @@
     "lint:fix": "eslint packages --ext mjs,js,ts --fix",
     "prepare": "husky install",
     "pretest": "npm run build",
-    "release": "env-cmd lerna publish",
-    "release-beta": "env-cmd lerna publish --canary --preid beta",
+    "lerna": "env-cmd lerna",
+    "canary-release": "env-cmd lerna publish --conventional-prerelease --pre-dist-tag beta --preid beta",
+    "graduate-release": "env-cmd lerna publish --conventional-graduate",
     "test": "jest --pass-with-no-tests",
     "test:ci": "jest --no-stack-trace --verbose --pass-with-no-tests"
   },

@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-require-imports */
-/* eslint-disable @typescript-eslint/no-var-requires */
-// @ts-check
+/* eslint-disable */
 
 const chalk = require('chalk')
 const fs = require('fs')

@@ -1,48 +1,25 @@
-import { Client } from './client'
-import { Timers } from './polyfill/Timers'
+// Initialize the polyfill.
+import './poly'
 
-const log = console.warn
-
-// Override Default Console Methods
-// @ts-expect-error
-globalThis.console = {
-  log(message: string, ...optionalParams: string[]) {
-    log(`§9[BeAPI]§r §b[LOG]:§r ${message} ${optionalParams.join(' ')}`)
-  },
-  error(message: string, ...optionalParams: string[]) {
-    log(`§9[BeAPI]§r  §c[ERROR]:§r ${message} ${optionalParams.join(' ')}`)
-  },
-  warn(message: string, ...optionalParams: string[]) {
-    log(`§9[BeAPI]§r  §g[WARN]:§r ${message} ${optionalParams.join(' ')}`)
-  },
-  info(message: string, ...optionalParams: string[]) {
-    log(`§9[BeAPI]§r  §a[INFO]:§r ${message} ${optionalParams.join(' ')}`)
-  },
-  debug(message: string, ...optionalParams: string[]) {
-    log(`§9[BeAPI]§r  §d[DEBUG]:§r ${message} ${optionalParams.join(' ')}`)
-  },
-}
-
-// Create New Timers Util
-const timers = new Timers()
-
-// Initialize Client
-const client = new Client()
-
-// Start Timers
-timers.start(client)
-
-// Exports
-export { client }
-
+// BeAPI exports.
 export * from './types'
+export * from './decorators'
 export * from './database'
+export * from './agent'
+export * from './block'
 export * from './client'
 export * from './commands'
 export * from './entity'
 export * from './events'
+export * from './forms'
+export * from './inventory'
+export * from './item'
 export * from './player'
 export * from './polyfill'
 export * from './utils'
 export * from './world'
 export * from './version'
+
+// Circular Mojang exports.
+export * as Minecraft from 'mojang-minecraft'
+export * as Gametest from 'mojang-gametest'

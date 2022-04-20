@@ -1,6 +1,6 @@
 {
   "name": "create-beapi",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "license": "MIT",
   "author": "MCBE - Utilites",
   "main": "index.js",
@@ -16,6 +16,7 @@
     "cba": "index.js"
   },
   "scripts": {
+    "i": "npm install",
     "build": "echo \"create-beapi does not need compilation\" && exit 0"
   },
   "repository": {

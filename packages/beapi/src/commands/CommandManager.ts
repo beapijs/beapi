@@ -1,204 +1,367 @@
+import type { CommandEntry, CommandOptions, CommandCallable, CommandArguments, OnChatEvent } from '../types'
+import { checkObjectForCommandTypes, CommandExecState } from '.'
 import type { Client } from '../client'
-import type { Command, CommandCallback, CommandOptions, ParseResult, OnChatEvent } from '../types'
+import type { Player } from '../player'
+import { CommandTypes } from './CommandTypes'
 
-const defaultPrefix = '-'
+// Static array of command type constructors.
+const commandTypes: typeof CommandTypes[keyof typeof CommandTypes][] = []
+for (const key in CommandTypes) {
+  if (key) commandTypes.push(CommandTypes[key as keyof typeof CommandTypes])
+}
 
+/**
+ * Verifies command schema has only command types as values
+ * or [CommandType, boolean] otherwise returns key of the invalid.
+ * @param schema
+ * @returns
+ */
+function verifyDefinitionTypes<T extends CommandArguments>(schema: T): string | undefined {
+  for (const key of Object.keys(schema)) {
+    const v = schema[key]
+    if (Array.isArray(v)) {
+      if (v.length > 2) return key
+      if (!commandTypes.includes(v[0])) return key
+      if (typeof v[1] !== 'boolean') return key
+    } else if (!commandTypes.includes(v)) return key
+  }
+}
+
+/**
+ * Primary class for interacting with BeAPI commands.
+ *
+ * Mach 3 bb <3
+ */
 export class CommandManager {
-  protected readonly _client: Client
-  protected readonly _handlers = new Map<string, CommandHandler>()
-  protected readonly _commands = new Map<string, Command>()
-  protected readonly __onChatLogic = this._onChatLogic.bind(this)
+  /**
+   * Reference to main client object.
+   */
+  protected _client: Client
+  /**
+   * Map containing all command entries.
+   */
+  protected _commands = new Map<string, CommandEntry<never>>()
 
+  /**
+   * Command manager should be used?
+   */
+  protected _enabled = false
+
+  /**
+   * Prefix to use.
+   */
+  protected _prefix = '-'
+
+  /**
+   * Bound handler reference.
+   */
+  protected __onChatHandler = this._onChatHandler.bind(this)
+
+  /**
+   * ...
+   */
   public constructor(client: Client) {
     this._client = client
 
-    // Register Default Commands
+    // Create help command ahead of time
     this.register(
+      'help',
+      'Get help on all registered commands!',
       {
-        name: 'help',
-        description: `Displays a list of available commands.`,
         aliases: ['h'],
       },
-      (data) => {
-        data.sender.sendMessage('§bShowing all Available Commands:')
-        this.getAll().forEach((c) => {
-          if (c.options.hidden) return
-          data.sender.sendMessage(`  §7${defaultPrefix}${c.options.name}§r §o§8${c.options.description}`)
-        })
-      },
-    )
-    this.register(
       {
-        name: 'about',
-        description: 'Shows info about the server.',
-        aliases: ['ab'],
+        command: [CommandTypes.String, true],
       },
-      (data) => {
-        data.sender.sendMessage(
-          `§7This server is running §9BeAPI v${this._client.currentVersion}§7 for §aMinecraft: Bedrock Edition v${this._client.currentMCBE}§7.`,
-        )
-      },
+      this.onHelpCommand,
     )
 
-    this._client.on('OnChat', this.__onChatLogic)
+    // Enable command handler.
+    this.enable()
   }
 
-  protected _onChatLogic(data: OnChatEvent): void {
-    if (!data.sender || !data.message.startsWith('-')) return
-    const result = parse(defaultPrefix, data.message)
-    const command =
-      this._commands.get(result.command) ??
-      Array.from(this._commands.values()).find((i) => i.options.aliases?.includes(result.command))
-    if (!command) {
-      data.sender.sendMessage("§c§cThis command doesn't exists!")
-
-      return data.cancel()
-    }
-    command.cb({
-      sender: data.sender,
-      args: result.args,
-    })
-    data.cancel()
+  /**
+   * Logic for try executing commands when chat is used.
+   * @param e On chat event.
+   */
+  protected _onChatHandler(e: OnChatEvent): void {
+    return this.tryExecuteFrom(e.message, e.sender!, e)
   }
 
+  /**
+   * Disable command manager.
+   */
   public disable(): void {
-    this._client.removeListener('OnChat', this.__onChatLogic)
+    if (!this._enabled) return
+    this._enabled = false
+    this._client.removeListener('OnChat', this.__onChatHandler)
   }
 
-  public createHandler(prefix: string): CommandHandler {
-    if (this._handlers.has(prefix) || prefix === defaultPrefix) {
-      throw new Error(`CommandHandler with prefix "${prefix}" already exists. Cannot exceed 1!`)
-    }
-    const handler = new CommandHandler(this._client, this, prefix)
-    this._handlers.set(prefix, handler)
-    return handler
+  /**
+   * Enable command manager.
+   */
+  public enable(): void {
+    if (this._enabled) return
+    this._enabled = true
+    this._client.addListener('OnChat', this.__onChatHandler)
   }
 
-  public removeHandler(prefix: string): void {
-    this._handlers.delete(prefix)
+  /**
+   * Gets circular client reference.
+   * @returns
+   */
+  public getClient(): Client {
+    return this._client
   }
 
-  public getHandler(prefix: string): CommandHandler | undefined {
-    return this._handlers.get(prefix)
+  /**
+   * Get command manager enabled status.
+   * @returns {boolean}
+   */
+  public getEnabled(): boolean {
+    return Boolean(this._enabled)
   }
 
-  public getHandlers(): Map<string, CommandHandler> {
-    return this._handlers
+  /**
+   * Change the current prefix to something different.
+   * @param {string} prefix New prefix to use.
+   */
+  public setPrefix(prefix: string): void {
+    this._prefix = prefix
   }
 
-  public setHandler(prefix: string, handler: CommandHandler): void {
-    if (this._handlers.has(prefix) || prefix === defaultPrefix) {
-      throw new Error(`CommandHandler with prefix "${prefix}" already exists. Cannot exceed 1!`)
-    }
-    this._handlers.set(prefix, handler)
-  }
-
-  public register(options: CommandOptions, cb: CommandCallback): void {
-    this._commands.set(options.name, {
-      options,
-      cb,
-    })
-  }
-
-  public unregister(name: string): void {
-    this._commands.delete(name)
-  }
-
-  public get(name: string): Command | undefined {
-    return this._commands.get(name) ?? Array.from(this.getAll().values()).find((c) => c.options.aliases?.includes(name))
-  }
-
-  public getAll(): Map<string, Command> {
-    return this._commands
-  }
-}
-
-export class CommandHandler {
-  protected readonly _client: Client
-  protected readonly _cm: CommandManager
-  protected readonly _commands = new Map<string, Command>()
-  protected prefix: string
-  public constructor(client: Client, cm: CommandManager, prefix: string) {
-    this._client = client
-    this._cm = cm
-    this.prefix = prefix
-
-    // Register Default Commands
-    this.register(
-      {
-        name: 'help',
-        description: `Displays a list of available commands.`,
-        aliases: ['h'],
-      },
-      (data) => {
-        data.sender.sendMessage('§bShowing all Available Commands:')
-        this.getAll().forEach((c) => {
-          if (c.options.hidden) return
-          data.sender.sendMessage(`  §7${this.prefix}${c.options.name}§r §o§8${c.options.description}`)
-        })
-      },
-    )
-
-    this._client.on('OnChat', (data) => {
-      if (!data.sender || !data.message.startsWith(this.getPrefix())) return
-      const result = parse(this.prefix, data.message)
-      const command =
-        this._commands.get(result.command) ??
-        Array.from(this._commands.values()).find((i) => i.options.aliases?.includes(result.command))
-      if (!command) {
-        data.sender.sendMessage("§c§cThis command doesn't exists!")
-
-        return data.cancel()
-      }
-      command.cb({
-        sender: data.sender,
-        args: result.args,
-      })
-      data.cancel()
-    })
-  }
-
-  public changePrefix(prefix: string): void {
-    if (this._cm.getAll().has(prefix) || prefix === defaultPrefix) {
-      throw new Error(`Cannot change prefix to "${prefix}". Another command handler already reserves that prefix!`)
-    }
-    this._cm.removeHandler(this.prefix)
-    this.prefix = prefix
-    this._cm.setHandler(prefix, this)
-  }
-
+  /**
+   * Get the current prefix.
+   * @returns {string}
+   */
   public getPrefix(): string {
-    return String(this.prefix)
+    return this._prefix
   }
 
-  public register(options: CommandOptions, cb: CommandCallback): void {
-    this._commands.set(options.name, {
-      options,
-      cb,
-    })
-  }
-
-  public unregister(name: string): void {
-    this._commands.delete(name)
-  }
-
-  public get(name: string): Command | undefined {
-    return this._commands.get(name) ?? Array.from(this.getAll().values()).find((c) => c.options.aliases?.includes(name))
-  }
-
-  public getAll(): Map<string, Command> {
+  /**
+   * Get all commands as a map.
+   * @returns {Map<string, CommandEntry<never>>}
+   */
+  public getAll(): Map<string, CommandEntry<never>> {
     return this._commands
   }
-}
 
-export function parse(prefix: string, content: string): ParseResult {
-  const split = content
-    .replace(prefix, '')
-    .split(' ')
-    .filter((i) => i.length)
-  const command = split.shift()
-  return {
-    command: command ?? '',
-    args: split,
+  /**
+   * Get all commands as an array.
+   * @returns {CommandEntry<never>[]}
+   */
+  public getAllAsArray(): CommandEntry<never>[] {
+    return Array.from(this._commands.values())
+  }
+
+  /**
+   * Get command by its name.
+   * @param name Name of command.
+   * @returns {CommandEntry<never> | undefined}
+   */
+  public getCommand(name: string): CommandEntry<never> | undefined {
+    return this._commands.get(name)
+  }
+
+  /**
+   * Register a new command with no extra options and no arguments.
+   * @param name Name of command.
+   * @param description Description of command.
+   * @param callback Callback method.
+   * @returns
+   */
+  public register(name: string, description: string, callback: CommandCallable<never>): CommandEntry<never>
+  /**
+   * Register a new command with extra options and no arguments.
+   * @param name Name of command.
+   * @param description Description of command.
+   * @param options Extra options.
+   * @param callback Callback method.
+   * @returns
+   */
+  public register(
+    name: string,
+    description: string,
+    options: CommandOptions,
+    callback: CommandCallable<never>,
+  ): CommandEntry<never>
+  /**
+   * Register a new command with arguments and no extra options.
+   * @param name Name of command.
+   * @param description Description of command.
+   * @param schema Command arguments.
+   * @param callback Callback method.
+   * @returns
+   */
+  public register<T extends CommandArguments>(
+    name: string,
+    description: string,
+    schema: T,
+    callback: CommandCallable<T>,
+  ): CommandEntry<T>
+  /**
+   * Register a new command with arguments and extra options.
+   * @param name Name of command.
+   * @param description Description of command.
+   * @param options Command arguments.
+   * @param schema Command arguments.
+   * @param callback Callback method.
+   * @returns
+   */
+  public register<T extends CommandArguments>(
+    name: string,
+    description: string,
+    options: CommandOptions,
+    schema: T,
+    callback: CommandCallable<T>,
+  ): CommandEntry<T>
+  /**
+   * Implementation Function
+   * @param name Name of command.
+   * @param description Description of command.
+   * @param optionsSchemaOrCallback Can be either options, schema, or callback.
+   * @param schemaOrCallback Can be either schema or callback.
+   * @param callback Callback method.
+   * @returns
+   */
+  public register<T extends CommandArguments>(
+    name: string,
+    description: string,
+    optionsSchemaOrCallback: CommandOptions | T | CommandCallable<T>,
+    schemaOrCallback?: T | CommandCallable<T>,
+    callback?: CommandCallable<T>,
+  ): CommandEntry<T> {
+    /**
+     * Command options, can be undefined.
+     */
+    let _options: CommandOptions | undefined
+
+    /**
+     * Command argument schema, can be undefined.
+     */
+    let _schema: T | undefined
+
+    /**
+     * Command callback, cannot be undefined.
+     */
+    let _callback: CommandCallable<T>
+
+    // If optionsSchemaOrCallback is a function then it must be the callback.
+    if (typeof optionsSchemaOrCallback === 'function')
+      // Assign callback to optionsSchemaOrCallback.
+      _callback = optionsSchemaOrCallback
+    // Use checkObjectForCommandTypes on optionsSchemaOrCallback if it
+    // returns true then it must be the argument schema.
+    else if (checkObjectForCommandTypes(optionsSchemaOrCallback))
+      // Assign arguments schema to optionsSchemaOrCallback.
+      _schema = optionsSchemaOrCallback as T
+    // No other options so must be extra options. Assign options
+    // to optionsSchemaOrCallback.
+    else _options = optionsSchemaOrCallback as CommandOptions
+
+    // If schemaOrCallback exists then there is a 4th parameter that
+    // needs to be handled.
+    if (schemaOrCallback) {
+      // If schemaOrCallback is typeof function then assign callback
+      // to schemaOrCallback because it has to be callback.
+      if (typeof schemaOrCallback === 'function') _callback = schemaOrCallback
+      // Else assign schema to schemaOrCallback because if its not
+      // Callback it must be argument schema.
+      else _schema = schemaOrCallback
+    }
+
+    // If callback exists then 5th argument was defined and
+    // It must be the callback.
+    if (callback) _callback = callback
+
+    // Verify everything on the schema is correct
+    if (_schema) {
+      const check = verifyDefinitionTypes(_schema)
+      if (check)
+        throw new Error(
+          `Invalid argument schema when registering command "${name}". Key "${check}" expected a CommandType or [CommandType, boolean]!`,
+        )
+    }
+
+    // Create a new command entry.
+    const entry: CommandEntry<T> = {
+      name,
+      description,
+      // // @ts-expect-error Does not need to be defined
+      ...(_options ?? {}),
+      // // @ts-expect-error Does not need to be defined
+      schema: _schema ?? {},
+      // @ts-expect-error Will always be defined
+      call: _callback,
+    }
+
+    // Set it in commands map.
+    this._commands.set(name, entry)
+
+    // Emit command registered event
+    this._client.emit('CommandRegistered', {
+      command: entry,
+      cancel: () => {
+        this._commands.delete(name)
+      },
+    })
+
+    // Return the new entry.
+    return entry
+  }
+
+  /**
+   * Attempts to delete a command based off
+   * its name.
+   * @param {string} name Name of the command.
+   * @returns {boolean}
+   */
+  public unregister(name: string): boolean {
+    return this._commands.delete(name)
+  }
+
+  /**
+   * Acts like an eval function for commands.
+   * Takes in a string and trys to parse and execute
+   * it as a command.
+   *
+   * Also needs a player to pipe data to.
+   *
+   * @param str Command String.
+   * @param player Player executor.
+   */
+  public tryExecuteFrom(str: string, player: Player, e: OnChatEvent): void {
+    // If string does not start with prefix
+    // no need to continue.
+    if (!str.startsWith(this._prefix)) return
+    e.cancel()
+
+    // Create a new command execution state
+    const state = new CommandExecState(this, player, str)
+
+    // Try to execute new command state.
+    try {
+      state.tryExecute()
+    } catch (error) {
+      const messageContent = (error as Error).message
+      player.sendMessage(`§c§¢${messageContent}`)
+      // console.error(messageContent)
+    }
+  }
+
+  /**
+   * Called when help command is called.
+   * If you would like to custom style your
+   * help command you can reassign this method to
+   * your own like so:
+   *
+   * ```ts
+   * client.command.onHelpCommand = (player, args) => {
+   *  ... My logic handling sending response
+   * }
+   * ```
+   */
+  public onHelpCommand(player: Player, args: { command: string | undefined | null }): void {
+    player.sendMessage(args.command ?? 'Help commando')
   }
 }

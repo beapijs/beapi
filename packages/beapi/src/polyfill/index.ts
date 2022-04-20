@@ -1,2 +1,4 @@
+// Export other polyfills for centralized imports
 export * from './EventEmitter'
-export * from './Timers'
+
+// DO NOT EXPORT TIMERS.

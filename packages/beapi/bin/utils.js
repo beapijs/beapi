@@ -1,6 +1,5 @@
-// Requires needed for this specific use case
-/* eslint-disable @typescript-eslint/no-require-imports */
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable */
+
 const chalk = require('chalk')
 const fs = require('fs')
 const path = require('path')
@@ -202,12 +201,15 @@ function verifyPackage(p) {
 function generateNewUuids(m, onlyIfNotPresent = true) {
   const uuid1 = m.header.uuid
   const uuid2 = m.modules[0].uuid
+  const uuid3 = m.modules[1]?.uuid
   if (onlyIfNotPresent) {
     if (uuid1.includes('UUID1')) m.header.uuid = v4()
     if (uuid2.includes('UUID2')) m.modules[0].uuid = v4()
+    if (uuid3?.includes('UUID3')) m.modules[1].uuid = v4()
   } else {
-    m.header.uuid = v4()
-    m.modules[0].uuid = v4()
+    if (uuid1) m.header.uuid = v4()
+    if (uuid2) m.modules[0].uuid = v4()
+    if (uuid3) m.modules[1].uuid = v4()
   }
 
   return m
@@ -219,7 +221,7 @@ function generateNewUuids(m, onlyIfNotPresent = true) {
  * @returns {string}
  */
 function pkgMainToPath(m) {
-  const primaryRoute = m.split(/\/|\\|\\\\/).filter((i) => i.length > 0)[0]
+  const primaryRoute = m.split(/\/|\/\/|\\|\\\\/).filter((i) => i.length > 0 && i !== '.')[0]
 
   return primaryRoute.toLowerCase().endsWith('.js') ? '' : primaryRoute
 }
