@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-beta.4](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.3.0-beta.3...beapi-core@2.3.0-beta.4) (2022-04-20)
+
+
+### Bug Fixes
+
+* add warning to enableEvents client option ([d983640](https://github.com/MCBE-Utilities/BeAPI/commit/d983640c3d87638745f57e892adfc075537b9bb3))
+* **block:** updated to use new inventory ([a33a505](https://github.com/MCBE-Utilities/BeAPI/commit/a33a5052622c7079d922710b931ec050a9d349d6))
+* **cli:** build command broke due to non existant uuids ([214b9e2](https://github.com/MCBE-Utilities/BeAPI/commit/214b9e21732c1be197ee61c5d3cc279d04ad3558))
+* **core:** version bump ([35fc33b](https://github.com/MCBE-Utilities/BeAPI/commit/35fc33b07e783fb9ce814025586fc8491523f3cc))
+* **enchantments:** attempt fix enchantments...? ([a8aa33f](https://github.com/MCBE-Utilities/BeAPI/commit/a8aa33fbc1dba3cf35a39f4cc58228594207b219))
+* **entities:** updated getByNameTag ([23afbe7](https://github.com/MCBE-Utilities/BeAPI/commit/23afbe76bba26d695053c5e1f40aec71b5049def))
+* **events:** added some events to use the new Item ([8241982](https://github.com/MCBE-Utilities/BeAPI/commit/8241982a768526010d84e2d38dea6ceeafc3a379))
+* **events:** updated types for EntityHurt ([af39c80](https://github.com/MCBE-Utilities/BeAPI/commit/af39c80bf4580685a3cf217ca2fdb1e0dbc5f09f))
+* **events:** updated types for PlayerHurt ([13e1439](https://github.com/MCBE-Utilities/BeAPI/commit/13e1439a1419a19071b6a81eb0906aec3499909b))
+* **inventory:** getEmtptySlots -> getEmptySlots ([4cabc7e](https://github.com/MCBE-Utilities/BeAPI/commit/4cabc7e14f3ad8ad98c600a2a7d420d4451292f3))
+* **item:** fixed addEnchantment & removeEnchantment ([e58be33](https://github.com/MCBE-Utilities/BeAPI/commit/e58be3394fd1590b71cea9c5ea40ccba8fa0a745))
+* renamed getAll helper to getCoordinatesBetween ([f31bfad](https://github.com/MCBE-Utilities/BeAPI/commit/f31bfad334916bfd11a4e3b288d3f03ecc887875))
+* **timer:** timers now work again ([c5c320a](https://github.com/MCBE-Utilities/BeAPI/commit/c5c320a3cf969eef616f3993f998e2d95f763f69))
+* **world:** updated getBlock ([bb75c02](https://github.com/MCBE-Utilities/BeAPI/commit/bb75c021605252de2aedf5cbff3aeba76d5de3c7))
+
+
+### Features
+
+* added commandsDisabled & commandsPrefic ([ac3e330](https://github.com/MCBE-Utilities/BeAPI/commit/ac3e3300678bf731eba9cfe65427dfb880208fe7))
+* **agent:** added destroy method ([8173936](https://github.com/MCBE-Utilities/BeAPI/commit/817393681c60b9517487195772222f82cf12d93f))
+* **block:** added BlockType ([31a9513](https://github.com/MCBE-Utilities/BeAPI/commit/31a9513a3bf27230119cc797548f9cda03b58a78))
+* **block:** added default methods ([8aec001](https://github.com/MCBE-Utilities/BeAPI/commit/8aec001f590b92f683b89a37a939ef6ccc204783))
+* **block:** added getInventory ([62226a0](https://github.com/MCBE-Utilities/BeAPI/commit/62226a092b080e40580a2d87f2c7750d427c3780))
+* **block:** added hasComponent ([6677a38](https://github.com/MCBE-Utilities/BeAPI/commit/6677a38514dda41a1547b64294103b9d2c6e1c00))
+* **block:** added Permutation ([42ed8ba](https://github.com/MCBE-Utilities/BeAPI/commit/42ed8ba569657cbf5604ecf803a1daa052499b8e))
+* **commandhandler:** added aliases, usage, and permissions ([a54b19e](https://github.com/MCBE-Utilities/BeAPI/commit/a54b19ea90f15a10b6ca4dcfcf4b70ceb62a8c28))
+* **commandhandler:** new command handler ([a490bea](https://github.com/MCBE-Utilities/BeAPI/commit/a490bea44e3ae4e83dc555df85532a7a68ca042c))
+* **commands:** start help command pipeline ([f7fed31](https://github.com/MCBE-Utilities/BeAPI/commit/f7fed3134e13e4d44057972db7053cc33dc1c287))
+* **core:** added Block ([6c1998c](https://github.com/MCBE-Utilities/BeAPI/commit/6c1998ca9bb8ddff1e9c51d6acb5c3b7f0434555))
+* **core:** added data module to manifest ([efa143f](https://github.com/MCBE-Utilities/BeAPI/commit/efa143ffd90490504014a7aa03b0ea9ca44ba782))
+* **core:** added EntityInventory & BlockInventory ([a44c45e](https://github.com/MCBE-Utilities/BeAPI/commit/a44c45e727baa5aea1ebb7ada8289916ca41934e))
+* **core:** added Item ([7998ec5](https://github.com/MCBE-Utilities/BeAPI/commit/7998ec5e4c814f8c67dbc9f12183fee6e8e325c2))
+* **entities:** added getByIdentity ([aceffb2](https://github.com/MCBE-Utilities/BeAPI/commit/aceffb23c4b87173c0e9a8084c779d221297988d))
+* **events:** added cancel to Lever event ([9aa4535](https://github.com/MCBE-Utilities/BeAPI/commit/9aa453539684b08842371ffbb2e618305be0acd1))
+* **events:** added ChestOpened ([a8a319a](https://github.com/MCBE-Utilities/BeAPI/commit/a8a319a34de6c5bb0ccfae31954c078aca548ea2))
+* **events:** added Lever event ([d4a26de](https://github.com/MCBE-Utilities/BeAPI/commit/d4a26de80499bf1261891e4f50d6eff3466020b2))
+* **events:** added PlayerHurt & EntityHurt ([27fa454](https://github.com/MCBE-Utilities/BeAPI/commit/27fa4544e40a534db2dc9b54d73a51c7d7f674b9))
+* **item:** added addEnchantment & removeEnchantment ([73a476f](https://github.com/MCBE-Utilities/BeAPI/commit/73a476f274f55c138c0df399c88ad10e8fd378d4))
+* **item:** added getEnchantment ([deff0f2](https://github.com/MCBE-Utilities/BeAPI/commit/deff0f2785fd54ab31fa0d1dbe4c0d834de25eb1))
+* **item:** added hasEnchantment ([119d36a](https://github.com/MCBE-Utilities/BeAPI/commit/119d36ae137327245ba484eaf710fe215c8d15d2))
+* **player:** isGrounded ([868755e](https://github.com/MCBE-Utilities/BeAPI/commit/868755eb193fe3481d0fb2643ece48c008a22a00))
+* removed deprecation warning helper ([602678d](https://github.com/MCBE-Utilities/BeAPI/commit/602678d0c6ec226c96df180353b10a2d96e383a8))
+* **viewvector:** removes view vector events ([f059219](https://github.com/MCBE-Utilities/BeAPI/commit/f059219cc4734a03988440c3006dcc8e428e28e0))
+
+
+
+
+
 # [2.3.0-beta.3](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.3.0-beta.2...beapi-core@2.3.0-beta.3) (2022-03-21)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-beta.6](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.2.0-beta.5...create-beapi@2.2.0-beta.6) (2022-04-20)
+
+
+### Bug Fixes
+
+* **templates:** incorrect starter file ([d815028](https://github.com/MCBE-Utilities/BeAPI/commit/d81502892ec716553472186234e6ffb0688cb5bf))
+
+
+### Features
+
+* **core:** added data module to manifest ([efa143f](https://github.com/MCBE-Utilities/BeAPI/commit/efa143ffd90490504014a7aa03b0ea9ca44ba782))
+
+
+
+
+
 # [2.2.0-beta.5](https://github.com/MCBE-Utilities/BeAPI/compare/create-beapi@2.2.0-beta.4...create-beapi@2.2.0-beta.5) (2022-03-21)
 
 **Note:** Version bump only for package create-beapi
