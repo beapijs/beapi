@@ -1,9 +1,8 @@
 // Regular imports.
-import { Player } from './'
+import { Player, Client } from '..'
 
 // Type imports.
 import type { Player as IPlayer } from 'mojang-minecraft'
-import type { Client } from '../client'
 
 /**
  * Player manager is the main hub for interacting with
