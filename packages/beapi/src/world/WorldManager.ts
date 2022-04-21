@@ -1,12 +1,17 @@
 // Normal imports.
+import {
+  snakeCaseToCamelCase,
+  Dimension,
+  Item,
+  Difficulty,
+  DimensionType,
+  Weather,
+  PropertyValue,
+  Client,
+  ItemTypes,
+  CamelToSnakeCase,
+} from '..'
 import { world, World as IWorld, Dimension as IDimension, ItemStack, MinecraftItemTypes } from 'mojang-minecraft'
-import { Item } from '../item'
-import { Dimension } from './Dimension'
-import { snakeCaseToCamelCase } from '..'
-
-// Type imports.
-import type { Difficulty, DimensionType, Weather, PropertyValue } from '../types'
-import type { Client, ItemTypes, CamelToSnakeCase } from '..'
 
 /**
  * World Manager is the primary interaction point for world related
