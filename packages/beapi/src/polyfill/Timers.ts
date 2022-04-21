@@ -1,6 +1,5 @@
 // Type imports
-import type { Timer } from '../types'
-import type { Client } from '../client'
+import type { Timer, Client } from '..'
 
 /**
  * Polyfill class that overrides `globalThis` timer methods.
