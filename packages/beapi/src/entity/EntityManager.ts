@@ -1,9 +1,8 @@
 // Regular imports.
-import { Entity } from '.'
+import { Entity, Client } from '..'
 
 // Type imports.
 import type { Entity as IEntity } from 'mojang-minecraft'
-import type { Client } from '../client'
 
 /**
  * Entity manager is the main hub for interacting with
