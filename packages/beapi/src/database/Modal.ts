@@ -1,10 +1,6 @@
 // Regular import.
-import { runCommand, binToString, SafeIds } from '..'
+import { runCommand, binToString, SafeIds, Document, Schema } from '..'
 import { DatabaseUtil } from './DatabaseUtil'
-import { Document } from './Document'
-
-// Type imports.
-import type { Schema } from './Schema'
 
 /**
  * Safe document id generator. No overlaps across instances.
