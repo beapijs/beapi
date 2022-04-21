@@ -7,9 +7,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
-import type { Client } from '../client'
-import type { Player } from '../player'
-import type { ActionFormResponse } from '../types'
+import type { Client, Player, ActionFormResponse } from '..'
 // @ts-ignore FIXME: Once typings are made
 import { ActionFormData } from 'mojang-minecraft-ui'
 
