@@ -1,11 +1,6 @@
 // Normal imports.
-import AbstractEvent from './AbstractEvent'
-import { setProto } from '../'
+import { setProto, AbstractEvent, Client, DimensionType } from '..'
 import { WeatherChangeEvent, world } from 'mojang-minecraft'
-
-// Type imports.
-import type { Client } from '../client'
-import type { DimensionType } from '../types'
 
 /**
  * BeAPI weather updated event. Contains the logic
