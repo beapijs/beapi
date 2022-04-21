@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.3.0...beapi-core@2.4.0) (2022-04-21)
+
+
+### Features
+
+* override help command, getPreciseLocation, console accepts any ([4363b57](https://github.com/MCBE-Utilities/BeAPI/commit/4363b57bc797a360ef5971c24b5048bdf1b1a3e3))
+
+
+
+
+
 # [2.3.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.3.0-beta.5...beapi-core@2.3.0) (2022-04-20)
 
 **Note:** Version bump only for package beapi-core
