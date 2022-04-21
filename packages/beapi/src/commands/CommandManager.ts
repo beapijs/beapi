@@ -1,8 +1,16 @@
-import type { CommandEntry, CommandOptions, CommandCallable, CommandArguments, OnChatEvent } from '../types'
-import { checkObjectForCommandTypes, CommandExecState } from '.'
-import type { Client } from '../client'
-import type { Player } from '../player'
-import { CommandTypes } from './CommandTypes'
+// Regular imports.
+import {
+  checkObjectForCommandTypes,
+  CommandExecState,
+  CommandEntry,
+  CommandOptions,
+  CommandCallable,
+  CommandArguments,
+  OnChatEvent,
+  Client,
+  Player,
+  CommandTypes,
+} from '..'
 
 // Static array of command type constructors.
 const commandTypes: typeof CommandTypes[keyof typeof CommandTypes][] = []
