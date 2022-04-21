@@ -1,8 +1,5 @@
 // Regular imports.
-import { genUuid, runCommand } from '..'
-
-// Type imports.
-import type { Entity } from '..'
+import { genUuid, runCommand, Entity } from '..'
 
 interface ParseResult {
   statusCode: string
