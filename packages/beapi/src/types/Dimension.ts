@@ -1,5 +1,5 @@
 import type { Color, Vector } from 'mojang-minecraft'
-import type { Entity } from '../'
+import type { Entity } from '..'
 
 /**
  * Dimension names.
