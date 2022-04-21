@@ -1,9 +1,5 @@
 // Regular imports.
-import { entries } from '../utils'
-
-// Type imports.
-import { SchemaTypes } from './SchemaTypes'
-import type { Deserialized, Serialized } from '../types'
+import { entries, SchemaTypes, Deserialized, Serialized } from '..'
 
 // Static array of schema type classes.
 const schemaTypes: typeof SchemaTypes[keyof typeof SchemaTypes][] = []
