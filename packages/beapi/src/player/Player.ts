@@ -1,6 +1,5 @@
 // Regular imports.
 import {
-  Dimension as IDimension,
   EntityHealthComponent,
   EntityInventoryComponent,
   Player as IPlayer,
@@ -15,15 +14,18 @@ import { EntityInventory } from '../inventory'
 
 // Type imports.
 import type { Client } from '../client'
+import type { Dimension } from '../world'
 import type {
   Location,
-  Dimension,
+  DimensionType,
   Gamemode,
   ServerCommandResponse,
   PlayerComponents,
   Objective,
   FogType,
   CameraShakeType,
+  DisplayPlayer, // TODO: Remove once types are made.
+  PropertyValue,
 } from '../types'
 
 /**
@@ -287,7 +289,8 @@ export class Player {
    * @param message Message content to set.
    */
   public sendActionbar(message: string): void {
-    this.executeCommand(`titleraw @s actionbar {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
+    const display = (this._IPlayer as DisplayPlayer).onScreenDisplay
+    display.setActionBar(message)
   }
 
   /**
@@ -295,7 +298,9 @@ export class Player {
    * @param message Message content to set.
    */
   public sendTitle(message: string): void {
-    this.executeCommand(`titleraw @s title {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
+    // TODO: Add title options.
+    const display = (this._IPlayer as DisplayPlayer).onScreenDisplay
+    display.setTitle(message)
   }
 
   /**
@@ -303,7 +308,16 @@ export class Player {
    * @param message Message content to set.
    */
   public sendSubtitle(message: string): void {
-    this.executeCommand(`titleraw @s subtitle {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
+    const display = (this._IPlayer as DisplayPlayer).onScreenDisplay
+    display.updateSubtitle(message)
+  }
+
+  /**
+   * Clear current title message.
+   */
+  public clearTitle(): void {
+    const display = (this._IPlayer as DisplayPlayer).onScreenDisplay
+    display.clearTitle()
   }
 
   /**
@@ -436,6 +450,11 @@ export class Player {
    */
   public setGamemode(gamemode: Gamemode): boolean {
     if (gamemode === this.getGamemode()) return true
+    if (gamemode === 'spectator') {
+      const command = this.executeCommand('gamemode 6')
+      if (command.err) return false
+      return true
+    }
     const command = this.executeCommand(`gamemode ${gamemode}`)
     if (command.err) return false
     return true
@@ -446,14 +465,14 @@ export class Player {
    * @returns
    */
   public getGamemode(): Gamemode {
-    const gmc = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=c]`, this.getDimensionName())
-    const gma = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=a]`, this.getDimensionName())
-    const gms = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=s]`, this.getDimensionName())
+    const gmc = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=c]`, this.getDimension().getId())
+    const gma = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=a]`, this.getDimension().getId())
+    const gms = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=s]`, this.getDimension().getId())
     if (!gmc.err) return 'creative'
     if (!gma.err) return 'adventure'
     if (!gms.err) return 'survival'
 
-    return 'unknown'
+    return 'spectator'
   }
 
   /**
@@ -488,18 +507,8 @@ export class Player {
    * Gets the players current dimension.
    * @returns
    */
-  public getDimension(): IDimension {
-    return this._IPlayer.dimension
-  }
-
-  /**
-   * Gets the players current dimension name.
-   * @returns
-   */
-  public getDimensionName(): Dimension {
-    const id = this.getDimension().id.split(':')[1].replace(/_/g, ' ')
-
-    return id as Dimension
+  public getDimension(): Dimension {
+    return this._client.world.getDimension(this._IPlayer.dimension)
   }
 
   /**
@@ -560,9 +569,9 @@ export class Player {
    * @param xrot X rotation to face when teleported.
    * @param yrot Y rotation to face when teleported
    */
-  public teleport(location: Location, dimension: Dimension, xrot: number, yrot: number): void {
+  public teleport(location: Location, dimension: DimensionType, xrot: number, yrot: number): void {
     const loc = new ILocation(location.x, location.y, location.z)
-    this._IPlayer.teleport(loc, this._client.world.getDimension(dimension), xrot, yrot)
+    this._IPlayer.teleport(loc, this._client.world.getDimension(dimension).getIDimension(), xrot, yrot)
   }
 
   /**
@@ -571,10 +580,10 @@ export class Player {
    * @param dimension Dimension to teleport player to.
    * @param facingLocation Location to make player face.
    */
-  public teleportFacing(location: Location, dimension: Dimension, facingLocation: Location): void {
+  public teleportFacing(location: Location, dimension: DimensionType, facingLocation: Location): void {
     const loc = new ILocation(location.x, location.y, location.z)
     const loc2 = new ILocation(facingLocation.x, facingLocation.y, facingLocation.z)
-    this._IPlayer.teleportFacing(loc, this._client.world.getDimension(dimension), loc2)
+    this._IPlayer.teleportFacing(loc, this._client.world.getDimension(dimension).getIDimension(), loc2)
   }
 
   /**
@@ -852,5 +861,33 @@ export class Player {
     if (typeof val === 'boolean') {
       this._isMuted = val
     } else return this._isMuted
+  }
+
+  /**
+   * Gets a property on the Player.
+   * @param {id} id ID of property.
+   * @returns {PropertyValue} Value of the property.
+   */
+  public getProperty(id: string): PropertyValue {
+    return (this._IPlayer as any).getDynamicProperty(id)
+  }
+
+  /**
+   * Sets the value of a property.
+   * @param {id} id ID of property.
+   * @param {PropertyValue} value Value for the property.
+   * @returns {boolean}
+   */
+  public setProperty(id: string, value: PropertyValue): boolean {
+    return (this._IPlayer as any).setDynamicProperty(id, value)
+  }
+
+  /**
+   * Removes a property.
+   * @param {string} id ID of property.
+   * @returns {boolean}
+   */
+  public removeProperty(id: string): boolean {
+    return (this._IPlayer as any).removeDynamicProperty(id)
   }
 }

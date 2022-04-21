@@ -1,17 +1,22 @@
-// Regulat imports.
-import { EventEmitter } from '../polyfill'
-import { events } from '../events'
-import { PlayerManager } from '../player'
+// Regular imports.
+import {
+  EventEmitter,
+  events,
+  PlayerManager,
+  EntityManager,
+  CommandManager,
+  WorldManager,
+  ScoreboardManager,
+  TestManager,
+  version,
+  mcbe,
+  protocol,
+} from '../'
 import { Events, world } from 'mojang-minecraft'
-import { EntityManager } from '../entity'
-import { CommandManager } from '../commands'
-import { WorldManager } from '../world'
-import { ScoreboardManager } from '../scoreboard'
-import { version, mcbe, protocol } from '../version'
 
 // Type imports.
 import type AbstractEvent from '../events/AbstractEvent'
-import type { Dimension, ServerCommandResponse, ClientEvents, Awaitable, ClientOptions } from '../types'
+import type { DimensionType, ServerCommandResponse, ClientEvents, Awaitable, ClientOptions } from '../'
 
 // Client Listener Type Event Overrides.
 export interface Client {
@@ -103,7 +108,11 @@ export class Client extends EventEmitter {
    */
   public readonly scoreboards = new ScoreboardManager(this)
   /**
-   * Current BeAPI version.
+   * The main hub for creating and executing tests.
+   */
+  public readonly tests = new TestManager(this)
+  /**
+   * Current BeRP version.
    */
   public readonly currentVersion = version
   /**
@@ -240,7 +249,11 @@ export class Client extends EventEmitter {
    * @param debug Send errors to content log?
    * @returns
    */
-  public executeCommand<T>(cmd: string, dimension: Dimension = 'overworld', debug = false): ServerCommandResponse<T> {
+  public executeCommand<T>(
+    cmd: string,
+    dimension: DimensionType = 'overworld',
+    debug = false,
+  ): ServerCommandResponse<T> {
     try {
       const command = world.getDimension(dimension).runCommand(cmd) as ServerCommandResponse<T>
 

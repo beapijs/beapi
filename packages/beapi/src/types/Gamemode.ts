@@ -1,4 +1,4 @@
 /**
  * Gamemode status types.
  */
-export type Gamemode = 'creative' | 'adventure' | 'survival' | 'unknown'
+export type Gamemode = 'creative' | 'adventure' | 'survival' | 'spectator'

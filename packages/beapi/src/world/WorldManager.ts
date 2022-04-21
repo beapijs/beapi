@@ -1,20 +1,12 @@
 // Normal imports.
-import {
-  BlockLocation,
-  world,
-  Dimension as IDimension,
-  ItemStack,
-  MolangVariableMap,
-  Location as ILocation,
-  ExplosionOptions,
-} from 'mojang-minecraft'
-import { Block, Permutation } from '../block'
+import { world, World as IWorld, Dimension as IDimension, ItemStack, MinecraftItemTypes } from 'mojang-minecraft'
+import { Item } from '../item'
+import { Dimension } from './Dimension'
+import { snakeCaseToCamelCase } from '..'
 
 // Type imports.
-import type { Difficulty, Dimension, Weather, Location } from '../types'
-import type { Client } from '../client'
-import type { Entity } from '../entity'
-import type { Player } from '../player'
+import type { Difficulty, DimensionType, Weather, PropertyValue } from '../types'
+import type { Client, ItemTypes, CamelToSnakeCase } from '..'
 
 /**
  * World Manager is the primary interaction point for world related
@@ -27,6 +19,11 @@ export class WorldManager {
   protected readonly _client: Client
 
   /**
+   * Private world reference.
+   */
+  protected readonly _IWorld: IWorld
+
+  /**
    * World Manager is the primary interaction point for world related
    * methods that had no other categorization placing.
    * @param {Client} client
@@ -34,6 +31,16 @@ export class WorldManager {
   public constructor(client: Client) {
     // Assign private client reference.
     this._client = client
+    // Assign private world reference.
+    this._IWorld = world
+  }
+
+  /**
+   * Get the vanilla world class.
+   * @returns {IWorld} Vanilla world class.
+   */
+  public getIWorld(): IWorld {
+    return this._IWorld
   }
 
   /**
@@ -46,113 +53,15 @@ export class WorldManager {
   }
 
   /**
-   * Gets all entities from a specfic world location.
-   * @param {Dimension} dimension Dimension to check.
-   * @param {Location} location Location to check.
-   * @returns {Entity[]}
-   */
-  public getEntitiesFromLocation(dimension: Dimension, location: Location): Entity[] {
-    // Return an array from all entities in the entity manager and create a filter.
-    return Array.from(this._client.entities.getAll().values()).filter(
-      // If entity location === given location and entity dimension === given
-      // dimension return true which will push entity to final array
-      (x) => x.getLocation() === location && x.getDimensionName() === dimension,
-    )
-  }
-
-  /**
-   * Gets all players from a specfic world location.
-   * @param {Dimension} dimension Dimension to check.
-   * @param {Location} location Location to check.
-   * @returns {Player[]}
-   */
-  public getPlayersFromLocation(dimension: Dimension, location: Location): Player[] {
-    // Return an array from all players in the player manager and create a filter.
-    return Array.from(this._client.players.getAll().values()).filter(
-      // If player location === given location and player dimension === given
-      // dimension return true which will push player to final array
-      (x) => x.getLocation() === location && x.getDimensionName() === dimension,
-    )
-  }
-
-  /**
-   * Spawns an entity in a certain world location.
-   * @param {string} id Minecraft entity identifier.
-   * @param {Location} location World location to use.
-   * @param {Dimension} dimension World dimension to use.
-   * @returns {Entity | undefined}
-   */
-  public spawnEntity(id: string, location: Location, dimension: Dimension): Entity | undefined {
-    // Get IDimension and spawn new entity at block location given.
-    const entity = this.getDimension(dimension).spawnEntity(id, new BlockLocation(location.x, location.y, location.z))
-    // Return attempt get entity spawned above from entity manager.
-    return this._client.entities.getByIEntity(entity)
-  }
-
-  /**
-   * Spawns an item in a certain world location.
-   * @param {ItemStack} item Minecraft item stack.
-   * @param {Location} location World location to use.
-   * @param {Dimension} dimension World dimension to use.
-   * @returns {Entity | undefined}
-   */
-  public spawnItem(item: ItemStack, location: Location, dimension: Dimension): Entity | undefined {
-    // Get IDimension and spawn new item at block location given.
-    const entity = this.getDimension(dimension).spawnItem(item, new BlockLocation(location.x, location.y, location.z))
-    // Return attempt get item spawned above from entity manager.
-    return this._client.entities.getByIEntity(entity)
-  }
-
-  /**
-   * Spawns a particle in a certain world location.
-   * @param {string} id Minecraft particle identifier.
-   * @param {Location} location World location to use.
-   * @param {Dimension} dimension World dimension to use.
-   * @param {MolangVariableMap} molangVarMap Particle molang variable map.
-   */
-  public spawnParticle(id: string, location: Location, dimension: Dimension, molangVarMap: MolangVariableMap): void {
-    // Get IDimension and spawn new particle with parameters given.
-    this.getDimension(dimension).spawnParticle(id, new ILocation(location.x, location.y, location.z), molangVarMap)
-  }
-
-  /**
-   * Sets a block permutation world location.
-   * @param {Location} location World location to use.
-   * @param {Dimension} dimension World dimension to use.
-   * @param {Permutation} permutation Minecraft permutation data.
-   * @returns {Block}
-   */
-  public setBlockPermutation(location: Location, dimension: Dimension, permutation: Permutation): Block {
-    // Get block from work with given location and dimension.
-    const block = this.getBlock(location, dimension)
-    // Set permutation of block with given permutation data.
-    block.setPermutation(permutation)
-
-    // Returns block with permutation applied.
-    return block
-  }
-
-  /**
-   * Gets a block from a world location.
-   * @param {Location} location World location to use.
-   * @param {Dimension} dimension World dimension to use.
-   * @returns {Block}
-   */
-  public getBlock(location: Location, dimension: Dimension): Block {
-    // Returns new BeAPI block contruct.
-    return new Block(
-      this._client,
-      this.getDimension(dimension).getBlock(new BlockLocation(location.x, location.y, location.z)),
-    )
-  }
-
-  /**
    * Gets a world dimension by its name.
    * @param {Dimension} dimension World dimension to use.
    * @returns {IDimension}
    */
-  public getDimension(dimension: Dimension): IDimension {
-    return world.getDimension(dimension)
+  public getDimension(dimension: DimensionType | IDimension): Dimension {
+    if (dimension instanceof IDimension) {
+      return new Dimension(this._client, dimension)
+    }
+    return new Dimension(this._client, this._IWorld.getDimension(dimension))
   }
 
   /**
@@ -211,13 +120,45 @@ export class WorldManager {
   }
 
   /**
-   * Attempts to create an explosion at given options.
-   * @param {Location} location Location to use.
-   * @param {number} radius How big the boom?
-   * @param {Dimension} dimension Dimension to use.
-   * @param {ExplosionOptions} options Extra boom boom options.
+   * Gets a property on the World.
+   * @param {id} id ID of property.
+   * @returns {PropertyValue} Value of the property.
    */
-  public createExplosion(location: Location, radius: number, dimension: Dimension, options: ExplosionOptions): void {
-    this.getDimension(dimension).createExplosion(new ILocation(location.x, location.y, location.z), radius, options)
+  public getProperty(id: string): PropertyValue {
+    return (world as any).getDynamicProperty(id)
+  }
+
+  /**
+   * Sets the value of a property.
+   * @param {id} id ID of property.
+   * @param {PropertyValue} value Value for the property.
+   * @returns {boolean}
+   */
+  public setProperty(id: string, value: PropertyValue): boolean {
+    return (world as any).setDynamicProperty(id, value)
+  }
+
+  /**
+   * Removes a property.
+   * @param {string} id ID of property.
+   * @returns {boolean}
+   */
+  public removeProperty(id: string): boolean {
+    return (world as any).removeDynamicProperty(id)
+  }
+
+  /**
+   * Creates a new item.
+   * @param {CamelToSnakeCase<ItemType>} type Item type.
+   * @param {number} amount Item amount.
+   * @param {number} data Item data value.
+   * @returns {Item}
+   */
+  public createItem(type: CamelToSnakeCase<ItemTypes>, amount = 1, data = 1): Item {
+    const convert = snakeCaseToCamelCase<ItemTypes>(type)
+    const stack = new ItemStack(MinecraftItemTypes[convert], amount, data)
+    const item = new Item(this._client, stack)
+
+    return item
   }
 }

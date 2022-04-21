@@ -7,10 +7,7 @@ import type { Entity as IEntity, MinecraftItemTypes } from 'mojang-minecraft'
 import type { Client } from '../client'
 import type { Player } from '../player/Player'
 import type { AgentDirection, AgentRotation } from './Directions'
-
-type CamelToSnakeCase<S extends string> = S extends `${infer T}${infer U}`
-  ? `${T extends Capitalize<T> ? '_' : ''}${Lowercase<T>}${CamelToSnakeCase<U>}`
-  : S
+import type { CamelToSnakeCase } from '../'
 
 /**
  * BeAPI wrapper for the Mojang Minecraft agent entity object.

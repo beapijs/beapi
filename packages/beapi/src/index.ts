@@ -19,6 +19,8 @@ export * from './polyfill'
 export * from './utils'
 export * from './world'
 export * from './version'
+export * from './scoreboard'
+export * from './tests'
 
 // Circular Mojang exports.
 export * as Minecraft from 'mojang-minecraft'

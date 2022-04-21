@@ -1,10 +1,11 @@
 // Regular imports.
 import { BlockType, Permutation } from './'
 import { BlockInventory } from '../inventory'
+import { Block as IBlock, BlockInventoryComponent, MinecraftBlockTypes } from 'mojang-minecraft'
 
 // Type imports.
-import type { Client, Dimension, Location, BlockComponents } from '..'
-import type { Block as IBlock, Dimension as IDimension, BlockInventoryComponent } from 'mojang-minecraft'
+import type { BlockComponents, Client, Location } from '..'
+import type { Dimension, BlockTypes, CamelToSnakeCase } from '../'
 
 /**
  * BeAPI wrapper object for Minecraft IBlock. Adds a bunch of
@@ -59,8 +60,16 @@ export class Block {
    * Sets a wrapped Minecraft blocktype.
    * @param type Wrapped blocktype.
    */
-  public setType(type: BlockType): void {
-    this._IBlock.setType(type.getIBlockType())
+  public setType(type: CamelToSnakeCase<BlockTypes> | BlockType): void {
+    // If block type.
+    if (type instanceof BlockType) {
+      // Set type to block type.
+      this._IBlock.setType(type.getIBlockType())
+      // Else namespaced string.
+    } else {
+      const blockType = MinecraftBlockTypes[type as BlockTypes]
+      this._IBlock.setType(blockType)
+    }
   }
 
   /**
@@ -83,18 +92,8 @@ export class Block {
    * Gets the block dimension.
    * @returns
    */
-  public getDimension(): IDimension {
-    return this._IBlock.dimension
-  }
-
-  /**
-   * Gets the blocks dimension name.
-   * @returns
-   */
-  public getDimensionName(): Dimension {
-    const id = this.getDimension().id.split(':')[1].replace(/_/g, ' ')
-
-    return id as Dimension
+  public getDimension(): Dimension {
+    return this._client.world.getDimension(this._IBlock.dimension)
   }
 
   /**

@@ -14,6 +14,7 @@ import type {
   EntityMountTamingComponent,
   EntityStrengthComponent,
   EntityTameableComponent,
+  EntityItemComponent,
 } from 'mojang-minecraft'
 
 /**
@@ -90,4 +91,8 @@ export interface EntityComponents {
    * Defines the rules for a mob to be tamed by the player.
    */
   'minecraft:tameable': EntityTameableComponent
+  /**
+   * Defines the entities item stack.
+   */
+  'minecraft:item': EntityItemComponent
 }

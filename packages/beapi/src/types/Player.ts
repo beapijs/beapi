@@ -7,6 +7,7 @@ import type {
   EntityMovementComponent,
   EntityRideableComponent,
   EntityUnderwaterMovementComponent,
+  Player,
 } from 'mojang-minecraft'
 
 /**
@@ -62,3 +63,24 @@ export type FogType = 'pop' | 'push' | 'remove'
  * Camera shake types.
  */
 export type CameraShakeType = 'positional' | 'rotational' | 'clear'
+
+// TODO: Remove once types are made.
+export interface DisplayPlayer extends Player {
+  onScreenDisplay: OnScreenDisplay
+}
+
+// TODO: Remove once types are made.
+export interface OnScreenDisplay {
+  setTitle(title: string, options?: TitleDisplayOptions): void
+  clearTitle(): void
+  updateSubtitle(subtitle: string): void
+  setActionBar(text: string): void
+}
+
+// TODO: Remove once types are made.
+export interface TitleDisplayOptions {
+  subtitle?: string
+  fadeInSeconds: number
+  staySeconds: number
+  fadeOutSeconds: number
+}

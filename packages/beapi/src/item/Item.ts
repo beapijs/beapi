@@ -1,6 +1,6 @@
 // Regular imports.
 import { ItemStack as IItem, ItemEnchantsComponent, MinecraftEnchantmentTypes, Enchantment } from 'mojang-minecraft'
-import { getEnchantments, OnlyEnchants } from '../'
+import { getEnchantments, EnchantTypes } from '../'
 
 // Type imports.
 import type { Client } from '..'
@@ -57,6 +57,14 @@ export class Item {
    */
   public getAmount(): number {
     return this._IItem.amount
+  }
+
+  /**
+   * Set the item amount.
+   * @param amount New amount.
+   */
+  public setAmount(amount: number): void {
+    this._IItem.amount = amount
   }
 
   /**
@@ -160,7 +168,7 @@ export class Item {
    * @param level Enchant level.
    * @returns true means success
    */
-  public addEnchantment(enchantment: OnlyEnchants, level: number): boolean {
+  public addEnchantment(enchantment: EnchantTypes, level: number): boolean {
     // If item does not have enchants component return.
     if (!this.hasComponent('minecraft:enchantments')) return false
     // Get component from item.
@@ -181,7 +189,7 @@ export class Item {
    * @param enchantment Enchant name.
    * @returns true means success
    */
-  public removeEnchantment(enchantment: OnlyEnchants): boolean {
+  public removeEnchantment(enchantment: EnchantTypes): boolean {
     // If item does not have enchants component return.
     if (!this.hasComponent('minecraft:enchantments')) return false
     // If not item has enchant return false.
@@ -204,7 +212,7 @@ export class Item {
    * @param enchantment Enchant name.
    * @returns
    */
-  public hasEnchantment(enchantment: OnlyEnchants): boolean {
+  public hasEnchantment(enchantment: EnchantTypes): boolean {
     // If item does not have enchants component return.
     if (!this.hasComponent('minecraft:enchantments')) return false
     // Get enchants component.
@@ -219,7 +227,7 @@ export class Item {
    * @param enchantment Enchant name.
    * @returns can return `undefined`
    */
-  public getEnchantment(enchantment: OnlyEnchants): Enchantment | undefined {
+  public getEnchantment(enchantment: EnchantTypes): Enchantment | undefined {
     // If item does not have enchants component return.
     if (!this.hasComponent('minecraft:enchantments')) return
     // If item does not have enchant return.

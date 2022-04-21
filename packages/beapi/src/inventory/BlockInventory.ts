@@ -1,8 +1,10 @@
 // Regular imports.
 import { Item } from '../item'
+import { ItemStack, MinecraftItemTypes } from 'mojang-minecraft'
+import { snakeCaseToCamelCase } from '..'
 
 // Type imports.
-import type { Client } from '..'
+import type { Client, ItemTypes, CamelToSnakeCase } from '..'
 import type { BlockInventoryComponent as IInventory, InventoryComponentContainer as IContainer } from 'mojang-minecraft'
 import type { EntityInventory } from './'
 
@@ -118,5 +120,20 @@ export class BlockInventory {
    */
   public swapItem(slot: number, otherSlot: number): boolean {
     return this._IContainer.transferItem(slot, otherSlot, this._IContainer)
+  }
+
+  /**
+   * Creates a new item.
+   * @param {CamelToSnakeCase<ItemType>} type Item type.
+   * @param {number} amount Item amount.
+   * @param {number} data Item data value.
+   * @returns {Item}
+   */
+  public createItem(type: CamelToSnakeCase<ItemTypes>, amount = 1, data = 1): Item {
+    const convert = snakeCaseToCamelCase<ItemTypes>(type)
+    const stack = new ItemStack(MinecraftItemTypes[convert], amount, data)
+    const item = new Item(this._client, stack)
+
+    return item
   }
 }

@@ -1,11 +1,4 @@
-// Regular imports.
-import { EntityInventory } from '../inventory'
-import { Location as ILocation } from 'mojang-minecraft'
-import { getUniqueId } from '../utils'
-
-// Type imports.
 import type {
-  Dimension as IDimension,
   Effect,
   EffectType,
   Entity as IEntity,
@@ -14,7 +7,19 @@ import type {
   Vector,
 } from 'mojang-minecraft'
 import type { Client } from '../client'
-import type { Location, Dimension, ServerCommandResponse, EntityComponents, Objective } from '../types'
+import type {
+  Location,
+  DimensionType,
+  ServerCommandResponse,
+  EntityComponents,
+  Objective,
+  PropertyValue,
+} from '../types'
+import type { Dimension } from '../world'
+import { Location as ILocation } from 'mojang-minecraft'
+import { getUniqueId } from '../utils'
+import { EntityInventory } from '../inventory'
+import { Item } from '../item'
 
 /**
  * BeAPI wrapper for the Mojang Minecraft entity object.
@@ -263,18 +268,8 @@ export class Entity {
    * Gets the entities current dimension.
    * @returns
    */
-  public getDimension(): IDimension {
-    return this._IEntity.dimension
-  }
-
-  /**
-   * Gets the entities current dimension name.
-   * @returns
-   */
-  public getDimensionName(): Dimension {
-    const id = this.getDimension().id.split(':')[1].replace(/_/g, ' ')
-
-    return id as Dimension
+  public getDimension(): Dimension {
+    return this._client.world.getDimension(this._IEntity.dimension)
   }
 
   /**
@@ -329,9 +324,9 @@ export class Entity {
    * @param xrot X rotation to face when teleported.
    * @param yrot Y rotation to face when teleported
    */
-  public teleport(location: Location, dimension: Dimension, xrot: number, yrot: number): void {
+  public teleport(location: Location, dimension: DimensionType, xrot: number, yrot: number): void {
     const loc = new ILocation(location.x, location.y, location.z)
-    this._IEntity.teleport(loc, this._client.world.getDimension(dimension), xrot, yrot)
+    this._IEntity.teleport(loc, this._client.world.getDimension(dimension).getIDimension(), xrot, yrot)
   }
 
   /**
@@ -340,10 +335,10 @@ export class Entity {
    * @param dimension Dimension to teleport entity to.
    * @param facingLocation Location to make entity face.
    */
-  public teleportFacing(location: Location, dimension: Dimension, facingLocation: Location): void {
+  public teleportFacing(location: Location, dimension: DimensionType, facingLocation: Location): void {
     const loc = new ILocation(location.x, location.y, location.z)
     const loc2 = new ILocation(facingLocation.x, facingLocation.y, facingLocation.z)
-    this._IEntity.teleportFacing(loc, this._client.world.getDimension(dimension), loc2)
+    this._IEntity.teleportFacing(loc, this._client.world.getDimension(dimension).getIDimension(), loc2)
   }
 
   /**
@@ -406,5 +401,45 @@ export class Entity {
    */
   public getEffect(effect: EffectType): Effect {
     return this._IEntity.getEffect(effect)
+  }
+
+  /**
+   * Gets a property on the Entity.
+   * @param {id} id ID of property.
+   * @returns {PropertyValue} Value of the property.
+   */
+  public getProperty(id: string): PropertyValue {
+    return (this._IEntity as any).getDynamicProperty(id)
+  }
+
+  /**
+   * Sets the value of a property.
+   * @param {id} id ID of property.
+   * @param {PropertyValue} value Value for the property.
+   * @returns {boolean}
+   */
+  public setProperty(id: string, value: PropertyValue): boolean {
+    return (this._IEntity as any).setDynamicProperty(id, value)
+  }
+
+  /**
+   * Removes a property.
+   * @param {string} id ID of property.
+   * @returns {boolean}
+   */
+  public removeProperty(id: string): boolean {
+    return (this._IEntity as any).removeDynamicProperty(id)
+  }
+
+  /**
+   * Gets the Item instance if the entity is a item.
+   * @returns {Item | undefined} Item instance.
+   */
+  public getItemStack(): Item | undefined {
+    if (!this.hasComponent('minecraft:item')) return
+    const component = this.getComponent('minecraft:item')
+    const item = new Item(this._client, component.itemStack)
+
+    return item
   }
 }

@@ -8,7 +8,7 @@
     "jest": true
   },
   "rules": {
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "@typescript-eslint/restrict-template-expressions": 0,
     "@typescript-eslint/no-unnecessary-condition": 0,
     "@typescript-eslint/prefer-ts-expect-error": 0,
