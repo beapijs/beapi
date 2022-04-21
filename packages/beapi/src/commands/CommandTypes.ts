@@ -1,5 +1,5 @@
-import type { KeysOfCommandTypes } from '../types'
-import type { CommandExecState } from '.'
+// Type imports.
+import type { CommandExecState, KeysOfCommandTypes } from '..'
 
 // Create references to global constructors with different
 // Names so not to interfere with CommandTypes namespace.
