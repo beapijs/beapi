@@ -1,4 +1,4 @@
-import type {
+import {
   Client,
   DimensionType,
   ServerCommandResponse,
@@ -8,6 +8,9 @@ import type {
   Player,
   ParticleOptions,
   ExplosionOptions,
+  Block,
+  BlockTypes,
+  CamelToSnakeCase,
 } from '..'
 import {
   Dimension as IDimension,
@@ -18,8 +21,6 @@ import {
   Color,
   Vector,
 } from 'mojang-minecraft'
-import { Block } from '../block'
-import type { BlockTypes, CamelToSnakeCase } from '../types'
 
 export class Dimension {
   protected readonly _client: Client
