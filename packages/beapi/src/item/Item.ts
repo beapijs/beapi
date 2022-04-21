@@ -1,10 +1,6 @@
 // Regular imports.
 import { ItemStack as IItem, ItemEnchantsComponent, MinecraftEnchantmentTypes, Enchantment } from 'mojang-minecraft'
-import { getEnchantments, EnchantTypes } from '../'
-
-// Type imports.
-import type { Client } from '..'
-import type { EntityInventory, BlockInventory } from '../inventory'
+import { getEnchantments, EnchantTypes, Client, EntityInventory, BlockInventory } from '..'
 
 // TODO: wrap enchantment
 
