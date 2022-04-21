@@ -1,10 +1,6 @@
 // Normal imports.
-import AbstractEvent from './AbstractEvent'
-import { setProto } from '../'
+import { setProto, AbstractEvent, Client } from '..'
 import { world, Player as IPlayer, BeforeDataDrivenEntityTriggerEvent } from 'mojang-minecraft'
-
-// Type imports.
-import type { Client } from '../client'
 
 /**
  * BeAPI player event trigger event. Contains the logic
