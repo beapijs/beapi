@@ -1,6 +1,5 @@
 // Type imports.
-import type { Client } from '../client'
-import type { Objective, ScoreboardSlot } from '..'
+import type { Objective, ScoreboardSlot, Client } from '..'
 
 /**
  * Scoreboard manager is the main main
