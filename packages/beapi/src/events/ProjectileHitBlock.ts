@@ -1,7 +1,5 @@
 // Regular imports.
-import AbstractEvent from './AbstractEvent'
-import { Block } from '../block'
-import { setProto } from '../'
+import { setProto, AbstractEvent, Block, Client } from '..'
 import {
   world,
   Player as IPlayer,
@@ -11,9 +9,6 @@ import {
   BlockLocation,
   Vector,
 } from 'mojang-minecraft'
-
-// Type imports.
-import type { Client } from '../client'
 
 export interface ProjectileHitBlockEvent {
   dimension: IDimension
