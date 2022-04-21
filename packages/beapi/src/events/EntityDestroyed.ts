@@ -1,9 +1,5 @@
 // Regular imports.
-import AbstractEvent from './AbstractEvent'
-import { setProto } from '../'
-
-// Type imports.
-import type { Client } from '../client'
+import { setProto, AbstractEvent, Client } from '..'
 
 /**
  * BeAPI entity destroyed event. Contains the logic
