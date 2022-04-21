@@ -1,9 +1,8 @@
 // Normal imports.
-import { register } from 'mojang-gametest'
+import { register, RegistrationBuilder, Test } from 'mojang-gametest'
 
 // Type imports.
 import type { Client, RegisteredTest } from '..'
-import type { RegistrationBuilder, Test } from 'mojang-gametest'
 
 /**
  * Test Manager is the primary interaction point gametest
