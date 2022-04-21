@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0-beta.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.4.0...beapi-core@2.5.0-beta.0) (2022-04-21)
+
+
+### Bug Fixes
+
+* **block:** updated setType ([d5a90e5](https://github.com/MCBE-Utilities/BeAPI/commit/d5a90e59ca8f1a0f9008f31dddb189db34e0c84e))
+* **dimension:** added snake case to setBlock ([640613a](https://github.com/MCBE-Utilities/BeAPI/commit/640613a555da2ea135cc529152191cd15674f735))
+* **dimension:** fixed spawnItem & spawnEntity ([d9165b0](https://github.com/MCBE-Utilities/BeAPI/commit/d9165b0460d3c0af99fcef5b9cb115c13797d314))
+* **events:** updated ItemDropped ([53c760c](https://github.com/MCBE-Utilities/BeAPI/commit/53c760cb408b4d0d40480f8cee49b0bedb431195))
+* **inventory:** updated ItemType to snake case ([ecc2c24](https://github.com/MCBE-Utilities/BeAPI/commit/ecc2c2472633436553972fa0c6dd99136b16ed93))
+* **player:** updated title methods ([ae314f5](https://github.com/MCBE-Utilities/BeAPI/commit/ae314f5ac1a6147fda7049a83ab60533372104c7))
+
+
+### Features
+
+* **core:** added Dimension ([0bea67d](https://github.com/MCBE-Utilities/BeAPI/commit/0bea67d401a60b2344f0a0bdd0e4bac12de77e75))
+* **core:** added TestManager ([dbc02c3](https://github.com/MCBE-Utilities/BeAPI/commit/dbc02c3c91830dab7d5136f3fab3cfd053d903da))
+* **dimension:** added options to spawnParticle ([c7cbaff](https://github.com/MCBE-Utilities/BeAPI/commit/c7cbaffa790bd58b7f15fe60dc7a6dd579ca235d))
+* **dimension:** added setBlock ([4dcbb52](https://github.com/MCBE-Utilities/BeAPI/commit/4dcbb5293f5eec1c1186c1626cfd134459f71579))
+* **entity:** added getItemStack ([f4d3c7d](https://github.com/MCBE-Utilities/BeAPI/commit/f4d3c7dbae06b0ede11090ef1779f519e74b0e50))
+* **entity:** added getProperty ([d0b0b25](https://github.com/MCBE-Utilities/BeAPI/commit/d0b0b25c2f623572791f17a028cd9984b1842a7c))
+* **entity:** added removeProperty ([5e83dd9](https://github.com/MCBE-Utilities/BeAPI/commit/5e83dd91e05d0aac4d4cf72ea1c8cf12689bcb98))
+* **entity:** added setProperty ([24ed6d2](https://github.com/MCBE-Utilities/BeAPI/commit/24ed6d228032cdd3a6e4e9b0db91847a3bee7003))
+* **events:** added ProjectileHitBlock & ProjectileHitEntity ([1ec79cc](https://github.com/MCBE-Utilities/BeAPI/commit/1ec79cca3dc90e7a8b4401a70608c505e567ac6b))
+* **events:** added ServerInitialized ([865731e](https://github.com/MCBE-Utilities/BeAPI/commit/865731e606ea4633036ff7ae76a520929b5ec8a9))
+* **inventory:** added createItem ([1cb4840](https://github.com/MCBE-Utilities/BeAPI/commit/1cb48404d43dd444806f1fded81fb3680bff641c))
+* **player:** added clearTitle ([587fe47](https://github.com/MCBE-Utilities/BeAPI/commit/587fe47544a415d4a7ce8f378d1a9c5fede18beb))
+* **player:** added getProperty ([0b20aca](https://github.com/MCBE-Utilities/BeAPI/commit/0b20aca6ace4ba8d7e8790cfd8d5d543328ec8fd))
+* **player:** added removeProperty ([595505c](https://github.com/MCBE-Utilities/BeAPI/commit/595505cdc4f832ce2ec633aee5cc1f50a7945c10))
+* **player:** added setProperty ([24efccb](https://github.com/MCBE-Utilities/BeAPI/commit/24efccbab536976e34a32f73349becb2cd95c1fb))
+* **player:** added spectator gamemode ([f501ef5](https://github.com/MCBE-Utilities/BeAPI/commit/f501ef5520f9a25273154066ab3fffca68f2cc3c))
+* **world:** added createItem ([3c5d86a](https://github.com/MCBE-Utilities/BeAPI/commit/3c5d86af0c5619872bce6c99b42b3965ade24d5b))
+* **world:** added getIWorld ([48a602a](https://github.com/MCBE-Utilities/BeAPI/commit/48a602af9ac1a53c0349ead4c327a8163452fba9))
+* **world:** added getProperty ([e3b5f98](https://github.com/MCBE-Utilities/BeAPI/commit/e3b5f98c9a4e316f0ef440a32ccbbc1c1fea16f7))
+* **world:** added options to createExplosion ([a407612](https://github.com/MCBE-Utilities/BeAPI/commit/a407612d3498ad4766617ec5b1a89f1094a7b58d))
+* **world:** added removeProperty ([20c3829](https://github.com/MCBE-Utilities/BeAPI/commit/20c3829e124208109ab30917f3cfcbf535d7e573))
+* **world:** added setProperty ([57be1fa](https://github.com/MCBE-Utilities/BeAPI/commit/57be1fa9ef8bbb6e73dd1be128d87569492f9150))
+
+
+
+
+
 # [2.4.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.3.0...beapi-core@2.4.0) (2022-04-21)
 
 
