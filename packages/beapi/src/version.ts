@@ -5,7 +5,7 @@ import { version as v } from '../package.json'
 export const version = v
 
 // Export MCBE version correlating with BeAPI.
-export const mcbe = '1.18.30'
+export const mcbe = '1.19.0.25'
 
 // Export MCBE protcol version correlating with BeAPI.
-export const protocol = 503
+export const protocol = 514
