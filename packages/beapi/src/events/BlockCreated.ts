@@ -1,11 +1,6 @@
 // Regular imports.
-import AbstractEvent from './AbstractEvent'
+import { AbstractEvent, setProto, Block, Client } from '..'
 import { world, BlockPlaceEvent } from 'mojang-minecraft'
-import { Block } from '../block'
-import { setProto } from '../'
-
-// Type imports.
-import type { Client } from '../client'
 
 /**
  * BeAPI block created event. Contains the logic
