@@ -1,13 +1,8 @@
 // Regular Imports.
-import { Entity } from '../entity/index'
-import { getUniqueId } from '..'
+import { Entity, getUniqueId, Client, Player, AgentDirection, AgentRotation, CamelToSnakeCase } from '..'
 
 // Type Imports.
 import type { Entity as IEntity, MinecraftItemTypes } from 'mojang-minecraft'
-import type { Client } from '../client'
-import type { Player } from '../player/Player'
-import type { AgentDirection, AgentRotation } from './Directions'
-import type { CamelToSnakeCase } from '../'
 
 /**
  * BeAPI wrapper for the Mojang Minecraft agent entity object.
