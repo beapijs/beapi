@@ -1,5 +1,5 @@
 // Type imports.
-import type { Client } from '../client/Client'
+import type { Client } from '..'
 
 /**
  * Abstract Event Class. This must extended when
