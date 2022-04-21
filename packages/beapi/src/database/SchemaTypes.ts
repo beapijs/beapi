@@ -1,5 +1,5 @@
 // Type imports.
-import type { Serialized, Deserialized } from '../types'
+import type { Serialized, Deserialized } from '..'
 
 // References to global constructors.
 const StringConstructor = String
