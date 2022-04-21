@@ -200,7 +200,15 @@ export class CommandExecState {
 
     // If all is well then we call the commands callback with the player
     // and the final constructed arguments.
-    this._cmdRef.call(this._player, args as never)
+    try {
+      this._cmdRef.call(this._player, args as never)
+    } catch (error) {
+      const err: Error = (typeof error === 'object' ? error : new Error(error as string)) as Error
+      // We need to throw a literal here because there are
+      // syntax and user errors. We want to weed out user errors from syntax errors.
+      // eslint-disable-next-line
+      throw { message: String(err.message), stack: String(err.stack), name: String(err.name), user: true }
+    }
   }
 
   /**

@@ -8,39 +8,39 @@ declare global {
   interface Console {
     /**
      * Sends a BeAPI log to the content log in-game.
-     * @param {string} message Primary message.
-     * @param {string} optionalParams Optional extra fragments.
+     * @param {any} message Primary message.
+     * @param {any} optionalParams Optional extra fragments.
      */
     // @ts-ignore
-    log: (message: string, ...optionalParams: string[]) => void
+    log: (message: any, ...optionalParams: any[]) => void
     /**
      * Sends a BeAPI error log to the content log in-game.
-     * @param {string} message Primary message.
-     * @param {string} optionalParams Optional extra fragments.
+     * @param {any} message Primary message.
+     * @param {any} optionalParams Optional extra fragments.
      */
     // @ts-ignore
-    warn: (message: string, ...optionalParams: string[]) => void
+    warn: (message: any, ...optionalParams: any[]) => void
     /**
      * Sends a BeAPI warn log to the content log in-game.
-     * @param {string} message Primary message.
-     * @param {string} optionalParams Optional extra fragments.
+     * @param {any} message Primary message.
+     * @param {any} optionalParams Optional extra fragments.
      */
     // @ts-ignore
-    error: (message: string, ...optionalParams: string[]) => void
+    error: (message: any, ...optionalParams: any[]) => void
     /**
      * Sends a BeAPI info log to the content log in-game.
-     * @param {string} message Primary message.
-     * @param {string} optionalParams Optional extra fragments.
+     * @param {any} message Primary message.
+     * @param {any} optionalParams Optional extra fragments.
      */
     // @ts-ignore
-    info: (message: string, ...optionalParams: string[]) => void
+    info: (message: any, ...optionalParams: any[]) => void
     /**
      * Sends a BeAPI debug log to the content log in-game.
-     * @param {string} message Primary message.
-     * @param {string} optionalParams Optional extra fragments.
+     * @param {any} message Primary message.
+     * @param {any} optionalParams Optional extra fragments.
      */
     // @ts-ignore
-    debug: (message: string, ...optionalParams: string[]) => void
+    debug: (message: any, ...optionalParams: any[]) => void
     // @ts-ignore
   }
   /**

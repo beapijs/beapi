@@ -73,7 +73,9 @@ export class CommandManager {
       {
         command: [CommandTypes.String, true],
       },
-      this.onHelpCommand,
+      (p, c) => {
+        this._onHelpCommand(p, c)
+      },
     )
 
     // Enable command handler.
@@ -343,25 +345,101 @@ export class CommandManager {
     try {
       state.tryExecute()
     } catch (error) {
-      const messageContent = (error as Error).message
-      player.sendMessage(`§c§¢${messageContent}`)
-      // console.error(messageContent)
+      // Give error typings cause catch is unknown.
+      const err = error as Error & { user?: boolean }
+
+      // If user error, throw to console.
+      if (err.user) {
+        // Display error object as best as possible in content log.
+        console.error(
+          `An error occurred in command callback: [${err.name ?? 'Error'}]: ${err.message ?? 'No error message...'}\n${
+            err.stack ?? 'No error stack trace...'
+          }`,
+        )
+
+        // Send player message saying the command errored out.
+        return player.sendMessage(`§c§¢An error occured while executing command!`)
+      }
+      // Otherwise send syntax error in chat.
+      player.sendMessage(`§c§¢${err.message}`)
     }
   }
 
   /**
-   * Called when help command is called.
-   * If you would like to custom style your
-   * help command you can reassign this method to
-   * your own like so:
-   *
-   * ```ts
-   * client.command.onHelpCommand = (player, args) => {
-   *  ... My logic handling sending response
-   * }
-   * ```
+   * Protected method that is called when help command is called.
+   * Will be overriden if `overrideHelpCommand` is used.
    */
-  public onHelpCommand(player: Player, args: { command: string | undefined | null }): void {
-    player.sendMessage(args.command ?? 'Help commando')
+  protected _onHelpCommand(player: Player, args: { command: string | undefined | null }): void {
+    if (args.command) {
+      const command = this.getAllAsArray().find((c) => c.name === args.command! || c.aliases?.includes(args.command!))
+      if (!command || command.hideFromHelp)
+        return player.sendMessage(`§c§¢Unable to find command with the name ${args.command}!`)
+
+      player.sendMessage(
+        `§9Info on command "${command.name}"§r\n  §7Usage:§r\n    §8${
+          command.usage ?? this.generateUsage(command)
+        }§r\n  §7Description:§r\n    §8${command.description}§r\n  §7Aliases:§r\n    §8${
+          command.aliases?.join(', ') ?? 'N/A'
+        }§r\n  §7Permissions:§r\n    §8${command.permissionTags?.join(', ') ?? 'N/A'}\n`,
+      )
+    } else {
+      const final = this.getAllAsArray()
+        .filter((c) => !c.hideFromHelp)
+        .map((c) => `  §6${this._prefix}${c.name} §8- ${c.description ?? 'No description given...'}`)
+        .join('\n')
+      player.sendMessage(
+        `§9BeAPI v${this._client.currentVersion} Command List (${this.getAllAsArray().length})§r\n${final}\n`,
+      )
+    }
+  }
+
+  /**
+   * Override default help command with your own logic and styling.
+   * This is called anytime a user uses the help command.
+   * @param listener Command callback.
+   */
+  public overrideHelpCommand(listener: (player: Player, args: { command: string | undefined | null }) => void): void {
+    this._onHelpCommand = listener
+  }
+
+  /**
+   * Generates a usage string for command.
+   *
+   * @param command Command to generate usage for.
+   * @returns {string}
+   */
+  public generateUsage(command: CommandEntry<never>): string {
+    // If predefined usage return that instead of generating one.
+    if (command.usage) return command.usage
+
+    // Grab all keys as array from parameter schema.
+    const keys = Object.keys(command.schema ?? {})
+
+    // Map the keys into individual strings.
+    const args = keys
+      .map((k) => {
+        // Get value from key in object schema.
+        const obj = command.schema[k]
+
+        // Get the constructor, schema value can be
+        // of type array. If array constructor should
+        // be in index 0.
+        const constructor = Array.isArray(obj) ? obj[0] : obj
+        // Get optional status of command if its an array
+        // Its located at index 1 otherwise assume not optional
+        const optional = Array.isArray(obj) ? obj[1] ?? false : false
+
+        // Create correct opening and closing braces
+        const openingBrace = optional ? '[' : '<'
+        const closingBrace = optional ? ']' : '>'
+
+        // Put the cake together.
+        return `${openingBrace}${k}: ${constructor.displayName}${closingBrace}`
+      })
+      // Join with spaces.
+      .join(' ')
+
+    // Return new usage :).
+    return `${this.getPrefix()}${command.name} ${args}`
   }
 }
