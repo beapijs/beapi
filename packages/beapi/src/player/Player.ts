@@ -471,6 +471,20 @@ export class Player {
   }
 
   /**
+   * Gets precise location (decimals)
+   * @returns
+   */
+  public getPreciseLocation(): Location {
+    const pos = this._IPlayer.location
+
+    return {
+      x: pos.x,
+      y: pos.y,
+      z: pos.z,
+    }
+  }
+
+  /**
    * Gets the players current dimension.
    * @returns
    */

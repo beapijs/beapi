@@ -12,42 +12,42 @@ const log = console.warn
 globalThis.console = {
   /**
    * Sends a BeAPI log to the content log in-game.
-   * @param {string} message Primary message.
-   * @param {string} optionalParams Optional extra fragments.
+   * @param {any} message Primary message.
+   * @param {any} optionalParams Optional extra fragments.
    */
-  log(message: string, ...optionalParams: string[]) {
+  log(message: any, ...optionalParams: any[]) {
     log(`§9[BeAPI]§r  §b[LOG]:§r ${message} ${optionalParams.join(' ')}`)
   },
   /**
    * Sends a BeAPI error log to the content log in-game.
-   * @param {string} message Primary message.
-   * @param {string} optionalParams Optional extra fragments.
+   * @param {any} message Primary message.
+   * @param {any} optionalParams Optional extra fragments.
    */
-  error(message: string, ...optionalParams: string[]) {
+  error(message: any, ...optionalParams: any[]) {
     log(`§9[BeAPI]§r  §c[ERROR]:§r ${message} ${optionalParams.join(' ')}`)
   },
   /**
    * Sends a BeAPI warn log to the content log in-game.
-   * @param {string} message Primary message.
-   * @param {string} optionalParams Optional extra fragments.
+   * @param {any} message Primary message.
+   * @param {any} optionalParams Optional extra fragments.
    */
-  warn(message: string, ...optionalParams: string[]) {
+  warn(message: any, ...optionalParams: any[]) {
     log(`§9[BeAPI]§r  §g[WARN]:§r ${message} ${optionalParams.join(' ')}`)
   },
   /**
    * Sends a BeAPI info log to the content log in-game.
-   * @param {string} message Primary message.
-   * @param {string} optionalParams Optional extra fragments.
+   * @param {any} message Primary message.
+   * @param {any} optionalParams Optional extra fragments.
    */
-  info(message: string, ...optionalParams: string[]) {
+  info(message: any, ...optionalParams: any[]) {
     log(`§9[BeAPI]§r  §a[INFO]:§r ${message} ${optionalParams.join(' ')}`)
   },
   /**
    * Sends a BeAPI debug log to the content log in-game.
-   * @param {string} message Primary message.
-   * @param {string} optionalParams Optional extra fragments.
+   * @param {any} message Primary message.
+   * @param {any} optionalParams Optional extra fragments.
    */
-  debug(message: string, ...optionalParams: string[]) {
+  debug(message: any, ...optionalParams: any[]) {
     log(`§9[BeAPI]§r  §d[DEBUG]:§r ${message} ${optionalParams.join(' ')}`)
   },
 }

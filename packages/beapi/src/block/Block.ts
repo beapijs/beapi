@@ -112,6 +112,20 @@ export class Block {
   }
 
   /**
+   * Gets precise location (decimals)
+   * @returns
+   */
+  public getPreciseLocation(): Location {
+    const pos = this._IBlock.location
+
+    return {
+      x: pos.x,
+      y: pos.y,
+      z: pos.z,
+    }
+  }
+
+  /**
    * Checks if the block is empty.
    * @returns
    */

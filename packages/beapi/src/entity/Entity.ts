@@ -246,6 +246,20 @@ export class Entity {
   }
 
   /**
+   * Gets precise location (decimals)
+   * @returns
+   */
+  public getPreciseLocation(): Location {
+    const pos = this._IEntity.location
+
+    return {
+      x: pos.x,
+      y: pos.y,
+      z: pos.z,
+    }
+  }
+
+  /**
    * Gets the entities current dimension.
    * @returns
    */
