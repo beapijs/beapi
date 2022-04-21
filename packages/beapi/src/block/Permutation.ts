@@ -1,8 +1,7 @@
 // Regular imports.
-import { BlockType } from './'
+import { BlockType, Client } from '..'
 
 // Type imports.
-import type { Client } from '..'
 import type { BlockPermutation as IPermutation, IBlockProperty } from 'mojang-minecraft'
 
 /**
