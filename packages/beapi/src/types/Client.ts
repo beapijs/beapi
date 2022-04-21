@@ -1,7 +1,21 @@
 // Type imports.
-import type { Player } from '../player'
-import type { Entity } from '../entity'
-import type { CommandEntry } from '.'
+import type {
+  Player,
+  Entity,
+  CommandEntry,
+  Objective,
+  ActionForm,
+  MessageForm,
+  ModalForm,
+  ActionFormResponse,
+  MessageFormResponse,
+  ModalFormResponse,
+  events,
+  Block,
+  Item,
+  PropertyType,
+  Dimension,
+} from '..'
 import type {
   BlockLocation,
   BlockPermutation,
@@ -10,14 +24,6 @@ import type {
   DefinitionModifier,
   Vector,
 } from 'mojang-minecraft'
-import type { Objective } from './Scoreboards'
-import type { ActionForm, MessageForm, ModalForm } from '../forms'
-import type { ActionFormResponse, MessageFormResponse, ModalFormResponse } from './Forms'
-import type { events } from '../events'
-import type { Block } from '../block'
-import type { Item } from '../item'
-import type { PropertyType } from '../types/World'
-import type { Dimension } from '../world'
 
 /**
  * Helper type that converts types in an array into a union
