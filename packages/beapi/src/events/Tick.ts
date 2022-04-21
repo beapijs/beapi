@@ -1,10 +1,8 @@
 // Normal imports.
-import AbstractEvent from './AbstractEvent'
-import { setProto } from '../'
+import { setProto, AbstractEvent, Client } from '..'
 
 // Type imports.
 import { TickEvent, world } from 'mojang-minecraft'
-import type { Client } from '../client'
 
 /**
  * BeAPI tick event. Contains the logic
