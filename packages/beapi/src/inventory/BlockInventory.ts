@@ -1,12 +1,9 @@
 // Regular imports.
-import { Item } from '../item'
+import { Item, snakeCaseToCamelCase, Client, ItemTypes, CamelToSnakeCase, EntityInventory } from '..'
 import { ItemStack, MinecraftItemTypes } from 'mojang-minecraft'
-import { snakeCaseToCamelCase } from '..'
 
 // Type imports.
-import type { Client, ItemTypes, CamelToSnakeCase } from '..'
 import type { BlockInventoryComponent as IInventory, InventoryComponentContainer as IContainer } from 'mojang-minecraft'
-import type { EntityInventory } from './'
 
 /**
  * BeAPI block inventory wrapper.
