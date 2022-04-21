@@ -7,11 +7,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
-import type { Player } from '../player'
-import type { MessageFormResponse } from '../types'
+import type { Player, Client, MessageFormResponse } from '..'
 // @ts-ignore FIXME: Once typings are made
 import { MessageFormData } from 'mojang-minecraft-ui'
-import type { Client } from '../client'
 
 export class MessageForm {
   protected readonly player: Player
