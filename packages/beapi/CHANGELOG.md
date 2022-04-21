@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0-beta.1](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.5.0-beta.0...beapi-core@2.5.0-beta.1) (2022-04-21)
+
+
+### Bug Fixes
+
+* **versions:** protcol and mcbe versions ([b391fb1](https://github.com/MCBE-Utilities/BeAPI/commit/b391fb16e10a1ad78dd8e11707afbd81f906ecae))
+
+
+
+
+
 # [2.5.0-beta.0](https://github.com/MCBE-Utilities/BeAPI/compare/beapi-core@2.4.0...beapi-core@2.5.0-beta.0) (2022-04-21)
 
 
