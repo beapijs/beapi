@@ -1,5 +1,5 @@
-import { runCommand, stringToBin } from '../utils'
-import type { RawData } from '../types'
+// Regular imports.
+import { runCommand, stringToBin, RawData } from '..'
 
 /**
  * Dedicated namespace for random database utility methods.
