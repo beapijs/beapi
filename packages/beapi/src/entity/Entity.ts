@@ -1,4 +1,19 @@
-import type {
+// Regular imports.
+import {
+  Item,
+  Location,
+  DimensionType,
+  Dimension,
+  Client,
+  EntityInventory,
+  getUniqueId,
+  ServerCommandResponse,
+  EntityComponents,
+  Objective,
+  PropertyValue,
+} from '..'
+import {
+  Location as ILocation,
   Effect,
   EffectType,
   Entity as IEntity,
@@ -6,20 +21,6 @@ import type {
   EntityInventoryComponent,
   Vector,
 } from 'mojang-minecraft'
-import type { Client } from '../client'
-import type {
-  Location,
-  DimensionType,
-  ServerCommandResponse,
-  EntityComponents,
-  Objective,
-  PropertyValue,
-} from '../types'
-import type { Dimension } from '../world'
-import { Location as ILocation } from 'mojang-minecraft'
-import { getUniqueId } from '../utils'
-import { EntityInventory } from '../inventory'
-import { Item } from '../item'
 
 /**
  * BeAPI wrapper for the Mojang Minecraft entity object.
