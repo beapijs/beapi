@@ -1,11 +1,5 @@
 // Regular imports.
-import { setProto } from '..'
-import AbstractEvent from './AbstractEvent'
-
-// Type imports.
-import type { ItemInteractEvent } from '..'
-import type { Client } from '../client'
-import { Player } from '../player'
+import { setProto, AbstractEvent, ItemInteractEvent, Client, Player } from '..'
 
 /**
  * BeAPI chest opened event. Contains the logic
