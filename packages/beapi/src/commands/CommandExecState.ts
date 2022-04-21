@@ -1,6 +1,5 @@
-import type { CommandManager } from '.'
-import type { Player } from '../player'
-import type { CommandEntry, CommandArgumentTypes } from '../types'
+// Type imports.
+import type { CommandManager, Player, CommandEntry, CommandArgumentTypes } from '..'
 
 /**
  * Used for keeping track of the execution state of a command.
