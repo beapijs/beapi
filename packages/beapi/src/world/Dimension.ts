@@ -22,10 +22,26 @@ import {
   Vector,
 } from 'mojang-minecraft'
 
+/**
+ * BeAPI wrapper for Minecraft dimension. Enables for easier centralized usage
+ * of a dimension.
+ */
 export class Dimension {
+  /**
+   * Client reference.
+   */
   protected readonly _client: Client
+  /**
+   * IDimension being wrapped.
+   */
   protected readonly _IDimension: IDimension
 
+  /**
+   * BeAPI wrapper for Minecraft dimension. Enables for easier centralized usage
+   * of a dimension.
+   * @param client Client reference.
+   * @param IDimension IDimension to wrap.
+   */
   public constructor(client: Client, IDimension: IDimension) {
     this._client = client
     this._IDimension = IDimension
@@ -172,11 +188,13 @@ export class Dimension {
    */
   public setBlock(location: Location, block: CamelToSnakeCase<BlockTypes> | Block): Block {
     const selected = this.getBlock(location)
+    // If is a block create a permutation on the location.
     if (block instanceof Block) {
       selected.setType(block.getType())
       selected.setPermutation(block.getPermutation())
       return selected
     }
+    // Otherwise change the type to given type.
     selected.setType(block)
     return selected
   }
