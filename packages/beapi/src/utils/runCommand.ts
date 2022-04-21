@@ -2,8 +2,7 @@
 import { world } from 'mojang-minecraft'
 
 // Type imports.
-import type { ServerCommandResponse } from '..'
-import type { DimensionType } from '../types'
+import type { ServerCommandResponse, DimensionType } from '..'
 
 /**
  * Standalone method for running a command. Worlds the same as `Client#runCommand`.
