@@ -6,11 +6,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import type { Player } from '../player'
-import type { ModalFormResponse } from '../types'
+import type { Player, Client, ModalFormResponse } from '..'
 // @ts-ignore FIXME: Once typings are made
 import { ModalFormData } from 'mojang-minecraft-ui'
-import type { Client } from '../client'
 
 export class ModalForm {
   private readonly player: Player
