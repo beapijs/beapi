@@ -1,9 +1,6 @@
 import * as Minecraft from 'mojang-minecraft'
 import { world } from 'mojang-minecraft'
-import type { Client } from '../client'
-import type { PropertyRegistry, PropertyType, DynamicPropertiesDefinition } from '../types'
-import { setProto } from '../'
-import AbstractEvent from './AbstractEvent'
+import { setProto, Client, PropertyRegistry, PropertyType, DynamicPropertiesDefinition, AbstractEvent } from '..'
 
 // FIXME: TEMP - Mojang keep on top of your typings or hire me at <Nobu : chat@nobu.sh>
 export interface WorldInitializeEvent {
