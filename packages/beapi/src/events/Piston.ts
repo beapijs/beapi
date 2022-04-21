@@ -1,11 +1,6 @@
 // Normal imports.
-import AbstractEvent from './AbstractEvent'
-import { setProto } from '../'
-import { Block } from '../block'
+import { setProto, AbstractEvent, Block, Client } from '..'
 import { BeforePistonActivateEvent, world } from 'mojang-minecraft'
-
-// Type imports.
-import type { Client } from '../client'
 
 /**
  * BeAPI piston event. Contains the logic
