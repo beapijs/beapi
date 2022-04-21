@@ -1,10 +1,5 @@
 // Regular imports.
-import { setProto } from '../'
-import AbstractEvent from './AbstractEvent'
-
-// Type imports.
-import type { PlayerTagEvent } from '..'
-import type { Client } from '../client'
+import { setProto, AbstractEvent, PlayerTagEvent, Client } from '..'
 
 /**
  * BeAPI death event. Contains the logic
