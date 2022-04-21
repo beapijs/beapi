@@ -1,11 +1,16 @@
 // Regular imports.
-import { BlockType, Permutation } from './'
-import { BlockInventory } from '../inventory'
+import {
+  BlockType,
+  Permutation,
+  BlockInventory,
+  BlockComponents,
+  Client,
+  Location,
+  Dimension,
+  BlockTypes,
+  CamelToSnakeCase,
+} from '..'
 import { Block as IBlock, BlockInventoryComponent, MinecraftBlockTypes } from 'mojang-minecraft'
-
-// Type imports.
-import type { BlockComponents, Client, Location } from '..'
-import type { Dimension, BlockTypes, CamelToSnakeCase } from '../'
 
 /**
  * BeAPI wrapper object for Minecraft IBlock. Adds a bunch of
