@@ -1,5 +1,5 @@
 // Type imports.
-import type { Modal } from './Modal'
+import type { Modal } from '..'
 
 /**
  * BeAPI database document. Document is the main interaction point
