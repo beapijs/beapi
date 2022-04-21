@@ -11,12 +11,14 @@ import {
   version,
   mcbe,
   protocol,
-} from '../'
+  AbstractEvent,
+  DimensionType,
+  ServerCommandResponse,
+  ClientEvents,
+  Awaitable,
+  ClientOptions,
+} from '..'
 import { Events, world } from 'mojang-minecraft'
-
-// Type imports.
-import type AbstractEvent from '../events/AbstractEvent'
-import type { DimensionType, ServerCommandResponse, ClientEvents, Awaitable, ClientOptions } from '../'
 
 // Client Listener Type Event Overrides.
 export interface Client {
