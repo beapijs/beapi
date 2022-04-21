@@ -1,5 +1,5 @@
 // Imports
-import { Client } from './client'
+import { Client } from '.'
 import { Timers } from './polyfill/Timers'
 
 // Create original console warn reference.
