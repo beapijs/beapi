@@ -1,12 +1,6 @@
 // Normal imports.
-import AbstractEvent from './AbstractEvent'
-import { setProto } from '../'
-import { Block } from '../block'
-import { Item } from '../item'
+import { setProto, AbstractEvent, Block, Item, Client } from '..'
 import { BeforeItemUseOnEvent, world, Player as IPlayer } from 'mojang-minecraft'
-
-// Type imports.
-import type { Client } from '../client'
 
 /**
  * BeAPI item interact event. Contains the logic
