@@ -1,11 +1,5 @@
 // Regular imports.
-import AbstractEvent from './AbstractEvent'
-import { setProto } from '../'
-
-// Type imports.
-import type { Client } from '../client'
-import type { Entity } from '../entity'
-import type { Objective } from '../types'
+import { setProto, AbstractEvent, Client, Entity, Objective } from '..'
 
 // Private OldScore Interface.
 interface OldScore {
