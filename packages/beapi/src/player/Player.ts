@@ -8,14 +8,14 @@ import {
   EffectType,
   Effect,
 } from 'mojang-minecraft'
-import { ModalForm, MessageForm, ActionForm } from '../forms'
-import { Agent } from '../agent/Agent'
-import { EntityInventory } from '../inventory'
-
-// Type imports.
-import type { Client } from '../client'
-import type { Dimension } from '../world'
-import type {
+import {
+  ModalForm,
+  MessageForm,
+  ActionForm,
+  Agent,
+  EntityInventory,
+  Client,
+  Dimension,
   Location,
   DimensionType,
   Gamemode,
@@ -26,7 +26,7 @@ import type {
   CameraShakeType,
   DisplayPlayer, // TODO: Remove once types are made.
   PropertyValue,
-} from '../types'
+} from '..'
 
 /**
  * BeAPI wrapper for the Mojang Minecraft player object.
