@@ -1,8 +1,6 @@
+// Regular imports.
+import { setProto, AbstractEvent, Block, Client } from '..'
 import { world, Block as IBlock, Dimension as IDimension } from 'mojang-minecraft'
-import type { Client } from '../client'
-import { Block } from '../block'
-import { setProto } from '../'
-import AbstractEvent from './AbstractEvent'
 
 // TEMP: Mojang keep on top of your typings or hire me at <Nobu : chat@nobu.sh>
 export interface LeverActivateEvent {
