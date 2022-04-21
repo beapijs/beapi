@@ -1,4 +1,4 @@
-import type { CamelToSnakeCase, SnakeToCamelCase } from '../types'
+import type { CamelToSnakeCase, SnakeToCamelCase } from '..'
 
 /**
  * Convert snake case to camel case.
