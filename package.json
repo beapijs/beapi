@@ -6,7 +6,7 @@
   "scripts": {
     "i": "npm install && npm run i --workspaces",
     "build": "npm run build --workspaces",
-    "clean": "rimraf packages/**/dist packages/**/*.tsbuildinfo",
+    "clean": "rimraf packages/*/dist packages/*/*.tsbuildinfo",
     "commit": "commit",
     "format": "prettier --write **/*.{ts,js,json,yml,yaml}",
     "lint": "eslint packages --ext mjs,js,ts",
