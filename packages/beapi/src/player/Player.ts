@@ -8,6 +8,7 @@ import {
   EffectType,
   Effect,
   TitleDisplayOptions,
+  BlockRaycastOptions,
 } from 'mojang-minecraft'
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import { Agent } from '../agent/Agent'
@@ -15,6 +16,7 @@ import { EntityInventory } from '../inventory'
 
 // Type imports.
 import type { Client } from '../client'
+import type { Block } from '../block'
 import type { Dimension } from '../world'
 import type {
   Location,
@@ -890,5 +892,20 @@ export class Player {
    */
   public removeProperty(id: string): boolean {
     return this._IPlayer.removeDynamicProperty(id)
+  }
+
+  public getBlockAtCrosshair(maxDistance?: number, includeLiquids?: boolean, includePassableBlocks?: boolean): Block {
+    if (maxDistance) {
+      const options = new BlockRaycastOptions()
+      options.maxDistance = maxDistance ?? 100
+      options.includeLiquidBlocks = includeLiquids ?? true
+      options.includePassableBlocks = includePassableBlocks ?? true
+      const block = this.getDimension().getBlock(this._IPlayer.getBlockFromViewVector())
+
+      return block
+    }
+    const block = this.getDimension().getBlock(this._IPlayer.getBlockFromViewVector())
+
+    return block
   }
 }

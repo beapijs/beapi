@@ -15,6 +15,7 @@ import type {
 
 import { Block } from '..'
 import {
+  Block as IBlock,
   Dimension as IDimension,
   Location as ILocation,
   BlockLocation,
@@ -178,7 +179,11 @@ export class Dimension {
    * @param {Location} location Location of the block.
    * @returns {Block} Returns the block.
    */
-  public getBlock(location: Location): Block {
+  public getBlock(location: Location | IBlock): Block {
+    if (location instanceof IBlock) {
+      return new Block(this._client, location)
+    }
+
     return new Block(this._client, this._IDimension.getBlock(new BlockLocation(location.x, location.y, location.z)))
   }
 
