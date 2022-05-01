@@ -7,6 +7,7 @@ import {
   Vector,
   EffectType,
   Effect,
+  TitleDisplayOptions,
 } from 'mojang-minecraft'
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import { Agent } from '../agent/Agent'
@@ -25,6 +26,7 @@ import type {
   FogType,
   CameraShakeType,
   PropertyValue,
+  TitleOptions,
 } from '../types'
 
 /**
@@ -288,15 +290,22 @@ export class Player {
    * @param message Message content to set.
    */
   public sendActionbar(message: string): void {
-    this.executeCommand(`titleraw @s actionbar {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
+    const display = this._IPlayer.onScreenDisplay
+    display.setActionBar(message)
   }
 
   /**
    * Sends a title to the player.
    * @param message Message content to set.
    */
-  public sendTitle(message: string): void {
-    this.executeCommand(`titleraw @s title {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
+  public sendTitle(message: string, options?: TitleOptions): void {
+    const display = this._IPlayer.onScreenDisplay
+    const titleOptions = new TitleDisplayOptions()
+    titleOptions.fadeInSeconds = options?.fadeInSeconds ?? 2
+    titleOptions.fadeOutSeconds = options?.fadeOutSeconds ?? 2
+    titleOptions.staySeconds = options?.staySeconds ?? 5
+    titleOptions.subtitle = options?.subtitle ?? ''
+    display.setTitle(message)
   }
 
   /**
@@ -304,7 +313,16 @@ export class Player {
    * @param message Message content to set.
    */
   public sendSubtitle(message: string): void {
-    this.executeCommand(`titleraw @s subtitle {"rawtext":[{"text":"${message.replace(/"/g, '\\"')}"}]}`)
+    const display = this._IPlayer.onScreenDisplay
+    display.updateSubtitle(message)
+  }
+
+  /**
+   * Clear current title message.
+   */
+  public clearTitle(): void {
+    const display = this._IPlayer.onScreenDisplay
+    display.clearTitle()
   }
 
   /**

@@ -62,3 +62,13 @@ export type FogType = 'pop' | 'push' | 'remove'
  * Camera shake types.
  */
 export type CameraShakeType = 'positional' | 'rotational' | 'clear'
+
+/**
+ * Options for title displays.
+ */
+export interface TitleOptions {
+  fadeInSeconds?: number
+  fadeOutSeconds?: number
+  staySeconds?: number
+  subtitle?: string
+}
