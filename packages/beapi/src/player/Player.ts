@@ -896,6 +896,13 @@ export class Player {
     return this._IPlayer.removeDynamicProperty(id)
   }
 
+  /**
+   * Get a bloack at a players cross hair.
+   * @param maxDistance Max amount of blocks.
+   * @param includeLiquids Check for liquids.
+   * @param includePassableBlocks Check for passable blocks.
+   * @returns Block instance.
+   */
   public getBlockAtCrosshair(maxDistance?: number, includeLiquids?: boolean, includePassableBlocks?: boolean): Block {
     if (maxDistance) {
       const options = new BlockRaycastOptions()
@@ -911,6 +918,11 @@ export class Player {
     return block
   }
 
+  /**
+   * Get a entity at a players cross hair.
+   * @param maxDistance Max amount of blocks.
+   * @returns Entity instance.
+   */
   public getEntityAtCrosshair(maxDistance?: number): Entity | undefined {
     if (maxDistance) {
       const options = new EntityRaycastOptions()
@@ -920,6 +932,23 @@ export class Player {
       const entity = this._client.entities.getByIEntity(IEntity)
 
       return entity
+    }
+  }
+
+  /**
+   * Get a player at a players cross hair.
+   * @param maxDistance Max amount of blocks.
+   * @returns Player instance.
+   */
+  public getPlayerAtCrosshair(maxDistance?: number): Player | undefined {
+    if (maxDistance) {
+      const options = new EntityRaycastOptions()
+      options.maxDistance = maxDistance ?? 100
+      const IEntity = this._IPlayer.getEntitiesFromViewVector(options)[0]
+      if (IEntity.id !== 'minecraft:player') return
+      const player = this._client.players.getByIPlayer(IEntity)
+
+      return player
     }
   }
 }
