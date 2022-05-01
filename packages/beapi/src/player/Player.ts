@@ -24,6 +24,7 @@ import type {
   Objective,
   FogType,
   CameraShakeType,
+  PropertyValue,
 } from '../types'
 
 /**
@@ -842,5 +843,33 @@ export class Player {
     if (typeof val === 'boolean') {
       this._isMuted = val
     } else return this._isMuted
+  }
+
+  /**
+   * Gets a property on the Player.
+   * @param {id} id ID of property.
+   * @returns {PropertyValue} Value of the property.
+   */
+  public getProperty(id: string): PropertyValue {
+    return this._IPlayer.getDynamicProperty(id)
+  }
+
+  /**
+   * Sets the value of a property.
+   * @param {id} id ID of property.
+   * @param {PropertyValue} value Value for the property.
+   * @returns {void}
+   */
+  public setProperty(id: string, value: PropertyValue): void {
+    return this._IPlayer.setDynamicProperty(id, value)
+  }
+
+  /**
+   * Removes a property.
+   * @param {string} id ID of property.
+   * @returns {boolean}
+   */
+  public removeProperty(id: string): boolean {
+    return this._IPlayer.removeDynamicProperty(id)
   }
 }
