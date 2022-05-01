@@ -1,9 +1,9 @@
 // Normal imports.
-import { World as IWorld, world, Dimension as IDimension } from 'mojang-minecraft'
-import { Dimension } from './Dimension'
+import { World as IWorld, world, Dimension as IDimension, ItemStack, MinecraftItemTypes } from 'mojang-minecraft'
+import { Dimension, snakeCaseToCamelCase, Item, ItemTypes } from '..'
 
 // Type imports.
-import type { Difficulty, Weather, DimensionNamespace, PropertyValue } from '../types'
+import type { Difficulty, Weather, DimensionNamespace, PropertyValue, CamelToSnakeCase } from '../types'
 import type { Client } from '../client'
 
 /**
@@ -144,5 +144,20 @@ export class WorldManager {
    */
   public removeProperty(id: string): boolean {
     return this._IWorld.removeDynamicProperty(id)
+  }
+
+  /**
+   * Creates a new item.
+   * @param {CamelToSnakeCase<ItemType>} type Item type.
+   * @param {number} amount Item amount.
+   * @param {number} data Item data value.
+   * @returns {Item}
+   */
+  public createItem(type: CamelToSnakeCase<ItemTypes>, amount = 1, data = 1): Item {
+    const convert = snakeCaseToCamelCase<ItemTypes>(type)
+    const stack = new ItemStack(MinecraftItemTypes[convert], amount, data)
+    const item = new Item(this._client, stack)
+
+    return item
   }
 }
