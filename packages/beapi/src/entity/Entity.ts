@@ -13,8 +13,16 @@ import type {
   Vector,
 } from 'mojang-minecraft'
 import type { Client } from '../client'
-import type { Location, DimensionNamespace, ServerCommandResponse, EntityComponents, Objective } from '../types'
+import type {
+  Location,
+  DimensionNamespace,
+  ServerCommandResponse,
+  EntityComponents,
+  Objective,
+  PropertyValue,
+} from '../types'
 import type { Dimension } from '../world'
+import { Item } from '..'
 
 /**
  * BeAPI wrapper for the Mojang Minecraft entity object.
@@ -396,5 +404,45 @@ export class Entity {
    */
   public getEffect(effect: EffectType): Effect {
     return this._IEntity.getEffect(effect)
+  }
+
+  /**
+   * Gets a property on the Entity.
+   * @param {id} id ID of property.
+   * @returns {PropertyValue} Value of the property.
+   */
+  public getProperty(id: string): PropertyValue {
+    return this._IEntity.getDynamicProperty(id)
+  }
+
+  /**
+   * Sets the value of a property.
+   * @param {id} id ID of property.
+   * @param {PropertyValue} value Value for the property.
+   * @returns {boolean}
+   */
+  public setProperty(id: string, value: PropertyValue): void {
+    return this._IEntity.setDynamicProperty(id, value)
+  }
+
+  /**
+   * Removes a property.
+   * @param {string} id ID of property.
+   * @returns {boolean}
+   */
+  public removeProperty(id: string): boolean {
+    return this._IEntity.removeDynamicProperty(id)
+  }
+
+  /**
+   * Gets the Item instance if the entity is a item.
+   * @returns {Item | undefined} Item instance.
+   */
+  public getItemStack(): Item | undefined {
+    if (!this.hasComponent('minecraft:item')) return
+    const component = this.getComponent('minecraft:item')
+    const item = new Item(this._client, component.itemStack)
+
+    return item
   }
 }
