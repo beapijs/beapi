@@ -3,7 +3,7 @@ import { World as IWorld, world, Dimension as IDimension } from 'mojang-minecraf
 import { Dimension } from './Dimension'
 
 // Type imports.
-import type { Difficulty, Weather, DimensionNamespace } from '../types'
+import type { Difficulty, Weather, DimensionNamespace, PropertyValue } from '../types'
 import type { Client } from '../client'
 
 /**
@@ -116,5 +116,33 @@ export class WorldManager {
    */
   public setDifficulty(difficulty: Difficulty): boolean {
     return this._client.executeCommand(`difficulty ${difficulty}`).err ? false : true
+  }
+
+  /**
+   * Gets a property on the World.
+   * @param {id} id ID of property.
+   * @returns {PropertyValue} Value of the property.
+   */
+  public getProperty(id: string): PropertyValue {
+    return this._IWorld.getDynamicProperty(id)
+  }
+
+  /**
+   * Sets the value of a property.
+   * @param {id} id ID of property.
+   * @param {PropertyValue} value Value for the property.
+   * @returns {void}
+   */
+  public setProperty(id: string, value: PropertyValue): void {
+    return this._IWorld.setDynamicProperty(id, value)
+  }
+
+  /**
+   * Removes a property.
+   * @param {string} id ID of property.
+   * @returns {boolean}
+   */
+  public removeProperty(id: string): boolean {
+    return this._IWorld.removeDynamicProperty(id)
   }
 }
