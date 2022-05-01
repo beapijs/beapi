@@ -77,7 +77,7 @@ export class ServerInitialized extends AbstractEvent {
     // @ts-ignore
     this._client.emit(this.name, {
       registerWorldProperty: (property: PropertyType, id: string, length = 10): void => {
-        const dynamic = new (Minecraft as any).DynamicPropertiesDefinition() as DynamicPropertiesDefinition
+        const dynamic = new Minecraft.DynamicPropertiesDefinition() as DynamicPropertiesDefinition
         switch (property) {
           case 'string':
             dynamic.defineString(id, length)
@@ -92,7 +92,7 @@ export class ServerInitialized extends AbstractEvent {
       },
       // TODO: Fix typings once added by mojang
       registerEntityProperty: (entity: any, property: PropertyType, id: string, length = 10): void => {
-        const dynamic = new (Minecraft as any).DynamicPropertiesDefinition() as DynamicPropertiesDefinition
+        const dynamic = new Minecraft.DynamicPropertiesDefinition() as DynamicPropertiesDefinition
         switch (property) {
           case 'string':
             dynamic.defineString(id, length)
