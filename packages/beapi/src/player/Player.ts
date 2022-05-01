@@ -9,6 +9,7 @@ import {
   Effect,
   TitleDisplayOptions,
   BlockRaycastOptions,
+  EntityRaycastOptions,
 } from 'mojang-minecraft'
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import { Agent } from '../agent/Agent'
@@ -30,6 +31,7 @@ import type {
   PropertyValue,
   TitleOptions,
 } from '../types'
+import type { Entity } from '../entity'
 
 /**
  * BeAPI wrapper for the Mojang Minecraft player object.
@@ -907,5 +909,17 @@ export class Player {
     const block = this.getDimension().getBlock(this._IPlayer.getBlockFromViewVector())
 
     return block
+  }
+
+  public getEntityAtCrosshair(maxDistance?: number): Entity | undefined {
+    if (maxDistance) {
+      const options = new EntityRaycastOptions()
+      options.maxDistance = maxDistance ?? 100
+      const IEntity = this._IPlayer.getEntitiesFromViewVector(options)[0]
+      if (IEntity.id === 'minecraft:player') return
+      const entity = this._client.entities.getByIEntity(IEntity)
+
+      return entity
+    }
   }
 }
