@@ -16,6 +16,7 @@ import type { ActionFormResponse, MessageFormResponse, ModalFormResponse } from 
 import type { events } from '../events'
 import type { Block } from '../block'
 import type { Item } from '../item'
+import type { Dimension } from '../world'
 
 /**
  * Helper type that converts types in an array into a union
@@ -625,7 +626,7 @@ export interface WeatherUpdatedEvent {
   /**
    * Dimension it occured in.
    */
-  dimension: IDimension
+  dimension: Dimension
 }
 
 /**

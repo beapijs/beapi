@@ -5,7 +5,7 @@ import { WeatherChangeEvent, world } from 'mojang-minecraft'
 
 // Type imports.
 import type { Client } from '../client'
-import type { Dimension } from '../types'
+import type { DimensionType, DimensionNamespace } from '../types'
 
 /**
  * BeAPI weather updated event. Contains the logic
@@ -71,7 +71,9 @@ export class WeatherUpdated extends AbstractEvent {
   // Predefined in AbstractEvent.
   protected __logic(arg: WeatherChangeEvent): void {
     // Get the dimension it occured in.
-    const dimension = this._client.world.getDimension(arg.dimension as Dimension)
+    const dimension = this._client.world.getDimension(
+      `minecraft:${(arg.dimension as DimensionType).replace(/ /g, '_')}` as DimensionNamespace,
+    )
     // Emit event through client.
     this._client.emit(this.name, {
       lightning: arg.lightning,

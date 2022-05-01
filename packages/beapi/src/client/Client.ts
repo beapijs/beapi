@@ -2,7 +2,7 @@
 import { EventEmitter } from '../polyfill'
 import { events } from '../events'
 import { PlayerManager } from '../player'
-import { Events, world } from 'mojang-minecraft'
+import { Events } from 'mojang-minecraft'
 import { EntityManager } from '../entity'
 import { CommandManager } from '../commands'
 import { WorldManager } from '../world'
@@ -11,7 +11,7 @@ import { version, mcbe, protocol } from '../version'
 
 // Type imports.
 import type AbstractEvent from '../events/AbstractEvent'
-import type { Dimension, ServerCommandResponse, ClientEvents, Awaitable, ClientOptions } from '../types'
+import type { DimensionNamespace, ServerCommandResponse, ClientEvents, Awaitable, ClientOptions } from '../types'
 
 // Client Listener Type Event Overrides.
 export interface Client {
@@ -240,9 +240,13 @@ export class Client extends EventEmitter {
    * @param debug Send errors to content log?
    * @returns
    */
-  public executeCommand<T>(cmd: string, dimension: Dimension = 'overworld', debug = false): ServerCommandResponse<T> {
+  public executeCommand<T>(
+    cmd: string,
+    dimension: DimensionNamespace = 'minecraft:overworld',
+    debug = false,
+  ): ServerCommandResponse<T> {
     try {
-      const command = world.getDimension(dimension).runCommand(cmd) as ServerCommandResponse<T>
+      const command = this.world.getDimension(dimension).executeCommand(cmd) as ServerCommandResponse<T>
 
       return {
         statusMessage: command.statusMessage,

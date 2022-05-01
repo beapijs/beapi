@@ -6,6 +6,7 @@ import type {
   BlockSnowContainerComponent,
   BlockWaterContainerComponent,
   BlockPotionContainerComponent,
+  MinecraftBlockTypes,
 } from 'mojang-minecraft'
 
 export interface BlockComponents {
@@ -17,3 +18,14 @@ export interface BlockComponents {
   water_container: BlockWaterContainerComponent
   potion_container: BlockPotionContainerComponent
 }
+
+/**
+ * Get only block names on MinecraftBlockTypes.
+ */
+export type BlockTypes<T = keyof typeof MinecraftBlockTypes> = T extends 'prototype'
+  ? never
+  : T extends 'get'
+  ? never
+  : T extends 'getAllBlockTypes'
+  ? never
+  : T

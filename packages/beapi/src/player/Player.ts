@@ -1,6 +1,5 @@
 // Regular imports.
 import {
-  Dimension as IDimension,
   EntityHealthComponent,
   EntityInventoryComponent,
   Player as IPlayer,
@@ -15,9 +14,10 @@ import { EntityInventory } from '../inventory'
 
 // Type imports.
 import type { Client } from '../client'
+import type { Dimension } from '../world'
 import type {
   Location,
-  Dimension,
+  DimensionNamespace,
   Gamemode,
   ServerCommandResponse,
   PlayerComponents,
@@ -446,9 +446,9 @@ export class Player {
    * @returns
    */
   public getGamemode(): Gamemode {
-    const gmc = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=c]`, this.getDimensionName())
-    const gma = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=a]`, this.getDimensionName())
-    const gms = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=s]`, this.getDimensionName())
+    const gmc = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=c]`, this.getDimension().getId())
+    const gma = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=a]`, this.getDimension().getId())
+    const gms = this._client.executeCommand(`testfor @a[name="${this.getNameTag()}",m=s]`, this.getDimension().getId())
     if (!gmc.err) return 'creative'
     if (!gma.err) return 'adventure'
     if (!gms.err) return 'survival'
@@ -488,18 +488,8 @@ export class Player {
    * Gets the players current dimension.
    * @returns
    */
-  public getDimension(): IDimension {
-    return this._IPlayer.dimension
-  }
-
-  /**
-   * Gets the players current dimension name.
-   * @returns
-   */
-  public getDimensionName(): Dimension {
-    const id = this.getDimension().id.split(':')[1].replace(/_/g, ' ')
-
-    return id as Dimension
+  public getDimension(): Dimension {
+    return this._client.world.getDimension(this._IPlayer.dimension)
   }
 
   /**
@@ -560,9 +550,9 @@ export class Player {
    * @param xrot X rotation to face when teleported.
    * @param yrot Y rotation to face when teleported
    */
-  public teleport(location: Location, dimension: Dimension, xrot: number, yrot: number): void {
+  public teleport(location: Location, dimension: DimensionNamespace, xrot: number, yrot: number): void {
     const loc = new ILocation(location.x, location.y, location.z)
-    this._IPlayer.teleport(loc, this._client.world.getDimension(dimension), xrot, yrot)
+    this._IPlayer.teleport(loc, this._client.world.getDimension(dimension).getIDimension(), xrot, yrot)
   }
 
   /**
@@ -571,10 +561,10 @@ export class Player {
    * @param dimension Dimension to teleport player to.
    * @param facingLocation Location to make player face.
    */
-  public teleportFacing(location: Location, dimension: Dimension, facingLocation: Location): void {
+  public teleportFacing(location: Location, dimension: DimensionNamespace, facingLocation: Location): void {
     const loc = new ILocation(location.x, location.y, location.z)
     const loc2 = new ILocation(facingLocation.x, facingLocation.y, facingLocation.z)
-    this._IPlayer.teleportFacing(loc, this._client.world.getDimension(dimension), loc2)
+    this._IPlayer.teleportFacing(loc, this._client.world.getDimension(dimension).getIDimension(), loc2)
   }
 
   /**
