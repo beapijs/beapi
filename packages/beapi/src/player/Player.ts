@@ -946,7 +946,7 @@ export class Player {
       options.maxDistance = maxDistance ?? 100
       const IEntity = this._IPlayer.getEntitiesFromViewVector(options)[0]
       if (IEntity.id !== 'minecraft:player') return
-      const player = this._client.players.getByIPlayer(IEntity)
+      const player = this._client.players.getByIPlayer(IEntity as IPlayer)
 
       return player
     }
