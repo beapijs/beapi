@@ -1,9 +1,5 @@
 // Normal imports.
-import AbstractEvent from './AbstractEvent'
-import { setProto } from '../'
-
-// Type imports.
-import type { Client, Player } from '..'
+import { setProto, Client, Entity, AbstractEvent } from '..'
 
 /**
  * BeAPI item dropped event. Contains the logic
@@ -46,7 +42,7 @@ export class ItemDropped extends AbstractEvent {
     if (!this._registered) {
       // Subscribe to Client event with needed logic
       // And use bound _logic for the callback.
-      this._client.addListener('Swing', this._logic)
+      this._client.addListener('EntityCreated', this._logic)
       // Set registered to true so this cannot be called
       // Again before off being called.
       this._registered = true
@@ -59,27 +55,25 @@ export class ItemDropped extends AbstractEvent {
     if (this._registered) {
       // Remove Client event listener used
       // With bound _logic callback.
-      this._client.removeListener('Swing', this._logic)
+      this._client.removeListener('EntityCreated', this._logic)
       // Set registered to false so this cannot be called
       // Again before on being called.
       this._registered = false
     }
   }
 
-  protected __logic(data: Player): void {
-    // TODO: This is pretty unreliable, throwing an item while facing a wall will void this.
+  // Predefined in AbstractEvent.
+  protected __logic(data: Entity): void {
+    // If not minecraft item ignore.
+    if (data.getId() !== 'minecraft:item') return
 
-    // Get block location of swing.
-    const block = this._client.world.getDimension(data.getDimension().getId()).getBlock(data.getLocation())
-    // Get latest entity.
-    const entity = this._client.entities.getLastest()
-    // If latest entity is not an item or block that was swung at was not air return.
-    if (!entity || entity?.getId() !== 'minecraft:item' || block.getId() !== 'minecraft:air') return
+    // Item instance
+    const item = data.getItemStack()!
 
     // Emit throw event.
     this._client.emit(this.name, {
-      player: data,
-      item: entity,
+      entity: data,
+      item,
     })
   }
 }

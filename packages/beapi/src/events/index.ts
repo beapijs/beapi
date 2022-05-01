@@ -52,6 +52,9 @@ import { EntityHurt } from './EntityHurt'
 import { PlayerHurt } from './PlayerHurt'
 import { Lever } from './Lever'
 import { ChestOpened } from './ChestOpened'
+import { ServerInitialized } from './ServerInitialized'
+import { ProjectileHitBlock } from './ProjectileHitBlock'
+import { ProjectileHitEntity } from './ProjectileHitEntity'
 
 // Export all events as an array.
 export const events = [
@@ -108,6 +111,9 @@ export const events = [
   PlayerHurt,
   Lever,
   ChestOpened,
+  ServerInitialized,
+  ProjectileHitBlock,
+  ProjectileHitEntity,
 ]
 
 // Export abstract event.

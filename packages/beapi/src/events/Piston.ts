@@ -73,7 +73,7 @@ export class Piston extends AbstractEvent {
     // Emit wrapped client event.
     this._client.emit(this.name, {
       block: new Block(this._client, arg.block),
-      dimension: arg.dimension,
+      dimension: this._client.world.getDimension(arg.dimension),
       piston: arg.piston,
       extending: arg.isExpanding,
       cancel() {

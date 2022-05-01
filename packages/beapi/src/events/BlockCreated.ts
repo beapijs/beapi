@@ -79,7 +79,7 @@ export class BlockCreated extends AbstractEvent {
     this._client.emit(this.name, {
       player,
       block: new Block(this._client, arg.block),
-      dimension: arg.dimension,
+      dimension: this._client.world.getDimension(arg.dimension),
       cancel() {
         // TODO: change this to a block permutation instead.
         const dim = arg.dimension

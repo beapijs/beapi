@@ -74,7 +74,7 @@ export class Explosion extends AbstractEvent {
     // Emit the boom boom event.
     this._client.emit(this.name, {
       source: entity,
-      dimension: arg.dimension,
+      dimension: this._client.world.getDimension(arg.dimension),
       impactedBlocks: arg.impactedBlocks,
       cancel() {
         arg.cancel = true
