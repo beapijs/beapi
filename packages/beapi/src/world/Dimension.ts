@@ -10,6 +10,7 @@ import type {
   ExplosionOptions,
   ParticleOptions,
   Player,
+  EntityTypes,
 } from '..'
 
 import { Block } from '..'
@@ -117,9 +118,9 @@ export class Dimension {
    * @param {Location} location Location to spawn entity.
    * @returns {Entity | undefined} Returns the spawned entity.
    */
-  public spawnEntity(id: string, location: Location): Entity | undefined {
+  public spawnEntity(entity: CamelToSnakeCase<EntityTypes>, location: Location): Entity | undefined {
     try {
-      this._IDimension.spawnEntity(id, new ILocation(location.x, location.y, location.z))
+      this._IDimension.spawnEntity(entity, new ILocation(location.x, location.y, location.z))
 
       return this._client.entities.getLastest()
     } catch {

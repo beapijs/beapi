@@ -297,6 +297,7 @@ export class Player {
   /**
    * Sends a title to the player.
    * @param message Message content to set.
+   * @param options Options for the title message.
    */
   public sendTitle(message: string, options?: TitleOptions): void {
     const display = this._IPlayer.onScreenDisplay

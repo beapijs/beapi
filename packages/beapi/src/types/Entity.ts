@@ -15,6 +15,7 @@ import type {
   EntityStrengthComponent,
   EntityTameableComponent,
   EntityItemComponent,
+  MinecraftEntityTypes,
 } from 'mojang-minecraft'
 
 /**
@@ -96,3 +97,8 @@ export interface EntityComponents {
    */
   'minecraft:item': EntityItemComponent
 }
+
+/**
+ * Gets only the names of the vanilla minecraft entities.
+ */
+export type EntityTypes<T = keyof typeof MinecraftEntityTypes> = T extends 'prototype' ? never : T

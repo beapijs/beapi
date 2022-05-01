@@ -1,6 +1,5 @@
-import * as Minecraft from 'mojang-minecraft'
-import { world, WorldInitializeEvent, EntityType } from 'mojang-minecraft'
-import { setProto, Client, PropertyType, DynamicPropertiesDefinition, AbstractEvent } from '..'
+import { world, WorldInitializeEvent, DynamicPropertiesDefinition, EntityType } from 'mojang-minecraft'
+import { setProto, Client, PropertyType, AbstractEvent } from '..'
 
 /**
  * BeAPI ServerInitialized event. Contains the logic
@@ -70,7 +69,7 @@ export class ServerInitialized extends AbstractEvent {
     // @ts-ignore
     this._client.emit(this.name, {
       registerWorldProperty: (property: PropertyType, id: string, length = 10): void => {
-        const dynamic = new Minecraft.DynamicPropertiesDefinition() as DynamicPropertiesDefinition
+        const dynamic = new DynamicPropertiesDefinition()
         switch (property) {
           case 'string':
             dynamic.defineString(id, length)
@@ -84,7 +83,7 @@ export class ServerInitialized extends AbstractEvent {
         }
       },
       registerEntityProperty: (entity: EntityType, property: PropertyType, id: string, length = 10): void => {
-        const dynamic = new Minecraft.DynamicPropertiesDefinition() as DynamicPropertiesDefinition
+        const dynamic = new DynamicPropertiesDefinition()
         switch (property) {
           case 'string':
             dynamic.defineString(id, length)
