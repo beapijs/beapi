@@ -238,4 +238,21 @@ export class WorldManager {
   public stopMusic(): void {
     this._IWorld.stopMusic()
   }
+
+  /**
+   * 
+   * @param id 
+   * @param options 
+   */
+  public queueMusic(id: string, options?: MusicOptions): void {
+    if (options) {
+      const musicOptions = new IMusicOptions()
+      musicOptions.fade = options.fade ?? 1
+      musicOptions.loop = options.loop ?? false
+      musicOptions.volume = options.volume ?? 1
+      this._IWorld.queueMusic(id, musicOptions)
+    } else {
+      this._IWorld.queueMusic(id)
+    }
+  }
 }
