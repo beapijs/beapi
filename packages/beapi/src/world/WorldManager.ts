@@ -240,9 +240,9 @@ export class WorldManager {
   }
 
   /**
-   * 
-   * @param id 
-   * @param options 
+   * Queue music to play on the world.
+   * @param {string} id Music ID.
+   * @param {MusicOptions} options Options for music.
    */
   public queueMusic(id: string, options?: MusicOptions): void {
     if (options) {
