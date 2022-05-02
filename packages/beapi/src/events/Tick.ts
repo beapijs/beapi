@@ -30,6 +30,9 @@ export class Tick extends AbstractEvent {
   // Predefined in AbstractEvent.
   public readonly alwaysCancel = false
 
+  // Current tick of the server.
+  protected currentTick = 0
+
   /**
    * BeAPI tick event. Contains the logic
    * for translating Minecraft event data to BeAPI
@@ -69,10 +72,19 @@ export class Tick extends AbstractEvent {
 
   // Predefined in AbstractEvent.
   protected __logic(arg: TickEvent): void {
+    // Set the current tick.
+    this.currentTick = arg.currentTick
     // Emit the event through client.
     this._client.emit(this.name, {
       currentTick: arg.currentTick,
       deltaTime: arg.deltaTime,
     })
+  }
+
+  /**
+   * Get the current tick of the world
+   */
+  public getCurrentTick(): number {
+    return this.currentTick
   }
 }

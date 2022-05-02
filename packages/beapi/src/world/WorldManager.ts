@@ -3,7 +3,8 @@ import { World as IWorld, world, Dimension as IDimension, ItemStack, MinecraftIt
 import { Dimension, snakeCaseToCamelCase, Item, ItemTypes } from '..'
 
 // Type imports.
-import type { Difficulty, Weather, DimensionNamespace, PropertyValue, CamelToSnakeCase } from '../types'
+import type { Difficulty, Weather, DimensionNamespace, PropertyValue, CamelToSnakeCase } from '..'
+import type { Tick } from '../events/Tick'
 import type { Client } from '../client'
 
 /**
@@ -159,5 +160,15 @@ export class WorldManager {
     const item = new Item(this._client, stack)
 
     return item
+  }
+
+  /**
+   * Gets the current tick of the server.
+   * @returns Current tick as a number.
+   */
+  public getCurrentTick(): number {
+    const event = this._client.getEvent('Tick') as Tick
+
+    return event.getCurrentTick()
   }
 }
