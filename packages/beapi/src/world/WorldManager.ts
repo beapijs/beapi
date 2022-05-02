@@ -44,6 +44,14 @@ export class WorldManager {
   }
 
   /**
+   * Get the vanilla world instance.
+   * @returns Vanilla world instance.
+   */
+  public getIWorld(): IWorld {
+    return this._IWorld
+  }
+
+  /**
    * Broadcasts a message to everyone.
    * @param {string} message Message to send.
    */
