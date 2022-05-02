@@ -1,9 +1,17 @@
 // Normal imports.
-import { World as IWorld, world, Dimension as IDimension, ItemStack, MinecraftItemTypes } from 'mojang-minecraft'
+import {
+  World as IWorld,
+  world,
+  Dimension as IDimension,
+  ItemStack,
+  MinecraftItemTypes,
+  SoundOptions as ISoundOptions,
+  Location as ILocation,
+} from 'mojang-minecraft'
 import { Dimension, snakeCaseToCamelCase, Item, ItemTypes } from '..'
 
 // Type imports.
-import type { Difficulty, Weather, DimensionNamespace, PropertyValue, CamelToSnakeCase } from '..'
+import type { Difficulty, Weather, DimensionNamespace, PropertyValue, CamelToSnakeCase, SoundOptions } from '..'
 import type { Tick } from '../events/Tick'
 import type { Client } from '../client'
 
@@ -178,5 +186,23 @@ export class WorldManager {
     const event = this._client.getEvent('Tick') as Tick
 
     return event.getCurrentTick()
+  }
+
+  /**
+   * Play a sound on the world.
+   * @param {string} id Sound ID.
+   * @param {SoundOptions} options Options for sound.
+   */
+  public playSound(id: string, options?: SoundOptions): void {
+    if (options) {
+      const soundOptions = new ISoundOptions()
+      const location = new ILocation(options?.location?.x ?? 0, options?.location?.y ?? 0, options?.location?.z ?? 0)
+      soundOptions.location = location
+      soundOptions.pitch = options?.pitch ?? 1
+      soundOptions.volume = options?.volume ?? 1
+      this._IWorld.playSound(id, soundOptions)
+    } else {
+      this._IWorld.playSound(id)
+    }
   }
 }
