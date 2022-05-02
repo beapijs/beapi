@@ -231,4 +231,11 @@ export class WorldManager {
       this._IWorld.playMusic(id)
     }
   }
+
+  /**
+   * Stops current music track.
+   */
+  public stopMusic(): void {
+    this._IWorld.stopMusic()
+  }
 }
