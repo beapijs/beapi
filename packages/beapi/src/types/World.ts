@@ -38,3 +38,9 @@ export interface SoundOptions {
   pitch?: number
   volume?: number
 }
+
+export interface MusicOptions {
+  fade?: number
+  loop?: boolean
+  volume?: number
+}

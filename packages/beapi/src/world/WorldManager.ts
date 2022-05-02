@@ -7,11 +7,20 @@ import {
   MinecraftItemTypes,
   SoundOptions as ISoundOptions,
   Location as ILocation,
+  MusicOptions as IMusicOptions,
 } from 'mojang-minecraft'
 import { Dimension, snakeCaseToCamelCase, Item, ItemTypes } from '..'
 
 // Type imports.
-import type { Difficulty, Weather, DimensionNamespace, PropertyValue, CamelToSnakeCase, SoundOptions } from '..'
+import type {
+  Difficulty,
+  Weather,
+  DimensionNamespace,
+  PropertyValue,
+  CamelToSnakeCase,
+  SoundOptions,
+  MusicOptions,
+} from '..'
 import type { Tick } from '../events/Tick'
 import type { Client } from '../client'
 
@@ -203,6 +212,23 @@ export class WorldManager {
       this._IWorld.playSound(id, soundOptions)
     } else {
       this._IWorld.playSound(id)
+    }
+  }
+
+  /**
+   * Play music on the world.
+   * @param {string} id Music ID.
+   * @param {MusicOptions} options Options for music.
+   */
+  public playMusic(id: string, options?: MusicOptions): void {
+    if (options) {
+      const musicOptions = new IMusicOptions()
+      musicOptions.fade = options.fade ?? 1
+      musicOptions.loop = options.loop ?? false
+      musicOptions.volume = options.volume ?? 1
+      this._IWorld.playMusic(id, musicOptions)
+    } else {
+      this._IWorld.playMusic(id)
     }
   }
 }
