@@ -62,6 +62,18 @@ export class ScoreboardManager {
   }
 
   /**
+   * Attempts to find an objective by given id.
+   * @param id Identifier of the scoreboard.
+   * @returns
+   */
+  public getObjective(id: string): Objective | undefined {
+    const objectives = this.getObjectives()
+
+    // Return all found objectives.
+    return objectives.find((o) => o.id === id)
+  }
+
+  /**
    * Attempts to get an array of all objectives.
    * @returns
    */
