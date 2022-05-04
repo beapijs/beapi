@@ -15,7 +15,8 @@
     },
     {
       "description": "Advanced API Wrapper for GameTests.",
-      "type": "javascript",
+      "language": "javascript",
+      "type": "script",
       "uuid": "|UUID3|",
       "version": [0, 0, 1],
       "entry": "scripts/index.js"
