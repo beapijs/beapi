@@ -1,9 +1,26 @@
 // Normal imports.
-import { World as IWorld, world, Dimension as IDimension, ItemStack, MinecraftItemTypes } from 'mojang-minecraft'
+import {
+  World as IWorld,
+  world,
+  Dimension as IDimension,
+  ItemStack,
+  MinecraftItemTypes,
+  SoundOptions as ISoundOptions,
+  Location as ILocation,
+  MusicOptions as IMusicOptions,
+} from 'mojang-minecraft'
 import { Dimension, snakeCaseToCamelCase, Item, ItemTypes } from '..'
 
 // Type imports.
-import type { Difficulty, Weather, DimensionNamespace, PropertyValue, CamelToSnakeCase } from '..'
+import type {
+  Difficulty,
+  Weather,
+  DimensionNamespace,
+  PropertyValue,
+  CamelToSnakeCase,
+  SoundOptions,
+  MusicOptions,
+} from '..'
 import type { Tick } from '../events/Tick'
 import type { Client } from '../client'
 
@@ -41,6 +58,14 @@ export class WorldManager {
     this._dimensions.set('minecraft:overworld', new Dimension(this._client, this._IWorld.getDimension('overworld')))
     this._dimensions.set('minecraft:nether', new Dimension(this._client, this._IWorld.getDimension('nether')))
     this._dimensions.set('minecraft:the_end', new Dimension(this._client, this._IWorld.getDimension('the end')))
+  }
+
+  /**
+   * Get the vanilla world instance.
+   * @returns Vanilla world instance.
+   */
+  public getIWorld(): IWorld {
+    return this._IWorld
   }
 
   /**
@@ -170,5 +195,64 @@ export class WorldManager {
     const event = this._client.getEvent('Tick') as Tick
 
     return event.getCurrentTick()
+  }
+
+  /**
+   * Play a sound on the world.
+   * @param {string} id Sound ID.
+   * @param {SoundOptions} options Options for sound.
+   */
+  public playSound(id: string, options?: SoundOptions): void {
+    if (options) {
+      const soundOptions = new ISoundOptions()
+      const location = new ILocation(options?.location?.x ?? 0, options?.location?.y ?? 0, options?.location?.z ?? 0)
+      soundOptions.location = location
+      soundOptions.pitch = options?.pitch ?? 1
+      soundOptions.volume = options?.volume ?? 1
+      this._IWorld.playSound(id, soundOptions)
+    } else {
+      this._IWorld.playSound(id)
+    }
+  }
+
+  /**
+   * Play music on the world.
+   * @param {string} id Music ID.
+   * @param {MusicOptions} options Options for music.
+   */
+  public playMusic(id: string, options?: MusicOptions): void {
+    if (options) {
+      const musicOptions = new IMusicOptions()
+      musicOptions.fade = options.fade ?? 1
+      musicOptions.loop = options.loop ?? false
+      musicOptions.volume = options.volume ?? 1
+      this._IWorld.playMusic(id, musicOptions)
+    } else {
+      this._IWorld.playMusic(id)
+    }
+  }
+
+  /**
+   * Stops current music track.
+   */
+  public stopMusic(): void {
+    this._IWorld.stopMusic()
+  }
+
+  /**
+   * Queue music to play on the world.
+   * @param {string} id Music ID.
+   * @param {MusicOptions} options Options for music.
+   */
+  public queueMusic(id: string, options?: MusicOptions): void {
+    if (options) {
+      const musicOptions = new IMusicOptions()
+      musicOptions.fade = options.fade ?? 1
+      musicOptions.loop = options.loop ?? false
+      musicOptions.volume = options.volume ?? 1
+      this._IWorld.queueMusic(id, musicOptions)
+    } else {
+      this._IWorld.queueMusic(id)
+    }
   }
 }
