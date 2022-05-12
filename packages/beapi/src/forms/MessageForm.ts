@@ -1,29 +1,24 @@
-// FIXME: We are forced to ignore alot of our linter related warnings
-// Due to minecraft not typing their stuff :/
-// TODO: Make this better later
-
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-
+import type { Client } from '../client'
 import type { Player } from '../player'
 import type { MessageFormResponse } from '../types'
 // @ts-ignore FIXME: Once typings are made
 import { MessageFormData } from 'mojang-minecraft-ui'
-import type { Client } from '../client'
 
+/**
+ * Creates a new MessageForm.
+ */
 export class MessageForm {
   protected readonly player: Player
   protected readonly _client: Client
   protected readonly form: any
   protected callback: ((res: MessageFormResponse) => void) | undefined
   protected canceled = false
-  public title = 'Unnamed Form'
-  public body = ''
-  public button1 = 'Yes'
-  public button2 = 'No'
 
+  /**
+   * Creates a new MessageForm.
+   * @param {Player} player The player to recieve the form.
+   * @param {Client} client The registered client to handle the form.
+   */
   public constructor(player: Player, client: Client) {
     this.player = player
     this._client = client
@@ -38,6 +33,55 @@ export class MessageForm {
     })
   }
 
+  /**
+   * Sets the title of the form.
+   * @param {string} title Form title.
+   * @returns Form instance.
+   */
+  public setTitle(title: string): MessageForm {
+    this.form.title(title)
+
+    return this
+  }
+
+  /**
+   * Sets the body of the form.
+   * @param {string} body Form body.
+   * @returns Form instance.
+   */
+  public setBody(body: string): MessageForm {
+    this.form.body(body)
+
+    return this
+  }
+
+  /**
+   * Sets the label for button one.
+   * @param {string} label Button label.
+   * @returns Form instance.
+   */
+  public setButton1(label: string): MessageForm {
+    this.form.button1(label)
+
+    return this
+  }
+
+  /**
+   * Sets the label for button two.
+   * @param {string} label Button label.
+   * @returns Form instance.
+   */
+  public setButton2(label: string): MessageForm {
+    this.form.button2(label)
+
+    return this
+  }
+
+  /**
+   * Sends the form to the player.
+   * @param {(result: MessageFormResponse) => void} callback The response of the form.
+   * @returns
+   */
   public send(callback?: (res: MessageFormResponse) => void): void {
     if (this.canceled) {
       if (this.callback) {
@@ -51,10 +95,6 @@ export class MessageForm {
         isCanceled: true,
       })
     }
-    this.form.title(this.title)
-    this.form.body(this.body)
-    this.form.button1(this.button1)
-    this.form.button2(this.button2)
     this.form
       .show(this.player.getIPlayer())
       .then((res: MessageFormResponse) => {
@@ -70,6 +110,10 @@ export class MessageForm {
       })
   }
 
+  /**
+   * Private method for handling the form event.
+   * @param callback
+   */
   private result(callback: (data: MessageFormResponse) => void): void {
     this.callback = callback
   }
