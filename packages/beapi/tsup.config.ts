@@ -6,5 +6,5 @@ export const tsup: Options = {
   // We only need esm
   format: ['esm'],
   // We want ES6 for gametest
-  target: 'es6',
+  target: 'es2020',
 }
