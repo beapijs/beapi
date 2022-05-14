@@ -312,6 +312,10 @@ export interface ClientEvents {
    * Emitted when an entity is hit by projectile.
    */
   ProjectileHitEntity: [ProjectileHitEntityEvent]
+  /**
+   * Emitted when an entity is killed by an entity or a player.
+   */
+  EntityKilled: [EntityKilledEvent]
 }
 
 /**
@@ -1090,6 +1094,25 @@ export interface ProjectileHitEntityEvent {
    * Vector of projectile.
    */
   vector: Vector
+}
+
+export interface EntityKilledEvent {
+  /**
+   * Attacker of the killed entity.
+   */
+  attacker: Player | Entity | undefined
+  /**
+   * Entity that was killed.
+   */
+  target: Entity
+  /**
+   * Amount of damage dealt on the entity.
+   */
+  damage: number
+  /**
+   * The cause for the entity's death.
+   */
+  cause: string
 }
 
 /**
