@@ -316,6 +316,10 @@ export interface ClientEvents {
    * Emitted when an entity is killed by an entity or a player.
    */
   EntityKilled: [EntityKilledEvent]
+  /**
+   * Emitted when a player is killed by an entity or a player.
+   */
+  PlayerKilled: [PlayerKilledEvent]
 }
 
 /**
@@ -1111,6 +1115,25 @@ export interface EntityKilledEvent {
   damage: number
   /**
    * The cause for the entity's death.
+   */
+  cause: string
+}
+
+export interface PlayerKilledEvent {
+  /**
+   * Attacker of the killed player.
+   */
+  attacker: Player | Entity | undefined
+  /**
+   * Player that was killed.
+   */
+  target: Player
+  /**
+   * Amount of damage dealt on the player.
+   */
+  damage: number
+  /**
+   * The cause for the player's death.
    */
   cause: string
 }

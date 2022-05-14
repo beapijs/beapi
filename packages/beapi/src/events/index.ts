@@ -56,6 +56,7 @@ import { ServerInitialized } from './ServerInitialized'
 import { ProjectileHitBlock } from './ProjectileHitBlock'
 import { ProjectileHitEntity } from './ProjectileHitEntity'
 import { EntityKilled } from './EntityKilled'
+import { PlayerKilled } from './PlayerKilled'
 
 // Export all events as an array.
 export const events = [
@@ -116,6 +117,7 @@ export const events = [
   ProjectileHitBlock,
   ProjectileHitEntity,
   EntityKilled,
+  PlayerKilled,
 ]
 
 // Export abstract event.
