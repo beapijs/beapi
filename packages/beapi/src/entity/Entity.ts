@@ -362,6 +362,14 @@ export class Entity {
   }
 
   /**
+   * Set the rotation of the entity.
+   * @param rotation
+   */
+  public setRotation(rotation: Rotation): void {
+    this._IEntity.setRotation(rotation.x ?? this.getRotation()?.x ?? 0, rotation.y ?? this.getRotation()?.y ?? 0)
+  }
+
+  /**
    * Get the entities head location.
    * @returns
    */
