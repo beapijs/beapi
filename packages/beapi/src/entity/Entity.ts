@@ -18,7 +18,6 @@ import type {
   DimensionNamespace,
   ServerCommandResponse,
   EntityComponents,
-  Objective,
   PropertyValue,
   Rotation,
 } from '../types'
@@ -197,11 +196,12 @@ export class Entity {
    * @param objective Objective to use.
    * @returns
    */
-  public getScore(objective: Objective): number {
-    const command = this.executeCommand(`scoreboard players test @s "${objective.id}" * *`)
-    if (command.err) return 0
-
-    return parseInt(String(command.statusMessage?.split(' ')[1]), 10)
+  public getScore(objective: string): number {
+    try {
+      return this._client.scoreboards.getObjective(objective).getScore(this._IEntity.scoreboard)
+    } catch {
+      return 0
+    }
   }
 
   /**
@@ -210,8 +210,8 @@ export class Entity {
    * @param amount New score.
    * @returns
    */
-  public setScore(objective: Objective, amount: number): number {
-    this.executeCommand(`scoreboard players set @s "${objective.id}" ${amount}`)
+  public setScore(objective: string, amount: number): number {
+    this.executeCommand(`scoreboard players set @s "${objective}" ${amount}`)
 
     return this.getScore(objective)
   }
@@ -222,8 +222,8 @@ export class Entity {
    * @param amount Amount to add.
    * @returns
    */
-  public addScore(objective: Objective, amount: number): number {
-    this.executeCommand(`scoreboard players add @s "${objective.id}" ${amount}`)
+  public addScore(objective: string, amount: number): number {
+    this.executeCommand(`scoreboard players add @s "${objective}" ${amount}`)
 
     return this.getScore(objective)
   }
@@ -234,8 +234,8 @@ export class Entity {
    * @param amount Amount to remove.
    * @returns
    */
-  public removeScore(objective: Objective, amount: number): number {
-    this.executeCommand(`scoreboard players remove @s "${objective.id}" ${amount}`)
+  public removeScore(objective: string, amount: number): number {
+    this.executeCommand(`scoreboard players remove @s "${objective}" ${amount}`)
 
     return this.getScore(objective)
   }

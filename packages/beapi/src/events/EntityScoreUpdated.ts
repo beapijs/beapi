@@ -5,12 +5,12 @@ import { setProto } from '../'
 // Type imports.
 import type { Client } from '../client'
 import type { Entity } from '../entity'
-import type { Objective } from '../types'
+import type { ScoreboardObjective } from 'mojang-minecraft'
 
 // Private OldScore Interface.
 interface OldScore {
   score: number
-  objective: Objective
+  objective: ScoreboardObjective
 }
 
 /**
@@ -90,7 +90,7 @@ export class EntityScoreUpdated extends AbstractEvent {
       // For every objective in world, iterate.
       for (const objective of this._client.scoreboards.getObjectives()) {
         // Get the score for entity on objective.
-        const score = entity.getScore(objective)
+        const score = entity.getScore(objective.id)
 
         // Push their current score to scores array.
         scores.push({
@@ -129,7 +129,7 @@ export class EntityScoreUpdated extends AbstractEvent {
           old: oldScore.score,
           cancel: () => {
             this.ignoreNextFor.push(entity)
-            entity.setScore(oldScore.objective, oldScore.score)
+            entity.setScore(oldScore.objective.id, oldScore.score)
           },
         })
       }
