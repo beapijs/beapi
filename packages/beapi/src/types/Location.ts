@@ -23,9 +23,9 @@ export interface Rotation {
   /**
    * X Coordinate.
    */
-  x: number
+  x?: number
   /**
    * Y Coordinate.
    */
-  y: number
+  y?: number
 }

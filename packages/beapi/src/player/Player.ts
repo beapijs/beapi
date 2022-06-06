@@ -609,6 +609,14 @@ export class Player {
   }
 
   /**
+   * Set the rotation of the player.
+   * @param rotation
+   */
+  public setRotation(rotation: Rotation): void {
+    this._IPlayer.setRotation(rotation.x ?? this.getRotation()?.x ?? 0, rotation.y ?? this.getRotation()?.y ?? 0)
+  }
+
+  /**
    * Get the players head location.
    * @returns
    */
