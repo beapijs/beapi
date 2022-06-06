@@ -30,6 +30,7 @@ import type {
   CameraShakeType,
   PropertyValue,
   TitleOptions,
+  Rotation,
 } from '../types'
 import type { Entity } from '../entity'
 
@@ -603,8 +604,8 @@ export class Player {
    * Get the players rotation.
    * @returns
    */
-  public getRotation(): number {
-    return this._IPlayer.bodyRotation
+  public getRotation(): Rotation {
+    return this._IPlayer.rotation
   }
 
   /**

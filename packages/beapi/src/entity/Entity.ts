@@ -20,6 +20,7 @@ import type {
   EntityComponents,
   Objective,
   PropertyValue,
+  Rotation,
 } from '../types'
 import type { Dimension } from '../world'
 import { Item } from '..'
@@ -356,8 +357,8 @@ export class Entity {
    * Get the entities rotation.
    * @returns
    */
-  public getRotation(): number {
-    return this._IEntity.bodyRotation
+  public getRotation(): Rotation {
+    return this._IEntity.rotation
   }
 
   /**

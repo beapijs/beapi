@@ -15,3 +15,17 @@ export interface Location {
    */
   z: number
 }
+
+/**
+ * Rotation object.
+ */
+export interface Rotation {
+  /**
+   * X Coordinate.
+   */
+  x: number
+  /**
+   * Y Coordinate.
+   */
+  y: number
+}
