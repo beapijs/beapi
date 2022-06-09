@@ -14,6 +14,7 @@ import {
 import { ModalForm, MessageForm, ActionForm } from '../forms'
 import { Agent } from '../agent/Agent'
 import { EntityInventory } from '../inventory'
+import { Objective, PlayerIdentity } from '../scoreboard'
 
 // Type imports.
 import type { Client } from '../client'
@@ -72,6 +73,9 @@ export class Player {
   protected _isAlive = true
   protected _isMuted = false
 
+  // Protected readonly scoreboard identity.
+  protected readonly _scoreboardIdentity: PlayerIdentity
+
   /**
    * BeAPI wrapper for the Mojang Minecraft player object.
    * Main object for interacting with a player.
@@ -84,6 +88,7 @@ export class Player {
     this._name = player.name
     this._runtimeId = client.players.newRuntimeId()
     this._agent = this.attemptFindAgent()
+    this._scoreboardIdentity = new PlayerIdentity(this._client, this._IPlayer.scoreboard)
   }
 
   /**
@@ -410,12 +415,11 @@ export class Player {
    * @param objective Objective to use.
    * @returns
    */
-  public getScore(objective: string): number {
-    try {
-      return this._client.scoreboards.getObjective(objective).getScore(this._IPlayer.scoreboard)
-    } catch {
-      return 0
+  public getScore(objective: string | Objective): number {
+    if (objective instanceof Objective) {
+      return objective.getScore(this._scoreboardIdentity)
     }
+    return this._client.scoreboards.getObjective(objective).getScore(this._scoreboardIdentity)
   }
 
   /**
@@ -959,5 +963,13 @@ export class Player {
 
       return player
     }
+  }
+
+  /**
+   * Get the entities scoreboard identity.
+   * @returns PlayerIdentity.
+   */
+  public getScoreIdentity(): PlayerIdentity {
+    return this._scoreboardIdentity
   }
 }

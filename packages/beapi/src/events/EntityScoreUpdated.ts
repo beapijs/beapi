@@ -5,12 +5,12 @@ import { setProto } from '../'
 // Type imports.
 import type { Client } from '../client'
 import type { Entity } from '../entity'
-import type { ScoreboardObjective } from 'mojang-minecraft'
+import type { Objective } from '../scoreboard'
 
 // Private OldScore Interface.
 interface OldScore {
   score: number
-  objective: ScoreboardObjective
+  objective: Objective
 }
 
 /**
@@ -90,7 +90,7 @@ export class EntityScoreUpdated extends AbstractEvent {
       // For every objective in world, iterate.
       for (const objective of this._client.scoreboards.getObjectives()) {
         // Get the score for entity on objective.
-        const score = entity.getScore(objective.id)
+        const score = entity.getScore(objective.getId())
 
         // Push their current score to scores array.
         scores.push({
@@ -108,7 +108,7 @@ export class EntityScoreUpdated extends AbstractEvent {
       // Iterate through all the current scores and compare with old scores
       for (const oldScore of this.oldScores.get(entity)!) {
         // Attempt to find the current score.
-        const currentScore = scores.find((x) => x.objective.id === oldScore.objective.id)
+        const currentScore = scores.find((x) => x.objective.getId() === oldScore.objective.getId())
         // If not current score skip.
         if (!currentScore) continue
         // If current score equals old score skip.
@@ -129,7 +129,7 @@ export class EntityScoreUpdated extends AbstractEvent {
           old: oldScore.score,
           cancel: () => {
             this.ignoreNextFor.push(entity)
-            entity.setScore(oldScore.objective.id, oldScore.score)
+            entity.setScore(oldScore.objective.getId(), oldScore.score)
           },
         })
       }

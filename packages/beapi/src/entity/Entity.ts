@@ -2,6 +2,7 @@
 import { EntityInventory } from '../inventory'
 import { Location as ILocation } from 'mojang-minecraft'
 import { getUniqueId } from '../utils'
+import { EntityIdentity, Objective } from '../scoreboard'
 
 // Type imports.
 import type {
@@ -48,6 +49,9 @@ export class Entity {
    */
   protected readonly _uniqueId: number
 
+  // Protected readonly scoreboard identity.
+  protected readonly _scoreboardIdentity: EntityIdentity
+
   /**
    * BeAPI wrapper for the Mojang Minecraft entity object.
    * Main object for interacting with a entity.
@@ -59,6 +63,7 @@ export class Entity {
     this._IEntity = entity
     this._runtimeId = this._client.entities.newRuntimeId()
     this._uniqueId = getUniqueId(this)
+    this._scoreboardIdentity = new EntityIdentity(this._client, this._IEntity.scoreboard)
   }
 
   /**
@@ -196,12 +201,11 @@ export class Entity {
    * @param objective Objective to use.
    * @returns
    */
-  public getScore(objective: string): number {
-    try {
-      return this._client.scoreboards.getObjective(objective).getScore(this._IEntity.scoreboard)
-    } catch {
-      return 0
+  public getScore(objective: string | Objective): number {
+    if (objective instanceof Objective) {
+      return objective.getScore(this._scoreboardIdentity)
     }
+    return this._client.scoreboards.getObjective(objective).getScore(this._scoreboardIdentity)
   }
 
   /**
@@ -453,5 +457,13 @@ export class Entity {
     const item = new Item(this._client, component.itemStack)
 
     return item
+  }
+
+  /**
+   * Get the entities scoreboard identity.
+   * @returns EntityIdentity.
+   */
+  public getScoreIdentity(): EntityIdentity {
+    return this._scoreboardIdentity
   }
 }

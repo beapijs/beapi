@@ -1,3 +1,6 @@
+// Regular imports.
+import { Objective } from './'
+
 // Type imports.
 import type { Client } from '../client'
 import type { ScoreboardSlot } from '..'
@@ -24,7 +27,7 @@ export class ScoreboardManager {
 
   public createObjective(objective: string, display?: string): boolean {
     // Check if objective already exists. If so return false.
-    if (this.getObjectives().find((x) => x.id === objective)) return false
+    if (this.getObjectives().find((x) => x.getId() === objective)) return false
 
     // Attempt executing command to add a new scoreboard objective with the given objective object.
     const command = this._client.executeCommand(
@@ -45,7 +48,7 @@ export class ScoreboardManager {
    */
   public removeObjective(objective: string): boolean {
     // Check if the objective exists, if not return false.
-    if (!this.getObjectives().find((x) => x.id === objective)) return false
+    if (!this.getObjectives().find((x) => x.getId() === objective)) return false
 
     // Attempt executing a command to remove the scoreboard with given id.
     const command = this._client.executeCommand(`scoreboard objectives remove ${objective}`)
@@ -62,16 +65,19 @@ export class ScoreboardManager {
    * @param objective Identifier of the scoreboard.
    * @returns
    */
-  public getObjective(objective: string): ScoreboardObjective {
-    return this._client.world.getIWorld().scoreboard.getObjective(objective)
+  public getObjective(objective: string): Objective {
+    return new Objective(this._client, this._client.world.getIWorld().scoreboard.getObjective(objective))
   }
 
   /**
    * Attempts to get all objectives.
    * @returns
    */
-  public getObjectives(): ScoreboardObjective[] {
-    return this._client.world.getIWorld().scoreboard.getObjectives()
+  public getObjectives(): Objective[] {
+    return this._client.world
+      .getIWorld()
+      .scoreboard.getObjectives()
+      .map((x) => new Objective(this._client, x))
   }
 
   /**
