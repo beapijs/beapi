@@ -25,9 +25,10 @@ export class ScoreboardManager {
     this._client = client
   }
 
-  public createObjective(objective: string, display?: string): boolean {
+  public createObjective(objective: string, display?: string): Objective | undefined {
     // Check if objective already exists. If so return false.
-    if (this.getObjectives().find((x) => x.getId() === objective)) return false
+    if (this.getObjectives().find((x) => x.getId() === objective))
+      return this.getObjectives().find((x) => x.getId() === objective)
 
     // Attempt executing command to add a new scoreboard objective with the given objective object.
     const command = this._client.executeCommand(
@@ -35,10 +36,10 @@ export class ScoreboardManager {
     )
 
     // If error log to console and return false.
-    if (command.err) return false
+    if (command.err) return
 
     // Everything was successful, return true.
-    return true
+    return this.getObjectives().find((x) => x.getId() === objective)
   }
 
   /**
