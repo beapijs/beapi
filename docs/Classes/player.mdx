@@ -58,6 +58,28 @@ getIPlayer();
 [IPlayer](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/player)
 ___
 
+### getId
+Returns the player's entity id.
+
+```js
+getId();
+```
+
+#### Returns
+[IPlayer](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/player)
+___
+
+### getRuntimeId
+Returns the player's runtime id.
+
+```js
+getRuntimeId();
+```
+
+#### Returns
+[IPlayer](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/player)
+___
+
 ### getName
 Returns the player's microsoft gamertag.
 
@@ -151,6 +173,72 @@ removeTag(tag);
 [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 ___
 
+### createModalForm
+Create a modal form for that specific player.
+
+```js
+createModalForm();
+```
+
+#### Returns
+[ModalForm](/docs/classes/modalform)
+___
+
+### createMessageForm
+Create a message form for that specific player.
+
+```js
+createMessageForm();
+```
+
+#### Returns
+[MessageForm](/docs/classes/messageform)
+___
+
+### createActionForm
+Create a action form for that specific player.
+
+```js
+createActionForm();
+```
+
+#### Returns
+[ActionForm](/docs/classes/actionform)
+___
+
+### createAgent
+Create an agent for the player.
+
+```js
+createAgent();
+```
+
+#### Returns
+[Agent](/docs/classes/agent)
+___
+
+### hasAgent
+Checks if the player has an agent.
+
+```js
+hasAgent();
+```
+
+#### Returns
+[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+___
+
+### getAgent
+Get the players current agent.
+
+```js
+getAgent();
+```
+
+#### Returns
+[Agent](/docs/classes/agent)
+___
+
 ### sendMessage
 Sends a message to the player.
 
@@ -161,6 +249,63 @@ sendMessage(message);
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
 | message | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The message to send. |
+
+#### Returns
+void
+___
+
+### sendActionbar
+Sends a message to the player's actionbar.
+
+```js
+sendActionbar(message);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| message | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The message to send. |
+
+#### Returns
+void
+___
+
+### sendSubtitle
+Sends a message to the player's subtitle.
+
+```js
+sendSubtitle(message);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| message | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The message to send. |
+
+#### Returns
+void
+___
+
+### sendTitle
+Sends a message to the player's title.
+
+```js
+sendTitle(message, options);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| message | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The message to send. |
+| options | [TitleOptions?](/docs/typedefs/titleoptions) |  ✔️   | `undefined`  | Text options. |
+
+#### Returns
+void
+___
+
+### clearTitle
+Clears the player's title display.
+
+```js
+clearTitle();
+```
 
 #### Returns
 void
@@ -182,6 +327,21 @@ executeCommand(cmd, debug);
 [ServerCommandResponse](/docs/typedefs/servercommandresponse)
 ___
 
+### executeFunction
+Executes a function as the player.
+
+```js
+executeFunction(path);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| path | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Minecraft function to execute. |
+
+#### Returns
+[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+___
+
 ### getScore
 Gets the score of an objective.
 
@@ -191,10 +351,73 @@ getScore(objective);
 
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
-| objective | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The scoreboard objective name. |
+| objective | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) or [Objective](/docs/classes/objective) |  ❌   | `undefined`  | The scoreboard objective name. |
 
 #### Returns
 [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### setScore
+Sets the score of an objective.
+
+```js
+setScore(objective, amount);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| objective | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The scoreboard objective name. |
+| amount | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | Score amount. |
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### addScore
+Adds a score of an objective.
+
+```js
+addScore(objective, amount);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| objective | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The scoreboard objective name. |
+| amount | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | Score amount. |
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### removeScore
+Removes a score of an objective.
+
+```js
+removeScore(objective, amount);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| objective | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The scoreboard objective name. |
+| amount | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | Score amount. |
+
+#### Returns
+[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+___
+
+### setGamemode
+Sets the player's gamemode.
+
+```js
+setGamemode(gamemode);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| Gamemode | [Gamemode](/docs/typedefs/gamemode) |  ❌   | `undefined`  | The gamemode to select. |
+
+#### Returns
+void
 ___
 
 ### getGamemode
@@ -219,6 +442,17 @@ getLocation();
 [Location](/docs/typedefs/location)
 ___
 
+### getPreciseLocation
+Gets the player's precise current location.
+
+```js
+getPreciseLocation();
+```
+
+#### Returns
+[Location](/docs/typedefs/location)
+___
+
 ### getDimension
 Gets the player's current dimension.
 
@@ -227,19 +461,9 @@ getDimension();
 ```
 
 #### Returns
-[IDimension](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/dimension)
+[Dimension](/docs/classes/dimension)
 ___
 
-### getDimensionName
-Gets the player's current dimension name.
-
-```js
-getDimensionName();
-```
-
-#### Returns
-[Dimension](/docs/typedefs/dimension)
-___
 
 ### getInventory
 Gets the player's inventory.
@@ -249,7 +473,7 @@ getInventory();
 ```
 
 #### Returns
-[Inventory](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/entityinventorycomponent)
+[Inventory](/docs/classes/inventory)
 ___
 
 ### getHealth
@@ -325,7 +549,7 @@ teleport(location, dimension, xrot, yrot);
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
 | location | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The location to be teleported. |
-| dimension | [IDimension](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/dimension) |  ❌   | `undefined`  | The dimension to be teleported. |
+| dimension | [DimensionNamespace](/docs/typedefs/dimensionnamespace) |  ❌   | `undefined`  | The dimension to be teleported. |
 | xrot | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | The xrot of the player. |
 | yrot | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | The yrot of the player. |
 
@@ -343,7 +567,7 @@ teleportFacing(location, dimension, facingLocaton);
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
 | location | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The location to be teleported. |
-| dimension | [IDimension](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/dimension) |  ❌   | `undefined`  | The dimension to be teleported. |
+| dimension | [DimensionNamespace](/docs/typedefs/dimensionnamespace) |  ❌   | `undefined`  | The dimension to be teleported. |
 | facingLocation | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The facing location to be teleported. |
 
 #### Returns
@@ -373,7 +597,7 @@ getRotation();
 ```
 
 #### Returns
-[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+[Rotation](/docs/typedefs/rotation)
 ___
 
 ### getHeadLocation
@@ -385,4 +609,49 @@ getHeadLocation();
 
 #### Returns
 [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location)
+___
+
+### hasComponent
+Checks if the player has a specific component.
+
+```js
+hasComponent(component);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| component | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Component namespace. |
+
+#### Returns
+[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
+___
+
+### getComponent
+Gets a component from the player.
+
+```js
+getComponent(component);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| component | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Component namespace. |
+
+#### Returns
+[EntityComponent](/todo)
+___
+
+### hasComponent
+Checks if the player has a specific component.
+
+```js
+hasComponent(component);
+```
+
+| PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
+| :-------: | :--: | :------: | :-----: | :---------: |
+| component | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Component namespace. |
+
+#### Returns
+[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 ___
