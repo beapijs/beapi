@@ -22,7 +22,7 @@ import type {
   PropertyValue,
   Rotation,
 } from '../types'
-import type { Dimension } from '../world'
+import { Dimension } from '../world'
 import { Item } from '..'
 
 /**
@@ -332,9 +332,13 @@ export class Entity {
    * @param xrot X rotation to face when teleported.
    * @param yrot Y rotation to face when teleported
    */
-  public teleport(location: Location, dimension: DimensionNamespace, xrot: number, yrot: number): void {
+  public teleport(location: Location, dimension: DimensionNamespace | Dimension, xrot: number, yrot: number): void {
     const loc = new ILocation(location.x, location.y, location.z)
-    this._IEntity.teleport(loc, this._client.world.getDimension(dimension).getIDimension(), xrot, yrot)
+    if (dimension instanceof Dimension) {
+      this._IEntity.teleport(loc, dimension.getIDimension(), xrot, yrot)
+    } else {
+      this._IEntity.teleport(loc, this._client.world.getDimension(dimension).getIDimension(), xrot, yrot)
+    }
   }
 
   /**
@@ -343,10 +347,14 @@ export class Entity {
    * @param dimension Dimension to teleport entity to.
    * @param facingLocation Location to make entity face.
    */
-  public teleportFacing(location: Location, dimension: DimensionNamespace, facingLocation: Location): void {
+  public teleportFacing(location: Location, dimension: DimensionNamespace | Dimension, facingLocation: Location): void {
     const loc = new ILocation(location.x, location.y, location.z)
     const loc2 = new ILocation(facingLocation.x, facingLocation.y, facingLocation.z)
-    this._IEntity.teleportFacing(loc, this._client.world.getDimension(dimension).getIDimension(), loc2)
+    if (dimension instanceof Dimension) {
+      this._IEntity.teleportFacing(loc, dimension.getIDimension(), loc2)
+    } else {
+      this._IEntity.teleportFacing(loc, this._client.world.getDimension(dimension).getIDimension(), loc2)
+    }
   }
 
   /**
