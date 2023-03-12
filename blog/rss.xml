@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>BeAPI Blog</title>
-        <link>https://beapijs.github.io/BeAPI/blog</link>
+        <link>https://beapijs.github.io/beapi/blog</link>
         <description>BeAPI Blog</description>
         <lastBuildDate>Wed, 09 Feb 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[Welcome]]></title>
-            <link>https://beapijs.github.io/BeAPI/blog/welcome</link>
+            <link>https://beapijs.github.io/beapi/blog/welcome</link>
             <guid>welcome</guid>
             <pubDate>Wed, 09 Feb 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[First off, welcome to BeAPI's first release 🎉]]></description>
             <content:encoded><![CDATA[<p>First off, welcome to BeAPI's first release 🎉
 Thank you for sticking with us and helping us
 contemplate ideas for this package. It sure
-has been an intriguing journey up to this point.</p><p><img loading="lazy" alt="BeAPI Logo" src="/BeAPI/assets/images/beapi-4603cf2680132a588e928408bdbe7851.png" width="1280" height="640"></p><p>Now with that aside...</p><p>It's 3:45 in the morning, and I just finished
+has been an intriguing journey up to this point.</p><p><img loading="lazy" alt="BeAPI Logo" src="/beapi/assets/images/beapi-4603cf2680132a588e928408bdbe7851.png" width="1280" height="640"></p><p>Now with that aside...</p><p>It's 3:45 in the morning, and I just finished
 writing all the docs out for this bad boy
 <em>after procrastinating and playing Walkabout Mini Golf with some friends.</em></p><p>Let me say; Writing documentation truly makes
 you contemplate life: "why am I here?",

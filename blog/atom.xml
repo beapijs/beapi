@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://beapijs.github.io/BeAPI/blog</id>
+    <id>https://beapijs.github.io/beapi/blog</id>
     <title>BeAPI Blog</title>
     <updated>2022-02-09T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://beapijs.github.io/BeAPI/blog"/>
+    <link rel="alternate" href="https://beapijs.github.io/beapi/blog"/>
     <subtitle>BeAPI Blog</subtitle>
-    <icon>https://beapijs.github.io/BeAPI/img/favicon.ico</icon>
+    <icon>https://beapijs.github.io/beapi/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
         <id>welcome</id>
-        <link href="https://beapijs.github.io/BeAPI/blog/welcome"/>
+        <link href="https://beapijs.github.io/beapi/blog/welcome"/>
         <updated>2022-02-09T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[First off, welcome to BeAPI's first release 🎉]]></summary>
         <content type="html"><![CDATA[<p>First off, welcome to BeAPI's first release 🎉
 Thank you for sticking with us and helping us
 contemplate ideas for this package. It sure
-has been an intriguing journey up to this point.</p><p><img loading="lazy" alt="BeAPI Logo" src="/BeAPI/assets/images/beapi-4603cf2680132a588e928408bdbe7851.png" width="1280" height="640"></p><p>Now with that aside...</p><p>It's 3:45 in the morning, and I just finished
+has been an intriguing journey up to this point.</p><p><img loading="lazy" alt="BeAPI Logo" src="/beapi/assets/images/beapi-4603cf2680132a588e928408bdbe7851.png" width="1280" height="640"></p><p>Now with that aside...</p><p>It's 3:45 in the morning, and I just finished
 writing all the docs out for this bad boy
 <em>after procrastinating and playing Walkabout Mini Golf with some friends.</em></p><p>Let me say; Writing documentation truly makes
 you contemplate life: "why am I here?",

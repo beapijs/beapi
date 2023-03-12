@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[1798],{6038:function(e){e.exports=JSON.parse('{"allTagsPath":"/beapi/blog/tags","slug":"/beapi/blog/tags/welcome","name":"welcome","count":1,"permalink":"/beapi/blog/tags/welcome"}')}}]);
