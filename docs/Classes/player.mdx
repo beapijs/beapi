@@ -181,7 +181,7 @@ createModalForm();
 ```
 
 #### Returns
-[ModalForm](/docs/classes/modalform)
+ModalForm
 ___
 
 ### createMessageForm
@@ -192,7 +192,7 @@ createMessageForm();
 ```
 
 #### Returns
-[MessageForm](/docs/classes/messageform)
+MessageForm
 ___
 
 ### createActionForm
@@ -203,7 +203,7 @@ createActionForm();
 ```
 
 #### Returns
-[ActionForm](/docs/classes/actionform)
+ActionForm
 ___
 
 ### createAgent
@@ -214,7 +214,7 @@ createAgent();
 ```
 
 #### Returns
-[Agent](/docs/classes/agent)
+Agent
 ___
 
 ### hasAgent
@@ -236,7 +236,7 @@ getAgent();
 ```
 
 #### Returns
-[Agent](/docs/classes/agent)
+Agent
 ___
 
 ### sendMessage
@@ -294,7 +294,7 @@ sendTitle(message, options);
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
 | message | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | The message to send. |
-| options | [TitleOptions?](/docs/typedefs/titleoptions) |  ✔️   | `undefined`  | Text options. |
+| options | TitleOptions? |  ✔️   | `undefined`  | Text options. |
 
 #### Returns
 void
@@ -351,7 +351,7 @@ getScore(objective);
 
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
-| objective | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) or [Objective](/docs/classes/objective) |  ❌   | `undefined`  | The scoreboard objective name. |
+| objective | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) or Objective |  ❌   | `undefined`  | The scoreboard objective name. |
 
 #### Returns
 [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
@@ -461,7 +461,7 @@ getDimension();
 ```
 
 #### Returns
-[Dimension](/docs/classes/dimension)
+Dimension
 ___
 
 
@@ -473,7 +473,7 @@ getInventory();
 ```
 
 #### Returns
-[Inventory](/docs/classes/inventory)
+Inventory
 ___
 
 ### getHealth
@@ -549,7 +549,7 @@ teleport(location, dimension, xrot, yrot);
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
 | location | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The location to be teleported. |
-| dimension | [DimensionNamespace](/docs/typedefs/dimensionnamespace) |  ❌   | `undefined`  | The dimension to be teleported. |
+| dimension | DimensionNamespace |  ❌   | `undefined`  | The dimension to be teleported. |
 | xrot | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | The xrot of the player. |
 | yrot | [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |  ❌   | `undefined`  | The yrot of the player. |
 
@@ -567,7 +567,7 @@ teleportFacing(location, dimension, facingLocaton);
 | PARAMETER | TYPE | OPTIONAL | DEFAULT | DESCRIPTION |
 | :-------: | :--: | :------: | :-----: | :---------: |
 | location | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The location to be teleported. |
-| dimension | [DimensionNamespace](/docs/typedefs/dimensionnamespace) |  ❌   | `undefined`  | The dimension to be teleported. |
+| dimension | DimensionNamespace |  ❌   | `undefined`  | The dimension to be teleported. |
 | facingLocation | [ILocation](https://docs.microsoft.com/en-us/minecraft/creator/scriptapi/mojang-minecraft/location) |  ❌   | `undefined`  | The facing location to be teleported. |
 
 #### Returns
@@ -597,7 +597,7 @@ getRotation();
 ```
 
 #### Returns
-[Rotation](/docs/typedefs/rotation)
+Rotation
 ___
 
 ### getHeadLocation
@@ -638,7 +638,7 @@ getComponent(component);
 | component | [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) |  ❌   | `undefined`  | Component namespace. |
 
 #### Returns
-[EntityComponent](/todo)
+EntityComponent
 ___
 
 ### hasComponent
