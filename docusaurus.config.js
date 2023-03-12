@@ -7,12 +7,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'BeAPI',
   tagline: 'Minecraft gametest made easy',
-  url: 'https://mcbe-utilities.github.io',
-  baseUrl: '/BeAPI/',
+  url: 'https://beapijs.github.io',
+  baseUrl: '/beapi/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'MCBE-Utilities',
+  organizationName: 'beapijs',
   projectName: 'BeAPI',
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
@@ -25,7 +25,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/MCBE-Utilities/BeAPI/tree/docs/',
+          editUrl: 'https://github.com/beapijs/beapi/tree/docs/',
           versions: {
             current: {
               label: "Beta 🚧",
@@ -92,7 +92,7 @@ const config = {
             dropdownActiveClassDisabled: true,
           },
           {
-            href: 'https://github.com/MCBE-Utilities/BeAPI',
+            href: 'https://github.com/beapijs/beapi',
             label: 'GitHub',
             position: 'right',
           }
@@ -119,11 +119,11 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/MCBE-Utilities/',
+                href: 'https://github.com/beapijs/',
               },
               {
                 label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/BeAPI',
+                href: 'https://stackoverflow.com/questions/tagged/beapi',
               },
             ],
           },
@@ -136,12 +136,12 @@ const config = {
               },
               {
                 label: 'Repo',
-                href: 'https://github.com/MCBE-Utilities/BeAPI',
+                href: 'https://github.com/beapijs/beapi',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} MCBE-Utilities`
+        copyright: `Copyright © ${new Date().getFullYear()} BeAPI.js`
       },
       prism: {
         theme: darkCodeTheme,
