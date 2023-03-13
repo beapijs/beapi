@@ -1,0 +1,31 @@
+{
+  "name": "@beapijs/website",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "prettier --check . && cross-env TIMING=1 eslint src --ext .mjs,.js,.cjs,.ts,.tsx --format=pretty",
+    "format": "prettier --write . && cross-env TIMING=1 eslint src --ext .mjs,.js,.cjs,.ts,.tsx --fix --format=pretty",
+    "fmt": "yarn format"
+  },
+  "dependencies": {
+    "@types/node": "18.15.1",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "next": "13.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "@types/node": "16.18.11",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.31.0",
+    "eslint-config-neon": "^0.1.40",
+    "eslint-formatter-pretty": "^4.1.0",
+    "prettier": "^2.8.2"
+  }
+}
