@@ -1,0 +1,70 @@
+{
+	"$schema": "https://turborepo.org/schema.json",
+	"globalDependencies": ["yarn.lock"],
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": ["../../tsconfig.json", "../../tsup.config.ts", "src/**/*.ts", "tsconfig.json", "tsup.config.ts"],
+			"outputs": ["dist/**"]
+		},
+		"lint": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"../../.eslintrc.json",
+				"../../.prettierrc.json",
+				"../../tsconfig.json",
+				"../../tsconfig.eslint.json",
+				"src/**/*.astro",
+				"src/**/*.tsx",
+				"src/**/*.ts",
+				"src/**/*.css",
+				"src/**/*.mdx",
+				"scripts/**.js",
+				"scripts/**.mjs",
+				".eslintignore",
+				".eslintrc.json",
+				"astro.config.ts",
+				".prettierignore",
+				".prettierrc.js",
+				".prettierrc.cjs",
+				".prettierrc.json",
+				"tsconfig.json",
+				"tsconfig.eslint.json",
+				"tsup.config.ts",
+				"vite.config.ts"
+			],
+			"outputs": []
+		},
+		"format": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"../../.eslintrc.json",
+				"../../.prettierrc.json",
+				"../../tsconfig.json",
+				"../../tsconfig.eslint.json",
+				"src/**/*.astro",
+				"src/**/*.tsx",
+				"src/**/*.ts",
+				"src/**/*.css",
+				"src/**/*.mdx",
+				"scripts/**.js",
+				"scripts/**.mjs",
+				".eslintignore",
+				".eslintrc.json",
+				"astro.config.ts",
+				".prettierignore",
+				".prettierrc.js",
+				".prettierrc.cjs",
+				".prettierrc.json",
+				"tsconfig.json",
+				"tsconfig.eslint.json",
+				"tsup.config.ts",
+				"vite.config.ts"
+			],
+			"outputs": []
+		},
+		"changelog": {
+			"outputs": ["cliff.toml", "CHANGELOG.md"]
+		}
+	}
+}

@@ -1,0 +1,56 @@
+# Packages
+node_modules/
+
+# Log files
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Env
+.env
+
+# Dist
+dist/
+
+# Miscellaneous
+.tmp/
+.vscode/*
+.idea/
+.DS_Store
+.turbo
+tsconfig.tsbuildinfo
+coverage/
+__tests__/
+
+# yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Cache
+.prettiercache
+.eslintcache
+
+# Docker specific
+.cliff-jumperrc.json
+api-extractor.json
+.eslintrc.json
+.lintstagedrc.cjs
+.lintstagedrc.cjs
+.prettierignore
+.prettierrc.js
+.prettierrc.cjs
+cliff.toml
+CHANGELOG.md
+README.md
+tsconfig.eslint.json
+docs/
