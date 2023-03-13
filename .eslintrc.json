@@ -5,6 +5,11 @@
 		"project": "./tsconfig.eslint.json"
 	},
 	"rules": {
+		"import/extensions": 0,
+		"eol-last": "error",
+		"semi": "off",
+		"@typescript-eslint/semi": "error",
+		"@typescript-eslint/member-delimiter-style": "error",
 		"@typescript-eslint/consistent-type-definitions": ["error", "interface"]
 	},
 	"ignorePatterns": ["**/dist/*"]

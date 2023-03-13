@@ -1,13 +1,13 @@
 {
-	"name": "@beapijs/core",
+	"name": "@beapijs/{name}",
 	"version": "0.1.0",
-	"description": "A thinly abstracted wrapper around the scripting API",
+	"description": "",
 	"scripts": {
 		"build": "tsup",
-		"lint": "prettier --check . && cross-env TIMING=1 eslint src --ext .mjs,.js,.ts --format=pretty",
-		"format": "prettier --write . && cross-env TIMING=1 eslint src --ext .mjs,.js,.ts --fix --format=pretty",
+		"lint": "prettier --check . && cross-env TIMING=1 eslint src __tests__ --ext .mjs,.js,.ts --format=pretty",
+		"format": "prettier --write . && cross-env TIMING=1 eslint src __tests__ --ext .mjs,.js,.ts --fix --format=pretty",
 		"prepack": "yarn build && yarn lint",
-		"changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/core/*'",
+		"changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/{name}/*'",
 		"release": "cliff-jumper"
 	},
 	"main": "./dist/index.js",
@@ -21,19 +21,18 @@
 	"directories": {
 		"lib": "src"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
+	"dependencies": {},
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.10.0",
-		"@types/node": "18.15.0",
+		"@types/node": "16.18.11",
 		"cross-env": "^7.0.3",
-		"eslint": "^8.36.0",
+		"eslint": "^8.31.0",
 		"eslint-config-neon": "^0.1.40",
 		"eslint-formatter-pretty": "^4.1.0",
-		"prettier": "^2.8.4",
-		"tsup": "^6.6.3",
-		"typescript": "^4.9.5"
+		"prettier": "^2.8.2",
+		"tsup": "^6.5.0",
+		"typescript": "^4.9.4"
 	},
 	"engines": {
 		"node": ">=16.9.0"

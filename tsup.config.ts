@@ -12,7 +12,7 @@ export function createTsupConfig({
 	clean = true,
 	// https://github.com/egoist/tsup/issues?q=the+injected
 	// shims = true,
-	minify = true,
+	minify = false,
 	splitting = false,
 	keepNames = true,
 	dts = true,

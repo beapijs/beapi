@@ -5,11 +5,18 @@
 	"private": true,
 	"scripts": {
 		"build": "turbo run build",
+		"build:affected": "turbo run build --filter='...[origin/main]'",
+		"build:apps": "turbo run build:local --filter='...{apps/*}'",
+		"build:apps:affected": "turbo run build:local --filter='...{apps/*}[origin/main]'",
 		"lint": "turbo run lint --parallel",
+		"lint:affected": "turbo run lint --filter='...[origin/main]' --parallel",
 		"format": "turbo run format --parallel",
+		"format:affected": "turbo run format --filter='...[origin/main]' --parallel",
 		"fmt": "turbo run format --parallel",
+		"fmt:affected": "turbo run format --filter='...[origin/main]' --parallel",
 		"postinstall": "is-ci || husky install",
-		"update": "yarn upgrade-interactive"
+		"update": "yarn upgrade-interactive",
+		"create-package": "node packages/scripts/src/packageScript.mjs"
 	},
 	"contributors": [
 		"Nobu <chat@nobu.sh>"
@@ -26,7 +33,7 @@
 		"conventional-changelog-cli": "^2.2.2",
 		"husky": "^8.0.3",
 		"is-ci": "^3.0.1",
-		"lint-staged": "^13.1.2",
+		"lint-staged": "^13.2.0",
 		"tsup": "^6.6.3",
 		"turbo": "^1.8.3",
 		"typescript": "^4.9.5"
