@@ -2,6 +2,7 @@
 	"name": "@beapijs/beapi",
 	"version": "0.0.0",
 	"description": "A powerful library for Minecraft Bedrock scripting API",
+	"license": "MIT",
 	"private": true,
 	"scripts": {
 		"build": "turbo run build",

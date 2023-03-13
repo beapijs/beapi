@@ -2,6 +2,7 @@
 	"name": "@beapijs/core",
 	"version": "0.1.0",
 	"description": "A thinly abstracted wrapper around the scripting API",
+	"license": "MIT",
 	"scripts": {
 		"build": "tsup",
 		"lint": "prettier --check . && cross-env TIMING=1 eslint src --ext .mjs,.js,.ts --format=pretty",

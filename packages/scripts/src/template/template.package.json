@@ -2,6 +2,7 @@
 	"name": "@beapijs/{name}",
 	"version": "0.1.0",
 	"description": "",
+	"license": "MIT",
 	"scripts": {
 		"build": "tsup",
 		"lint": "prettier --check . && cross-env TIMING=1 eslint src __tests__ --ext .mjs,.js,.ts --format=pretty",

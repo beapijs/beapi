@@ -2,6 +2,7 @@
 	"name": "@beapijs/scripts",
 	"version": "0.1.0",
 	"description": "A set of useful dev scripts",
+	"license": "MIT",
 	"private": true,
 	"scripts": {
 		"build": "tsup",
