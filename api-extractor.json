@@ -45,7 +45,7 @@
 	 *
 	 * SUPPORTED TOKENS: <projectFolder>, <packageName>, <unscopedPackageName>
 	 */
-	"mainEntryPointFilePath": "<projectFolder>/dist-docs/index.d.ts",
+	"mainEntryPointFilePath": "<projectFolder>/docs/dist/index.d.ts",
 
 	/**
 	 * A list of NPM package names whose exports should be treated as part of this package.
@@ -171,7 +171,7 @@
 		 * SUPPORTED TOKENS: <projectFolder>, <packageName>, <unscopedPackageName>
 		 * DEFAULT VALUE: "<projectFolder>/temp/<unscopedPackageName>.api.json"
 		 */
-		"apiJsonFilePath": "<projectFolder>/docs/docs.api.json"
+		"apiJsonFilePath": "<projectFolder>/docs/api.json"
 	},
 
 	/**
