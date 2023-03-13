@@ -7,6 +7,18 @@
 			"inputs": ["../../tsconfig.json", "../../tsup.config.ts", "src/**/*.ts", "tsconfig.json", "tsup.config.ts"],
 			"outputs": ["dist/**"]
 		},
+		"build:app": {
+			"dependsOn": ["docs"],
+			"inputs": [
+				"../../tsconfig.json",
+				"../../tsup.config.ts",
+				"src/**/*.ts",
+				"tsconfig.json",
+				"tsup.config.ts",
+				"next.config.json"
+			],
+			"outputs": ["dist/**"]
+		},
 		"lint": {
 			"dependsOn": ["^build"],
 			"inputs": [
@@ -62,7 +74,7 @@
 			"outputs": []
 		},
 		"docs": {
-			"outputs": ["../../api-extractor.json", "api-extractor.json", "docs/**", "tsconfig.json", "dist-docs"]
+			"outputs": ["../../api-extractor.json", "api-extractor.json", "docs/**", "tsconfig.json"]
 		},
 		"changelog": {
 			"outputs": ["cliff.toml", "CHANGELOG.md"]
