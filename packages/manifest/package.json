@@ -5,8 +5,10 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "tsup",
+		"build:docs": "tsc -p tsconfig.docs.json",
 		"lint": "prettier --check . && cross-env TIMING=1 eslint src __tests__ --ext .mjs,.js,.ts --format=pretty",
 		"format": "prettier --write . && cross-env TIMING=1 eslint src __tests__ --ext .mjs,.js,.ts --fix --format=pretty",
+		"docs": "yarn build:docs && api-extractor run --local",
 		"prepack": "yarn build && yarn lint",
 		"changelog": "git cliff --prepend ./CHANGELOG.md -u -c ./cliff.toml -r ../../ --include-path 'packages/manifest/*'",
 		"release": "cliff-jumper"
@@ -27,6 +29,7 @@
 	],
 	"devDependencies": {
 		"@favware/cliff-jumper": "^1.10.0",
+		"@microsoft/api-extractor": "^7.33.7",
 		"@types/node": "16.18.11",
 		"cross-env": "^7.0.3",
 		"eslint": "^8.31.0",

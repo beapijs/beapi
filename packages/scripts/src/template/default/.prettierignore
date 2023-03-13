@@ -2,6 +2,7 @@
 CHANGELOG.md
 .turbo
 dist/
+dist-docs/
 docs/**/*
 !docs/index.yml
 !docs/README.md

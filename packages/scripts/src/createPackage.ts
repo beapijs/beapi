@@ -2,6 +2,7 @@ import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { copy } from 'fs-extra';
 import cliffJumperJSON from './template/.cliff-jumperrc.json';
+import apiExtractorJSON from './template/api-extractor.json';
 import templateJSON from './template/template.package.json';
 
 export async function createPackage(packageName: string, packageDescription?: string) {
@@ -47,6 +48,15 @@ export async function createPackage(packageName: string, packageDescription?: st
 	const newCliffJumperJSON = { ...cliffJumperJSON, name: packageName, packagePath: `packages/${packageName}` };
 
 	await writeFile(join(packageDir, '.cliff-jumperrc.json'), JSON.stringify(newCliffJumperJSON, null, 2));
+
+	// Update api-extractor.json
+	const newApiExtractorJSON = { ...apiExtractorJSON };
+	newApiExtractorJSON.docModel.projectFolderUrl = newApiExtractorJSON.docModel.projectFolderUrl.replace(
+		'{name}',
+		packageName,
+	);
+
+	await writeFile(join(packageDir, 'api-extractor.json'), JSON.stringify(newApiExtractorJSON, null, 2));
 
 	// Copy default files over
 	await copy(join('packages', 'scripts', 'src', 'template', 'default'), packageDir);
