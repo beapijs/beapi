@@ -1,0 +1,29 @@
+{
+	"eslint.workingDirectories": [{ "pattern": "./apps/*" }, { "pattern": "./packages/*" }],
+	"eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact"],
+	"prettier.documentSelectors": ["**/*.astro"],
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true,
+		"source.organizeImports": false
+	},
+	"editor.trimAutoWhitespace": false,
+	"files.associations": {
+		"*.mdx": "markdown"
+	},
+	"files.insertFinalNewline": true,
+	"files.eol": "\n",
+	"npm.packageManager": "yarn",
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"explorer.fileNesting.enabled": true,
+	"explorer.fileNesting.expand": false,
+	"explorer.fileNesting.patterns": {
+		"tsconfig.json": "tsconfig.*.json, tsup.config.ts",
+		"package.json": "package-lock.json, yarn.lock, .yarnrc.yml",
+		".eslintrc.json": ".eslintignore, .prettierignore, .prettierrc.js, .prettierrc.json, .lintstagedrc.js, .lintstagedrc.cjs, .lintstagedrc.json, .commitlintrc.js, .commitlintrc.json",
+		".gitignore": ".gitattributes",
+		".cliff-jumperrc.json": "cliff.toml",
+		"README.md": "LICENSE, LICENSE.md"
+	}
+}
