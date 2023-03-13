@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/logo_text.png">
+  <img src="../../public/logo_text.png">
 </p>
 
 <p align="center">
@@ -9,7 +9,8 @@
 
 </p>
 
-## About
-WIP generation 2 of BeAPI. This version will be developed on the preview version of Minecraft.
+## Scripts
+Quality of life package for BeAPI workflow.
 
-
+## Usage
+Ensure all packages are built and run `yarn create-package <name> [description]` in the project root. Yes... this is all this offers at the moment.

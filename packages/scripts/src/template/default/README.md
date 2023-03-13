@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/logo_text.png">
+  <img src="../../public/logo_text.png">
 </p>
 
 <p align="center">
@@ -8,8 +8,3 @@
   <a href="https://github.com/MCBE-Utilities/BeAPI"><img src="https://img.shields.io/npm/dt/beapi-core?color=5893f2&style=for-the-badge"></a>
 
 </p>
-
-## About
-WIP generation 2 of BeAPI. This version will be developed on the preview version of Minecraft.
-
-
