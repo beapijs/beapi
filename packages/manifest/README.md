@@ -9,10 +9,6 @@
 
 </p>
 
-## Scripts
+## Manfiest
 
-Quality of life package for BeAPI workflow.
-
-### Usage
-
-Ensure all packages are built and run `yarn create-package <name> [description]` in the project root. Yes... this is all this offers at the moment.
+Minecraft pack manifest parser and creator.

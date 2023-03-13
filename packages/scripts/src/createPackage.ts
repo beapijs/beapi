@@ -16,7 +16,7 @@ export async function createPackage(packageName: string, packageDescription?: st
 	const templateDir = join('packages', 'scripts', 'src', 'template');
 
 	// Create files
-	await writeFile(join(packageDir, 'src', 'index.ts'), `console.log('Hello, from @beapijs/${packageName}');`);
+	await writeFile(join(packageDir, 'src', 'index.ts'), `console.log('Hello, from @beapijs/${packageName}');\n`);
 	await writeFile(
 		join(packageDir, '.eslintrc.json'),
 		await readFile(join(templateDir, 'template.eslintrc.json'), 'utf8'),

@@ -232,6 +232,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@beapijs/manifest@workspace:packages/manifest":
+  version: 0.0.0-use.local
+  resolution: "@beapijs/manifest@workspace:packages/manifest"
+  dependencies:
+    "@favware/cliff-jumper": ^1.10.0
+    "@types/node": 16.18.11
+    cross-env: ^7.0.3
+    eslint: ^8.31.0
+    eslint-config-neon: ^0.1.40
+    eslint-formatter-pretty: ^4.1.0
+    prettier: ^2.8.2
+    tsup: ^6.5.0
+    typescript: ^4.9.4
+  languageName: unknown
+  linkType: soft
+
 "@beapijs/scripts@workspace:packages/scripts":
   version: 0.0.0-use.local
   resolution: "@beapijs/scripts@workspace:packages/scripts"
@@ -7287,7 +7303,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^6.6.3":
+"tsup@npm:^6.5.0, tsup@npm:^6.6.3":
   version: 6.6.3
   resolution: "tsup@npm:6.6.3"
   dependencies:
